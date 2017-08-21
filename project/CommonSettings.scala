@@ -1,4 +1,4 @@
-package com.simplesys.build
+package com.ivcInform.build
 
 object CommonSettings {
     object settingValues {
