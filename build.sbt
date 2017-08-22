@@ -4,17 +4,17 @@ val _scalaVersion = "2.12.3"
 
 lazy val aps = crossProject(JSPlatform, JVMPlatform)
   .settings(scalaVersion := _scalaVersion)
-  .aggregate(bar)
-  .dependsOn(bar)
+  .aggregate(common)
+  .dependsOn(common)
 
 lazy val apsJS = aps.js
 lazy val apsJVM = aps.jvm
 
-lazy val bar = crossProject(JSPlatform, JVMPlatform)
+lazy val common = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(scalaVersion := _scalaVersion)
 
-lazy val barJS = bar.js
-lazy val barJVM = bar.jvm
+lazy val commonJS = common.js
+lazy val commonJVM = common.jvm
 
 
