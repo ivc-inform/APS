@@ -1,42 +1,20 @@
-import com.ivc_inform.build
-import sbt.{Credentials, Path}
-import org.scalajs.sbtplugin.ScalaJSPlugin.AutoImport.crossProject
+import sbtcrossproject.{CrossType, crossProject}
 
-name := "auto planing sheduler"
+val _scalaVersion = "2.12.3"
 
-lazy val root = (project in file(".")).
-  aggregate(fooJS, fooJVM).
-  settings(inThisBuild(Seq(
-      git.baseVersion := CommonSettings.settingValues.baseVersion,
-      scalaVersion := CommonSettings.settingValues.scalaVersion,
-      scalacOptions := CommonSettings.settingValues.scalacOptions,
-      organization := CommonSettings.settingValues.organization,
-      publishTo := {
-          val corporateRepo = "http://toucan.simplesys.lan/"
-          if (isSnapshot.value)
-              Some("snapshots" at corporateRepo + "artifactory/libs-snapshot-local")
-          else
-              Some("releases" at corporateRepo + "artifactory/libs-release-local")
-      },
-      credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
-  )
-    ++ CommonSettings.defaultSettings),
-      publishArtifact in(Compile, packageBin) := false,
-      publishArtifact in(Compile, packageDoc) := false,
-      publishArtifact in(Compile, packageSrc) := false
-  )
+lazy val aps = crossProject(JSPlatform, JVMPlatform)
+  .settings(scalaVersion := _scalaVersion)
+  .aggregate(bar)
+  .dependsOn(bar)
 
-lazy val foo = crossProject.in(file(".")).
-  settings(
-      name := "foo",
-      version := "0.1-SNAPSHOT"
-  ).
-  jvmSettings(
-      // Add JVM-specific settings here
-  ).
-  jsSettings(
-      // Add JS-specific settings here
-  )
+lazy val apsJS = aps.js
+lazy val apsJVM = aps.jvm
 
-lazy val fooJVM = foo.jvm
-lazy val fooJS = foo.js
+lazy val bar = crossProject(JSPlatform, JVMPlatform)
+  .crossType(CrossType.Pure)
+  .settings(scalaVersion := _scalaVersion)
+
+lazy val barJS = bar.js
+lazy val barJVM = bar.jvm
+
+

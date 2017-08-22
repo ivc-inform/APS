@@ -1,24 +1,19 @@
-# Compiled class file
-*.class
-
-# Log file
+*.svn
 *.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-.idea/
+idea
+*.idea
+*.idea_modules 
+*.iml
+*.ipr
+*.iws
+target
+docs
+orbroker-org
+settings.xml
+*.bak
+*.pem
+*.class
+##jdbc-wrapper/src/test/scala/bo
+common-webapp/src/main/resources/webapp/javascript/generated/
+isc-components/src/main/resources/webapp/javascript/generated/
+saxon-wrapper/lib/
