@@ -10,9 +10,13 @@ lazy val aps = crossProject(JSPlatform, JVMPlatform)
 lazy val apsJS = aps.js
 lazy val apsJVM = aps.jvm
 
+val sharedSettings = Seq(scalaVersion := _scalaVersion)
+
 lazy val common = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
-  .settings(scalaVersion := _scalaVersion)
+  .settings(sharedSettings)
+  .jsSettings(/* ... */)
+  .jvmSettings(/* ... */)
 
 lazy val commonJS = common.js
 lazy val commonJVM = common.jvm
