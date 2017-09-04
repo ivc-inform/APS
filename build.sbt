@@ -15,7 +15,9 @@ val sharedSettings = Seq(scalaVersion := _scalaVersion)
 lazy val common = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(sharedSettings)
-  .jsSettings(/* ... */)
+  .jsSettings(
+      scalacOptions += "-P:scalajs-sjsDefinedByDefault"
+  )
   .jvmSettings(/* ... */)
 
 lazy val commonJS = common.js
