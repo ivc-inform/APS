@@ -28,6 +28,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .jsSettings(
       libraryDependencies ++= Seq(
           CommonDepsScalaJS.smartClientWrapper.value,
+          CommonDepsScalaJS.scalaTags.value,
           CommonDepsScalaJS.macroJS.value
       )
   )
