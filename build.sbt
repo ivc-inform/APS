@@ -10,15 +10,16 @@ lazy val aps = crossProject(JSPlatform, JVMPlatform)
 lazy val apsJS = aps.js
 lazy val apsJVM = aps.jvm
 
-val sharedSettings = Seq(scalaVersion := _scalaVersion)
+val sharedSettings = Seq(
+    scalaVersion := _scalaVersion,
+    scalacOptions ++= (if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault") else Nil)
+)
 
 lazy val common = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(sharedSettings)
-  .jsSettings(
-      scalacOptions += "-P:scalajs-sjsDefinedByDefault"
-  )
-  .jvmSettings(/* ... */)
+  .jsSettings()
+  .jvmSettings()
 
 lazy val commonJS = common.js
 lazy val commonJVM = common.jvm
@@ -34,7 +35,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           CommonDepsScalaJS.macroJS.value
       )
   )
-  .jvmSettings(/* ... */)
+  .jvmSettings()
 
 lazy val webUIJS = webUI.js
 lazy val webUIJVM = webUI.jvm
