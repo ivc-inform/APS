@@ -25,7 +25,12 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(sharedSettings)
   .dependsOn(common)
-  .jsSettings(/* ... */)
+  .jsSettings(
+      libraryDependencies ++= Seq(
+          CommonDepsScalaJS.smartClientWrapper.value,
+          CommonDepsScalaJS.macroJS.value
+      )
+  )
   .jvmSettings(/* ... */)
 
 lazy val webUIJS = webUI.js
