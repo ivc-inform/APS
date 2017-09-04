@@ -37,8 +37,8 @@ trait WebTabSetApp extends TabSetStack {
     protected val identifier: ID
     protected val appImageDir: String
 
-    protected val dataSourcesJS_admin_UserGroup_DS: RestDataSourceSS
-    protected val dataSourcesJS_admin_User_DS: RestDataSourceSS
+    protected val dataSourcesJS_admin_UserGroup_DS: JSUndefined[RestDataSourceSS]
+    protected val dataSourcesJS_admin_User_DS: JSUndefined[RestDataSourceSS]
 
     protected val listGridFiledsJS_admin_UserGroup_FLDS: Seq[ListGridFieldProps]
     protected val listGridFiledsJS_admin_User_FLDS: Seq[ListGridFieldProps]
@@ -46,7 +46,7 @@ trait WebTabSetApp extends TabSetStack {
     protected val formItemsJS_admin_UserGroup_FRMITM: Seq[FormItem]
     protected val formItemsJS_admin_User_FRMITM: Seq[FormItem]
 
-    protected val admin_User_codeGroup_NameStrong: NameStrong
+    protected val admin_User_codeGroup_NameStrong: JSUndefined[NameStrong]
     protected def getSettingsEditor(): SettingsEditor
 
     protected val functionButton = IconMenuButtonSS.create(
@@ -195,13 +195,16 @@ trait WebTabSetApp extends TabSetStack {
                                             title = "Группы".ellipsis.opt
                                             click = {
                                                 (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
-                                                    addTab(
-                                                        EditorUserGroups.create(
-                                                            new EditorUserGroupsProps {
-                                                                dataSource = dataSourcesJS_admin_UserGroup_DS.opt
-                                                                fields = listGridFiledsJS_admin_UserGroup_FLDS.opt
-                                                                editingFields = formItemsJS_admin_UserGroup_FRMITM.opt
-                                                            }), item)
+                                                    dataSourcesJS_admin_UserGroup_DS.foreach {
+                                                        dataSourcesJS_admin_UserGroup_DS ⇒
+                                                            addTab(
+                                                                EditorUserGroups.create(
+                                                                    new EditorUserGroupsProps {
+                                                                        dataSource = dataSourcesJS_admin_UserGroup_DS.opt
+                                                                        fields = listGridFiledsJS_admin_UserGroup_FLDS.opt
+                                                                        editingFields = formItemsJS_admin_UserGroup_FRMITM.opt
+                                                                    }), item)
+                                                    }
                                             }.toFunc.opt
                                         },
                                         new MenuSSItemProps {
@@ -210,36 +213,45 @@ trait WebTabSetApp extends TabSetStack {
                                             title = "Пользователи".ellipsis.opt
                                             click = {
                                                 (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
-                                                    addTab(EditorUsers.create(
-                                                        new EditorUsersProps {
-                                                            dataSourceList = dataSourcesJS_admin_User_DS.opt
-                                                            dataSourceTree = dataSourcesJS_admin_UserGroup_DS.opt
+                                                    dataSourcesJS_admin_UserGroup_DS.foreach {
+                                                        dataSourcesJS_admin_UserGroup_DS ⇒
+                                                            dataSourcesJS_admin_User_DS.foreach {
+                                                                dataSourcesJS_admin_User_DS ⇒
+                                                                    addTab(EditorUsers.create(
+                                                                        new EditorUsersProps {
+                                                                            dataSourceList = dataSourcesJS_admin_User_DS.opt
+                                                                            dataSourceTree = dataSourcesJS_admin_UserGroup_DS.opt
 
-                                                            fieldsTree = listGridFiledsJS_admin_UserGroup_FLDS.opt
-                                                            editingTreeFields = formItemsJS_admin_UserGroup_FRMITM.opt
+                                                                            fieldsTree = listGridFiledsJS_admin_UserGroup_FLDS.opt
+                                                                            editingTreeFields = formItemsJS_admin_UserGroup_FRMITM.opt
 
-                                                            fieldsList = listGridFiledsJS_admin_User_FLDS.opt
-                                                            editingListFields = formItemsJS_admin_User_FRMITM.opt
+                                                                            fieldsList = listGridFiledsJS_admin_User_FLDS.opt
+                                                                            editingListFields = formItemsJS_admin_User_FRMITM.opt
 
-                                                            val userGroupEditor = EditorUserGroups.create(
-                                                                new EditorUserGroupsProps {
-                                                                    dataSource = dataSourcesJS_admin_UserGroup_DS.opt
-                                                                    fields = listGridFiledsJS_admin_UserGroup_FLDS.opt
-                                                                    editingFields = formItemsJS_admin_UserGroup_FRMITM.opt
-                                                                })
+                                                                            val userGroupEditor = EditorUserGroups.create(
+                                                                                new EditorUserGroupsProps {
+                                                                                    dataSource = dataSourcesJS_admin_UserGroup_DS.opt
+                                                                                    fields = listGridFiledsJS_admin_UserGroup_FLDS.opt
+                                                                                    editingFields = formItemsJS_admin_UserGroup_FRMITM.opt
+                                                                                })
 
-                                                            replacingFieldsList = Seq(
-                                                                new ListGridFieldProps {
-                                                                    nameStrong = admin_User_codeGroup_NameStrong.opt
-                                                                    editorType = FormItemComponentType.LookupTreeGridEditorItem
-                                                                    editorProperties = LookupTreeGridEditorItem(
-                                                                        new LookupTreeGridEditorItemProps {
-                                                                            treeGridEditor = userGroupEditor.opt
-                                                                        }).opt
-                                                                }
-                                                            ).opt
-                                                        }
-                                                    ), item)
+                                                                            admin_User_codeGroup_NameStrong.foreach {
+                                                                                admin_User_codeGroup_NameStrong ⇒
+                                                                                    replacingFieldsList = Seq(
+                                                                                        new ListGridFieldProps {
+                                                                                            nameStrong = admin_User_codeGroup_NameStrong.opt
+                                                                                            editorType = FormItemComponentType.LookupTreeGridEditorItem
+                                                                                            editorProperties = LookupTreeGridEditorItem(
+                                                                                                new LookupTreeGridEditorItemProps {
+                                                                                                    treeGridEditor = userGroupEditor.opt
+                                                                                                }).opt
+                                                                                        }
+                                                                                    ).opt
+                                                                            }
+                                                                        }
+                                                                    ), item)
+                                                            }
+                                                    }
                                             }.toFunc.opt
                                         }
                                     ).opt

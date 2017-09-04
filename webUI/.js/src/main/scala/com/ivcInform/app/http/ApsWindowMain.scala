@@ -6,6 +6,9 @@ import com.simplesys.SmartClient.System.SettingsEditor
 import com.simplesys.function._
 import com.simplesys.option.ScOption._
 
+import scala.scalajs.js
+import com.simplesys.System._
+
 class ApsWindowMain extends WebTabSetApp {
     self ⇒
 
@@ -13,19 +16,19 @@ class ApsWindowMain extends WebTabSetApp {
     override protected val identifier = "5814FE1C-252A-01C4-11A1-557FA3345D3F"
     override protected val appImageDir = "images/"
 
-    override protected val dataSourcesJS_admin_UserGroup_DS = _
-    override protected val dataSourcesJS_admin_User_DS = _
+    override protected val dataSourcesJS_admin_UserGroup_DS = jSUndefined
+    override protected val dataSourcesJS_admin_User_DS = jSUndefined
 
-    override protected val listGridFiledsJS_admin_UserGroup_FLDS = _
-    override protected val listGridFiledsJS_admin_User_FLDS = _
+    override protected val listGridFiledsJS_admin_UserGroup_FLDS = Seq()
+    override protected val listGridFiledsJS_admin_User_FLDS = Seq()
 
-    override protected val formItemsJS_admin_UserGroup_FRMITM = _
-    override protected val formItemsJS_admin_User_FRMITM = _
+    override protected val formItemsJS_admin_UserGroup_FRMITM = Seq()
+    override protected val formItemsJS_admin_User_FRMITM = Seq()
 
-    override protected val admin_User_codeGroup_NameStrong = _
+    override protected val admin_User_codeGroup_NameStrong = jSUndefined
 
-    override protected val managedUsersGroups = _
-    override protected val progectManagedDevsGroups = _
+    override protected val managedUsersGroups = Seq()
+    override protected val progectManagedDevsGroups = Seq()
 
     override protected def getSettingsEditor(): SettingsEditor = SettingsEditor.create(
         new SettingsEditorProps {
