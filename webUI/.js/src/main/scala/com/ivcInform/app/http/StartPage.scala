@@ -8,8 +8,6 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val bundle:
     def bodyHTML(lastScript: String, fullOpt: Boolean = false) = {
         import bundle.all._
 
-        //val subPaths = paths(subPath = "javascript/generated/generatedComponents", subPath1 = "coffeeScript/main/")
-        val subPaths = paths(subPath = "managed/javascript/isc-components/generated/generatedComponents", subPath1 = "coffeeScript/main/")
         html(lang := "en",
             head(
                 bundle.tags2.title(_title),
