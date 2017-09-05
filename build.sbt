@@ -3,7 +3,10 @@ import sbtcrossproject.{CrossType, crossProject}
 val _scalaVersion = "2.12.3"
 
 lazy val aps = crossProject(JSPlatform, JVMPlatform)
-  .settings(scalaVersion := _scalaVersion)
+  .settings(
+      scalaVersion := _scalaVersion/*,
+      fork in run := true*/
+  )
   .aggregate(webUI)
   .dependsOn(webUI)
 
