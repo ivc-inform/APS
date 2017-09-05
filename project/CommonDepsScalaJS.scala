@@ -1,3 +1,4 @@
+import CommonDeps.Versions
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt._
 

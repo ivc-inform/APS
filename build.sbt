@@ -27,6 +27,13 @@ lazy val commonJVM = common.jvm
 lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(sharedSettings)
+  .settings(
+      libraryDependencies ++= Seq(
+          CommonDeps.akkaActor,
+          CommonDeps.akkaStream,
+          CommonDeps.akkaActor
+      )
+  )
   .dependsOn(common)
   .jsSettings(
       libraryDependencies ++= Seq(
