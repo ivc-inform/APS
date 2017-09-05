@@ -39,18 +39,18 @@ lazy val commonJVM = common.jvm
 lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .dependsOn(common)
-    .settings(
-        libraryDependencies ++= Seq(
-            CommonDeps.scalaTags
-        )
-    )
-  .jsSettings(
-      commonJsSettings,
-
+  .settings(
       crossTarget in fastOptJS := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
       crossTarget in fullOptJS := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
       crossTarget in packageJSDependencies := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
-
+      
+      libraryDependencies ++= Seq(
+          CommonDeps.ssysCommon,
+          CommonDeps.scalaTags
+      )
+  )
+  .jsSettings(
+      commonJsSettings,
       libraryDependencies ++= Seq(
           CommonDepsScalaJS.smartClientWrapper.value,
           CommonDepsScalaJS.scalaTags.value,

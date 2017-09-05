@@ -5,8 +5,11 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
+import com.ivcInform.app.http.StartPage
 import com.simplesys.config.Config
 import com.simplesys.log.Logging
+import com.simplesys.common._
+import com.ivcInform.common._
 
 import scala.concurrent.Future
 
@@ -21,7 +24,7 @@ object WebServer extends App with Config with Logging {
     def shutdownIt(bindingFuture: Future[Http.ServerBinding], system: ActorSystem): Unit = {
 
         logger.info(s"shutting down actor system ${system.name} and stopping http server")
-        
+
         bindingFuture
           .flatMap(_.unbind()) // trigger unbinding from the port
           .onComplete(_ => system.terminate()) // and shutdown when done
@@ -33,9 +36,14 @@ object WebServer extends App with Config with Logging {
     val route =
         path("hello") {
             get {
-                //val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, scalatags.Text)
-                
-                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h2>Say hello to akka-http</h2>"))
+                val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, scalatags.Text)
+                val html = "<!DOCTYPE html>" +
+                  textHTML.bodyHTML(
+                        "GetUIContent();",
+                      false
+                  ).render.unEscape
+
+                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, html))
             }
         }
 

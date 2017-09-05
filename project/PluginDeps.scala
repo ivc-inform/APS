@@ -31,4 +31,5 @@ object CommonDeps {
     val akkaStream = "com.typesafe.akka" %% "akka-stream" % versions.akkaVersion
     val scalaTags = "com.lihaoyi" %% "scalatags" % versions.scalaTagsVersion
     val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
+    val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
 }
