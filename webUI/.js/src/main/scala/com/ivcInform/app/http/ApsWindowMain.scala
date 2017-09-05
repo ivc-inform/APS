@@ -36,4 +36,9 @@ class ApsWindowMain extends WebTabSetApp {
             identifier = self.identifier.opt
         }
     )
+
+    @JSExportTopLevel("GetUIContent")
+    def GetUIContent(): Unit = {
+        getUIContent()
+    }
 }
