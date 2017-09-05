@@ -6,6 +6,7 @@ import com.simplesys.System._
 import com.simplesys.function._
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
+import com.simplesys.SmartClient.System._
 
 trait NewDSRequestData extends JSObject {
     val active: Boolean
