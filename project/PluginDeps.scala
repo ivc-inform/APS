@@ -23,7 +23,7 @@ object CommonDeps {
         val akkaVersion = "2.5.4"
         val akkaHttpVersion = "10.0.10"
 
-    }
+    }                                                                                                              
 
     val akkaHttp = "com.typesafe.akka" %% "akka-http" % versions.akkaHttpVersion
     val akkaActor = "com.typesafe.akka" %% "akka-actor" % versions.akkaVersion
