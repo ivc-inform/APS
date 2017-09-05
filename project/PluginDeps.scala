@@ -1,5 +1,4 @@
 import sbt.addSbtPlugin
-
 import sbt._
 
 object PluginDeps {
@@ -14,19 +13,20 @@ object PluginDeps {
 }
 
 object CommonDeps {
-    object Versions {
+    object versions {
         val scalaJSVersion = "1.4.0.1"
         val scalaTestVersion = "3.0.3"
         val scalaTagsVersion = "0.6.5"
-        val jQueryVersion = "0.9.1"
         val uPickleVersion = "0.4.4"
-        val scalajsDOMVersion = "0.9.1"
-        val scalajsJQueryVersion = "0.9.0"
+        val scalajsDOMVersion = "0.9.3"
+        val scalajsJQueryVersion = "0.9.2"
         val akkaVersion = "2.5.4"
         val akkaHttpVersion = "10.0.10"
+
     }
 
-    val akkaHttp = "com.typesafe.akka" %% "akka-http" % Versions.akkaHttpVersion
-    val akkaActor = "com.typesafe.akka" %% "akka-actor" % Versions.akkaVersion
-    val akkaStream = "com.typesafe.akka" %% "akka-stream" % Versions.akkaVersion
+    val akkaHttp = "com.typesafe.akka" %% "akka-http" % versions.akkaHttpVersion
+    val akkaActor = "com.typesafe.akka" %% "akka-actor" % versions.akkaVersion
+    val akkaStream = "com.typesafe.akka" %% "akka-stream" % versions.akkaVersion
+    val scalaTags = "com.lihaoyi" %% "scalatags" % versions.scalaTagsVersion
 }
