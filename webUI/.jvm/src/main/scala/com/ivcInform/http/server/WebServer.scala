@@ -34,7 +34,7 @@ object WebServer extends App with Config with Logging {
 
 
     val route =
-        path("hello") {
+        path("StartPage") {
             get {
                 val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, scalatags.Text)
                 val html = "<!DOCTYPE html>" +
