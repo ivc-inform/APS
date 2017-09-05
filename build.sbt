@@ -27,13 +27,6 @@ lazy val commonJVM = common.jvm
 lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(sharedSettings)
-  .settings(
-      libraryDependencies ++= Seq(
-          CommonDeps.akkaActor,
-          CommonDeps.akkaStream,
-          CommonDeps.akkaActor
-      )
-  )
   .dependsOn(common)
   .jsSettings(
       libraryDependencies ++= Seq(
@@ -42,7 +35,14 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           CommonDepsScalaJS.macroJS.value
       )
   )
-  .jvmSettings()
+  .jvmSettings(
+      libraryDependencies ++= Seq(
+          CommonDeps.akkaActor,
+          CommonDeps.akkaStream,
+          CommonDeps.akkaHttp,
+          CommonDeps.ssysConfigWrapper
+      )
+  )
 
 lazy val webUIJS = webUI.js
 lazy val webUIJVM = webUI.jvm

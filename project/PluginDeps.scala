@@ -22,11 +22,13 @@ object CommonDeps {
         val scalajsJQueryVersion = "0.9.2"
         val akkaVersion = "2.5.4"
         val akkaHttpVersion = "10.0.10"
-
-    }                                                                                                              
+        val ssysCoreVersion = "1.4-SNAPSHOT"
+        //val ssysCoreVersion = "1.4.0.2"
+    }
 
     val akkaHttp = "com.typesafe.akka" %% "akka-http" % versions.akkaHttpVersion
     val akkaActor = "com.typesafe.akka" %% "akka-actor" % versions.akkaVersion
     val akkaStream = "com.typesafe.akka" %% "akka-stream" % versions.akkaVersion
     val scalaTags = "com.lihaoyi" %% "scalatags" % versions.scalaTagsVersion
+    val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
 }
