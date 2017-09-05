@@ -4,8 +4,7 @@ val _scalaVersion = "2.12.3"
 
 lazy val aps = crossProject(JSPlatform, JVMPlatform)
   .settings(
-      scalaVersion := _scalaVersion/*,
-      fork in run := true*/
+      scalaVersion := _scalaVersion
   )
   .aggregate(webUI)
   .dependsOn(webUI)
