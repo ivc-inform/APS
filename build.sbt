@@ -11,14 +11,13 @@ lazy val apsJS = aps.js
 lazy val apsJVM = aps.jvm
 
 val sharedSettings = Seq(
-    scalaVersion := _scalaVersion,
-    scalacOptions ++= (if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault") else Nil)
+    scalaVersion := _scalaVersion
 )
 
 lazy val common = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(sharedSettings)
-  .jsSettings()
+  .jsSettings(scalacOptions ++= (if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault") else Nil))
   .jvmSettings()
 
 lazy val commonJS = common.js
