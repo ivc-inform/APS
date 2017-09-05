@@ -37,8 +37,8 @@ trait WebTabSetApp extends TabSetStack {
     protected val identifier: ID
     protected val appImageDir: String
 
-    protected val dataSourcesJS_admin_UserGroup_DS: RestDataSourceSS
-    protected val dataSourcesJS_admin_User_DS: RestDataSourceSS
+    protected val dataSourcesJS_admin_UserGroup_DS: JSUndefined[RestDataSourceSS]
+    protected val dataSourcesJS_admin_User_DS: JSUndefined[RestDataSourceSS]
 
     protected val listGridFiledsJS_admin_UserGroup_FLDS: Seq[ListGridFieldProps]
     protected val listGridFiledsJS_admin_User_FLDS: Seq[ListGridFieldProps]
@@ -46,8 +46,8 @@ trait WebTabSetApp extends TabSetStack {
     protected val formItemsJS_admin_UserGroup_FRMITM: Seq[FormItem]
     protected val formItemsJS_admin_User_FRMITM: Seq[FormItem]
 
-    protected val admin_User_codeGroup_NameStrong: NameStrong
-    protected def getSettingsEditor(): SettingsEditor
+    protected val admin_User_codeGroup_NameStrong: JSUndefined[NameStrong]
+    protected def getSettingsEditor(): JSUndefined[SettingsEditor]
 
     protected val functionButton = IconMenuButtonSS.create(
         new IconMenuButtonSSProps {
