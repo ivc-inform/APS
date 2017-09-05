@@ -5,42 +5,42 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
+import com.simplesys.config.Config
 import com.simplesys.log.Logging
-import scala.concurrent.duration._
 
-import scala.concurrent.{Await, Future}
+import scala.concurrent.Future
 
-object WebServer extends App with Logging {
-    implicit val system = ActorSystem("my-system")
+object WebServer extends App with Config with Logging {
+    implicit val system = ActorSystem(config.getString("aps.name"))
     implicit val materializer = ActorMaterializer()
+    implicit val executionContext = system.dispatcher
+
+    val host = config.getString("aps.http.host")
+    val port = config.getInt("aps.http.port")
 
     def shutdownIt(bindingFuture: Future[Http.ServerBinding], system: ActorSystem): Unit = {
-
-        implicit val executionContext = system.dispatcher
         logger.info(s"shutting down actor system ${system.name} and stopping http server")
 
         bindingFuture
           .flatMap(_.unbind()) // trigger unbinding from the port
           .onComplete(_ => system.terminate()) // and shutdown when done
 
-        Await.result(system.whenTerminated, 3 minute)
+        system.terminate()
     }
 
-    implicit val executionContext = system.dispatcher
 
     val route =
         path("hello") {
             get {
-                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say hello to akka-http</h1>"))
+                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h2>Say hello to akka-http</h2>"))
             }
         }
 
-    val bindingFuture = Http().bindAndHandle(route, AppSettings.http.host, AppSettings.http.port)
+    val bindingFuture = Http().bindAndHandle(route, host, port)
 
-    logger.info(s"Server online at http://${AppSettings.http.host}:${AppSettings.http.port}/\nPress Ctrl-C to stop...")
+    logger.info(s"Server online at http://${host}:${port}")
 
     sys.addShutdownHook {
         shutdownIt(bindingFuture, system)
     }
-
 }
