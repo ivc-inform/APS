@@ -19,8 +19,9 @@ object WebServer extends App with Config with Logging {
     val port = config.getInt("aps.http.port")
 
     def shutdownIt(bindingFuture: Future[Http.ServerBinding], system: ActorSystem): Unit = {
-        logger.info(s"shutting down actor system ${system.name} and stopping http server")
 
+        logger.info(s"shutting down actor system ${system.name} and stopping http server")
+        
         bindingFuture
           .flatMap(_.unbind()) // trigger unbinding from the port
           .onComplete(_ => system.terminate()) // and shutdown when done
@@ -32,6 +33,8 @@ object WebServer extends App with Config with Logging {
     val route =
         path("hello") {
             get {
+                //val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, scalatags.Text)
+                
                 complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h2>Say hello to akka-http</h2>"))
             }
         }
