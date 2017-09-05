@@ -8,9 +8,9 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn().
   ))).
   settings(
         classpathTypes += "maven-plugin",
-        CommonDeps.scalaJSPlugin,
-        CommonDeps.scalaCrossProjectPlugin,
-        CommonDeps.scalaJSCrossProjectPlugin
+        PluginDeps.scalaJSPlugin,
+        PluginDeps.scalaCrossProjectPlugin,
+        PluginDeps.scalaJSCrossProjectPlugin
   )
 
 

@@ -7,6 +7,9 @@ import com.simplesys.System.jSUndefined
 import com.simplesys.function._
 import com.simplesys.option.ScOption._
 
+import scala.scalajs.js
+import com.simplesys.System._
+
 class ApsWindowMain extends WebTabSetApp {
     self ⇒
 
