@@ -9,5 +9,5 @@ case class MainConfig(host: String, port: Int)
 object AppSettings extends Config with Logging{
     logger info "Initialization AppSettings"
 
-    val http = config.get[MainConfig]("scoring.http").value
+    val http = config.get[MainConfig]("aps.http").value
 }

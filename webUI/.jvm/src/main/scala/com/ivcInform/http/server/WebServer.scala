@@ -5,14 +5,27 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
-import scala.io.StdIn
+import com.simplesys.log.Logging
+import scala.concurrent.duration._
 
-import scala.io.StdIn
+import scala.concurrent.{Await, Future}
 
-object WebServer extends App {
+object WebServer extends App with Logging {
     implicit val system = ActorSystem("my-system")
     implicit val materializer = ActorMaterializer()
-    // needed for the future flatMap/onComplete in the end
+
+    def shutdownIt(bindingFuture: Future[Http.ServerBinding], system: ActorSystem): Unit = {
+
+        implicit val executionContext = system.dispatcher
+        logger.info(s"shutting down actor system ${system.name} and stopping http server")
+
+        bindingFuture
+          .flatMap(_.unbind()) // trigger unbinding from the port
+          .onComplete(_ => system.terminate()) // and shutdown when done
+
+        Await.result(system.whenTerminated, 3 minute)
+    }
+
     implicit val executionContext = system.dispatcher
 
     val route =
@@ -22,11 +35,12 @@ object WebServer extends App {
             }
         }
 
-    val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)
+    val bindingFuture = Http().bindAndHandle(route, AppSettings.http.host, AppSettings.http.port)
 
-    println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
-    StdIn.readLine() // let it run until user presses return
-    bindingFuture
-      .flatMap(_.unbind()) // trigger unbinding from the port
-      .onComplete(_ => system.terminate()) // and shutdown when done
+    logger.info(s"Server online at http://${AppSettings.http.host}:${AppSettings.http.port}/\nPress Ctrl-C to stop...")
+
+    sys.addShutdownHook {
+        shutdownIt(bindingFuture, system)
+    }
+
 }
