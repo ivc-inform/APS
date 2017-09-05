@@ -9,8 +9,9 @@ import com.simplesys.option.ScOption._
 
 import scala.scalajs.js
 import com.simplesys.System._
+import scala.scalajs.js.annotation.JSExportTopLevel
 
-class ApsWindowMain extends WebTabSetApp {
+object ApsWindowMain extends WebTabSetApp {
     self ⇒
 
     override protected val loadSchemas = false
