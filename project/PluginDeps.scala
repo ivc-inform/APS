@@ -2,14 +2,20 @@ import sbt.addSbtPlugin
 import sbt._
 
 object PluginDeps {
-    object Versions {
+    object versions {
         val scalaCrossProjectPluginVersion = "0.3.3-SNAPSHOT"
         val scalaJSPluginVersion = "0.6.20"
+        val mergeJSVersion = "1.0.12"
+        val sbtNativePackagerVersion = "1.2.4"
+        val jrabelPluginVersion = "0.11.1"
     }
 
-    val scalaJSPlugin = addSbtPlugin("org.scala-js" % "sbt-scalajs" % Versions.scalaJSPluginVersion)
-    val scalaJSCrossProjectPlugin = addSbtPlugin("org.scala-native" % "sbt-scalajs-crossproject" % Versions.scalaCrossProjectPluginVersion)
-    val scalaCrossProjectPlugin = addSbtPlugin("org.scala-native" % "sbt-crossproject" % Versions.scalaCrossProjectPluginVersion)
+    val scalaJSPlugin = addSbtPlugin("org.scala-js" % "sbt-scalajs" % versions.scalaJSPluginVersion)
+    val scalaJSCrossProjectPlugin = addSbtPlugin("org.scala-native" % "sbt-scalajs-crossproject" % versions.scalaCrossProjectPluginVersion)
+    val scalaCrossProjectPlugin = addSbtPlugin("org.scala-native" % "sbt-crossproject" % versions.scalaCrossProjectPluginVersion)
+    val mergeJS = addSbtPlugin("ru.simplesys" % "merge-js" % versions.mergeJSVersion)
+    val sbtNativePackager = addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % versions.sbtNativePackagerVersion)
+    val jrebelPlugin = addSbtPlugin("com.simplesys" % "jrebel-plugin" % versions.jrabelPluginVersion)
 }
 
 object CommonDeps {
@@ -22,6 +28,7 @@ object CommonDeps {
         val scalajsJQueryVersion = "0.9.2"
         val akkaVersion = "2.5.4"
         val akkaHttpVersion = "10.0.10"
+        val smartclientVersion = "11.1-v20170703.1"
         val ssysCoreVersion = "1.4-SNAPSHOT"
         //val ssysCoreVersion = "1.4.0.2"
     }
@@ -32,4 +39,6 @@ object CommonDeps {
     val scalaTags = "com.lihaoyi" %% "scalatags" % versions.scalaTagsVersion
     val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
     val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
+    val smartclient = "com.simplesys" % "smartclient-js" % versions.smartclientVersion
+
 }

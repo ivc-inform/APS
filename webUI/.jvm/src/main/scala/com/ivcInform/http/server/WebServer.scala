@@ -34,24 +34,29 @@ object WebServer extends App with Config with Logging {
 
 
     val route =
-        path("StartPage") {
+        path("Hello") {
             get {
-                val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, scalatags.Text)
-                val html = "<!DOCTYPE html>" +
-                  textHTML.bodyHTML(
-                        "GetUIContent();",
-                      false
-                  ).render.unEscape
-
-                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, html))
+                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say hello to akka-http</h1>"))
             }
-        }
+        } ~
+          path("StartPage") {
+              get {
+                  val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, scalatags.Text)
+                  val html = "<!DOCTYPE html>" +
+                    textHTML.bodyHTML(
+                        "GetUIContent();",
+                        false
+                    ).render.unEscape
+
+                  complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, html))
+              }
+          }
 
     val bindingFuture = Http().bindAndHandle(route, host, port)
-
-    logger.info(s"Server online at http://${host}:${port}")
 
     sys.addShutdownHook {
         shutdownIt(bindingFuture, system)
     }
+
+    logger.info(s"Server online at http://${host}:${port}/StarPage")
 }

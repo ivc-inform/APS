@@ -1,12 +1,13 @@
 import sbtcrossproject.{CrossType, crossProject}
+import com.simplesys.jrebel.JRebelPlugin
+import com.simplesys.jrebel.JRebelPlugin._
 
 lazy val aps = crossProject(JSPlatform, JVMPlatform)
   .settings(
       inThisBuild(Seq(
           scalaVersion := CommonSettings.settingValues.scalaVersion,
           version := CommonSettings.settingValues.version
-      )
-        ++ CommonSettings.defaultSettings),
+      ) ++ CommonSettings.defaultSettings),
       publishArtifact in(Compile, packageBin) := false,
       publishArtifact in(Compile, packageDoc) := false,
       publishArtifact in(Compile, packageSrc) := false
@@ -41,14 +42,19 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .dependsOn(common)
   .settings(
 
+      JRebelPlugin.jrebelSettings,
+      jrebel.enabled := true,
+
       libraryDependencies ++= Seq(
           CommonDeps.ssysCommon,
           CommonDeps.scalaTags
-      )
+      ),
+      fork in run := true
   )
   .jsSettings(
       commonJsSettings,
 
+      //scala.js
       crossTarget in fastOptJS := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
       crossTarget in fullOptJS := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
       crossTarget in packageJSDependencies := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
