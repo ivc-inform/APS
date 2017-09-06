@@ -40,15 +40,12 @@ object WebServer extends App with Config with Logging {
         system.terminate()
     }
 
-
-    //home/uandrew/JOB/APS/webUI/webapp/javascript/generated/generatedComponentsJS/web-ui-fastopt.js
-    //home/uandrew/JOB/APS/webUI/webapp/javascript/generated/generatedComponentsJS/webuijs-fastopt.js
-
     val route =
         (get & pathPrefix("webapp")) {
             extractUnmatchedPath { remaining =>
                 val filePath = webAppDirectory.toFile.getAbsolutePath + remaining.toString()
-                val file = filePath.asPath.toFile
+                val file = new File(filePath)
+                
                 if (file.exists)
                     getFromFile(file)
                 else {

@@ -52,7 +52,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       commonJsSettings,
 
       //scala.js
-      crossTarget in fastOptJS := baseDirectory.value.getParentFile  / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in fastOptJS := baseDirectory.value.getParentFile / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
       crossTarget in fullOptJS := baseDirectory.value.getParentFile / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
       crossTarget in packageJSDependencies := baseDirectory.value.getParentFile / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
 
@@ -62,9 +62,52 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
               Seq("isomorphic") -> Some(Seq("isomorphic"))
           )
       ),
-      webAppDirPath in MergeWebappConfig := baseDirectory.value.getParentFile / "webapp" ,
+      webAppDirPath in MergeWebappConfig := baseDirectory.value.getParentFile / "webapp",
 
       MergeWebappPlugin.mergeWebappSettings,
+
+      (resourceGenerators in Compile) += task[Seq[File]] {
+
+          val aboutFile: File = baseDirectory.value.getParentFile / "webapp" / "javascript" / "generated" / "generatedComponents" / "MakeAboutData.js"
+
+          val list = JsonList()
+
+          import scala.reflect.ClassTag
+          import scala.reflect.runtime.universe._
+          import scala.reflect.runtime.{universe ⇒ ru}
+
+          def makeVersionList[T: TypeTag : ClassTag](e: T): Unit = {
+
+              val classLoaderMirror = ru.runtimeMirror(this.getClass.getClassLoader)
+              val `type`: ru.Type = ru.typeOf[T]
+
+              val classSymbol = `type`.typeSymbol.asClass
+
+              val decls = `type`.declarations.sorted.filter(_.isMethod).filter(!_.name.toString.contains("<init>"))
+              val im = classLoaderMirror reflect e
+
+              decls.foreach {
+                  item =>
+
+                      val shippingTermSymb = `type`.declaration(ru.newTermName(item.name.toString)).asTerm
+                      val shippingFieldMirror = im reflectField shippingTermSymb
+                      val res = shippingFieldMirror.get.toString()
+
+                      list += JsonObject("libName" -> item.name.toString, "libVersion" -> res)
+              }
+          }
+
+          list ++= Seq(
+              JsonObject("libName" -> "Разработка :", "libVersion" -> "АО ИВЦ \"Информ\" (info@ivc-inform.ru)"),
+              JsonObject("libName" -> "Версия :", "libVersion" -> version.value)
+          )
+
+          makeVersionList(CommonDeps.versions)
+          makeVersionList(PluginDeps.versions)
+
+          IO.write(aboutFile, s"simpleSyS.aboutData = ${list.toPrettyString}")
+          Seq()
+      },
 
       libraryDependencies ++= Seq(
           CommonDepsScalaJS.smartClientWrapper.value,
