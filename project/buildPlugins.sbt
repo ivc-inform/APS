@@ -13,7 +13,8 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn().
         PluginDeps.scalaJSCrossProjectPlugin,
         PluginDeps.mergeJS,
         PluginDeps.sbtNativePackager,
-        PluginDeps.jrebelPlugin
+        PluginDeps.jrebelPlugin,
+        PluginDeps.sbtResolver
   )
 
 
