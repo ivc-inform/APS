@@ -6,7 +6,7 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.RequestContext
+import akka.http.scaladsl.server.{RequestContext, Route}
 import akka.stream.ActorMaterializer
 import com.ivcInform.app.http.StartPage
 import com.simplesys.config.Config
@@ -26,8 +26,8 @@ object WebServer extends App with Config with Logging {
     val host = config.getString("aps.http.host")
     val port = config.getInt("aps.http.port")
 
-    /*val webAppDirectory = System.getProperty("user.dir").asPath.parent.get / "webapp"
-    logger debug s"workingDirectory: $webAppDirectory"*/
+    val webAppDirectory = System.getProperty("user.dir").asPath.parent.get / "webapp"
+    logger debug s"workingDirectory: $webAppDirectory exists: ${webAppDirectory.exists}"
 
     def shutdownIt(bindingFuture: Future[Http.ServerBinding], system: ActorSystem): Unit = {
 
@@ -42,15 +42,12 @@ object WebServer extends App with Config with Logging {
 
 
     val route =
-    /* get & path("webapp") {
-        a ⇒
-             a.request
-     }
-      ~*/
-        
-        (get & path("Hello")) {
-            complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say Hello APS !!!! ))</h1>"))
+        (get & path("webapp")) {
+              getFromFile("")
         } ~
+          (get & path("Hello")) {
+              complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say Hello APS !!!! ))</h1>"))
+          } ~
           (get & path("StartPage")) {
               val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, "../webapp/", scalatags.Text)
               val html = "<!DOCTYPE html>" +
