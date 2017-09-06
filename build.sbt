@@ -45,6 +45,13 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       JRebelPlugin.jrebelSettings,
       jrebel.enabled := true,
 
+      javaOptions ++= Seq(
+          "-javaagent:/home/uandrew/jrebel/legacy/jrebel.jar",
+          "-noverify",
+          "-XX:+UseConcMarkSweepGC",
+          "-XX:+CMSClassUnloadingEnabled"
+      ),
+
       libraryDependencies ++= Seq(
           CommonDeps.ssysCommon,
           CommonDeps.scalaTags
