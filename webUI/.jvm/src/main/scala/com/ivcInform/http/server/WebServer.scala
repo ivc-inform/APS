@@ -27,7 +27,7 @@ object WebServer extends App with Config with Logging {
     val port = config.getInt("aps.http.port")
 
     val webAppDirectory = System.getProperty("user.dir").asPath.parent.get / "webapp"
-    logger debug s"workingDirectory: $webAppDirectory exists: ${webAppDirectory.exists}"
+    logger debug s"workingDirectory: $webAppDirectory exists: ${webAppDirectory}"
 
     def shutdownIt(bindingFuture: Future[Http.ServerBinding], system: ActorSystem): Unit = {
 
@@ -41,9 +41,21 @@ object WebServer extends App with Config with Logging {
     }
 
 
+    //home/uandrew/JOB/APS/webUI/webapp/javascript/generated/generatedComponentsJS/web-ui-fastopt.js
+    //home/uandrew/JOB/APS/webUI/webapp/javascript/generated/generatedComponentsJS/webuijs-fastopt.js
+
     val route =
-        (get & path("webapp")) {
-              getFromFile("")
+        (get & pathPrefix("webapp")) {
+            extractUnmatchedPath { remaining =>
+                val filePath = webAppDirectory.toFile.getAbsolutePath + remaining.toString()
+                val file = filePath.asPath.toFile
+                if (file.exists)
+                    getFromFile(file)
+                else {
+                    logger error s"filePath: $filePath exist: ${file.exists()}"
+                    reject
+                }
+            }
         } ~
           (get & path("Hello")) {
               complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say Hello APS !!!! ))</h1>"))
