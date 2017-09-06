@@ -14,6 +14,7 @@ import com.ivcInform.common._
 import scala.concurrent.Future
 
 object WebServer extends App with Config with Logging {
+    
     implicit val system = ActorSystem(config.getString("aps.name"))
     implicit val materializer = ActorMaterializer()
     implicit val executionContext = system.dispatcher
@@ -36,7 +37,7 @@ object WebServer extends App with Config with Logging {
     val route =
         path("Hello") {
             get {
-                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say hello to akka-http</h1>"))
+                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say hello APS !!!! ))</h1>"))
             }
         } ~
           path("StartPage") {
@@ -59,4 +60,5 @@ object WebServer extends App with Config with Logging {
     }
 
     logger.info(s"Server online at http://${host}:${port}/StarPage")
+    logger.info(s"Server online for test Hello, at http://${host}:${port}/Hello")
 }

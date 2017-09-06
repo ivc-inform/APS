@@ -42,16 +42,6 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .dependsOn(common)
   .settings(
 
-      JRebelPlugin.jrebelSettings,
-      jrebel.enabled := true,
-
-      javaOptions ++= Seq(
-          "-javaagent:/home/uandrew/jrebel/legacy/jrebel.jar",
-          "-noverify",
-          "-XX:+UseConcMarkSweepGC",
-          "-XX:+CMSClassUnloadingEnabled"
-      ),
-
       libraryDependencies ++= Seq(
           CommonDeps.ssysCommon,
           CommonDeps.scalaTags
@@ -73,6 +63,16 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       )
   )
   .jvmSettings(
+      JRebelPlugin.jrebelSettings,
+      jrebel.enabled := true,
+
+      javaOptions ++= Seq(
+          "-javaagent:/home/uandrew/jrebel/legacy/jrebel.jar",
+          "-noverify",
+          "-XX:+UseConcMarkSweepGC",
+          "-XX:+CMSClassUnloadingEnabled"
+      ),
+
       libraryDependencies ++= Seq(
           CommonDeps.akkaActor,
           CommonDeps.akkaStream,
