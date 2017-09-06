@@ -31,6 +31,7 @@ object CommonDeps {
         val smartclientVersion = "11.1-v20170703.1"
         val fs2Version = "0.9.2"
         val tikaVersion = "1.16"
+        val circeVersion = "0.8.0"
         val ssysCoreVersion = "1.4-SNAPSHOT"
         //val ssysCoreVersion = "1.4.0.2"
     }
@@ -42,6 +43,15 @@ object CommonDeps {
     val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
     val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
     val smartclient = "com.simplesys" % "smartclient-js" % versions.smartclientVersion
+
+
+    val circes = Seq(
+      "io.circe" %% "circe-core",
+      "io.circe" %% "circe-generic",
+      "io.circe" %% "circe-parser"
+    ).map(_ % versions. circeVersion)
+
+
 //    val tika = "org.apache.tika" % "tika-core" % versions.tikaVersion
 //    val fs2Core = "co.fs2" %% "fs2-core" % versions.fs2Version
 //    val fs2IO = "co.fs2" %% "fs2-io" % versions.fs2Version

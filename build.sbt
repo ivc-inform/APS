@@ -46,7 +46,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       libraryDependencies ++= Seq(
           CommonDeps.ssysCommon,
           CommonDeps.scalaTags
-      )
+      ) ++ CommonDeps.circes
   )
   .jsSettings(
       commonJsSettings,
