@@ -1,6 +1,5 @@
 import sbtcrossproject.{CrossType, crossProject}
-import com.simplesys.jrebel.JRebelPlugin
-import com.simplesys.jrebel.JRebelPlugin._
+import spray.revolver.RevolverPlugin.autoImport._
 
 lazy val aps = crossProject(JSPlatform, JVMPlatform)
   .settings(
@@ -45,8 +44,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       libraryDependencies ++= Seq(
           CommonDeps.ssysCommon,
           CommonDeps.scalaTags
-      ),
-      fork in run := true
+      )
   )
   .jsSettings(
       commonJsSettings,
@@ -63,12 +61,11 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       )
   )
   .jvmSettings(
-      JRebelPlugin.jrebelSettings,
-      jrebel.enabled := true,
-
-      javaOptions ++= Seq(
-          "-javaagent:/home/uandrew/jrebel/legacy/jrebel.jar",
+      reJRebelJar :=  "/home/uandrew/jrebel/legacy/jrebel.jar",
+      
+      javaOptions in reStart ++= Seq(
           "-noverify",
+          "-Xmx2g",
           "-XX:+UseConcMarkSweepGC",
           "-XX:+CMSClassUnloadingEnabled"
       ),

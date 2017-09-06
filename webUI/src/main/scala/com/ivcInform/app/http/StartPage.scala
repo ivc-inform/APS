@@ -9,7 +9,7 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val bundle:
         import bundle.all._
 
         val webappPath = "webapp/"
-
+        
         html(lang := "en",
             head(
                 bundle.tags2.title(_title),

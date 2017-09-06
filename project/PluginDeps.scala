@@ -7,8 +7,7 @@ object PluginDeps {
         val scalaJSPluginVersion = "0.6.20"
         val mergeJSVersion = "1.0.12"
         val sbtNativePackagerVersion = "1.2.4"
-        val jrabelPluginVersion = "0.11.1"
-        val sbtResolverVersion = "0.9.0"
+        val sbtResolverVersion = "0.9.0.1"
     }
 
     val scalaJSPlugin = addSbtPlugin("org.scala-js" % "sbt-scalajs" % versions.scalaJSPluginVersion)
@@ -16,7 +15,6 @@ object PluginDeps {
     val scalaCrossProjectPlugin = addSbtPlugin("org.scala-native" % "sbt-crossproject" % versions.scalaCrossProjectPluginVersion)
     val mergeJS = addSbtPlugin("ru.simplesys" % "merge-js" % versions.mergeJSVersion)
     val sbtNativePackager = addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % versions.sbtNativePackagerVersion)
-    val jrebelPlugin = addSbtPlugin("com.simplesys" % "jrebel-plugin" % versions.jrabelPluginVersion)
     val sbtResolver = addSbtPlugin("io.spray" % "sbt-revolver" % versions.sbtResolverVersion)
 }
 
