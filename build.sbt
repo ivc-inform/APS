@@ -50,9 +50,9 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       commonJsSettings,
 
       //scala.js
-      crossTarget in fastOptJS := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
-      crossTarget in fullOptJS := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
-      crossTarget in packageJSDependencies := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in fastOptJS := baseDirectory.value / ".." / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in fullOptJS := baseDirectory.value / ".." / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in packageJSDependencies := baseDirectory.value / ".." / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
 
       libraryDependencies ++= Seq(
           CommonDepsScalaJS.smartClientWrapper.value,
@@ -61,8 +61,8 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       )
   )
   .jvmSettings(
-      reJRebelJar :=  "/home/uandrew/jrebel/legacy/jrebel.jar",
-      
+      reJRebelJar := "/home/uandrew/jrebel/legacy/jrebel.jar",
+
       javaOptions in reStart ++= Seq(
           "-noverify",
           "-Xmx2g",
@@ -73,10 +73,10 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       libraryDependencies ++= Seq(
           CommonDeps.akkaActor,
           CommonDeps.akkaStream,
-          CommonDeps.akkaHttp//,
-//          CommonDeps.tika,
-//          CommonDeps.fs2Core,
-//          CommonDeps.fs2IO
+          CommonDeps.akkaHttp //,
+          //          CommonDeps.tika,
+          //          CommonDeps.fs2Core,
+          //          CommonDeps.fs2IO
       )
   )
 
