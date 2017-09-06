@@ -1,9 +1,12 @@
 package com.ivcInform.http.server
 
+import java.io.File
+
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.RequestContext
 import akka.stream.ActorMaterializer
 import com.ivcInform.app.http.StartPage
 import com.simplesys.config.Config
@@ -12,9 +15,10 @@ import com.simplesys.common._
 import com.ivcInform.common._
 
 import scala.concurrent.Future
+import com.simplesys.io._
 
 object WebServer extends App with Config with Logging {
-    
+
     implicit val system = ActorSystem(config.getString("aps.name"))
     implicit val materializer = ActorMaterializer()
     implicit val executionContext = system.dispatcher
@@ -22,9 +26,8 @@ object WebServer extends App with Config with Logging {
     val host = config.getString("aps.http.host")
     val port = config.getInt("aps.http.port")
 
-    val workingDirectory = System.getProperty("user.dir")
-
-    logger debug s"workingDirectory: $workingDirectory"
+    /*val webAppDirectory = System.getProperty("user.dir").asPath.parent.get / "webapp"
+    logger debug s"workingDirectory: $webAppDirectory"*/
 
     def shutdownIt(bindingFuture: Future[Http.ServerBinding], system: ActorSystem): Unit = {
 
@@ -39,22 +42,24 @@ object WebServer extends App with Config with Logging {
 
 
     val route =
-        path("Hello") {
-            get {
-                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say Hello APS !!!! ))</h1>"))
-            }
+    /* get & path("webapp") {
+        a ⇒
+             a.request
+     }
+      ~*/
+        
+        (get & path("Hello")) {
+            complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say Hello APS !!!! ))</h1>"))
         } ~
-          path("StartPage") {
-              get {
-                  val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, scalatags.Text)
-                  val html = "<!DOCTYPE html>" +
-                    textHTML.bodyHTML(
-                        "GetUIContent();",
-                        false
-                    ).render.unEscape
+          (get & path("StartPage")) {
+              val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, "../webapp/", scalatags.Text)
+              val html = "<!DOCTYPE html>" +
+                textHTML.bodyHTML(
+                    "GetUIContent();",
+                    false
+                ).render.unEscape
 
-                  complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, html))
-              }
+              complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, html))
           }
 
     val bindingFuture = Http().bindAndHandle(route, host, port)

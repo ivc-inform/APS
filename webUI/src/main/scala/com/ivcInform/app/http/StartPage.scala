@@ -4,12 +4,10 @@ import scalatags.generic.Bundle
 
 case class paths(subPath: String, subPath1: String)
 
-class StartPage[Builder, Output <: FragT, FragT](val _title: String, val bundle: Bundle[Builder, Output, FragT]) {
+class StartPage[Builder, Output <: FragT, FragT](val _title: String, val webappPath: String, val bundle: Bundle[Builder, Output, FragT]) {
     def bodyHTML(lastScript: String, fullOpt: Boolean = false) = {
         import bundle.all._
 
-        val webappPath = "webapp/"
-        
         html(lang := "en",
             head(
                 bundle.tags2.title(_title),
@@ -18,7 +16,7 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val bundle:
             body(
                 style := "margin: 0px",
 
-                script("var isomorphicDir = \"isomorphic/\""),
+                script("var isomorphicDir =\"" + webappPath + "isomorphic/\""),
                 script(src := s"${webappPath}isomorphic/client/modules/ISC_Core.js"),
                 script(src := s"${webappPath}isomorphic/client/modules/ISC_Foundation.js"),
                 script(src := s"${webappPath}isomorphic/client/modules/ISC_Containers.js"),

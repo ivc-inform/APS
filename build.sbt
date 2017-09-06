@@ -1,4 +1,4 @@
-import com.simplesys.mergewebapp.MergeWebappPlugin.{currentProjectCoffeeDevelopedDirPath, currentProjectDevelopedDirPath, currentProjectGenerationDirPath, mergeMapping}
+import com.simplesys.mergewebapp.MergeWebappPlugin._
 import sbtcrossproject.{CrossType, crossProject}
 import spray.revolver.RevolverPlugin.autoImport._
 import com.simplesys.mergewebapp.MergeWebappPlugin._
@@ -52,20 +52,20 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       commonJsSettings,
 
       //scala.js
-      crossTarget in fastOptJS := baseDirectory.value / ".." / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
-      crossTarget in fullOptJS := baseDirectory.value / ".." / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
-      crossTarget in packageJSDependencies := baseDirectory.value / ".." / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in fastOptJS := baseDirectory.value.getParentFile  / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in fullOptJS := baseDirectory.value.getParentFile / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in packageJSDependencies := baseDirectory.value.getParentFile / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
 
       //merger
       mergeMapping in MergeWebappConfig := Seq(
           ("com.simplesys", "smartclient-js") -> Seq(
-              Seq("isomorphic") -> Some(Seq("webapp", "isomorphic"))
+              Seq("isomorphic") -> Some(Seq("isomorphic"))
           )
       ),
-      currentProjectGenerationDirPath in MergeWebappConfig :=  baseDirectory.value / ".." / "webapp" / "javascript" / "generated" / "generatedComponents",
+      webAppDirPath in MergeWebappConfig := baseDirectory.value.getParentFile / "webapp" ,
 
       MergeWebappPlugin.mergeWebappSettings,
-      
+
       libraryDependencies ++= Seq(
           CommonDepsScalaJS.smartClientWrapper.value,
           CommonDepsScalaJS.scalaTags.value,

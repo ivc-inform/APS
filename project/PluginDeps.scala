@@ -5,7 +5,7 @@ object PluginDeps {
     object versions {
         val scalaCrossProjectPluginVersion = "0.3.3-SNAPSHOT"
         val scalaJSPluginVersion = "0.6.20"
-        val mergeJSVersion = "1.0.12"
+        val mergeJSVersion = "1.0.13-SNAPSHOT"
         val sbtNativePackagerVersion = "1.2.4"
         val sbtResolverVersion = "0.9.0.1"
     }
