@@ -1,5 +1,7 @@
+import com.simplesys.mergewebapp.MergeWebappPlugin.{currentProjectCoffeeDevelopedDirPath, currentProjectDevelopedDirPath, currentProjectGenerationDirPath, mergeMapping}
 import sbtcrossproject.{CrossType, crossProject}
 import spray.revolver.RevolverPlugin.autoImport._
+import com.simplesys.mergewebapp.MergeWebappPlugin._
 
 lazy val aps = crossProject(JSPlatform, JVMPlatform)
   .settings(
@@ -54,10 +56,21 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       crossTarget in fullOptJS := baseDirectory.value / ".." / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
       crossTarget in packageJSDependencies := baseDirectory.value / ".." / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
 
+      //merger
+      mergeMapping in MergeWebappConfig := Seq(
+          ("com.simplesys", "smartclient-js") -> Seq(
+              Seq("isomorphic") -> Some(Seq("webapp", "isomorphic"))
+          )
+      ),
+      currentProjectGenerationDirPath in MergeWebappConfig :=  baseDirectory.value / ".." / "webapp" / "javascript" / "generated" / "generatedComponents",
+
+      MergeWebappPlugin.mergeWebappSettings,
+      
       libraryDependencies ++= Seq(
           CommonDepsScalaJS.smartClientWrapper.value,
           CommonDepsScalaJS.scalaTags.value,
-          CommonDepsScalaJS.macroJS.value
+          CommonDepsScalaJS.macroJS.value,
+          CommonDeps.smartclient
       )
   )
   .jvmSettings(

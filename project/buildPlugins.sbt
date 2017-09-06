@@ -1,4 +1,7 @@
-lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn().
+
+lazy val mergeJS = uri("../../sbt-plugins/merge-js")
+
+lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(RootProject(mergeJS)).
   settings(sbt.inThisBuild(scalacOptions ++= Seq(
       "-deprecation",
       "-unchecked",
@@ -11,7 +14,7 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn().
         PluginDeps.scalaJSPlugin,
         PluginDeps.scalaCrossProjectPlugin,
         PluginDeps.scalaJSCrossProjectPlugin,
-        PluginDeps.mergeJS,
+        //PluginDeps.mergeJS,
         PluginDeps.sbtNativePackager,
         PluginDeps.sbtResolver
   )
