@@ -22,6 +22,10 @@ object WebServer extends App with Config with Logging {
     val host = config.getString("aps.http.host")
     val port = config.getInt("aps.http.port")
 
+    val workingDirectory = System.getProperty("user.dir")
+
+    logger debug s"workingDirectory: $workingDirectory"
+
     def shutdownIt(bindingFuture: Future[Http.ServerBinding], system: ActorSystem): Unit = {
 
         logger.info(s"shutting down actor system ${system.name} and stopping http server")
@@ -37,7 +41,7 @@ object WebServer extends App with Config with Logging {
     val route =
         path("Hello") {
             get {
-                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say hello APS !!!! ))</h1>"))
+                complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say Hello APS !!!! ))</h1>"))
             }
         } ~
           path("StartPage") {

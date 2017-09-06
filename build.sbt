@@ -73,7 +73,10 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       libraryDependencies ++= Seq(
           CommonDeps.akkaActor,
           CommonDeps.akkaStream,
-          CommonDeps.akkaHttp
+          CommonDeps.akkaHttp//,
+//          CommonDeps.tika,
+//          CommonDeps.fs2Core,
+//          CommonDeps.fs2IO
       )
   )
 
