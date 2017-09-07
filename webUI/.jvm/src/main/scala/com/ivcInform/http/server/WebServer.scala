@@ -39,7 +39,7 @@ object WebServer extends App with Config with Logging {
 
         system.terminate()
     }
-
+    
     val route =
         (get & pathPrefix("webapp")) {
             extractUnmatchedPath { remaining =>

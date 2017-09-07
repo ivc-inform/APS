@@ -7,7 +7,7 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val webappP
     def bodyHTML(lastScript: String, fullOpt: Boolean = false) = {
         import bundle.all._
 
-        val webappPath1 = webappPath + "managed/isc-components/generated/generatedComponents/coffeescript/coffeeScript/main/com/simplesys/"
+        val webappPath1 = webappPath + "managed/javascript/isc-components/generated/generatedComponents/coffeescript/coffeeScript/main/com/simplesys/"
         
         html(lang := "en",
             head(
