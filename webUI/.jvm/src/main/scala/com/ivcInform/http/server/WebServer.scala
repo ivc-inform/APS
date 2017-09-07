@@ -41,13 +41,16 @@ object WebServer extends App with Config with Logging {
     }
     
     val route =
+        (get & pathPrefix("images")){
+          redirect("/webapp", StatusCodes.PermanentRedirect)
+        } ~
         (get & pathPrefix("webapp")) {
             extractUnmatchedPath { remaining =>
                 val filePath = webAppDirectory.toFile.getAbsolutePath + remaining.toString()
                 val file = new File(filePath)
 
                 if (file.exists) {
-                    logger trace s"!!!!!!!!!!!!!!!!!!!!!!!filePath: $filePath exist: ${file.exists()} !!!!!!!!!!!!!!!!!!!!!!!!!!"
+                    //logger trace s"!!!!!!!!!!!!!!!!!!!!!!!filePath: $filePath exist: ${file.exists()} !!!!!!!!!!!!!!!!!!!!!!!!!!"
                     getFromFile(file)
                 }
                 else {
