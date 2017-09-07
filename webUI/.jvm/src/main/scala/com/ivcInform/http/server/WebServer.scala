@@ -6,16 +6,15 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.{RequestContext, Route}
 import akka.stream.ActorMaterializer
 import com.ivcInform.app.http.StartPage
-import com.simplesys.config.Config
-import com.simplesys.log.Logging
-import com.simplesys.common._
 import com.ivcInform.common._
+import com.simplesys.common._
+import com.simplesys.config.Config
+import com.simplesys.io._
+import com.simplesys.log.Logging
 
 import scala.concurrent.Future
-import com.simplesys.io._
 
 object WebServer extends App with Config with Logging {
 
@@ -39,26 +38,34 @@ object WebServer extends App with Config with Logging {
 
         system.terminate()
     }
-    
-    val route =
-        (get & pathPrefix("images")){
-          redirect("/webapp", StatusCodes.PermanentRedirect)
-        } ~
-        (get & pathPrefix("webapp")) {
-            extractUnmatchedPath { remaining =>
-                val filePath = webAppDirectory.toFile.getAbsolutePath + remaining.toString()
-                val file = new File(filePath)
 
-                if (file.exists) {
-                    //logger trace s"!!!!!!!!!!!!!!!!!!!!!!!filePath: $filePath exist: ${file.exists()} !!!!!!!!!!!!!!!!!!!!!!!!!!"
-                    getFromFile(file)
-                }
-                else {
-                    logger error s"????????????????? filePath: $filePath exist: ${file.exists()} ???????????????????"
+    val route =
+        (get & path("")) {
+           redirect("/StartPage", StatusCodes.Found)
+        } ~
+        (get & pathPrefix("images")) {
+            extractUnmatchedPath { remaining =>
+                if (remaining.isEmpty)
                     reject
-                }
+                else
+                    redirect("/webapp", StatusCodes.PermanentRedirect)
             }
         } ~
+          (get & pathPrefix("webapp")) {
+              extractUnmatchedPath { remaining =>
+                  val filePath = webAppDirectory.toFile.getAbsolutePath + remaining.toString()
+                  val file = new File(filePath)
+
+                  if (file.exists) {
+                      //logger trace s"!!!!!!!!!!!!!!!!!!!!!!!filePath: $filePath exist: ${file.exists()} !!!!!!!!!!!!!!!!!!!!!!!!!!"
+                      getFromFile(file)
+                  }
+                  else {
+                      logger error s"????????????????? filePath: $filePath exist: ${file.exists()} ???????????????????"
+                      reject
+                  }
+              }
+          } ~
           (get & path("Hello")) {
               complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say Hello APS !!!! ))</h1>"))
           } ~
@@ -67,7 +74,7 @@ object WebServer extends App with Config with Logging {
               val html = "<!DOCTYPE html>" +
                 textHTML.bodyHTML(
                     "CreateSmartClientJS();" +
-                    "GetUIContent();",
+                      "GetUIContent();",
                     false
                 ).render.unEscape
 

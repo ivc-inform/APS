@@ -27,7 +27,7 @@ object CommonDeps {
         val scalajsJQueryVersion = "0.9.2"
         val akkaVersion = "2.5.4"
         val akkaHttpVersion = "10.0.10"
-        val smartclientVersion = "11.1-v20170703.1"
+        val smartclientVersion = "11.1-v20170703.2"
         val fs2Version = "0.9.2"
         val tikaVersion = "1.16"
         val circeVersion = "0.8.0"
@@ -41,7 +41,7 @@ object CommonDeps {
     val scalaTags = "com.lihaoyi" %% "scalatags" % versions.scalaTagsVersion
     val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
     val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
-    val smartclient = "com.simplesys" % "smartclient-js" % versions.smartclientVersion
+    val smartclient = "com.simplesys" %% "smartclient-js" % versions.smartclientVersion
     val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
     val ssysIscComponents = "com.simplesys.core" %% "isc-components" % versions.ssysCoreVersion
     val ssysIscMisc = "com.simplesys.core" %% "isc-misc" % versions.ssysCoreVersion
