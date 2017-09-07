@@ -41,34 +41,33 @@ object WebServer extends App with Config with Logging {
     }
 
     val route =
-        /*(get & pathPrefix("webapp")) {
+        (get & pathPrefix("webapp")) {
             extractUnmatchedPath { remaining =>
                 val filePath = webAppDirectory.toFile.getAbsolutePath + remaining.toString()
                 val file = new File(filePath)
 
                 if (file.exists) {
-                    logger debug  s"filePath: $filePath exist: ${file.exists()}"
+                    logger trace s"!!!!!!!!!!!!!!!!!!!!!!!filePath: $filePath exist: ${file.exists()} !!!!!!!!!!!!!!!!!!!!!!!!!!"
                     getFromFile(file)
                 }
                 else {
-                    logger error s"filePath: $filePath exist: ${file.exists()}"
+                    logger error s"????????????????? filePath: $filePath exist: ${file.exists()} ???????????????????"
                     reject
                 }
             }
-        } ~*/
+        } ~
           (get & path("Hello")) {
               complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say Hello APS !!!! ))</h1>"))
           } ~
           (get & path("StartPage")) {
-              /*val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, "../webapp/", scalatags.Text)
+              val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, "../webapp/", scalatags.Text)
               val html = "<!DOCTYPE html>" +
                 textHTML.bodyHTML(
                     "GetUIContent();",
                     false
                 ).render.unEscape
 
-              complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, html))*/
-              complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>StartPage</h1>"))
+              complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, html))
           }
 
     val bindingFuture = Http().bindAndHandle(route, host, port)

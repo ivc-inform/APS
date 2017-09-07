@@ -1,14 +1,11 @@
 package com.ivcInform.app.http
 
-import com.simplesys.SmartClient.App.{SettingsEditor, WebTabSetApp}
 import com.simplesys.SmartClient.App.props.SettingsEditorProps
+import com.simplesys.SmartClient.App.{SettingsEditor, WebTabSetApp}
 import com.simplesys.SmartClient.System.SettingsEditor
 import com.simplesys.System.jSUndefined
-import com.simplesys.function._
 import com.simplesys.option.ScOption._
 
-import scala.scalajs.js
-import com.simplesys.System._
 import scala.scalajs.js.annotation.JSExportTopLevel
 
 object ApsWindowMain extends WebTabSetApp {
