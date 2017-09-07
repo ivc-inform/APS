@@ -112,14 +112,14 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
                       val shippingFieldMirror = im reflectField shippingTermSymb
                       val res = shippingFieldMirror.get.toString()
 
-                      Common.list = Common.list ++ Seq(Info(item.name.toString, res))
+                      Common.list append Info(item.name.toString, res)
               }
           }
 
-          Common.list = Common.list ++ Seq(
+          Common.list append (Seq(
               Info("Разработка :", "АО ИВЦ \"Информ\" (info@ivc-inform.ru)"),
               Info("Версия :", version.value)
-          )
+          ):_*)
 
           makeVersionList(CommonDeps.versions)
           makeVersionList(PluginDeps.versions)

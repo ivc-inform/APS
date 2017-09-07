@@ -63,6 +63,7 @@ object WebServer extends App with Config with Logging {
               val textHTML = new StartPage("Automated Planing Sheduler".ellipsis, "../webapp/", scalatags.Text)
               val html = "<!DOCTYPE html>" +
                 textHTML.bodyHTML(
+                    "CreateSmartClientJS();" +
                     "GetUIContent();",
                     false
                 ).render.unEscape

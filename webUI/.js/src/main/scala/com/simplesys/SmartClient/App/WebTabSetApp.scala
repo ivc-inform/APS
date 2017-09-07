@@ -94,9 +94,9 @@ trait WebTabSetApp extends TabSetStack {
                     FileLoader.loadSkin(
                         simpleSyS.skin.get, {
                             () =>
-                                var localeFile = "isomorphic/locales/frameworkMessages.properties"
+                                var localeFile = "webapp/isomorphic/locales/frameworkMessages.properties"
                                 if (isc.params.locale != "en")
-                                    localeFile = "isomorphic/locales/frameworkMessages_" + isc.params.locale + ".properties"
+                                    localeFile = "webapp/isomorphic/locales/frameworkMessages_" + isc.params.locale + ".properties"
 
                                 FileLoader.loadJSFiles(localeFile, {
                                     () =>

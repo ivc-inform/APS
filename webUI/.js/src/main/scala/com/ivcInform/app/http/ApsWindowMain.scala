@@ -13,7 +13,7 @@ object ApsWindowMain extends WebTabSetApp {
 
     override protected val loadSchemas = false
     override protected val identifier = "5814FE1C-252A-01C4-11A1-557FA3345D3F"
-    override protected val appImageDir = "images/"
+    override protected val appImageDir = "webapp/images/"
 
     override protected val dataSourcesJS_admin_UserGroup_DS = jSUndefined
     override protected val dataSourcesJS_admin_User_DS = jSUndefined
