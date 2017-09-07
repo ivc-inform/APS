@@ -42,11 +42,13 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .dependsOn(common)
   .settings(
-
       libraryDependencies ++= Seq(
           CommonDeps.ssysCommon,
-          CommonDeps.scalaTags
-      )  ++ CommonDeps.circes
+          CommonDeps.scalaTags,
+          CommonDeps.circeCore,
+          CommonDeps.circeParser,
+          CommonDeps.circeGeneric
+      )
   )
   .jsSettings(
       commonJsSettings,
@@ -70,7 +72,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           CommonDepsScalaJS.scalaTags.value,
           CommonDepsScalaJS.macroJS.value,
           CommonDeps.smartclient
-      )  ++= CommonDeps.circes,
+      ),
 
       (resourceGenerators in Compile) += task[Seq[File]] {
 

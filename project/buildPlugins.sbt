@@ -11,6 +11,11 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(/*RootP
   ))).
   settings(
       classpathTypes += "maven-plugin",
+      libraryDependencies ++= Seq(
+          CommonDeps.circeCore,
+          CommonDeps.circeParser,
+          CommonDeps.circeGeneric
+      ),
       PluginDeps.scalaJSPlugin,
       PluginDeps.scalaCrossProjectPlugin,
       PluginDeps.scalaJSCrossProjectPlugin,
@@ -18,5 +23,7 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(/*RootP
       PluginDeps.sbtNativePackager,
       PluginDeps.sbtResolver
   )
+
+
 
 

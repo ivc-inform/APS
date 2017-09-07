@@ -20,7 +20,7 @@ object PluginDeps {
 
 object CommonDeps {
     object versions {
-        val scalaJSVersion = "1.4.0.1"
+        val scalaJSVersion = "1.5-SNAPSHOT"
         val scalaTestVersion = "3.0.3"
         val scalaTagsVersion = "0.6.5"
         val uPickleVersion = "0.4.4"
@@ -45,11 +45,9 @@ object CommonDeps {
     val smartclient = "com.simplesys" % "smartclient-js" % versions.smartclientVersion
 
 
-    val circes = Seq(
-      "io.circe" %% "circe-core",
-      "io.circe" %% "circe-generic",
-      "io.circe" %% "circe-parser"
-    ).map(_ % versions. circeVersion)
+    val circeCore = "io.circe" %% "circe-core" % versions.circeVersion
+    val circeGeneric = "io.circe" %% "circe-generic" % versions.circeVersion
+    val circeParser = "io.circe" %% "circe-parser" % versions.circeVersion
 
 
 //    val tika = "org.apache.tika" % "tika-core" % versions.tikaVersion
