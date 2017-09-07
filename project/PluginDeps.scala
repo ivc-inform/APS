@@ -15,7 +15,7 @@ object PluginDeps {
     val scalaCrossProjectPlugin = addSbtPlugin("org.scala-native" % "sbt-crossproject" % versions.scalaCrossProjectPluginVersion)
     val mergeJS = addSbtPlugin("ru.simplesys" % "merge-js" % versions.mergeJSVersion)
     val sbtNativePackager = addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % versions.sbtNativePackagerVersion)
-    val sbtResolver = addSbtPlugin("io.spray" % "sbt-revolver" % versions.sbtResolverVersion)
+    val sbtRevolver = addSbtPlugin("io.spray" % "sbt-revolver" % versions.sbtResolverVersion)
 }
 
 object CommonDeps {

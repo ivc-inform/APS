@@ -1,0 +1,31 @@
+.error {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ffffff;
+    color: #dd0614;
+    font-weight: bold;
+}
+
+.warning {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #dd0fd7;
+}
+
+.info {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ffffff;
+    font-weight: bold;
+    color: #072edd;
+}
+
+.debug {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ffffff;
+    font-weight: bold;
+    color: #09dd0d;
+}

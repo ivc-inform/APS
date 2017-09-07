@@ -19,7 +19,7 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(/*RootP
       PluginDeps.scalaJSCrossProjectPlugin,
       PluginDeps.mergeJS,
       PluginDeps.sbtNativePackager,
-      PluginDeps.sbtResolver,
+      PluginDeps.sbtRevolver,
       libraryDependencies ++= Seq(
           CommonDeps.circeCore,
           CommonDeps.circeParser,

@@ -17,4 +17,8 @@ settings.xml
 common-webapp/src/main/resources/webapp/javascript/generated/
 isc-components/src/main/resources/webapp/javascript/generated/
 saxon-wrapper/lib/
-webapp/
+
+isomorphic/
+generated/
+lastSaveMappingSettings.ignore
+
