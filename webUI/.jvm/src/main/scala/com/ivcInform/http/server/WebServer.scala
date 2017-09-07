@@ -60,7 +60,7 @@ object WebServer extends App with Config with Logging {
               complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say Hello APS !!!! ))</h1>"))
           } ~
           (get & path("StartPage")) {
-              val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, "../webapp/", scalatags.Text)
+              val textHTML = new StartPage("Automated Planing Sheduler".ellipsis, "../webapp/", scalatags.Text)
               val html = "<!DOCTYPE html>" +
                 textHTML.bodyHTML(
                     "GetUIContent();",

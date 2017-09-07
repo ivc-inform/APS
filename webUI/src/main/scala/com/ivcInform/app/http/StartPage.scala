@@ -33,8 +33,8 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val webappP
                 script(src := s"${webappPath}isomorphic/client/modules/ISC_Charts.js"),
                 script(src := s"${webappPath}isomorphic/client/modules/ISC_FileLoader.js"),
 
-                script(src := s"${webappPath}javascript/generated/generatedComponents/MakeAboutData.js"),
                 script(src := s"${webappPath}managed/javascript/common-webapp/generated/generatedComponents/coffeescript/coffeeScript/main/common.js"),
+                script(src := s"${webappPath}javascript/generated/generatedComponents/MakeAboutData.js"),
 
                 script(src := s"${webappPath1}PreDefined.js"),
                 script(src := s"${webappPath1}system/ArraySS.js"),
