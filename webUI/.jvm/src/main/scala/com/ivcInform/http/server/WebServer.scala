@@ -6,16 +6,15 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.{RequestContext, Route}
 import akka.stream.ActorMaterializer
 import com.ivcInform.app.http.StartPage
-import com.simplesys.config.Config
-import com.simplesys.log.Logging
-import com.simplesys.common._
 import com.ivcInform.common._
+import com.simplesys.common._
+import com.simplesys.config.Config
+import com.simplesys.io._
+import com.simplesys.log.Logging
 
 import scala.concurrent.Future
-import com.simplesys.io._
 
 object WebServer extends App with Config with Logging {
 
@@ -41,24 +40,11 @@ object WebServer extends App with Config with Logging {
     }
 
     val route =
-        (get & pathPrefix("webapp")) {
-            extractUnmatchedPath { remaining =>
-                val filePath = webAppDirectory.toFile.getAbsolutePath + remaining.toString()
-                val file = new File(filePath)
-                
-                if (file.exists)
-                    getFromFile(file)
-                else {
-                    logger error s"filePath: $filePath exist: ${file.exists()}"
-                    reject
-                }
-            }
+        (get & path("Hello")) {
+            complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say Hello APS !!!! ))</h1>"))
         } ~
-          (get & path("Hello")) {
-              complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say Hello APS !!!! ))</h1>"))
-          } ~
           (get & path("StartPage")) {
-              val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, "../webapp/", scalatags.Text)
+              val textHTML = new StartPage("ПРОБА !!!!!".ellipsis, webAppDirectory.toFile.getAbsolutePath, scalatags.Text)
               val html = "<!DOCTYPE html>" +
                 textHTML.bodyHTML(
                     "GetUIContent();",
@@ -66,6 +52,21 @@ object WebServer extends App with Config with Logging {
                 ).render.unEscape
 
               complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, html))
+          } ~
+          get {
+              extractUnmatchedPath { remaining =>
+                  val filePath = remaining.toString()
+                  val file = new File(filePath)
+
+                  if (file.isFile && !file.isHidden && file.exists) {
+                      logger debug s"Rejected filePath: $filePath, isFile: ${file.isFile} exist: ${file.exists()}, isHidden: ${file.isHidden}"
+                      getFromFile(file)
+                  }
+                  else {
+                      logger debug s"Rejected filePath: $filePath, isFile: ${file.isFile} exist: ${file.exists()}, isHidden: ${file.isHidden}"
+                      reject
+                  }
+              }
           }
 
     val bindingFuture = Http().bindAndHandle(route, host, port)

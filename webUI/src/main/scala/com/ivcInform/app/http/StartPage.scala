@@ -2,7 +2,6 @@ package com.ivcInform.app.http
 
 import scalatags.generic.Bundle
 
-case class paths(subPath: String, subPath1: String)
 
 class StartPage[Builder, Output <: FragT, FragT](val _title: String, val webappPath: String, val bundle: Bundle[Builder, Output, FragT]) {
     def bodyHTML(lastScript: String, fullOpt: Boolean = false) = {
