@@ -3,11 +3,6 @@
 
 lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(/*RootProject(mergeJS)*/).
   settings(
-      libraryDependencies ++= Seq(
-          CommonDeps.circeCore,
-          CommonDeps.circeParser,
-          CommonDeps.circeGeneric
-      ),
       inThisBuild(
           scalacOptions ++= Seq(
               "-deprecation",
@@ -25,7 +20,11 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(/*RootP
       PluginDeps.mergeJS,
       PluginDeps.sbtNativePackager,
       PluginDeps.sbtResolver,
-      logLevel := Level.Warn
+      libraryDependencies ++= Seq(
+          CommonDeps.circeCore,
+          CommonDeps.circeParser,
+          CommonDeps.circeGeneric
+      )
   )
 
 

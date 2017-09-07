@@ -99,7 +99,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
                       val shippingFieldMirror = im reflectField shippingTermSymb
                       val res = shippingFieldMirror.get.toString()
 
-                      list append Info(item.name.toString, res)
+                      Common.list append Info(item.name.toString, res)
               }
           }
 
