@@ -35,7 +35,7 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val webappP
 
                 script(src := s"${webappPath}javascript/generated/generatedComponentsJS/${if (fullOpt) "web-ui-opt.js" else "webuijs-fastopt.js"}"),
 
-                link(href := "managed/css/common-webapp/logging_styles.css", rel := "stylesheet", `type` := "text/css"),
+                link(href := s"${webappPath}css/logging_styles.css", rel := "stylesheet", `type` := "text/css"),
                 script(lastScript)
             )
         )
