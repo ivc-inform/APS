@@ -61,9 +61,14 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           ("com.simplesys.core", "common-webapp") -> Seq(
               Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(Seq("managed", "javascript", "common-webapp", "generated", "generatedComponents", "coffeescript")),
               Seq("webapp", "javascript", "developed") -> Some(Seq("managed", "javascript", "common-webapp", "developed")),
-              Seq("webapp", "coffeescript", "developed") -> Some(Seq("managed", "coffeescript", "common-webapp", "developed")),
               Seq("webapp", "css") -> Some(Seq("managed", "css", "common-webapp")),
               Seq("webapp", "images") -> Some(Seq("managed", "images", "common-webapp"))
+          ),
+          ("com.simplesys.core", "isc-components") -> Seq(
+              Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(Seq("managed", "javascript", "isc-components", "generated", "generatedComponents", "coffeescript"))
+          ),
+          ("com.simplesys.core", "isc-misc") -> Seq(
+              Seq("javascript") -> Some(Seq("managed", "javascript", "isc-misc"))
           ),
           ("com.simplesys", "smartclient-js") -> Seq(
               Seq("isomorphic") -> Some(Seq("isomorphic"))
@@ -77,7 +82,9 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           CommonDepsScalaJS.scalaTags.value,
           CommonDepsScalaJS.macroJS.value,
           CommonDeps.smartclient,
-          CommonDeps.ssysCommonWebapp
+          CommonDeps.ssysCommonWebapp,
+          CommonDeps.ssysIscComponents,
+          CommonDeps.ssysIscMisc
       ),
 
       (resourceGenerators in Compile) += task[Seq[File]] {

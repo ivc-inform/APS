@@ -1,5 +1,4 @@
-import sbt.addSbtPlugin
-import sbt._
+import sbt.{addSbtPlugin, _}
 
 object PluginDeps {
     object versions {
@@ -44,13 +43,15 @@ object CommonDeps {
     val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
     val smartclient = "com.simplesys" % "smartclient-js" % versions.smartclientVersion
     val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
+    val ssysIscComponents = "com.simplesys.core" %% "isc-components" % versions.ssysCoreVersion
+    val ssysIscMisc = "com.simplesys.core" %% "isc-misc" % versions.ssysCoreVersion
 
     val circeCore = "io.circe" %% "circe-core" % versions.circeVersion
     val circeGeneric = "io.circe" %% "circe-generic" % versions.circeVersion
     val circeParser = "io.circe" %% "circe-parser" % versions.circeVersion
 
 
-//    val tika = "org.apache.tika" % "tika-core" % versions.tikaVersion
-//    val fs2Core = "co.fs2" %% "fs2-core" % versions.fs2Version
-//    val fs2IO = "co.fs2" %% "fs2-io" % versions.fs2Version
+    //    val tika = "org.apache.tika" % "tika-core" % versions.tikaVersion
+    //    val fs2Core = "co.fs2" %% "fs2-core" % versions.fs2Version
+    //    val fs2IO = "co.fs2" %% "fs2-io" % versions.fs2Version
 }
