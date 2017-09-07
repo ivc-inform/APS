@@ -1,7 +1,8 @@
 import com.simplesys.mergewebapp.MergeWebappPlugin._
 import sbtcrossproject.{CrossType, crossProject}
 import spray.revolver.RevolverPlugin.autoImport._
-import com.simplesys.mergewebapp.MergeWebappPlugin._
+
+import scala.collection.mutable.ArrayBuffer
 
 lazy val aps = crossProject(JSPlatform, JVMPlatform)
   .settings(
@@ -18,7 +19,6 @@ lazy val aps = crossProject(JSPlatform, JVMPlatform)
 
 lazy val apsJS = aps.js
 lazy val apsJVM = aps.jvm
-
 
 val commonJsSettings = Seq(
     scalacOptions ++= (if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault") else Nil)
@@ -46,7 +46,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       libraryDependencies ++= Seq(
           CommonDeps.ssysCommon,
           CommonDeps.scalaTags
-      ) ++ CommonDeps.circes
+      )  ++ CommonDeps.circes
   )
   .jsSettings(
       commonJsSettings,
@@ -65,16 +65,25 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       webAppDirPath in MergeWebappConfig := baseDirectory.value.getParentFile / "webapp",
 
       MergeWebappPlugin.mergeWebappSettings,
+      libraryDependencies ++= Seq(
+          CommonDepsScalaJS.smartClientWrapper.value,
+          CommonDepsScalaJS.scalaTags.value,
+          CommonDepsScalaJS.macroJS.value,
+          CommonDeps.smartclient
+      )  ++= CommonDeps.circes,
 
       (resourceGenerators in Compile) += task[Seq[File]] {
 
           val aboutFile: File = baseDirectory.value.getParentFile / "webapp" / "javascript" / "generated" / "generatedComponents" / "MakeAboutData.js"
 
-          val list = JsonList()
+          case class Info(libName: String, libVersion: String)
+
+          val list = ArrayBuffer.empty[Info]
 
           import scala.reflect.ClassTag
           import scala.reflect.runtime.universe._
           import scala.reflect.runtime.{universe ⇒ ru}
+          //import io.circe.syntax._
 
           def makeVersionList[T: TypeTag : ClassTag](e: T): Unit = {
 
@@ -93,28 +102,21 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
                       val shippingFieldMirror = im reflectField shippingTermSymb
                       val res = shippingFieldMirror.get.toString()
 
-                      list += JsonObject("libName" -> item.name.toString, "libVersion" -> res)
+                      list append Info(item.name.toString, res)
               }
           }
 
           list ++= Seq(
-              JsonObject("libName" -> "Разработка :", "libVersion" -> "АО ИВЦ \"Информ\" (info@ivc-inform.ru)"),
-              JsonObject("libName" -> "Версия :", "libVersion" -> version.value)
+              Info("Разработка :", "АО ИВЦ \"Информ\" (info@ivc-inform.ru)"),
+              Info("Версия :", version.value)
           )
 
           makeVersionList(CommonDeps.versions)
           makeVersionList(PluginDeps.versions)
 
-          IO.write(aboutFile, s"simpleSyS.aboutData = ${list.toPrettyString}")
+          //IO.write(aboutFile, s"simpleSyS.aboutData = ${list.asJson}")
           Seq()
-      },
-
-      libraryDependencies ++= Seq(
-          CommonDepsScalaJS.smartClientWrapper.value,
-          CommonDepsScalaJS.scalaTags.value,
-          CommonDepsScalaJS.macroJS.value,
-          CommonDeps.smartclient
-      )
+      }
   )
   .jvmSettings(
       reJRebelJar := "/home/uandrew/jrebel/legacy/jrebel.jar",

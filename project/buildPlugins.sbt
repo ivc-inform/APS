@@ -10,13 +10,13 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(/*RootP
       "utf8"
   ))).
   settings(
-        classpathTypes += "maven-plugin",
-        PluginDeps.scalaJSPlugin,
-        PluginDeps.scalaCrossProjectPlugin,
-        PluginDeps.scalaJSCrossProjectPlugin,
-        PluginDeps.mergeJS,
-        PluginDeps.sbtNativePackager,
-        PluginDeps.sbtResolver
+      classpathTypes += "maven-plugin",
+      PluginDeps.scalaJSPlugin,
+      PluginDeps.scalaCrossProjectPlugin,
+      PluginDeps.scalaJSCrossProjectPlugin,
+      PluginDeps.mergeJS,
+      PluginDeps.sbtNativePackager,
+      PluginDeps.sbtResolver
   )
 
 
