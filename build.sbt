@@ -1,7 +1,6 @@
 import com.simplesys.mergewebapp.MergeWebappPlugin._
 import sbtcrossproject.{CrossType, crossProject}
 import spray.revolver.RevolverPlugin.autoImport._
-import io.circe.syntax._
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -79,10 +78,6 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
 
           val aboutFile: File = baseDirectory.value.getParentFile / "webapp" / "javascript" / "generated" / "generatedComponents" / "MakeAboutData.js"
 
-          case class Info(libName: String, libVersion: String)
-
-          val list = ArrayBuffer.empty[Info]
-
           import scala.reflect.ClassTag
           import scala.reflect.runtime.universe._
           import scala.reflect.runtime.{universe ⇒ ru}
@@ -108,7 +103,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
               }
           }
 
-          list ++= Seq(
+          Common.list ++= Seq(
               Info("Разработка :", "АО ИВЦ \"Информ\" (info@ivc-inform.ru)"),
               Info("Версия :", version.value)
           )
@@ -116,7 +111,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           makeVersionList(CommonDeps.versions)
           makeVersionList(PluginDeps.versions)
 
-          //IO.write(aboutFile, s"simpleSyS.aboutData = ${list.asJson}")
+          IO.write(aboutFile, s"simpleSyS.aboutData = ${Common.list.toString()}")
           Seq()
       }
   )

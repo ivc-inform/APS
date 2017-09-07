@@ -24,7 +24,8 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(/*RootP
       PluginDeps.scalaJSCrossProjectPlugin,
       PluginDeps.mergeJS,
       PluginDeps.sbtNativePackager,
-      PluginDeps.sbtResolver
+      PluginDeps.sbtResolver,
+      logLevel := Level.Warn
   )
 
 
