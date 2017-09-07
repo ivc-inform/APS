@@ -1,7 +1,7 @@
 import com.simplesys.mergewebapp.MergeWebappPlugin._
 import sbtcrossproject.{CrossType, crossProject}
 import spray.revolver.RevolverPlugin.autoImport._
-//import io.circe.syntax._
+import io.circe.syntax._
 
 import scala.collection.mutable.ArrayBuffer
 
