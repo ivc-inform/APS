@@ -43,7 +43,7 @@ object CommonDeps {
     val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
     val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
     val smartclient = "com.simplesys" % "smartclient-js" % versions.smartclientVersion
-
+    val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
 
     val circeCore = "io.circe" %% "circe-core" % versions.circeVersion
     val circeGeneric = "io.circe" %% "circe-generic" % versions.circeVersion

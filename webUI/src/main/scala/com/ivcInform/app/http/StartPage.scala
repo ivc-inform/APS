@@ -15,7 +15,6 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val webappP
             body(
                 style := "margin: 0px",
 
-                script(src := s"${webappPath}javascript/generated/generatedComponentsJS/${if (fullOpt) "web-ui-opt.js" else "webuijs-fastopt.js"}"),
                 script("var isomorphicDir =\"" + webappPath + "isomorphic/\""),
                 script(src := s"${webappPath}isomorphic/client/modules/ISC_Core.js"),
                 script(src := s"${webappPath}isomorphic/client/modules/ISC_Foundation.js"),
@@ -33,6 +32,7 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val webappP
                 script(src := s"${webappPath}isomorphic/client/modules/ISC_FileLoader.js"),
 
                 script(src := s"${webappPath}javascript/generated/generatedComponents/MakeAboutData.js"),
+                script(src := s"${webappPath}javascript/generated/generatedComponentsJS/${if (fullOpt) "web-ui-opt.js" else "webuijs-fastopt.js"}"),
 
                 link(href := s"${webappPath}css/logging_styles.css", rel := "stylesheet", `type` := "text/css"),
                 script(lastScript)

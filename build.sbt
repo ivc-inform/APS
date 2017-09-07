@@ -2,8 +2,6 @@ import com.simplesys.mergewebapp.MergeWebappPlugin._
 import sbtcrossproject.{CrossType, crossProject}
 import spray.revolver.RevolverPlugin.autoImport._
 
-import scala.collection.mutable.ArrayBuffer
-
 lazy val aps = crossProject(JSPlatform, JVMPlatform)
   .settings(
       inThisBuild(Seq(
@@ -60,6 +58,13 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
 
       //merger
       mergeMapping in MergeWebappConfig := Seq(
+          ("com.simplesys.core", "common-webapp") -> Seq(
+              Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(Seq("managed", "javascript", "common-webapp", "generated", "generatedComponents", "coffeescript")),
+              Seq("webapp", "javascript", "developed") -> Some(Seq("managed", "javascript", "common-webapp", "developed")),
+              Seq("webapp", "coffeescript", "developed") -> Some(Seq("managed", "coffeescript", "common-webapp", "developed")),
+              Seq("webapp", "css") -> Some(Seq("managed", "css", "common-webapp")),
+              Seq("webapp", "images") -> Some(Seq("managed", "images", "common-webapp"))
+          ),
           ("com.simplesys", "smartclient-js") -> Seq(
               Seq("isomorphic") -> Some(Seq("isomorphic"))
           )
@@ -71,7 +76,8 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           CommonDepsScalaJS.smartClientWrapper.value,
           CommonDepsScalaJS.scalaTags.value,
           CommonDepsScalaJS.macroJS.value,
-          CommonDeps.smartclient
+          CommonDeps.smartclient,
+          CommonDeps.ssysCommonWebapp
       ),
 
       (resourceGenerators in Compile) += task[Seq[File]] {
