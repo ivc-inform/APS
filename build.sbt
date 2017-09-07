@@ -1,6 +1,7 @@
 import com.simplesys.mergewebapp.MergeWebappPlugin._
 import sbtcrossproject.{CrossType, crossProject}
 import spray.revolver.RevolverPlugin.autoImport._
+//import io.circe.syntax._
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -85,7 +86,6 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           import scala.reflect.ClassTag
           import scala.reflect.runtime.universe._
           import scala.reflect.runtime.{universe ⇒ ru}
-          //import io.circe.syntax._
 
           def makeVersionList[T: TypeTag : ClassTag](e: T): Unit = {
 
