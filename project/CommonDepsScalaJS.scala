@@ -5,8 +5,8 @@ import sbt._
 object CommonDepsScalaJS {
 
     val macroJS = Def.setting("com.simplesys" %%% "macrojs" % versions.scalaJSVersion)
-    //val smartClientWrapper = Def.setting("com.simplesys" %%% "smartclient-wrapper" % Versions.scalaJSVersion)
-    val smartClientWrapper = Def.setting("com.simplesys" %%% "common-types" % versions.scalaJSVersion)
+    val smartClientWrapper = Def.setting("com.simplesys" %%% "smartclient-wrapper" % versions.scalaJSVersion)
+    //val smartClientWrapper = Def.setting("com.simplesys" %%% "common-types" % versions.scalaJSVersion)
 
     val uPickleJS = Def.setting("com.lihaoyi" %%% "upickle" % versions.uPickleVersion)
     val scalaTags = Def.setting("com.lihaoyi" %%% "scalatags" % versions.scalaTagsVersion)
