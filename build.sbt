@@ -105,15 +105,15 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
               val decls = `type`.declarations.sorted.filter(_.isMethod).filter(!_.name.toString.contains("<init>"))
               val im = classLoaderMirror reflect e
 
-              decls.foreach {
+              Common.list append (decls.map {
                   item =>
 
                       val shippingTermSymb = `type`.declaration(ru.newTermName(item.name.toString)).asTerm
                       val shippingFieldMirror = im reflectField shippingTermSymb
                       val res = shippingFieldMirror.get.toString()
 
-                      Common.list append Info(item.name.toString, res)
-              }
+                      Info(item.name.toString, res)
+              } :_ *)
           }
 
           Common.list append (Seq(
