@@ -7,7 +7,7 @@ object CommonSettings {
 
     val scalaVersion = "2.12.3"
     val organization = "com.ivc-inform"
-    val name = "archive-kd"
+    val name = "aps"
     val version = "1.0.0.1"
     val scalacOptions = Seq(
       "-feature",

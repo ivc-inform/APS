@@ -61,8 +61,7 @@ src/main/webapp/javascript/developed/developedComponents/SettingsEditor.js
 src/main/webapp/managed/
 src/main/resources/migration/
 src/main/webapp/javascript/IncludeModules
-src/main/webapp/isomorphic/
-web-ui/src/main/webapp/javascript/IncludeModules
+isomorphic/
 
 !common/lib/*.jar
 files/
@@ -72,3 +71,4 @@ upgrade/
 *.tmp
 
 *.zip
+managed/

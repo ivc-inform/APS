@@ -64,7 +64,7 @@ lazy val dbObjects = Project(id = "db-objects", base = file("db-objects")).
       Seq(
           sourceSchemaDir in DevConfig := (resourceDirectory in Compile).value / "defs",
           startPackageName in DevConfig := "ru.simplesys.defs",
-          contextPath in DevConfig := "archive-kd",
+          contextPath in DevConfig := "aps",
           maxArity := 254,
           quoted := true,
           sourceGenerators in Compile += (generateBoScalaCode in DevConfig)
@@ -146,7 +146,7 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
         //dev plugin
         sourceSchemaDir in DevConfig := (resourceDirectory in(dbObjects, Compile)).value / "defs",
         startPackageName in DevConfig := "ru.simplesys.defs",
-        contextPath in DevConfig := "archive-kd",
+        contextPath in DevConfig := "aps",
         maxArity in DevConfig := 254,
         quoted in DevConfig := true,
         sourceGenerators in Compile += (generateScalaCode in DevConfig),
