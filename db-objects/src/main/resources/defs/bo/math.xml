@@ -137,7 +137,7 @@
 				</attrs>
 				<defaults>
 					<showAttrs>
-						<attrName>id</attrName>
+						<attrName>id_item</attrName>
 					</showAttrs>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
 				</defaults>
