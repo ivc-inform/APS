@@ -48,8 +48,8 @@
 			<classSimple autoTableMapping="true" caption="Рабочие центры" name="rc">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
-					<attr caption="scode" name="scode" type="sCode" useDbPrefix="false"></attr>
-					<attr caption="sname" name="sname" type="sCaption" useDbPrefix="false"></attr>
+					<attr caption="Код" name="scode" type="sCode" useDbPrefix="false"></attr>
+					<attr caption="Наименование" name="sname" type="sCaption" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<showAttrs>
@@ -70,11 +70,11 @@
 					<attr caption="Системная дата заполения параметров" name="ddatesys" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Дата начала расписания" name="ddatein" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Первоначальная настройка машины" name="start_type" type="nInt" useDbPrefix="false"></attr>
-					<attr caption="Количество смен" name="shift_count" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Количество смен" name="shifts_count" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Психологический коэф - напряженность" name="tension" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Плановый период врабочих днях" name="plan_duration" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Момент освобождения в календ.днях" name="free" type="nInt" useDbPrefix="false"></attr>
-					<attr caption="Момент начала рабочего дня" name="day_start_at" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Момент начала рабочего дня" name="start_day" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Стоимость смены" name="cost_shift" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Стоимость часа наладки" name="cost_workhour" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Стоимость часа простоя" name="cost_idlehour" type="nInt" useDbPrefix="false"></attr>
