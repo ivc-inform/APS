@@ -125,7 +125,7 @@
 
 			<classSimple autoTableMapping="true" caption="Варианты" name="result_item">
 				<attrs>
-					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_item" type="id" useDbPrefix="false"></attr>
 					<attr caption="Порядковый номер в наборе варианта" name="pos" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Дата время начала операции" name="opertimestart" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Дата время окончания операции" name="operttimeend" type="dDateTime" useDbPrefix="false"></attr>
