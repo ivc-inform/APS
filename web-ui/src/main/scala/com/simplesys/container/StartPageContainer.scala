@@ -13,7 +13,7 @@ class StartPageContainer(val request: HttpServletRequest, val response: HttpServ
 
     def receive = {
         case GetData => {
-            val textHTML = new StartPage("Расписание".ellipsis, scalatags.Text)
+            val textHTML = new StartPage("Расписание для одиночной машины".ellipsis, scalatags.Text)
 
             val html: String = "<!DOCTYPE html>" +
               textHTML.bodyHTML(
