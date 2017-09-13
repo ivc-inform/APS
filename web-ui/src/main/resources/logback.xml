@@ -24,19 +24,13 @@
 
     <logger name="com.simplesys.servlet.http.HttpServletRequest" level="debug"/>
     <logger name="ru.simplesys.defs.bo.scenarios.Scr_CmpgnDS" level="debug"/>
-    <logger name="ru.simplesys.defs.bo.admin.UserDS" level="debug"/>
-    <logger name="ru.simplesys.defs.bo.arx.CardDS" level="debug"/>
-    <logger name="ru.simplesys.defs.bo.arx.AttatchDS" level="debug"/>
-    <logger name="ru.simplesys.defs.bo.arx.UserDS" level="debug"/>
-    <logger name="ru.simplesys.defs.bo.arx.UserBo" level="debug"/>
-    <logger name="ru.simplesys.defs.bo.arx.table.UserTbl" level="debug"/>
+    <logger name="ru.simplesys.defs.bo.admin.UserDS" level="trace"/>
     <logger name="ru.simplesys.defs.bo.admin.UserBo" level="debug"/>
     <logger name="ru.simplesys.defs.bo.eakd.AbonentsDS" level="debug"/>
     <logger name="com.simplesys.jdbc.control.ClassBO" level="debug"/>
     <logger name="com.simplesys.jdbc.control.Table" level="debug"/>
 
     <logger name="com.simplesys.filter.ReLoginAxFilter" level="debug"/>
-    <logger name="ru.simplesys.defs.bo.arx.CardDS" level="debug"/>
     <logger name="com.simplesys.oracle.pool.OraclePoolDataSource" level="trace"/>
 
     <!--Вывод регистрации сервлетов-->
