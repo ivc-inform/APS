@@ -56,7 +56,6 @@ object ApsProcWindowMain extends WebTabSetApp {
         }
     )
 
-    val widthButton = 100
     protected val managedUsersGroups: Seq[RibbonGroupSS] = Seq(
         RibbonGroupSS.create(
             new RibbonGroupSSProps {
@@ -67,7 +66,6 @@ object ApsProcWindowMain extends WebTabSetApp {
                             title = "Расписание".ellipsis.opt
                             icon = app.dictionary.opt
                             identifier = "35736AF3-8813-87B6-8193-A41A9F9BE125".opt
-                            width = widthButton
                             menu = MenuSS.create(
                                 new MenuSSProps {
                                     items = Seq(
