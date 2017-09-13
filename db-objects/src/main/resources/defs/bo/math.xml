@@ -123,7 +123,7 @@
 				</constraints>
 			</classSimple>
 
-			<classSimple autoTableMapping="true" caption="Варианты" name="result_item">
+			<classSimple autoTableMapping="true" caption="Варианты" name="result_items">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_item" type="id" useDbPrefix="false"></attr>
 					<attr caption="Порядковый номер в наборе варианта" name="pos" type="nInt" useDbPrefix="false"></attr>
