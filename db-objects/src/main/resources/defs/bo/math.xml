@@ -146,7 +146,7 @@
 						<attrName>id_item</attrName>
 					</uc>
 					<fk linkType="refIsOwner" mandatory="false" parent="rc">
-						<mapping attrNameLocal="idrc" attrNameRemote="id"></mapping>
+						<mapping attrNameLocal="idrc" attrNameRemote="id_rc"></mapping>
 					</fk>
 					<fk linkType="refIsOwner" mandatory="false" parent="result">
 						<mapping attrNameLocal="id_result" attrNameRemote="id"></mapping>
