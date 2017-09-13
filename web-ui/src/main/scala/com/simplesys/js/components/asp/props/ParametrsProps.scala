@@ -11,4 +11,5 @@ import scala.scalajs.js._
 
 class ParametrsProps extends CommonListGridEditorComponentProps {
     type classHandler <: Parametrs
+    identifier = "4EEF794F-EE8F-C38D-73D6-CF6F0F5170E4".opt
 }
