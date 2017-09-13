@@ -9,6 +9,7 @@ import com.simplesys.app.ResultItem
 import com.simplesys.function._
 import com.simplesys.js.components.asp.Result
 import com.simplesys.option.ScOption._
+import com.simplesys.option.DoubleType._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
 import ru.simplesys.defs.app.scala.container.math.ResultDataRecord
 
@@ -32,6 +33,7 @@ class ResultProps extends CommonListGridEditorComponentProps {
         (thiz: classHandler, record: ResultDataRecord) ⇒
             ResultItem.create(
                 new ResultItemProps {
+                    height = 250
                     initialCriteria = AdvancedCriteria(
                         new AdvancedCriteriaProps {
                             operator = OperatorId.and.opt
