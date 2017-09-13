@@ -143,7 +143,7 @@
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
-						<attrName>id</attrName>
+						<attrName>id_item</attrName>
 					</uc>
 					<fk linkType="refIsOwner" mandatory="false" parent="rc">
 						<mapping attrNameLocal="idrc" attrNameRemote="id"></mapping>
