@@ -35,6 +35,11 @@ trait CommonListGridEditorComponentProps extends ListGridEditorProps with Initia
     var customMenu: ScOption[Seq[MenuSSItem]] = ScNone
     var itemsType: ScOption[Seq[MenuItemType]] = ScNone
 
+    expandRecord = {
+        (thizTop: classHandler, record: JSObject) ⇒
+            thizTop.Super("expandRecord", IscArray(record))
+    }.toThisFunc.opt
+
     initWidget = {
         (thiz: classHandler, arguments: IscArray[JSAny]) =>
             val res = initWidget(thiz, thiz.fields, thiz.replacingFields, thiz.editingFields)
