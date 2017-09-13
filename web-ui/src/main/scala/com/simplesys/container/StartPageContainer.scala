@@ -7,7 +7,7 @@ import com.simplesys.servlet.http.{HttpServletRequest, HttpServletResponse}
 import com.simplesys.servlet.{GetData, ServletActor, ServletContext}
 import com.simplesys.SmartClient.System._
 
-//http://localhost:8083/aps/StartPage
+//http://localhost:8084/aps/StartPage
 @RSTransfer(urlPattern = "/StartPage")
 class StartPageContainer(val request: HttpServletRequest, val response: HttpServletResponse, val servletContext: ServletContext) extends ServletActor {
 
