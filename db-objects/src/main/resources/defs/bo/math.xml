@@ -40,7 +40,7 @@
 						<attrName>id</attrName>
 					</uc>
 					<fk linkType="refIsOwner" mandatory="false" parent="rc">
-						<mapping attrNameLocal="idrc" attrNameRemote="id"></mapping>
+						<mapping attrNameLocal="idrc" attrNameRemote="id_rc"></mapping>
 					</fk>
 				</constraints>
 			</classSimple>
