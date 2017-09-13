@@ -47,19 +47,19 @@
 
 			<classSimple autoTableMapping="true" caption="Рабочие центры" name="rc">
 				<attrs>
-					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_rc" type="id" useDbPrefix="false"></attr>
 					<attr caption="Код" name="scode" type="sCode" useDbPrefix="false"></attr>
 					<attr caption="Наименование" name="sname" type="sCaption" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<showAttrs>
-						<attrName>id</attrName>
+						<attrName>id_rc</attrName>
 					</showAttrs>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
-						<attrName>id</attrName>
+						<attrName>id_rc</attrName>
 					</uc>
 				</constraints>
 			</classSimple>
