@@ -24,14 +24,14 @@
 
     <logger name="com.simplesys.servlet.http.HttpServletRequest" level="debug"/>
     <logger name="ru.simplesys.defs.bo.scenarios.Scr_CmpgnDS" level="debug"/>
-    <logger name="ru.simplesys.defs.bo.admin.UserDS" level="trace"/>
+    <logger name="ru.simplesys.defs.bo.admin.UserDS" level="debug"/>
     <logger name="ru.simplesys.defs.bo.admin.UserBo" level="debug"/>
     <logger name="ru.simplesys.defs.bo.eakd.AbonentsDS" level="debug"/>
     <logger name="com.simplesys.jdbc.control.ClassBO" level="debug"/>
     <logger name="com.simplesys.jdbc.control.Table" level="debug"/>
 
     <logger name="com.simplesys.filter.ReLoginAxFilter" level="debug"/>
-    <logger name="com.simplesys.oracle.pool.OraclePoolDataSource" level="trace"/>
+    <logger name="com.simplesys.oracle.pool.OraclePoolDataSource" level="debug"/>
 
     <!--Вывод регистрации сервлетов-->
     <logger name="com.simplesys.listener.AppLifeCycleEvent" level="debug"/>

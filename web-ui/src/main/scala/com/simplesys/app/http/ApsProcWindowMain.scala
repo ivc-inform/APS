@@ -60,7 +60,6 @@ object ApsProcWindowMain extends WebTabSetApp {
                     IconButtonSS.create(
                         new IconButtonSSProps {
                             title = "Производственный <br/>календарь".ellipsis.opt
-                            autoFit = false.opt
                             icon = app.cards.opt
                             identifier = "12EE1839-8D4D-FFA0-E491-22B54F55772A".opt
                             width = widthButton
