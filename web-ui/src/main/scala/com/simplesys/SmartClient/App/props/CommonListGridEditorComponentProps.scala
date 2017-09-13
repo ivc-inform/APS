@@ -33,7 +33,7 @@ trait CommonListGridEditorComponentProps extends ListGridEditorProps with Initia
     autoFetchTextMatchStyle = TextMatchStyle.substring.opt
 
     var customMenu: ScOption[Seq[MenuSSItem]] = ScNone
-    var itemsType: ScOption[Seq[MenuItemType]] = Seq(miNew(), miCopy(), miDelete(), miEdit(), miRefresh()).opt
+    var itemsType: ScOption[Seq[MenuItemType]] = ScNone
 
     initWidget = {
         (thiz: classHandler, arguments: IscArray[JSAny]) =>
@@ -46,22 +46,39 @@ trait CommonListGridEditorComponentProps extends ListGridEditorProps with Initia
             val _customMenu = if (thiz.customMenu.isEmpty) ScNone else thiz.customMenu.get.toSeq.opt
 
             val funcMenu = if (thiz.simpleTable.getOrElse(false)) {
-                ListGridContextMenu.create(
-                    new ListGridContextMenuProps {
-                        itemsType = if (thiz.itemsType.isDefined) thiz.itemsType.get.toSeq.opt else ScNone
-                        owner = thiz.opt
-                        customMenu = _customMenu
-                    }
-                )
+                if (thiz.itemsType.isDefined)
+                    ListGridContextMenu.create(
+                        new ListGridContextMenuProps {
+                            itemsType = thiz.itemsType.get.toSeq.opt
+                            owner = thiz.opt
+                            customMenu = _customMenu
+                        }
+                    )
+                else
+                    ListGridContextMenu.create(
+                        new ListGridContextMenuProps {
+                            owner = thiz.opt
+                            customMenu = _customMenu
+                        }
+                    )
+
             }
             else {
-                ListGridContextMenuWithForm.create(
-                    new ListGridContextMenuWithFormProps {
-                        itemsType = if (thiz.itemsType.isDefined) thiz.itemsType.get.toSeq.opt else ScNone
-                        owner = thiz.opt
-                        customMenu = _customMenu
-                    }
-                )
+                if (thiz.itemsType.isDefined)
+                    ListGridContextMenuWithForm.create(
+                        new ListGridContextMenuWithFormProps {
+                            itemsType = thiz.itemsType.get.toSeq.opt
+                            owner = thiz.opt
+                            customMenu = _customMenu
+                        }
+                    )
+                else
+                    ListGridContextMenuWithForm.create(
+                        new ListGridContextMenuWithFormProps {
+                            owner = thiz.opt
+                            customMenu = _customMenu
+                        }
+                    )
             }
 
             thiz setFuncMenu funcMenu

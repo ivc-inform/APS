@@ -1,10 +1,10 @@
 package com.simplesys.System
 
 import com.simplesys.SmartClient.System.IscArray
+import com.simplesys.xml.Elem
 
 import scala.scalajs.js
 import scala.scalajs.js.|
-import scala.xml.Elem
 
 package object Types {
 

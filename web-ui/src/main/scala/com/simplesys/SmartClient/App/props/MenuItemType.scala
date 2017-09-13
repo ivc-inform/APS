@@ -17,6 +17,14 @@ object miNew {
     def apply(enabled: Boolean = true): miNew = new miNew(enabled)
 }
 
+class miNewWithForm(val enabled: Boolean = true) extends MenuItemType{
+    override val name: String = "newWithForm"
+}
+
+object miNewWithForm {
+    def apply(enabled: Boolean = true): miNewWithForm = new miNewWithForm(enabled)
+}
+
 class miCopy(val enabled: Boolean = true) extends MenuItemType{
     override val name: String = "copy"
 }

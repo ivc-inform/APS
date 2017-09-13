@@ -3,10 +3,10 @@ package com.simplesys.SmartClient.App.props
 import com.simplesys.SmartClient.App.EditorUserGroups
 import com.simplesys.SmartClient.DataBinding.props.DSRequestProps
 import com.simplesys.SmartClient.Layout.props.WindowSSProps
+import com.simplesys.SmartClient.System._
 import com.simplesys.function._
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
-import com.simplesys.SmartClient.System._
 
 class EditorUserGroupsProps extends CommonTreeGridEditorComponentProps {
     type classHandler <: EditorUserGroups

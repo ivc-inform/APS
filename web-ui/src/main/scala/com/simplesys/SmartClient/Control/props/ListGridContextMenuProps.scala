@@ -25,7 +25,7 @@ object ListGridContextMenuProps {
         record
     }
 
-    def newMenuItemWithForm = MenuSSItem(
+    def newMenuItemWithForm(_enabled: Boolean = true) = MenuSSItem(
         new MenuSSItemProps {
             title = "Новый".ellipsis.opt
             identifier = "new".opt
@@ -33,11 +33,12 @@ object ListGridContextMenuProps {
             click = {
                 (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
                     val owner = item.owner.asInstanceOf[ListGridEditor]
+                    simpleSyS checkOwner owner
                     owner.startEditingNewInForm()
             }.toFunc.opt
             enableIf = {
                 (target: Canvas, menu: MenuSS, item: MenuSSItem) =>
-                    true
+                    _enabled
             }.toFunc.opt
         })
 
@@ -155,6 +156,12 @@ object ListGridContextMenuProps {
             case _ ⇒
         }
 
+        itemsType.find(_.name == miNewWithForm().name) match {
+            case Some(menuItem) ⇒
+                res += newMenuItemWithForm(menuItem.enabled)
+            case _ ⇒
+        }
+
         itemsType.find(_.name == miCopy().name) match {
             case Some(menuItem) ⇒
                 res += copyMenuItem(menuItem.enabled)
@@ -265,7 +272,7 @@ class ListGridContextMenuWithFormProps extends MenuSSProps {
     type classHandler <: ListGridContextMenu
 
     var customMenu: ScOption[Seq[MenuSSItem]] = ScNone
-    var itemsType: ScOption[Seq[MenuItemType]] = Seq(miNew(), miCopy(), miDelete(), miEdit(), miRefresh()).opt
+    var itemsType: ScOption[Seq[MenuItemType]] = Seq(miNewWithForm(), miCopy(), miDelete(), miEdit(), miRefresh()).opt
 
     initWidget = {
         (thiz: classHandler, args: IscArray[JSAny]) =>
