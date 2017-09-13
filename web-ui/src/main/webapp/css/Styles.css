@@ -1,0 +1,385 @@
+.TextTokenIs {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.TokenIs {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #000;
+    color: #fff;
+}
+
+.TokenIsCardNumber {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ffb6d3;
+    color: #0e0aa0;
+}
+
+.TokenIsLexemOfOnlyDigits {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ffffff;
+    color: #dd0614;
+}
+
+.TokenIsLexemContainsDigits {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ffffff;
+    color: #0ddd0c;
+}
+
+.TokenIsSplitter {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.TokenIsSpacer {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ff9c1d;
+    color: #b00bcc;
+    border-width: 1px;
+}
+
+.TokenIsSimpleLexem {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #f5ffa9;
+    color: #1d1fcc;
+}
+
+.TokenIsLexemConatinsDigits {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ffbc45;
+    color: #1c07cc;
+}
+
+.TokenIsValidatedLexem {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #ffc4da;
+    color: #000000;
+}
+
+.TokenIsLocalDateTime {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #f5ffa9;
+    color: #296e15;
+}
+
+.TokenIsLocalDate {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #f5ffa9;
+    color: #136d6e;
+}
+
+.TokenIsLocalTime {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #f5ffa9;
+    color: #0742a5;
+}
+
+.TokenIsDateTime {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #74f8ff;
+    color: #296e15;
+}
+
+.TokenIsDate {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #74f8ff;
+    color: #136d6e;
+}
+
+.TokenIsTime {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #74f8ff;
+    color: #0742a5;
+}
+
+.TokenIsLong {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ffffd0;
+    color: #dd0614;
+}
+
+.TokenIsDouble {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ffffd0;
+    color: #a701dd;
+}
+
+.TokenIsCurrency {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ffffd0;
+    color: #288c0f;
+}
+
+.TokenIsMoney {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ff6014;
+    color: #0e0aa0;
+}
+
+.TokenIsPhone {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #ff2a45;
+    color: #210753;
+}
+
+.TokenIsURL {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #130645;
+    color: #e4ff0c;
+}
+
+.TokenIsUnknown {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10px;
+    background-color: black;
+    color: white;
+}
+
+/*///////////////////////////////////////////////*/
+.BorderedItem {
+    border: 2px solid #F40A0E;
+    border-radius: 4px;
+}
+
+.BorderedItemFirst {
+    border-radius: 4px;
+    border-top: 2px dotted #F40A0E;
+    border-bottom: 2px dotted #F40A0E;
+    border-right: 2px none #F40A0E;
+    border-left: 2px dotted #F40A0E;
+}
+
+.BorderedItemLast {
+    border-radius: 4px;
+    border-top: 2px dotted #F40A0E;
+    border-bottom: 2px dotted #F40A0E;
+    border-right: 2px dotted #F40A0E;
+    border-left: 2px none #F40A0E;
+}
+
+.BorderedItemMedium {
+    border-radius: 4px;
+    border-top: 2px dotted #F40A0E;
+    border-bottom: 2px dotted #F40A0E;
+    border-right: 2px none #F40A0E;
+    border-left: 2px none #F40A0E;
+}
+
+.TemplatePartTypeEnumLexem {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #DFF43D;
+    color: #1d1fcc;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumLocalDate {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #f5ffa9;
+    color: #296e15;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumLocalDateTime {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #f5ffa9;
+    color: #296e15;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumLocalTime {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #f5ffa9;
+    color: #0742a5;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumDateTime {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #74f8ff;
+    color: #296e15;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumLong {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #ffffd0;
+    color: #dd0614;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumDouble {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #ffffd0;
+    color: #a701dd;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumCurrency {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #ffffd0;
+    color: #288c0f;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumMoney {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #ff6014;
+    color: #0e0aa0;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumCardNumber {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #ffb6d3;
+    color: #0e0aa0;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumPhone {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #ff2a45;
+    color: #210753;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumURL {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #130645;
+    color: #e4ff0c;
+    padding: 2px;
+}
+
+.TemplatePartTypeEnumString {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #75ec73;
+    color: #210753;
+    padding: 2px;
+}
+
+.TestForm {
+    padding: 10px;
+}
+
+.LargeFont {
+    font-size: x-large;
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 2px 2px 0px;
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+}
+
+/*///////////////////////////////////////////////*/
+.FixedTemplatesNotValidateGridCell,
+.FixedTemplatesNotValidateGridCellDark {
+    color: black;
+    background-color: #ff7cc5;
+}
+
+.FixedTemplatesNotValidateGridCellOver,
+.FixedTemplatesNotValidateGridCellOverDark {
+    color: black;
+    background-color: #ffb6c0;
+}
+
+.FixedTemplatesNotValidateGridCellSelected,
+.FixedTemplatesNotValidateGridCellSelectedDark {
+    color: black;
+    background-color: #ffb6c0;
+}
+
+.FixedTemplatesNotValidateGridCellSelectedOver,
+.FixedTemplatesNotValidateGridCellSelectedOverDark {
+    color: black;
+    background-color: #ffb6c0;
+}
+
+.FixedTemplatesNotValidateGridCellDisabled,
+.FixedTemplatesNotValidateGridCellDisabledDark {
+    color: black;
+    background-color: #ffb6c0;
+}
+
+/*/////////////////////////////////////////////////////////////////////*/
+
+.FixedTemplatesNotAllExamplesApplicable,
+.FixedTemplatesNotAllExamplesApplicableDark {
+    font-family: Verdana, Bitstream Vera Sans, sans-serif;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    color: #1b0dd5;
+    background-color: #ff0817;
+}
+
+.FixedTemplatesNotAllExamplesApplicableOver,
+.FixedTemplatesNotAllExamplesApplicableOverDark {
+    font-family: Verdana, Bitstream Vera Sans, sans-serif;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    color: #5d50d5;
+    background-color: #ff645b;
+}
+
+.FixedTemplatesNotAllExamplesApplicableSelected,
+.FixedTemplatesNotAllExamplesApplicableSelectedDark {
+    font-family: Verdana, Bitstream Vera Sans, sans-serif;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    color: #5d50d5;
+    background-color: #ff645b;
+}
+
+.FixedTemplatesNotAllExamplesApplicableSelectedOver,
+.FixedTemplatesNotAllExamplesApplicableSelectedOverDark {
+    font-family: Verdana, Bitstream Vera Sans, sans-serif;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    color: #5d50d5;
+    background-color: #ff645b;
+}
+
+.FixedTemplatesNotAllExamplesApplicableDisabled,
+.FixedTemplatesNotAllExamplesApplicableDisabledDark {
+    font-family: Verdana, Bitstream Vera Sans, sans-serif;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    color: #5d50d5;
+    background-color: #ff645b;
+}

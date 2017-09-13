@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<RootPane xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://simpleSys.ru/xml/library/app"
+          xmlns:isc="http://simpleSys.ru/xml/library/ISC"
+          xsi:schemaLocation="http://simpleSys.ru/xml/library/app http://toucan.simplesys.lan/xml/xsd/v1.0.0-1/schemaApp.xsd">
+    <Bo BoName="upload_filesFile_content"
+        GroupName="test"
+        BoCaption="Учет последовательных идентификаторов (ID)"
+        GroupCaption="Загрузка / выгрузка файлов"
+        Enabled="true"/>
+    <MenuPath>
+        <isc:GroupTitle>Загрузка / выгрузка файлов</isc:GroupTitle>
+        <isc:Identifier>test</isc:Identifier>
+        <isc:Title>Загрузка / выгрузка файлов</isc:Title>
+        <isc:MenuPath>
+            <isc:Identifier>test_upload_filesFile_content</isc:Identifier>
+            <isc:Title>Учет последовательных идентификаторов (ID)</isc:Title>
+        </isc:MenuPath>
+    </MenuPath>
+    <RootCanvas/>
+</RootPane>

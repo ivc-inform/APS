@@ -1,0 +1,158 @@
+
+<objectSchema xmlns="http://simpleSys.ru/xml/library/bo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://simpleSys.ru/xml/library/bo http://toucan.simplesys.lan/xml/xsd/v1.0.0-1/schema.xsd">
+	<group caption="Оптимальные производственные расписания" name="math" prefix="MATH">
+		<classes>
+			<classSimple autoTableMapping="true" caption="Производственный календарь" name="prod_calendar">
+				<attrs>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="Дата" name="ddate" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Смена" name="shift_num" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Продолжительность" name="duration" type="fDouble" useDbPrefix="false"></attr>
+				</attrs>
+				<defaults>
+					<showAttrs>
+						<attrName>id</attrName>
+					</showAttrs>
+					<uiSettings uiFormType="singleListGrid"></uiSettings>
+				</defaults>
+				<constraints>
+					<uc uniqueType="pk">
+						<attrName>id</attrName>
+					</uc>
+				</constraints>
+			</classSimple>
+
+			<classSimple autoTableMapping="true" caption="Матрица наладки" name="changeover">
+				<attrs>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="Наладка начальная" name="from_type" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Наладка конечная" name="to_type" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Время наладки" name="duration" type="fDouble" useDbPrefix="false"></attr>
+				</attrs>
+				<defaults>
+					<showAttrs>
+						<attrName>id</attrName>
+					</showAttrs>
+					<uiSettings uiFormType="singleListGrid"></uiSettings>
+				</defaults>
+				<constraints>
+					<uc uniqueType="pk">
+						<attrName>id</attrName>
+					</uc>
+					<fk linkType="refIsOwner" mandatory="false" parent="rc">
+						<mapping attrNameLocal="idrc" attrNameRemote="id"></mapping>
+					</fk>
+				</constraints>
+			</classSimple>
+
+			<classSimple autoTableMapping="true" caption="Рабочие центры" name="rc">
+				<attrs>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="scode" name="scode" type="sCode" useDbPrefix="false"></attr>
+					<attr caption="sname" name="sname" type="sCaption" useDbPrefix="false"></attr>
+				</attrs>
+				<defaults>
+					<showAttrs>
+						<attrName>id</attrName>
+					</showAttrs>
+					<uiSettings uiFormType="singleListGrid"></uiSettings>
+				</defaults>
+				<constraints>
+					<uc uniqueType="pk">
+						<attrName>id</attrName>
+					</uc>
+				</constraints>
+			</classSimple>
+
+			<classSimple autoTableMapping="true" caption="Параметры" name="params">
+				<attrs>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="Системная дата заполения параметров" name="ddatesys" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Дата начала расписания" name="ddatein" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Первоначальная настройка машины" name="start_type" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Количество смен" name="shift_count" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Психологический коэф - напряженность" name="tension" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Плановый период врабочих днях" name="plan_duration" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Момент освобождения в календ.днях" name="free" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Момент начала рабочего дня" name="day_start_at" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Стоимость смены" name="cost_shift" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Стоимость часа наладки" name="cost_workhour" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Стоимость часа простоя" name="cost_idlehour" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Дата окончания периода планирования" name="last_plan" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Предыдущая дата планирования" name="prev_plan" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Горизонт планирования в часах" name="horizon_plan" type="nInt" useDbPrefix="false"></attr>
+				</attrs>
+				<defaults>
+
+					<showAttrs>
+						<attrName>id</attrName>
+					</showAttrs>
+					<uiSettings uiFormType="singleListGrid"></uiSettings>
+				</defaults>
+				<constraints>
+					<uc uniqueType="pk">
+						<attrName>id</attrName>
+					</uc>
+				</constraints>
+			</classSimple>
+
+			<classSimple autoTableMapping="true" caption="Результаты" name="result">
+				<attrs>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="Номер варианта" name="scode" type="sCode" useDbPrefix="false"></attr>
+					<attr caption="Затраты на наладку" name="param_u" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Средняя полезность заказов" name="param_v" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Коэффициент группирования" name="param_kg" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Коэффициент запаздывания" name="param_kz" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Полная длительность" name="param_cmax" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Среднее запаздывание" name="param_tc" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Полное запаздывание" name="param_tmax" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Системная дата" name="ddatesys" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Коэффициент плановой загрузки" name="param_kl" type="nInt" useDbPrefix="false"></attr>
+				</attrs>
+				<defaults>
+					<showAttrs>
+						<attrName>id</attrName>
+					</showAttrs>
+					<uiSettings uiFormType="singleListGrid"></uiSettings>
+				</defaults>
+				<constraints>
+					<uc uniqueType="pk">
+						<attrName>id</attrName>
+					</uc>
+				</constraints>
+			</classSimple>
+
+			<classSimple autoTableMapping="true" caption="Варианты" name="result_item">
+				<attrs>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="Порядковый номер в наборе варианта" name="pos" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Дата время начала операции" name="opertimestart" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Дата время окончания операции" name="operttimeend" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Дата время начала переналадки" name="settimestart" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Дата время окончания переналадки" name="settimeend" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Операция заказа" name="id_order" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Длительность операции" name="duration" type="fDouble" useDbPrefix="false"></attr>
+					<attr caption="Название операции" name="item_name" type="sCode" useDbPrefix="false"></attr>
+				</attrs>
+				<defaults>
+					<showAttrs>
+						<attrName>id</attrName>
+					</showAttrs>
+					<uiSettings uiFormType="singleListGrid"></uiSettings>
+				</defaults>
+				<constraints>
+					<uc uniqueType="pk">
+						<attrName>id</attrName>
+					</uc>
+					<fk linkType="refIsOwner" mandatory="false" parent="rc">
+						<mapping attrNameLocal="idrc" attrNameRemote="id"></mapping>
+					</fk>
+					<fk linkType="refIsOwner" mandatory="false" parent="result">
+						<mapping attrNameLocal="id_result" attrNameRemote="id"></mapping>
+					</fk>
+				</constraints>
+			</classSimple>
+		</classes>
+	</group>
+</objectSchema>
