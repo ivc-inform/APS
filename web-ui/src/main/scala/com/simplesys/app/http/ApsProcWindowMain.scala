@@ -1,9 +1,14 @@
 package com.simplesys.app.http
 
-import com.simplesys.SmartClient.App.props.SettingsEditorProps
+import com.simplesys.SmartClient.App.props.{EditorUserGroupsProps, SettingsEditorProps}
 import com.simplesys.SmartClient.App.{SettingsEditor, WebTabSetApp}
+import com.simplesys.SmartClient.Control.MenuSS
+import com.simplesys.SmartClient.Control.menu.MenuSSItem
+import com.simplesys.SmartClient.Control.props.MenuSSProps
+import com.simplesys.SmartClient.Control.props.menu.MenuSSItemProps
 import com.simplesys.SmartClient.DataBinding.RestDataSourceSS
 import com.simplesys.SmartClient.Forms.formsItems.FormItem
+import com.simplesys.SmartClient.Foundation.Canvas
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
 import com.simplesys.SmartClient.Layout.RibbonGroupSS
 import com.simplesys.SmartClient.Layout.props._
@@ -57,73 +62,65 @@ object ApsProcWindowMain extends WebTabSetApp {
             new RibbonGroupSSProps {
                 title = "Пользователи".ellipsis.opt
                 controls = Seq(
-                    IconButtonSS.create(
-                        new IconButtonSSProps {
-                            title = "Производственный <br/>календарь".ellipsis.opt
-                            icon = app.cards.opt
-                            identifier = "12EE1839-8D4D-FFA0-E491-22B54F55772A".opt
+                    IconMenuButtonSS.create(
+                        new IconMenuButtonSSProps {
+                            title = "Расписание".ellipsis.opt
+                            icon = app.dictionary.opt
+                            identifier = "35736AF3-8813-87B6-8193-A41A9F9BE125".opt
                             width = widthButton
-                            click = {
-                                (thiz: classHandler) =>
-                                    addTab(ProdCalendar.create(new ProdCalendarProps), thiz)
-                                    false
-                            }.toThisFunc.opt
-                        }
-                    ),
-                    IconButtonSS.create(
-                        new IconButtonSSProps {
-                            title = "Матрица <br/>наладки".ellipsis.opt
-                            icon = app.doccats.opt
-                            width = widthButton
-                            autoFit = false.opt
-                            identifier = "12E56839-8D4D-FFA0-E491-22B54F55772A".opt
-                            click = {
-                                (thiz: classHandler) =>
-                                    addTab(ChangeOver.create(new ChangeOverProps), thiz)
-                                    false
-                            }.toThisFunc.opt
-                        }
-                    ),
-                    IconButtonSS.create(
-                        new IconButtonSSProps {
-                            title = "Рабочие <br/>центры".ellipsis.opt
-                            icon = app.accounts.opt
-                            width = widthButton
-                            autoFit = false.opt
-                            identifier = "12E56839-994D-FFA0-E491-22B54F55772A".opt
-                            click = {
-                                (thiz: classHandler) =>
-                                    addTab(Rc.create(new RcProps), thiz)
-                                    false
-                            }.toThisFunc.opt
-                        }
-                    ),
-                    IconButtonSS.create(
-                        new IconButtonSSProps {
-                            title = "Параметры".ellipsis.opt
-                            icon = app.properties.opt
-                            width = widthButton
-                            autoFit = false.opt
-                            identifier = "12E55439-994D-FFA0-E491-22B54F55772A".opt
-                            click = {
-                                (thiz: classHandler) =>
-                                    addTab(Parametrs.create(new ParametrsProps), thiz)
-                                    false
-                            }.toThisFunc.opt
-                        }
-                    ),
-                    IconButtonSS.create(
-                        new IconButtonSSProps {
-                            title = "Варианты".ellipsis.opt
-                            icon = app.state.opt
-                            autoFit = false.opt
-                            width = widthButton
-                            identifier = "12E12339-994D-FFA0-E491-22B54F55772A".opt
-                            click = {
-                                (thiz: classHandler) =>
-                                    addTab(Result.create(new ResultProps), thiz)
-                                    false
-                            }.toThisFunc.opt
+                            menu = MenuSS.create(
+                                new MenuSSProps {
+                                    items = Seq(
+                                        new MenuSSItemProps {
+                                            name = "prodCalendar".opt
+                                            icon = app.cards.opt
+                                            title = "Производственный календарь".ellipsis.opt
+                                            click = {
+                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
+                                                    addTab(ProdCalendar.create(new ProdCalendarProps), item)
+                                            }.toFunc.opt
+                                        },
+                                        new MenuSSItemProps {
+                                            name = "changeOver".opt
+                                            icon = app.doccats.opt
+                                            title = "Матрица наладки".ellipsis.opt
+                                            click = {
+                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
+                                                    addTab(ChangeOver.create(new ChangeOverProps), item)
+
+                                            }.toFunc.opt
+                                        },
+                                        new MenuSSItemProps {
+                                            name = "rc".opt
+                                            icon = app.accounts.opt
+                                            title = "Рабочие центры".ellipsis.opt
+                                            click = {
+                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
+                                                    addTab(Rc.create(new RcProps), item)
+
+                                            }.toFunc.opt
+                                        },
+                                        new MenuSSItemProps {
+                                            name = "parametrs".opt
+                                            icon = app.properties.opt
+                                            title = "Параметры".ellipsis.opt
+                                            click = {
+                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
+                                                    addTab(Parametrs.create(new ParametrsProps), item)
+                                            }.toFunc.opt
+                                        },
+                                        new MenuSSItemProps {
+                                            name = "result".opt
+                                            icon = app.state.opt
+                                            title = "Варианты".ellipsis.opt
+                                            click = {
+                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
+                                                    addTab(Result.create(new ResultProps), item)
+                                            }.toFunc.opt
+                                        }
+                                    ).opt
+                                }
+                            ).opt
                         }
                     )
                 ).opt

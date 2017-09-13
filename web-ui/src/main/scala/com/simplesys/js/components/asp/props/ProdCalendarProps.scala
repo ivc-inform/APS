@@ -8,7 +8,7 @@ import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, L
 class ProdCalendarProps extends CommonListGridEditorComponentProps {
     type classHandler <: ProdCalendar
     identifier = "4EEF794F-EE8F-C38D-73D6-CF6F0F5170EE".opt
-    simpleTable = false.opt
+    simpleTable = true.opt
 
     dataSource = DataSourcesJS.math_prod_calendar_DS.opt
 
