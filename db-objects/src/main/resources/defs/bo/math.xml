@@ -54,6 +54,8 @@
 				<defaults>
 					<showAttrs>
 						<attrName>id_rc</attrName>
+						<attrName>scode</attrName>
+						<attrName>sname</attrName>
 					</showAttrs>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
 				</defaults>
