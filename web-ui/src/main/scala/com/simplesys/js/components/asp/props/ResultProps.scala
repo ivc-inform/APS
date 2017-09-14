@@ -70,11 +70,11 @@ class ResultProps extends CommonListGridEditorComponentProps {
                         ),
                         Tab(
                             new TabProps {
-                                /*pane = GanttChart.create(
+                                pane = GanttChart.create(
                                   new GanttChartProps{
 
                                   }
-                                ).opt*/
+                                ).opt
                                 name = "gantt".opt
                                 title = "Диарамма Ганта".ellipsis.opt
                             }

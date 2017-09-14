@@ -14,10 +14,10 @@ class GanttChartProps extends CanvasProps {
 
     var data: ScOption[JSObject] = ScNone
 
-    /*getID1 = {
+    getID1 = {
         (thiz: classHandler) ⇒
             s"${thiz.getID}_ganttChart"
-    }.toThisFunc.opt*/
+    }.toThisFunc.opt
 
     getInnerHTML = {
         (thiz: classHandler) ⇒
@@ -29,7 +29,7 @@ class GanttChartProps extends CanvasProps {
             if (!thiz.readyToDraw())
                 thiz
             else {
-                thiz.Super("draw", args.get)
+                thiz.Super("draw", args.getOrElse(IscArray[JSAny]()))
                 jQuery(thiz.getID1).html("Hello world!")
                 thiz
             }
