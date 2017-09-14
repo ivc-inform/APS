@@ -8,7 +8,7 @@ import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.System.{AdvancedCriteria, Criterion, HTMLPane, Tab, TabSetSS}
 import com.simplesys.System.JSAny
 import com.simplesys.System.Types.{ListGridEditEvent, OperatorId}
-import com.simplesys.app.ResultItem
+import com.simplesys.app.{GanttChart, ResultItem}
 import com.simplesys.function._
 import com.simplesys.js.components.asp.Result
 import com.simplesys.option.ScOption._
@@ -16,6 +16,7 @@ import com.simplesys.option.DoubleType._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
 import ru.simplesys.defs.app.scala.container.math.ResultDataRecord
 import com.simplesys.SmartClient.System._
+import com.simplesys.js.components.gantt.props.GanttChartProps
 
 class ResultProps extends CommonListGridEditorComponentProps {
     type classHandler <: Result
@@ -53,12 +54,6 @@ class ResultProps extends CommonListGridEditorComponentProps {
                 }
             )
 
-            val ganttChart = HTMLPane.create(
-                new HTMLPaneProps {
-
-                }
-            )
-
             TabSetSS.create(
                 new TabSetSSProps {
                     showResizeBar = true.opt
@@ -75,7 +70,11 @@ class ResultProps extends CommonListGridEditorComponentProps {
                         ),
                         Tab(
                             new TabProps {
-                                pane = ganttChart.opt
+                                /*pane = GanttChart.create(
+                                  new GanttChartProps{
+
+                                  }
+                                ).opt*/
                                 name = "gantt".opt
                                 title = "Диарамма Ганта".ellipsis.opt
                             }

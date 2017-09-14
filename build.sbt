@@ -97,11 +97,11 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
 
     scalacOptions ++= (if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault") else Nil),
 
-    jsDependencies ++= Seq(
-        "org.webjars" % "jquery" % "2.2.4" / "2.2.4/jquery.js",
-        "org.webjars" % "jquery-ui" % "1.12.1" / "1.12.1/jquery-ui.js",
-        "org.webjars.bower" % "datejs" % "1.0.0-rc3" / "1.0.0-rc3/build/date-ru-RU.js"
-    ),
+//    jsDependencies ++= Seq(
+//        "org.webjars" % "jquery" % "2.2.4" / "2.2.4/jquery.js",
+//        "org.webjars" % "jquery-ui" % "1.12.1" / "1.12.1/jquery-ui.js",
+//        "org.webjars.bower" % "datejs" % "1.0.0-rc3" / "1.0.0-rc3/build/date-ru-RU.js"
+//    ),
 
     libraryDependencies ++= Seq(
         CommonDeps.servletAPI % Provided,
