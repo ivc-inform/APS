@@ -37,7 +37,6 @@ class ResultProps extends CommonListGridEditorComponentProps {
         (thiz: classHandler, record: ResultDataRecord) ⇒
             val result = ResultItem.create(
                 new ResultItemProps {
-                    height = 250
                     initialCriteria = AdvancedCriteria(
                         new AdvancedCriteriaProps {
                             operator = OperatorId.and.opt
@@ -63,6 +62,8 @@ class ResultProps extends CommonListGridEditorComponentProps {
             TabSetSS.create(
                 new TabSetSSProps {
                     defaultTabHeight = 20.opt
+                    height = 500
+                    canCloseTabs = false.opt
                     tabs = Seq(
                         Tab(
                             new TabProps {
