@@ -8,9 +8,10 @@ import com.simplesys.SmartClient.Forms.formsItems.{CanvasItem, TextItem}
 import com.simplesys.SmartClient.Forms.props.DynamicFormSSProps
 import com.simplesys.SmartClient.Foundation.Canvas
 import com.simplesys.SmartClient.Grids.ListGridEditor
+import com.simplesys.SmartClient.Grids.listGrid.ListGridRecord
 import com.simplesys.SmartClient.Layout.props.{HLayoutSSProps, OkCancelPanelProps, WindowSSProps}
 import com.simplesys.SmartClient.System.{Common, HLayoutSS, IButtonSS, _}
-import com.simplesys.System.Types.ReadOnlyDisplayAppearance.{ReadOnlyDisplayAppearance => _}
+import com.simplesys.System.Types.ReadOnlyDisplayAppearance.{ReadOnlyDisplayAppearance ⇒ _}
 import com.simplesys.System.Types._
 import com.simplesys.System._
 import com.simplesys.function._
@@ -80,6 +81,8 @@ class LookupListGridEditorItemProps extends CanvasItemProps {
         (thiz: classHandler, form: DynamicFormSS, item: CanvasItem) =>
 
             val formItem = thiz
+            isc debugTrap formItem
+
             val df = DynamicFormSS.create(
                 new DynamicFormSSProps {
                     cellPadding = 0.opt
@@ -226,8 +229,12 @@ class LookupListGridEditorItemProps extends CanvasItemProps {
 
                                                                                             if ((formItem.record.isEmpty || formItem.record.get == null) && idField != null)
                                                                                                 idField.setValue(valueId)
-                                                                                            else
-                                                                                                formItem.record.foreach(_.asInstanceOf[JSDynamic].updateDynamic(formItem.foreignField.get)(valueId))
+                                                                                            else {
+                                                                                                if (formItem.record == null)
+                                                                                                    formItem.record = js.UndefOr.any2undefOrA(js.Dictionary(formItem.foreignField.get → valueId.asInstanceOf[JSAny]))
+                                                                                                else
+                                                                                                   formItem.record.foreach(_.asInstanceOf[JSDynamic].updateDynamic(formItem.foreignField.get)(valueId))
+                                                                                            }
 
                                                                                             val recordFields = js.Object.keys(record)
                                                                                             recordFields.foreach {
@@ -238,6 +245,7 @@ class LookupListGridEditorItemProps extends CanvasItemProps {
                                                                                             }
                                                                                         }
                                                                                     }
+                                                                                    thiz.owner.foreach(_.hide())
                                                                             }.toThisFunc.opt
                                                                         }
                                                                     )

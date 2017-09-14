@@ -3,8 +3,7 @@ package com.simplesys.js.components.asp.props
 import com.simplesys.SmartClient.App.formItems.props.LookupListGridEditorItemProps
 import com.simplesys.SmartClient.App.props.CommonListGridEditorComponentProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
-import com.simplesys.SmartClient.System._
-import com.simplesys.SmartClient.System
+import com.simplesys.SmartClient.System.LookupListGridEditorItem
 import com.simplesys.System.Types.{FormItemComponentType, SelectionAppearance, SelectionStyle}
 import com.simplesys.app.Rc
 import com.simplesys.js.components.asp.ChangeOver
@@ -56,5 +55,4 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
             }).opt
         }
     ).opt
-
 }

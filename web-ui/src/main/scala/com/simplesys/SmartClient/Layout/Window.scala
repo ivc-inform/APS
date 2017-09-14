@@ -15,7 +15,7 @@ import scala.scalajs.js.|
 @js.native
 trait Window extends Layout {
     def addItem(item: Canvas | String): IscArray[Canvas]
-    def addItems(items: IscArray[Canvas] | IscArray[String]): IscArray[Canvas]
+    def addItems(items: IscArray[Canvas]): IscArray[Canvas]
     var animateMinimize: Boolean
     var autoCenter: Boolean
     var autoSize: Boolean

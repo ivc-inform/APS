@@ -36,7 +36,6 @@ trait InitialTrait {
                                 }
                                 replacingEditingFields += formItem
                         }
-
                     }
                     else
                         thiz.logError("Field not have nameStrong, error #42")
@@ -58,7 +57,6 @@ trait InitialTrait {
                         case None =>
                             _fieldsListGrid += field
                         case Some(field) =>
-                            //isc debugTrac field
                             if (isc.isA.ListGridEditor(thiz))
                                 field.filterEditorProperties.foreach(_.filteredGridList = thiz.asInstanceOf[ListGridEditor])
                             else if (isc.isA.TreeGridEditor(thiz))

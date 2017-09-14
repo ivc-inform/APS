@@ -136,7 +136,7 @@ trait GridEditor[T <: ListGridField, R <: JSAny, S <: JSAny] extends VLayoutSS {
     def getFieldName(colNum: Int | ID): String
     var selectFirstRecordAfterFetch: Boolean
     var fields: JSUndefined[IscArray[ListGridField]]
-    val replacingFields: JSUndefined[IscArray[ListGridField]]
+    var replacingFields: JSUndefined[IscArray[ListGridField]]
     def setSelectionAppearance(selectionAppearance: SelectionAppearance): void
     def setSelectionType(selectionType: SelectionStyle): void
     var simpleTable: JSUndefined[Boolean]
