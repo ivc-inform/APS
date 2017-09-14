@@ -78,7 +78,7 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
     dbObjects
 ).aggregate(dbObjects).settings(
 
-    addCommandAlias("debug-restart", "; jetty:stop ; clean ; fastOptJS ; package ; jetty:start"),
+    addCommandAlias("debug-restart", "; jetty:stop ; fastOptJS ; package ; jetty:start"),
     addCommandAlias("reset", "; clean ; compile ; fastOptJS "),
     addCommandAlias("full-reset", "; clean ; package ; fastOptJS "),
     addCommandAlias("buildDockerImage", "; clean ; fastOptJS ; package; docker:buildImage"),
