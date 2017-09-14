@@ -1,0 +1,1 @@
+docker run -d -p 8084:8080 --restart on-failure:5 --name aps_1001 ivcinform/aps:1.0.0.1
