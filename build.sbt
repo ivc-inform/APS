@@ -9,7 +9,7 @@ import sbt.Keys.version
 name := CommonSettings.settingValues.name
 
 lazy val root = (project in file(".")).
-  aggregate(dbObjects, webUI, common).
+  aggregate(dbObjects, webUI, common, mathModule).
   settings(
       inThisBuild(Seq(
           scalaVersion := CommonSettings.settingValues.scalaVersion,
@@ -34,6 +34,14 @@ lazy val common = Project(id = "common", base = file("common")).settings(
         CommonDeps.scalaTest % Test
     )
 )
+
+lazy val mathModule = Project(id = "math", base = file("math")).
+  dependsOn(dbObjects).
+  settings(
+      libraryDependencies ++= Seq(
+          CommonDeps.scalaTest % Test
+      )
+  )
 
 lazy val testModule = Project(id = "test", base = file("test")).
   dependsOn(dbObjects).
