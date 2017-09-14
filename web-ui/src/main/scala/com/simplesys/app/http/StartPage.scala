@@ -98,7 +98,7 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val bundle:
                 link(href := "managed/css/common-webapp/logging_styles.css", rel := "stylesheet", `type` := "text/css"),
                 link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
                 link(href := "css/jquery-ui.css", rel := "stylesheet", `type` := "text/css"),
-                link(href := "css/куыуе.css", rel := "stylesheet", `type` := "text/css"),
+                link(href := "css/reset.css", rel := "stylesheet", `type` := "text/css"),
                 script(lastScript)
             )
         )

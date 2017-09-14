@@ -61,8 +61,9 @@ class ResultProps extends CommonListGridEditorComponentProps {
 
             TabSetSS.create(
                 new TabSetSSProps {
+                    showResizeBar = true.opt
                     defaultTabHeight = 20.opt
-                    height = 500
+                    height = 800
                     canCloseTabs = false.opt
                     tabs = Seq(
                         Tab(
