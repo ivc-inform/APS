@@ -63,13 +63,15 @@ class ResultProps extends CommonListGridEditorComponentProps {
                     tabs = Seq(
                         Tab(
                             new TabProps {
+                                icon = Common.approved.opt
                                 pane = result.opt
                                 name = "result".opt
-                                title = "Результаты".ellipsis.opt
+                                title = "Детализация варианта".ellipsis.opt
                             }
                         ),
                         Tab(
                             new TabProps {
+                                icon = Common.cards.opt
                                 pane = GanttChart.create(
                                   new GanttChartProps{
                                     height = "100%"
