@@ -5,9 +5,9 @@
 			<classSimple autoTableMapping="true" caption="Производственный календарь" name="prod_calendar">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
-					<attr caption="Дата" name="ddate" type="dDateTime" useDbPrefix="false"></attr>
-					<attr caption="Смена" name="shift_num" type="nInt" useDbPrefix="false"></attr>
-					<attr caption="Продолжительность" name="duration" type="fDouble" useDbPrefix="false"></attr>
+					<attr caption="Дата" name="ddate" type="dDateTime"  mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Смена" name="shift_num" type="nInt"  mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Продолжительность" name="duration" type="fDouble"  mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<showAttrs>
