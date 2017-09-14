@@ -33,7 +33,7 @@
 					<showAttrs>
 						<attrName>id</attrName>
 					</showAttrs>
-					<uiSettings uiFormType="singleListGrid"></uiSettings>
+					<uiSettings uiFormType="singleListGrid"></uiSettings>                                                                                                                         b
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
