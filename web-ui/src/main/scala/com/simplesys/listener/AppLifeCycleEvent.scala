@@ -37,7 +37,7 @@ class AppLifeCycleEvent extends CommonWebAppListener {
         val oraclePool = new OraclePoolDataSource(s"$dbPoolDefault.oraclcePoolDataSource")
 
         try {
-            //oraclePool.getConnection().close()
+            oraclePool.getConnection().close()
             logger trace s"$oraclePoolAttributeName checked"
             sce.ServletContext.Attribute(oraclePoolAttributeName, Some(oraclePool))
         }
