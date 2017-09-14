@@ -2,7 +2,10 @@ package com.simplesys.js.components.asp.props
 
 import com.simplesys.SmartClient.App.props._
 import com.simplesys.SmartClient.DataBinding.props.{AdvancedCriteriaProps, CriterionProps}
-import com.simplesys.SmartClient.System.{AdvancedCriteria, Criterion}
+import com.simplesys.SmartClient.Foundation.props.HTMLPaneProps
+import com.simplesys.SmartClient.Layout.props.TabSetSSProps
+import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
+import com.simplesys.SmartClient.System.{AdvancedCriteria, Criterion, HTMLPane, Tab, TabSetSS}
 import com.simplesys.System.JSAny
 import com.simplesys.System.Types.{ListGridEditEvent, OperatorId}
 import com.simplesys.app.ResultItem
@@ -12,6 +15,7 @@ import com.simplesys.option.ScOption._
 import com.simplesys.option.DoubleType._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
 import ru.simplesys.defs.app.scala.container.math.ResultDataRecord
+import com.simplesys.SmartClient.System._
 
 class ResultProps extends CommonListGridEditorComponentProps {
     type classHandler <: Result
@@ -31,7 +35,7 @@ class ResultProps extends CommonListGridEditorComponentProps {
 
     getExpansionComponent = {
         (thiz: classHandler, record: ResultDataRecord) ⇒
-            ResultItem.create(
+            val result = ResultItem.create(
                 new ResultItemProps {
                     height = 250
                     initialCriteria = AdvancedCriteria(
@@ -40,7 +44,7 @@ class ResultProps extends CommonListGridEditorComponentProps {
                             criteria = Seq(
                                 Criterion(
                                     new CriterionProps {
-                                        fieldName =  math_result_id_NameStrong.name.opt
+                                        fieldName = math_result_id_NameStrong.name.opt
                                         operator = OperatorId.equals.opt
                                         value = record.id.getOrElse(0).asInstanceOf[JSAny].opt
                                     })
@@ -49,5 +53,34 @@ class ResultProps extends CommonListGridEditorComponentProps {
                     ).opt
                 }
             )
+
+            val ganttChart = HTMLPane.create(
+                new HTMLPaneProps {
+
+                }
+            )
+
+            TabSetSS.create(
+                new TabSetSSProps {
+                    defaultTabHeight = 20.opt
+                    tabs = Seq(
+                        Tab(
+                            new TabProps {
+                                pane = result.opt
+                                name = "result".opt
+                                title = "Результаты".ellipsis.opt
+                            }
+                        ),
+                        Tab(
+                            new TabProps {
+                                pane = ganttChart.opt
+                                name = "gantt".opt
+                                title = "Диарамма Ганта".ellipsis.opt
+                            }
+                        )
+                    ).opt
+                }
+            )
+
     }.toThisFunc.opt
 }
