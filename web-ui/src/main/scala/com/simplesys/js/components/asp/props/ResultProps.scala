@@ -72,7 +72,7 @@ class ResultProps extends CommonListGridEditorComponentProps {
                             new TabProps {
                                 pane = GanttChart.create(
                                   new GanttChartProps{
-
+                                    height = "100%"
                                   }
                                 ).opt
                                 name = "gantt".opt
