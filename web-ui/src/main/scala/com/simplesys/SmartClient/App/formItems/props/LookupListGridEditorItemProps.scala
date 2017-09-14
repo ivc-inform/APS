@@ -224,7 +224,7 @@ class LookupListGridEditorItemProps extends CanvasItemProps {
                                                                                             val valueId = record.asInstanceOf[JSDynamic].selectDynamic(idFieldName)
                                                                                             //isc debugTrap(formItem.foreignField.get, item.name, valueId, formItem.record)
 
-                                                                                            if (formItem.record.isEmpty || formItem.record.get == null)
+                                                                                            if ((formItem.record.isEmpty || formItem.record.get == null) && idField != null)
                                                                                                 idField.setValue(valueId)
                                                                                             else
                                                                                                 formItem.record.foreach(_.asInstanceOf[JSDynamic].updateDynamic(formItem.foreignField.get)(valueId))
