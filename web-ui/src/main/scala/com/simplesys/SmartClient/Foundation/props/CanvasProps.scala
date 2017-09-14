@@ -145,7 +145,7 @@ class CanvasProps extends ClassProps {
     var extraSpace: ScOption[Int] = ScNone
     var focusChanged: ScOption[ThisFunction1[classHandler, Boolean, void]] = ScNone
     var getHoverHTML: ScOption[js.Function0[HTMLString]] = ScNone
-    var getInnerHTML: ScOption[js.Function0[HTMLString]] = ScNone
+    var getInnerHTML: ScOption[ThisFunction0[classHandler, HTMLString]] = ScNone
     var groupBorderCSS: ScOption[String] = ScNone
     var groupLabelBackgroundColor: ScOption[CSSColor] = ScNone
     var groupLabelStyleName: ScOption[CSSStyleName] = ScNone

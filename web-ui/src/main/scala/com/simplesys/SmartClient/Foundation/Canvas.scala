@@ -329,6 +329,7 @@ trait Canvas extends com.simplesys.SmartClient.System.Class {
     val proportionalResizing: ProportionalResizeMode
     def redraw(reason: String = js.native): void
     var redrawOnResize: Boolean
+    def readyToDraw(): Boolean
     def removeChild(child: Canvas, name: String = js.native): void
     def removePeer(peer: Canvas, name: String = js.native): void
     def removeSnapAlignCandidate(candidate: Canvas): void
