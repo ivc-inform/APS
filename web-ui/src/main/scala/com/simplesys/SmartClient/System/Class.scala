@@ -36,6 +36,7 @@ trait Class extends JSObject {
     def getClassName(): String
     def getDefaultLogPriority(): LogPriority
     def getID(): ID
+    def getID1(): ID
     def getIdentifier(): String
     def getStackTrace(): String
     def getSuperClass(): String

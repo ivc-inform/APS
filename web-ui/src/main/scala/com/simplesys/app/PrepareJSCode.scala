@@ -1,7 +1,7 @@
 package com.simplesys.app
 
 import com.simplesys.SmartClient.App.StaticJSCode
-import com.simplesys.SmartClient.System.{CommonListGridEditorComponent, isc}
+import com.simplesys.SmartClient.System.{Canvas, CommonListGridEditorComponent, isc}
 
 import scala.scalajs.js.annotation.JSExportTopLevel
 
@@ -14,5 +14,6 @@ object PrepareJSCode extends StaticJSCode {
         isc.defineClass(Rc.getClass.getSimpleName, CommonListGridEditorComponent.getClass.getSimpleName)
         isc.defineClass(Result.getClass.getSimpleName, CommonListGridEditorComponent.getClass.getSimpleName)
         isc.defineClass(ResultItem.getClass.getSimpleName, CommonListGridEditorComponent.getClass.getSimpleName)
+        isc.defineClass(GanttChart.getClass.getSimpleName, Canvas.getClass.getSimpleName)
     }
 }
