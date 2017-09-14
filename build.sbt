@@ -95,9 +95,13 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
         "-XX:+CMSClassUnloadingEnabled"
     ),
 
-    scalacOptions ++= (if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault")else Nil),
+    scalacOptions ++= (if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault") else Nil),
 
-    jsDependencies += "org.webjars" % "jquery" % "3.2.1" / "3.2.1/jquery.js",
+    jsDependencies ++= Seq(
+        "org.webjars" % "jquery" % "3.2.1" / "3.2.1/jquery.js",
+        "org.webjars" % "jquery-ui" % "1.12.1" / "1.12.1/jquery-ui.js",
+        "org.webjars.bower" % "datejs" % "1.0.0-rc3" / "1.0.0-rc3/build/date-ru-RU.js"
+    ),
 
     libraryDependencies ++= Seq(
         CommonDeps.servletAPI % Provided,
