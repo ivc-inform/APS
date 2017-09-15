@@ -90,8 +90,19 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val bundle:
                 script(src := s"${subPaths.subPath}/coffeescript/${subPaths.subPath1}com/simplesys/LookupEditor.js"),
 
                 script(src := s"javascript/generated/generatedComponentsJS/${if (fullOpt) "web-ui-opt.js" else "web-ui-fastopt.js"}"),
-                script(src := s"javascript/generated/generatedComponentsJS/web-ui-jsdeps.js"),
+                //script(src := s"javascript/generated/generatedComponentsJS/web-ui-jsdeps.js"),
+
                 link(href := "managed/css/common-webapp/logging_styles.css", rel := "stylesheet", `type` := "text/css"),
+
+                link(href := "jquery-ui-1.8.4.css", rel := "stylesheet", `type` := "text/css"),
+                link(href := "jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
+
+                script(src := "jquery-1.4.2.js"),
+                script(src := "date.js"),
+                script(src := "jquery-ui-1.8.4.js"),
+                script(src := "jquery.ganttView.js"),
+                script(src := "data.js"),
+
                 script(lastScript)
             )
         )

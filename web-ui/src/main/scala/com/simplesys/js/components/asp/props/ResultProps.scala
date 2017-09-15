@@ -2,7 +2,7 @@ package com.simplesys.js.components.asp.props
 
 import com.simplesys.SmartClient.App.props._
 import com.simplesys.SmartClient.DataBinding.props.{AdvancedCriteriaProps, CriterionProps}
-import com.simplesys.SmartClient.Foundation.props.HTMLPaneProps
+import com.simplesys.SmartClient.Foundation.props.{HTMLFlowProps, HTMLPaneProps}
 import com.simplesys.SmartClient.Layout.props.TabSetSSProps
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.System.{AdvancedCriteria, Criterion, HTMLPane, Tab, TabSetSS, _}
@@ -78,7 +78,29 @@ class ResultProps extends CommonListGridEditorComponentProps {
                                 pane = HTMLPane.create(
                                     new HTMLPaneProps {
                                         height = "100%"
-                                        contents = """<span class='exampleDropTitle'>Ajax&nbsp;&nbsp;</span> <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML (AJAX) is a Web development technique for creating interactive <b>web applications</b>. The intent is to make web pages feel more responsive by exchanging small amounts of data with the server behind the scenes, so that the entire Web page does not have to be reloaded each time the user makes a change. This is meant to increase the Web page's <b>interactivity</b>, <b>speed</b>, and <b>usability</b>. (Source: <a href='http://www.wikipedia.org' title='Wikipedia' target='_blank'>Wikipedia</a>)""".stripMargin.opt
+                                        contents = """
+                                                     |                $(function () {
+                                                     |                    $("#ganttChart").ganttView({
+                                                     |                                                   data      : ganttData,
+                                                     |                                                   slideWidth: "100%",
+                                                     |                                                   behavior  : {
+                                                     |                                                       onClick : function (data) {
+                                                     |                                                           var msg = "You clicked on an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+                                                     |                                                           $("#eventMessage").text(msg);
+                                                     |                                                       },
+                                                     |                                                       onResize: function (data) {
+                                                     |                                                           var msg = "You resized an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+                                                     |                                                           $("#eventMessage").text(msg);
+                                                     |                                                       },
+                                                     |                                                       onDrag  : function (data) {
+                                                     |                                                           var msg = "You dragged an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+                                                     |                                                           $("#eventMessage").text(msg);
+                                                     |                                                       }
+                                                     |                                                   }
+                                                     |                                               });
+                                                     |
+                                                     |                    // $("#ganttChart").ganttView("setSlideWidth", 600);
+                                                     |                });""".stripMargin.opt
                                     }
                                 ).opt
                                 name = "gantt".opt
