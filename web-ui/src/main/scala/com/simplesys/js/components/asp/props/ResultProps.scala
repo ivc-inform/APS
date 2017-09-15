@@ -7,7 +7,7 @@ import com.simplesys.SmartClient.Layout.props.TabSetSSProps
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.System.{AdvancedCriteria, Criterion, HTMLPane, Tab, TabSetSS, _}
 import com.simplesys.System.JSAny
-import com.simplesys.System.Types.{ListGridEditEvent, OperatorId}
+import com.simplesys.System.Types.{ContentsType, ListGridEditEvent, OperatorId}
 import com.simplesys.app.ResultItem
 import com.simplesys.function._
 import com.simplesys.js.components.asp.Result
@@ -78,7 +78,10 @@ class ResultProps extends CommonListGridEditorComponentProps {
                                 pane = HTMLPane.create(
                                     new HTMLPaneProps {
                                         height = "100%"
-                                        contents = """
+                                        dynamicContents = true.opt
+                                        evalScriptBlocks = true.opt
+                                        contentsType = ContentsType.fragment.opt
+                                        contents = """<script type="text/javascript">
                                                      |                $(function () {
                                                      |                    $("#ganttChart").ganttView({
                                                      |                                                   data      : ganttData,
@@ -100,7 +103,8 @@ class ResultProps extends CommonListGridEditorComponentProps {
                                                      |                                               });
                                                      |
                                                      |                    // $("#ganttChart").ganttView("setSlideWidth", 600);
-                                                     |                });""".stripMargin.opt
+                                                     |                });
+                                                     |            </script>""".stripMargin.opt
                                     }
                                 ).opt
                                 name = "gantt".opt
