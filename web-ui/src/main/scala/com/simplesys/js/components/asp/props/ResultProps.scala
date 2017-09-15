@@ -80,31 +80,8 @@ class ResultProps extends CommonListGridEditorComponentProps {
                                         height = "100%"
                                         dynamicContents = true.opt
                                         evalScriptBlocks = true.opt
-                                        contentsType = ContentsType.fragment.opt
-                                        contents = """<script type="text/javascript">
-                                                     |                $(function () {
-                                                     |                    $("#ganttChart").ganttView({
-                                                     |                                                   data      : ganttData,
-                                                     |                                                   slideWidth: "100%",
-                                                     |                                                   behavior  : {
-                                                     |                                                       onClick : function (data) {
-                                                     |                                                           var msg = "You clicked on an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
-                                                     |                                                           $("#eventMessage").text(msg);
-                                                     |                                                       },
-                                                     |                                                       onResize: function (data) {
-                                                     |                                                           var msg = "You resized an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
-                                                     |                                                           $("#eventMessage").text(msg);
-                                                     |                                                       },
-                                                     |                                                       onDrag  : function (data) {
-                                                     |                                                           var msg = "You dragged an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
-                                                     |                                                           $("#eventMessage").text(msg);
-                                                     |                                                       }
-                                                     |                                                   }
-                                                     |                                               });
-                                                     |
-                                                     |                    // $("#ganttChart").ganttView("setSlideWidth", 600);
-                                                     |                });
-                                                     |            </script>""".stripMargin.opt
+                                        contentsType = ContentsType.page.opt
+                                        contentsURL = "index.html".opt
                                     }
                                 ).opt
                                 name = "gantt".opt
