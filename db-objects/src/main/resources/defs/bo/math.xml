@@ -73,13 +73,13 @@
 					<attr caption="Дата начала расписания" name="ddatein" type="dDateTime"  mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Первоначальная настройка машины" name="start_type" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Количество смен" name="shifts_count" type="nInt" useDbPrefix="false"></attr>
-					<attr caption="Психологический коэф - напряженность" name="tension" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Психологический коэф - напряженность" name="tension" type="fDouble" useDbPrefix="false"></attr>
 					<attr caption="Плановый период врабочих днях" name="plan_duration" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Момент освобождения в календ.днях" name="free" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Момент начала рабочего дня" name="start_day" type="nInt" useDbPrefix="false"></attr>
-					<attr caption="Стоимость смены" name="cost_shift" type="nInt" useDbPrefix="false"></attr>
-					<attr caption="Стоимость часа наладки" name="cost_workhour" type="nInt" useDbPrefix="false"></attr>
-					<attr caption="Стоимость часа простоя" name="cost_idlehour" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Стоимость смены" name="cost_shift" type="fDouble" useDbPrefix="false"></attr>
+					<attr caption="Стоимость часа наладки" name="cost_workhour" type="fDouble" useDbPrefix="false"></attr>
+					<attr caption="Стоимость часа простоя" name="cost_idlehour" type="fDouble" useDbPrefix="false"></attr>
 					<attr caption="Дата окончания периода планирования" name="last_plan" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Предыдущая дата планирования" name="prev_plan" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Горизонт планирования в часах" name="horizon_plan" type="nInt" useDbPrefix="false"></attr>
