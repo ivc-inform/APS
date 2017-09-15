@@ -25,8 +25,8 @@
 			<classSimple autoTableMapping="true" caption="Матрица наладки" name="changeover">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
-					<attr caption="Наладка начальная" name="from_type" type="nInt"  mandatory="true" useDbPrefix="false"></attr>
-					<attr caption="Наладка конечная" name="to_type" type="nInt"  mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Наладка начальная" name="from_type" type="fDouble"  mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Наладка конечная" name="to_type" type="fDouble"  mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Время наладки" name="duration" type="fDouble"  mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
