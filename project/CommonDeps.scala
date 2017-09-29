@@ -46,7 +46,7 @@ object CommonDeps {
         val scalajsDOMVersion = "0.9.3"
         val scalajsJQueryVersion = "0.9.0"
 
-        val jettyVersion = "9.4.6.v20170531"
+        val jettyVersion = "9.4.7.v20170914"
         val jdbcOracle11DriverVersion = "11.2.0.4"
         val jdbcOracle12DriverVersion = "12.2.0.1"
 
