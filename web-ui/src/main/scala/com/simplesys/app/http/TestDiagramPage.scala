@@ -12,6 +12,7 @@ import com.simplesys.System.NameStrong
 import com.simplesys.System.Types.{ID, Visibility}
 import com.simplesys.app.GanttChart
 import com.simplesys.function._
+import com.simplesys.option.DoubleType._
 import com.simplesys.js.components.gantt.props.GanttChartProps
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen
@@ -61,6 +62,7 @@ object TestDiagramPage extends WebTabSetApp {
                                     addTab(GanttChart.create(
                                         new GanttChartProps {
                                             identifier = "354E6DF4-FE83-FE30-0782-6E1BA40CA422".opt
+                                            height = "100%"
                                         }
                                     ), thiz)
                                     false

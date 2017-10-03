@@ -10,6 +10,8 @@ import com.simplesys.option.{ScNone, ScOption}
 
 import scalatags.JsDom.all._
 import io.udash.wrappers.jquery._
+import org.scalajs.dom
+import dom.document
 
 class GanttChartProps extends CanvasProps {
     type classHandler <: GanttChart
@@ -26,14 +28,15 @@ class GanttChartProps extends CanvasProps {
           div(style := "width:100%;height:100%", id := thiz.getID1).render.textContent
     }.toThisFunc.opt
 
-    draw = {
+    /*draw = {
         (thiz: classHandler, args: JSUndefined[IscArray[JSAny]]) ⇒
             if (!thiz.readyToDraw())
                 thiz
             else {
                 thiz.Super("draw", args.getOrElse(IscArray[JSAny]()))
-                  jQ(thiz.getID1).html("Hello world!")
+                  //jQ(thiz.getID1).html("Hello world!")
+                  //document.getElementById(thiz.getID1).innerHTML = "Hello world!"
                 thiz
             }
-    }.toThisFunc.opt
+    }.toThisFunc.opt*/
 }
