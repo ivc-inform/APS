@@ -41,7 +41,7 @@ class TestDiagramPageContainer(val request: HttpServletRequest, val response: Ht
 
     def receive = {
         case GetData => {
-            val textHTML = new StartPage("Расписание".ellipsis, scalatags.Text)
+            val textHTML = new StartPage("Тесты".ellipsis, scalatags.Text)
 
             val html: String = "<!DOCTYPE html>" +
               textHTML.bodyHTML(

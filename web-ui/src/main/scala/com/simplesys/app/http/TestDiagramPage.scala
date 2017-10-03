@@ -10,7 +10,9 @@ import com.simplesys.SmartClient.Layout.props.{IconButtonSSProps, RibbonGroupSSP
 import com.simplesys.SmartClient.System.{Common, IconButtonSS, RibbonGroupSS, SettingsEditor, _}
 import com.simplesys.System.NameStrong
 import com.simplesys.System.Types.{ID, Visibility}
+import com.simplesys.app.GanttChart
 import com.simplesys.function._
+import com.simplesys.js.components.gantt.props.GanttChartProps
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS}
@@ -46,17 +48,21 @@ object TestDiagramPage extends WebTabSetApp {
         RibbonGroupSS.create(
             new RibbonGroupSSProps {
                 title = "TestDiagrams".ellipsis.opt
-                visibility = Visibility.hidden.opt
+                //visibility = Visibility.hidden.opt
                 controls = Seq(
                     IconButtonSS.create(
                         new IconButtonSSProps {
                             identifier = "BA4E6DF4-FE83-FE30-0782-6E1BA40CA422".opt
-                            title = "Upload Test".opt
+                            title = "Gantt Test".opt
                             icon = Common.upload.opt
                             orientation = "gorizontal".opt
                             click = {
                                 (thiz: classHandler) =>
-                                    //addTab(UploadTestTab.create(new UploadTestTabProps), thiz)
+                                    addTab(GanttChart.create(
+                                        new GanttChartProps {
+                                            identifier = "354E6DF4-FE83-FE30-0782-6E1BA40CA422".opt
+                                        }
+                                    ), thiz)
                                     false
                             }.toThisFunc.opt
                         }
