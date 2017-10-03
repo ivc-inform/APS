@@ -94,14 +94,14 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val bundle:
 
                 link(href := "managed/css/common-webapp/logging_styles.css", rel := "stylesheet", `type` := "text/css"),
 
-                link(href := "jquery-ui-1.8.4.css", rel := "stylesheet", `type` := "text/css"),
-                link(href := "jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
-
-                script(src := "jquery-1.4.2.js"),
-                script(src := "date.js"),
-                script(src := "jquery-ui-1.8.4.js"),
-                script(src := "jquery.ganttView.js"),
-                script(src := "data.js"),
+//                link(href := "jquery-ui-1.8.4.css", rel := "stylesheet", `type` := "text/css"),
+//                link(href := "jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
+//
+//                script(src := "jquery-1.4.2.js"),
+//                script(src := "date.js"),
+//                script(src := "jquery-ui-1.8.4.js"),
+//                script(src := "jquery.ganttView.js"),
+//                script(src := "data.js"),
 
                 script(lastScript)
             )
