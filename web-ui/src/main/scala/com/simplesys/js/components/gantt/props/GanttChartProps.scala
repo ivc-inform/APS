@@ -7,7 +7,7 @@ import com.simplesys.function._
 import com.simplesys.js.components.gantt.GanttChart
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
-import org.scalajs.jquery._
+
 import scalatags.JsDom.all._
 import io.udash.wrappers.jquery._
 

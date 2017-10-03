@@ -5,7 +5,7 @@ import scalatags.generic.Bundle
 case class paths(subPath: String, subPath1: String)
 
 class StartPage[Builder, Output <: FragT, FragT](val _title: String, val bundle: Bundle[Builder, Output, FragT]) {
-    def bodyHTML(lastScript: String, fullOpt: Boolean = false): bundle.all.html.Self = {
+    def bodyHTML(lastScript: String, fullOpt: Boolean = false) = {
         import bundle.all._
 
         //val subPaths = paths(subPath = "javascript/generated/generatedComponents", subPath1 = "coffeeScript/main/")
