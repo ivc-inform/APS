@@ -5,7 +5,7 @@ import scalatags.generic.Bundle
 case class paths(subPath: String, subPath1: String)
 
 class StartPage[Builder, Output <: FragT, FragT](val _title: String, val bundle: Bundle[Builder, Output, FragT]) {
-    def bodyHTML(lastScript: String, fullOpt: Boolean = false) = {
+    def bodyHTML(lastScript: String, fullOpt: Boolean = false): bundle.all.html.Self = {
         import bundle.all._
 
         //val subPaths = paths(subPath = "javascript/generated/generatedComponents", subPath1 = "coffeeScript/main/")
@@ -92,15 +92,6 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String, val bundle:
                 script(src := s"javascript/generated/generatedComponentsJS/${if (fullOpt) "web-ui-opt.js" else "web-ui-fastopt.js"}"),
 
                 link(href := "managed/css/common-webapp/logging_styles.css", rel := "stylesheet", `type` := "text/css"),
-
-//                link(href := "jquery-ui-1.8.4.css", rel := "stylesheet", `type` := "text/css"),
-//                link(href := "jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
-//
-//                script(src := "jquery-1.4.2.js"),
-//                script(src := "date.js"),
-//                script(src := "jquery-ui-1.8.4.js"),
-//                script(src := "jquery.ganttView.js"),
-//                script(src := "data.js"),
 
                 script(lastScript)
             )
