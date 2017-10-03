@@ -32,7 +32,7 @@ class GanttChartProps extends CanvasProps {
                 thiz
             else {
                 thiz.Super("draw", args.getOrElse(IscArray[JSAny]()))
-                  //jQ(thiz.getID1).html("Hello world!")
+                  jQ(thiz.getID1).html("Hello world!")
                 thiz
             }
     }.toThisFunc.opt
