@@ -34,3 +34,31 @@ class StartPageContainer(val request: HttpServletRequest, val response: HttpServ
             throw new RuntimeException(s"Bad branch $x")
     }
 }
+
+//http://localhost:8084/aps/TestDiagramPage
+@RSTransfer(urlPattern = "/TestDiagramPage")
+class TestDiagramPageContainer(val request: HttpServletRequest, val response: HttpServletResponse, val servletContext: ServletContext) extends ServletActor {
+
+    def receive = {
+        case GetData => {
+            val textHTML = new StartPage("Расписание".ellipsis, scalatags.Text)
+
+            val html: String = "<!DOCTYPE html>" +
+              textHTML.bodyHTML(
+                  "CreateSimpleTypes();" +
+                    "CreateSmartClientJS();" +
+                    "CreateAppJS();" +
+                    "GetTestDiagramPageUIContent();",
+                  false
+              ).render.unEscape
+
+
+            //logger debug html
+            Out(html)
+
+            selfStop()
+        }
+        case x =>
+            throw new RuntimeException(s"Bad branch $x")
+    }
+}

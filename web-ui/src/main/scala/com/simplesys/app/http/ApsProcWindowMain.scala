@@ -26,7 +26,6 @@ import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, L
 
 import scala.scalajs.js.annotation.JSExportTopLevel
 
-//@JSExport
 object ApsProcWindowMain extends WebTabSetApp {
 
     self ⇒
