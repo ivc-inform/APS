@@ -37,14 +37,14 @@ object CommonDeps {
 
         val scalaTestVersion = "3.0.3"
         val scalaTagsVersion = "0.6.5"
-        val jQueryVersion = "0.9.2"
         val uPickleVersion = "0.4.4"
 
         val scalaJSVersion = "1.4-SNAPSHOT"
         //val scalaJSVersion = "1.4.0.1"
 
         val scalajsDOMVersion = "0.9.3"
-        val scalajsJQueryVersion = "0.9.0"
+        val scalajsJQueryVersion = "1.1.1-SNAPSHOT"
+        //val scalajsJQueryVersion = "0.9.0"
 
         val jettyVersion = "9.4.7.v20170914"
         val jdbcOracle12DriverVersion = "12.2.0.1"

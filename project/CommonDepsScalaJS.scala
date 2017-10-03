@@ -12,5 +12,6 @@ object CommonDepsScalaJS {
     val uPickleJS = Def.setting("com.lihaoyi" %%% "upickle" % CommonDeps.versions.uPickleVersion)
     val scalaTags = Def.setting("com.lihaoyi" %%% "scalatags" % CommonDeps.versions.scalaTagsVersion)
     val scalaDom = Def.setting("org.scala-js" %%% "scalajs-dom" % CommonDeps.versions.scalajsDOMVersion)
-    val jQuery = Def.setting("be.doeraene" %%% "scalajs-jquery" % CommonDeps.versions.jQueryVersion)
+    //val jQuery = Def.setting("be.doeraene" %%% "scalajs-jquery" % CommonDeps.versions.jQueryVersion)
+    val jQuery = Def.setting("io.udash" %%% "udash-jquery" % CommonDeps.versions.scalajsJQueryVersion)
 }
