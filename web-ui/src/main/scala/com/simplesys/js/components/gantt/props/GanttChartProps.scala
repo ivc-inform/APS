@@ -34,7 +34,7 @@ class GanttChartProps extends CanvasProps {
                 override val showToday = true
                 override val cellWidth = 21
                 override val cellHeight = 31
-                override val slideWidth = 600
+                override val slideWidth = 500
                 override val vHeaderWidth = 100
                 override val behavior = new GanttChartBehavior {
                     override val clickable = true
@@ -56,7 +56,9 @@ class GanttChartProps extends CanvasProps {
 
 
             def build(): Unit = {
-                val minDays = Math.floor((opts.slideWidth.get / opts.cellWidth.get) + 5)
+                val minDays = math.floor((opts.slideWidth.get / opts.cellWidth.get) + 5)
+                val startEnd = DateUtils.getBoundaryDatesFromData(_data.get, minDays.toInt);
+                isc debugTrap 0
             }
 
             jQ(s"#${thiz.getID1}").html(h1("Hello World !!!").render)
@@ -74,7 +76,7 @@ class GanttChartProps extends CanvasProps {
                     new GanttChartOptions {
                         override val data = js.Array(
                             new DataStructItem {
-                                override val series = Seq(
+                                override val series = js.Array(
                                     new GanttDataItem {
                                         override val name = "Задача №1"
                                         override val start = new Date(2011, 8, 1)
