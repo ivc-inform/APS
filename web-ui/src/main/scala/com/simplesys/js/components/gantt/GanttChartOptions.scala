@@ -3,6 +3,7 @@ package com.simplesys.js.components.gantt
 import java.time.LocalDateTime
 
 import scala.scalajs.js
+import scala.scalajs.js.Date
 
 trait GanttChartBehavior extends js.Object {
     val clickable: js.UndefOr[Boolean] = js.undefined
@@ -23,4 +24,6 @@ trait GanttChartOptions extends js.Object {
     val vHeaderWidth: js.UndefOr[Int] = js.undefined
     val dataUrl: js.UndefOr[String] = js.undefined
     val behavior: js.UndefOr[GanttChartBehavior] = js.undefined
+    var start: js.UndefOr[Date] = js.undefined
+    var end: js.UndefOr[Date] = js.undefined
 }
