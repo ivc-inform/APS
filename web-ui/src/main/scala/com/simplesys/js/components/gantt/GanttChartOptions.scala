@@ -16,7 +16,7 @@ trait GanttChartBehavior extends js.Object {
 trait GanttChartOptions extends js.Object {
     val showWeekends: js.UndefOr[Boolean] = js.undefined
     val showToday: js.UndefOr[Boolean] = js.undefined
-    var data: js.UndefOr[js.Object] = js.undefined
+    val data: js.UndefOr[js.Object] = js.undefined
     val cellWidth: js.UndefOr[Int] = js.undefined
     val cellHeight: js.UndefOr[Int] = js.undefined
     val slideWidth: js.UndefOr[Int] = js.undefined

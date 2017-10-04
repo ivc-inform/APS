@@ -8,7 +8,6 @@ import scala.scalajs.js
 
 @js.native
 trait GanttChart extends Canvas {
-    val data: JSUndefined[JSObject]
     def ganttView(option: GanttChartOptions = js.native): JQuery
 }
 

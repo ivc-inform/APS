@@ -4,19 +4,18 @@ import com.simplesys.SmartClient.Foundation.props.CanvasProps
 import com.simplesys.SmartClient.System._
 import com.simplesys.System._
 import com.simplesys.function._
-import com.simplesys.js.components.gantt.{GanttChart, GanttChartBehavior, GanttChartOptions}
+import com.simplesys.js.components.gantt._
+import com.simplesys.option.ScOption
 import com.simplesys.option.ScOption._
-import com.simplesys.option.{ScNone, ScOption}
-import io.udash.wrappers.jquery.{JQueryXHR, _}
+import io.udash.wrappers.jquery._
 
 import scala.scalajs.js
 import scala.scalajs.js.ThisFunction1
 import scalatags.JsDom.all._
+import com.simplesys.date._
 
 class GanttChartProps extends CanvasProps {
     type classHandler <: GanttChart
-
-    var data: ScOption[JSObject] = ScNone
 
     getID1 = {
         (thiz: classHandler) ⇒
@@ -48,10 +47,12 @@ class GanttChartProps extends CanvasProps {
             val opts: GanttChartOptions = jQ.extend(true, defaults, options)
             //isc debugTrap opts
 
-            if (opts.data.isEmpty)
-                opts.dataUrl.foreach(jQ.getJSON(_, (data: js.Object, _, _) ⇒ opts.data = data))
+            var _data = opts.data
 
-            if (opts.data.isDefined)
+            if (_data.isEmpty)
+                opts.dataUrl.foreach(jQ.getJSON(_, (data: js.Object, _, _) ⇒ _data = data))
+
+            if (_data.isDefined)
                 build()
 
 
@@ -70,21 +71,20 @@ class GanttChartProps extends CanvasProps {
             else {
                 thiz.Super("draw", args.getOrElse(IscArray[JSAny]()))
 
-                thiz.ganttView()
-                //                val text = "test 123"
-                //                val dom: Div = div().render
-                //                val content = span(ul(li(text))).render
-                //
-                //                println(jQ(dom).html())
-                //                println(dom.textContent)
-                //
-                //                jQ(dom).html(content)
-                //
-                //                println(jQ(dom).html())
-                //                println(jQ(dom).text())
-                //                println(dom.textContent)
+                thiz.ganttView(
+                  new GanttChartOptions{
+                      override val data = new UnhierarchicalGanttData{
+                          override val series = Seq(
+                              new GanttData {
+                                  override val name = "Задача №1"
+                                  override val start = "01.08.2011".toDate
+                                  override val end = "03.08.2012".toDate
+                              }
+                          )
+                      }
+                  }
+                )
 
-                //document.getElementById(thiz.getID1).innerHTML = h1("Hello world!").render.textContent
                 thiz
             }
     }.toThisFunc.opt

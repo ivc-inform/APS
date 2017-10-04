@@ -1,7 +1,5 @@
-import java.time.{LocalDate, LocalDateTime}
-
-import org.scalatest.FunSuite
 import com.simplesys.date._
+import org.scalatest.FunSuite
 
 class TestSuit extends FunSuite {
     test("rec OrdDoc") {
