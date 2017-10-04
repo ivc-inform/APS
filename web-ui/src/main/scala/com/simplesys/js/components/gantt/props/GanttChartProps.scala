@@ -10,7 +10,7 @@ import com.simplesys.option.ScOption._
 import io.udash.wrappers.jquery._
 
 import scala.scalajs.js
-import scala.scalajs.js.ThisFunction1
+import scala.scalajs.js.{Date, ThisFunction1}
 import scalatags.JsDom.all._
 
 class GanttChartProps extends CanvasProps {
@@ -49,7 +49,7 @@ class GanttChartProps extends CanvasProps {
             var _data = opts.data
 
             if (_data.isEmpty)
-                opts.dataUrl.foreach(jQ.getJSON(_, (data: js.Object, _, _) ⇒ _data = data))
+                opts.dataUrl.foreach(jQ.getJSON(_, (data: js.Array[_ <: DataStructItem], _, _) ⇒ _data = data))
 
             if (_data.isDefined)
                 build()
@@ -71,17 +71,30 @@ class GanttChartProps extends CanvasProps {
                 thiz.Super("draw", args.getOrElse(IscArray[JSAny]()))
 
                 thiz.ganttView(
-                  new GanttChartOptions{
-                      override val data = new UnhierarchicalGanttData{
-                          override val series = Seq(
-                              new GanttData {
-                                  override val name = "Задача №1"
-                                  override val start = "01.08.2011".toDate
-                                  override val end = "03.08.2012".toDate
-                              }
-                          )
-                      }
-                  }
+                    new GanttChartOptions {
+                        override val data = js.Array(
+                            new UnhierarchicalGanttDataStructItem {
+                                override val series = Seq(
+                                    new UnhierarchicalGanttDataItem {
+                                        override val name = "Задача №1"
+                                        override val start = new Date(2011, 8, 1)
+                                        override val end = new Date(2012, 8, 3)
+                                    },
+                                    new UnhierarchicalGanttDataItem {
+                                        override val name = "Задача №2"
+                                        override val start = new Date(2011, 8, 2)
+                                        override val end = new Date(2011, 8, 5)
+                                        override val color = "#f0f0f0"
+                                    }, new UnhierarchicalGanttDataItem {
+                                        override val name = "Задача №3"
+                                        override val start = new Date(2011, 8, 1)
+                                        override val end = new Date(2011, 8, 10)
+                                        override val color = "#e0e0e0"
+                                    }
+                                )
+                            }
+                        )
+                    }
                 )
 
                 thiz

@@ -1,18 +1,20 @@
 package com.simplesys.js.components.gantt
 
-import java.time.{LocalDate, LocalDateTime}
-
 import com.simplesys.System.Types.Color
 
 import scala.scalajs.js
+import scala.scalajs.js.Date
 
-trait GanttData extends js.Object {
+trait DataStructItem extends js.Object
+
+trait UnhierarchicalGanttDataItem extends js.Object {
     val name: String
-    val start: LocalDate
-    val end: LocalDate
+    val start: Date
+    val end: Date
     val color: js.UndefOr[Color] = js.undefined
 }
 
-trait UnhierarchicalGanttData extends js.Object {
-    val series: Seq[GanttData]
+trait UnhierarchicalGanttDataStructItem extends DataStructItem {
+    val series: Seq[UnhierarchicalGanttDataItem]
 }
+
