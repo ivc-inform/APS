@@ -73,19 +73,19 @@ class GanttChartProps extends CanvasProps {
                 thiz.ganttView(
                     new GanttChartOptions {
                         override val data = js.Array(
-                            new UnhierarchicalGanttDataStructItem {
+                            new DataStructItem {
                                 override val series = Seq(
-                                    new UnhierarchicalGanttDataItem {
+                                    new GanttDataItem {
                                         override val name = "Задача №1"
                                         override val start = new Date(2011, 8, 1)
                                         override val end = new Date(2012, 8, 3)
                                     },
-                                    new UnhierarchicalGanttDataItem {
+                                    new GanttDataItem {
                                         override val name = "Задача №2"
                                         override val start = new Date(2011, 8, 2)
                                         override val end = new Date(2011, 8, 5)
                                         override val color = "#f0f0f0"
-                                    }, new UnhierarchicalGanttDataItem {
+                                    }, new GanttDataItem {
                                         override val name = "Задача №3"
                                         override val start = new Date(2011, 8, 1)
                                         override val end = new Date(2011, 8, 10)
