@@ -57,9 +57,9 @@ class GanttChartProps extends CanvasProps {
 
             def build(): Unit = {
                 val minDays = math.floor((opts.slideWidth.get / opts.cellWidth.get) + 5)
-                isc debugTrap minDays
+                //isc debugTrap minDays
                 val startEnd = DateUtils.getBoundaryDatesFromData(_data.get, minDays.toInt);
-                isc debugTrap startEnd
+                //isc debugTrap startEnd
             }
 
             jQ(s"#${thiz.getID1}").html(h1("Hello World !!!").render)
