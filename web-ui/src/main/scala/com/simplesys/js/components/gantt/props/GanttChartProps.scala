@@ -4,18 +4,13 @@ import com.simplesys.SmartClient.Foundation.props.CanvasProps
 import com.simplesys.SmartClient.System._
 import com.simplesys.System._
 import com.simplesys.function._
-import com.simplesys.js.components.gantt.GanttChart
+import com.simplesys.js.components.gantt.{GanttChart, GanttChartOptions}
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
-
-import scalatags.JsDom.all._
-import io.udash._
 import io.udash.wrappers.jquery._
-import org.scalajs.dom
-import org.scalajs.dom.{Element, document}
-import org.scalajs.dom
-import dom.document
-import org.scalajs.dom.html.Div
+
+import scala.scalajs.js.ThisFunction1
+import scalatags.JsDom.all._
 
 class GanttChartProps extends CanvasProps {
     type classHandler <: GanttChart
@@ -33,16 +28,20 @@ class GanttChartProps extends CanvasProps {
             "<div style=\"width:100%;height:100%\"" + " " + s"id=${thiz.getID1}></div>"
     }.toThisFunc.opt
 
+    var ganttView: ScOption[ThisFunction1[classHandler, JSUndefined[GanttChartOptions], JQuery]] = {
+        (thiz: classHandler, option: JSUndefined[GanttChartOptions]) ⇒
+            jQ(s"#${thiz.getID1}").html(h1("Hello World !!!").render)
+    }.toThisFunc.opt
+
+
     draw = {
         (thiz: classHandler, args: JSUndefined[IscArray[JSAny]]) ⇒
             if (!thiz.readyToDraw())
                 thiz
             else {
                 thiz.Super("draw", args.getOrElse(IscArray[JSAny]()))
-                jQ(s"#${thiz.getID1}").html(h1("Hello World !!!").render)
 
-
-
+                thiz.ganttView()
                 //                val text = "test 123"
                 //                val dom: Div = div().render
                 //                val content = span(ul(li(text))).render
