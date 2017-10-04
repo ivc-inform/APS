@@ -12,7 +12,6 @@ import io.udash.wrappers.jquery._
 import scala.scalajs.js
 import scala.scalajs.js.ThisFunction1
 import scalatags.JsDom.all._
-import com.simplesys.date._
 
 class GanttChartProps extends CanvasProps {
     type classHandler <: GanttChart
