@@ -20,6 +20,7 @@ trait GanttChartOptions extends js.Object {
     val cellWidth: js.UndefOr[Int] = js.undefined
     val cellHeight: js.UndefOr[Int] = js.undefined
     val slideWidth: js.UndefOr[Int] = js.undefined
+    val vHeaderWidth: js.UndefOr[Int] = js.undefined
     val dataUrl: js.UndefOr[String] = js.undefined
     val behavior: js.UndefOr[GanttChartBehavior] = js.undefined
 }
