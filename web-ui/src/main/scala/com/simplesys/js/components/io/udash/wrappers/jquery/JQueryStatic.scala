@@ -83,8 +83,8 @@ trait JQueryStatic extends js.Object {
 
     /** Merge the contents of two or more objects together into the first object. <br/>
       * See: <a href="http://api.jquery.com/jQuery.extend/">jQuery Docs</a> */
-    def extend[T <: js.Object](target: js.Object, objects: (js.Object | js.UndefOr[_ <: js.Object])*): T = js.native
-    def extend[T <: js.Object](deep: Boolean, target: js.Object, objects: (js.Object | js.UndefOr[_ <: js.Object])*): T = js.native
+    def extend[T <: js.Object](target: js.Object, objects: js.UndefOr[_ <: js.Object]*): T = js.native
+    def extend[T <: js.Object](deep: Boolean, target: js.Object, objects: js.UndefOr[_ <: js.Object]*): T = js.native
 
     /** Load data from the server using a HTTP GET request. <br/>
       * See: <a href="http://api.jquery.com/jQuery.get/">jQuery Docs</a> */
@@ -216,9 +216,14 @@ object JQueryStatic {
 
         /** Load JSON-encoded data from the server using a GET HTTP request. <br/>
           * See: <a href="http://api.jquery.com/jQuery.getJSON/">jQuery Docs</a> */
-        def getJSON[T](url: String, data: js.Any, success: (T, String, JQueryXHR) => js.Any): JQueryXHR = {
+        def getJSON[T](url: String, data: js.Any, success: (T, String, JQueryXHR) => _): JQueryXHR = {
             val callback = (data: js.Dynamic, status: String, xhr: JQueryXHR) => success(data.asInstanceOf[T], status, xhr)
             jQueryStatic.asInstanceOf[js.Dynamic].get(url, data, callback, "json").asInstanceOf[JQueryXHR]
+        }
+
+        def getJSON[T](url: String, success: (T, String, JQueryXHR) => _): JQueryXHR = {
+            val callback = (data: js.Dynamic, status: String, xhr: JQueryXHR) => success(data.asInstanceOf[T], status, xhr)
+            jQueryStatic.asInstanceOf[js.Dynamic].get(url, callback, "json").asInstanceOf[JQueryXHR]
         }
 
         /** Load a JavaScript file from the server using a GET HTTP request, then execute it. <br/>

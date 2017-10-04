@@ -7,7 +7,7 @@ import com.simplesys.function._
 import com.simplesys.js.components.gantt.{GanttChart, GanttChartBehavior, GanttChartOptions}
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
-import io.udash.wrappers.jquery._
+import io.udash.wrappers.jquery.{JQueryXHR, _}
 
 import scala.scalajs.js
 import scala.scalajs.js.ThisFunction1
@@ -38,20 +38,25 @@ class GanttChartProps extends CanvasProps {
                 override val cellHeight = 31
                 override val slideWidth = 600
                 override val vHeaderWidth = 100
-                override val behavior = new GanttChartBehavior{
+                override val behavior = new GanttChartBehavior {
                     override val clickable = true
                     override val draggable = true
                     override val resizable = true
                 }
             }
 
-            //opts
-
-            val opts/*:GanttChartOptions*/ = jQ.extend(true, defaults, options)
+            val opts: GanttChartOptions = jQ.extend(true, defaults, options)
             //isc debugTrap opts
 
-            def build(): Unit = {
+            if (opts.data.isEmpty)
+                opts.dataUrl.foreach(jQ.getJSON(_, (data: js.Object, _, _) ⇒ opts.data = data))
 
+            if (opts.data.isDefined)
+                build()
+
+
+            def build(): Unit = {
+                val minDays = Math.floor((opts.slideWidth.get / opts.cellWidth.get) + 5)
             }
 
             jQ(s"#${thiz.getID1}").html(h1("Hello World !!!").render)
