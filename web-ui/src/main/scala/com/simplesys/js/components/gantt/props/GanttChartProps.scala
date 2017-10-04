@@ -45,8 +45,14 @@ class GanttChartProps extends CanvasProps {
                 }
             }
 
-            val opts = jQ().extend(true, defaults, options)
-            //println(isc.JSON.encode(opts))
+            //opts
+
+            val opts/*:GanttChartOptions*/ = jQ.extend(true, defaults, options)
+            //isc debugTrap opts
+
+            def build(): Unit = {
+
+            }
 
             jQ(s"#${thiz.getID1}").html(h1("Hello World !!!").render)
     }.toThisFunc.opt
