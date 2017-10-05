@@ -37,9 +37,8 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
             dates ⇒
                 //isc debugTrap dates
                 addHzHeader(slideDiv, dates, opts.cellWidth.get)
+                addGrid(slideDiv, opts.data.get, dates, opts.cellWidth.get, opts.showWeekends.get, opts.showToday.get);
         }
-
-
     }
 
     private val monthNames = js.Array("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь")
@@ -133,13 +132,11 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
         })
         var totalW = 0
 
-        var y = 0
-        dates.foreach {
-            year ⇒
+        dates.zipWithIndex.foreach {
+            case (year, y) ⇒
                 if (year.isDefigned) {
-                    var m = 0
-                    year.foreach {
-                        mounth ⇒
+                    year.zipWithIndex.foreach {
+                        case (mounth, m) ⇒
                             if (mounth.isDefigned) {
                                 var w = mounth.length * cellWidth
                                 totalW += w
@@ -161,16 +158,14 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                                             }).append(date.getDate()))
                                 }
                             }
-                            m += 1
                     }
                 }
-                y += 1
         }
 
         monthsDiv.css("width", totalW + "px")
         daysDiv.css("width", totalW + "px")
         headerDiv.append(monthsDiv).append(daysDiv)
-        isc debugTrap headerDiv.html()
+        //isc debugTrap headerDiv.html()
         div.append(headerDiv)
     }
 
@@ -223,6 +218,7 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                 }
         }
 
+        isc debugTrap gridDiv.html()
         div append gridDiv
     }
 }
