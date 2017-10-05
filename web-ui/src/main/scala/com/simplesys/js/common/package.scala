@@ -9,5 +9,10 @@ package object common {
             val res: mutable.Seq[T] = arr
             res.zipWithIndex
         }
+
+        def toSeq: mutable.Seq[T] = {
+            val res: mutable.Seq[T] = arr
+            res
+        }
     }
 }
