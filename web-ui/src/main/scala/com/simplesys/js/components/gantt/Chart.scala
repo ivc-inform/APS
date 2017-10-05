@@ -10,6 +10,8 @@ import com.simplesys.js.common._
 import scala.scalajs.js.{Date, UndefOr}
 import com.simplesys.js.components.gantt.DateUtils._
 
+import scala.collection.mutable
+
 class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
     def render(): Unit = {
         opts.data.foreach(data ⇒ opts.cellHeight.foreach(addVtHeader(div, data, _)))
@@ -25,16 +27,22 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
             })
         }
 
-        val dates: UndefOr[js.Array[js.Array[js.Array[Date]]]] = opts.start.flatMap {
+        opts.start.flatMap {
             start ⇒
                 opts.end.map {
                     end ⇒
                         getDates(start, end)
                 }
+        }.foreach {
+            dates ⇒
+                //isc debugTrap dates
+                addHzHeader(slideDiv, dates, opts.cellWidth.get)
         }
 
-        isc debugTrap dates
+
     }
+
+    private val monthNames = js.Array("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь")
 
     def getDates(start: Date, end: Date): js.Array[js.Array[js.Array[Date]]] = {
 
@@ -111,5 +119,62 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
 
         //isc debugTrap headerDiv
         div append headerDiv
+    }
+
+    def addHzHeader(div: JQuery, dates: js.Array[js.Array[js.Array[Date]]], cellWidth: Int): Unit = {
+        val headerDiv = jQuery("<div>", new js.Object {
+            val `class` = "ganttview-hzheader"
+        })
+        val monthsDiv = jQuery("<div>", new js.Object {
+            val `class` = "ganttview-hzheader-months"
+        })
+        val daysDiv = jQuery("<div>", new js.Object {
+            val `class` = "ganttview-hzheader-days"
+        })
+        var totalW = 0
+
+        var y = 0
+        dates.toSeq.foreach {
+            year ⇒
+                if (year.isDefigned) {
+                    var m = 0
+                    year.toSeq.foreach {
+                        mounth ⇒
+                            if (mounth.isDefigned) {
+                                var w = mounth.length * cellWidth
+                                totalW += w
+
+                                val _css = new js.Object {
+                                    val width = (w - 1) + "px"
+                                }
+
+                                monthsDiv.append(jQuery("<div>", new js.Object {
+                                    val `class` = "ganttview-hzheader-month"
+                                    val css = _css
+                                }).append(monthNames(m) + "/" + y))
+
+                                mounth.toSeq.foreach {
+                                    date ⇒
+                                        if (date.isDefigned)
+                                            daysDiv.append(jQuery("<div>", new js.Object {
+                                                val `class` = "ganttview-hzheader-day"
+                                            }).append(date.getDate()))
+                                }
+                            }
+                            m += 1
+                    }
+                }
+                y += 1
+        }
+
+        monthsDiv.css("width", totalW + "px")
+        daysDiv.css("width", totalW + "px")
+        headerDiv.append(monthsDiv).append(daysDiv)
+        isc debugTrap headerDiv.html()
+        div.append(headerDiv)
+    }
+
+    def addGrid(div: JQuery, data: js.Array[_ <: DataStructItem], dates: js.Array[js.Array[js.Array[Date]]], cellWidth: Int, showWeekends: Boolean, showToday: Boolean): Unit = {
+
     }
 }

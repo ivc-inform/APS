@@ -47,7 +47,7 @@ trait JQuery extends js.Object {
 
     /** Insert content, specified by the parameter, to the end of each element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/append/">jQuery Docs</a> */
-    def append(content: (String | Element | JQuery)*): JQuery = js.native
+    def append(content: (String | Int | Element | JQuery)*): JQuery = js.native
 
     /** Insert every element in the set of matched elements to the end of the target. <br/>
       * See: <a href="http://api.jquery.com/appendTo/">jQuery Docs</a> */

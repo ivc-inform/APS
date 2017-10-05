@@ -9,15 +9,11 @@ package object common {
             val res: mutable.Seq[T] = arr
             res.zipWithIndex
         }
-
-        def toSeq: mutable.Seq[T] = {
-            val res: mutable.Seq[T] = arr
-            res
-        }
     }
 
     implicit class undef[T](value:T) {
         def isUndefigned: Boolean = js.UndefOr.any2undefOrA(value).isEmpty
+        def isDefigned: Boolean = js.UndefOr.any2undefOrA(value).isDefined
         def isNull: Boolean = js.UndefOr.any2undefOrA(value).isDefined && (value == null)
     }
 }
