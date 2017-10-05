@@ -1,8 +1,8 @@
 package com.simplesys.js.components.gantt
 
 import com.simplesys.SmartClient.System.isc
+import com.simplesys.js.common._
 
-import scala.collection.mutable
 import scala.scalajs.js
 import scala.scalajs.js.Date
 
@@ -27,12 +27,10 @@ object DateUtils extends js.Object {
     def getBoundaryDatesFromData(data: js.Array[_ <: DataStructItem], minDays: Int): BoundaryDatesFromData = {
         var _minStart = new Date()
         var _maxEnd = new Date()
-
-        val dataSeq: mutable.Seq[_ <: DataStructItem] = data
-        dataSeq.zipWithIndex.foreach {
+        
+        data.toSeqZipWithIndex.foreach {
             case (dataStructItem, i) ⇒
-                val series: mutable.Seq[_ <: GanttDataItem] = dataStructItem.series
-                series.zipWithIndex.foreach {
+                dataStructItem.series.toSeqZipWithIndex.foreach {
                     case (ganttDataItem, j) ⇒
                         val start = ganttDataItem.start
                         val end = ganttDataItem.end
