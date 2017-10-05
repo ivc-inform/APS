@@ -7,10 +7,11 @@ import com.simplesys.function._
 import com.simplesys.js.components.gantt._
 import com.simplesys.option.ScOption
 import com.simplesys.option.ScOption._
-import io.udash.wrappers.jquery._
+import io.udash.wrappers.jquery.jQuery
 
 import scala.scalajs.js
 import scala.scalajs.js.{Date, ThisFunction1}
+import scalatags.JsDom.all._
 
 class GanttChartProps extends CanvasProps {
     type classHandler <: GanttChart
@@ -22,16 +23,18 @@ class GanttChartProps extends CanvasProps {
 
     getInnerHTML = {
         (thiz: classHandler) ⇒
-            //jQ(div(style := "width:100%;height:100%", id := thiz.getID1).render).html()
+            println(jQuery(div(style := "\"width:100%;height:100%\"", id := thiz.getID1).render).html())
             "<div style=\"width:100%;height:100%\"" + " " + s"id=${thiz.getID1}></div>"
     }.toThisFunc.opt
 
 
     draw = {
         (thiz: classHandler, args: JSUndefined[IscArray[JSAny]]) ⇒
+
             if (!thiz.readyToDraw())
                 thiz
             else {
+
                 thiz.Super("draw", args.getOrElse(IscArray[JSAny]()))
 
                 new GanttView(
@@ -60,7 +63,7 @@ class GanttChartProps extends CanvasProps {
                             }
                         )
                     }
-                )
+                ).build()
 
                 thiz
             }

@@ -59,12 +59,13 @@ object TestDiagramPage extends WebTabSetApp {
                             orientation = "gorizontal".opt
                             click = {
                                 (thiz: classHandler) =>
-                                    addTab(GanttChart.create(
-                                        new GanttChartProps {
-                                            identifier = "354E6DF4-FE83-FE30-0782-6E1BA40CA422".opt
-                                            height = "100%"
-                                        }
-                                    ), thiz)
+                                    addTab(
+                                        GanttChart.create(
+                                            new GanttChartProps {
+                                                identifier = "354E6DF4-FE83-FE30-0782-6E1BA40CA422".opt
+                                                height = "100%"
+                                            }
+                                        ), thiz)
                                     false
                             }.toThisFunc.opt
                         }
