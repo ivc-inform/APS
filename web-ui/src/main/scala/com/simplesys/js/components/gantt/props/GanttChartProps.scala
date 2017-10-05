@@ -68,4 +68,6 @@ class GanttChartProps extends CanvasProps {
                 thiz
             }
     }.toThisFunc.opt
+    
+    redrawOnResize = false.opt
 }
