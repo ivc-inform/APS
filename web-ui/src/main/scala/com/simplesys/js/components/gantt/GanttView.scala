@@ -1,6 +1,7 @@
 package com.simplesys.js.components.gantt
 
 import io.udash.wrappers.jquery.jQuery
+import scalatags.JsDom.all._
 //import scalatags.JsDom.all._
 
 import scala.scalajs.js
@@ -23,8 +24,6 @@ class GanttView(id: String, options: js.UndefOr[GanttChartOptions]) extends js.O
     def build(): Unit = {
 
         val divChart = jQuery(s"#$id")
-
-        val a = divChart.parent()
 
         val opts: GanttChartOptions = jQuery.extend(true, defaults, options)
 
@@ -50,8 +49,8 @@ class GanttView(id: String, options: js.UndefOr[GanttChartOptions]) extends js.O
 
             val w = jQuery("div.ganttview-vtheader", divChart).outerWidth() + jQuery("div.ganttview-slide-container", divChart).outerWidth()
             divChart.css("width", (w + 2) + "px")
-
-            //        divChart.append(h1("Hello World !").render)
         }
+
+         //divChart.append(h1("Hello World !").render)
     }
 }
