@@ -4,11 +4,12 @@ import com.simplesys.SmartClient.App.props.SettingsEditorProps
 import com.simplesys.SmartClient.App.{SettingsEditor, WebTabSetApp}
 import com.simplesys.SmartClient.DataBinding.RestDataSourceSS
 import com.simplesys.SmartClient.Forms.formsItems.FormItem
+import com.simplesys.SmartClient.Foundation.props.{HTMLPaneProps, HTMLPaneSSProps}
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
 import com.simplesys.SmartClient.Layout.RibbonGroupSS
 import com.simplesys.SmartClient.Layout.props.{IconButtonSSProps, RibbonGroupSSProps}
 import com.simplesys.SmartClient.System.{Common, IconButtonSS, RibbonGroupSS, SettingsEditor, _}
-import com.simplesys.System.NameStrong
+import com.simplesys.System.{JSAny, NameStrong}
 import com.simplesys.System.Types.{ID, Visibility}
 import com.simplesys.app.GanttChart
 import com.simplesys.function._

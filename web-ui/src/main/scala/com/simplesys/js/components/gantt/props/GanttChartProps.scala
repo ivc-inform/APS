@@ -23,7 +23,7 @@ class GanttChartProps extends CanvasProps {
 
     getInnerHTML = {
         (thiz: classHandler) ⇒
-            println(jQuery(div(style := "\"width:100%;height:100%\"", id := thiz.getID1).render).html())
+            //println(jQuery(div(style := "\"width:100%;height:100%\"", id := thiz.getID1).render).html())
             "<div style=\"width:100%;height:100%\"" + " " + s"id=${thiz.getID1}></div>"
     }.toThisFunc.opt
 

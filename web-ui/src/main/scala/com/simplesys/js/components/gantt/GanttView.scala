@@ -24,6 +24,8 @@ class GanttView(id: String, options: js.UndefOr[GanttChartOptions]) extends js.O
 
         val divChart = jQuery(s"#$id")
 
+        val a = divChart.parent()
+
         val opts: GanttChartOptions = jQuery.extend(true, defaults, options)
 
         var _data = opts.data
