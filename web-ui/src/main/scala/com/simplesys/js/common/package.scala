@@ -15,4 +15,8 @@ package object common {
             res
         }
     }
+
+    implicit class undef[T](value:T) {
+        def isUndefigned: Boolean = js.UndefOr.any2undefOrA(value).isEmpty
+    }
 }

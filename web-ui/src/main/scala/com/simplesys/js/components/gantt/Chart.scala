@@ -7,7 +7,7 @@ import scala.scalajs.js
 import io.udash.wrappers.jquery._
 import com.simplesys.js.common._
 
-import scala.scalajs.js.Date
+import scala.scalajs.js.{Date, UndefOr}
 import com.simplesys.js.components.gantt.DateUtils._
 
 class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
@@ -25,15 +25,15 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
             })
         }
 
-        isc debugTrap slideDiv
-
-        val dates = opts.start.map {
+        val dates: UndefOr[js.Array[js.Array[js.Array[Date]]]] = opts.start.flatMap {
             start ⇒
                 opts.end.map {
                     end ⇒
                         getDates(start, end)
                 }
         }
+
+        isc debugTrap dates
     }
 
     def getDates(start: Date, end: Date): js.Array[js.Array[js.Array[Date]]] = {
@@ -42,12 +42,19 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
         dates.update(start.getFullYear(), js.Array[js.Array[Date]]())
         dates(start.getFullYear()).update(start.getMonth(), js.Array(start))
 
-        //isc debugTrap dates
-
         var last = start
-        /*while (last.getTime() < end.getTime()) {
+        while (last.getTime() < end.getTime()) {
             val next = isc.clone(last).addDays(1)
-        }*/
+
+            if (dates(next.getFullYear()).isUndefigned)
+                dates.update(next.getFullYear(), js.Array())
+
+            if (dates(next.getFullYear())(next.getMonth()).isUndefigned)
+                dates(next.getFullYear()).update(next.getMonth(), js.Array())
+
+            dates(next.getFullYear())(next.getMonth()).push(next)
+            last = next
+        }
         dates
     }
 
