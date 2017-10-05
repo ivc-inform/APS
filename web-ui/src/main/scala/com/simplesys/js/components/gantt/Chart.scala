@@ -35,6 +35,9 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                 addHzHeader(slideDiv, dates, opts.cellWidth.get)
                 addGrid(slideDiv, opts.data.get, dates, opts.cellWidth.get, opts.showWeekends.get, opts.showToday.get)
                 addBlockContainers(slideDiv, opts.data.get)
+                addBlocks(slideDiv, opts.data.get, opts.cellWidth.get, opts.start.get)
+                div append slideDiv
+                applyLastClass(div.parent())
         }
     }
 
@@ -215,11 +218,11 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                 }
         }
 
-        isc debugTrap gridDiv.html()
+        //isc debugTrap gridDiv.html()
         div append gridDiv
     }
 
-    def addBlockContainers(div: JQuery, data: js.Array[_ <: DataStructItem): Unit = {
+    def addBlockContainers(div: JQuery, data: js.Array[_ <: DataStructItem]): Unit = {
         val blocksDiv = jQuery("<div>", new js.Object {
             val `class` = "ganttview-blocks"
         })
@@ -227,13 +230,67 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
         data.foreach {
             dataStructItem ⇒
                 dataStructItem.series.foreach {
-                    _ ⇒ blocksDiv.append(jQuery("<div>", new js.Object {
-                        val `class` = "ganttview-block-container"
-                    }));
+                    _ ⇒
+                        blocksDiv.append(jQuery("<div>", new js.Object {
+                            val `class` = "ganttview-block-container"
+                        }));
 
                 }
         }
 
         div append blocksDiv
+    }
+
+    def addBlocks(div: JQuery, data: js.Array[_ <: DataStructItem], cellWidth: Int, start: Date): Unit = {
+        val rows = jQuery("div.ganttview-blocks div.ganttview-block-container", div)
+        var rowIdx = 0
+
+        data.foreach {
+            dataStructItem ⇒
+                dataStructItem.series.foreach {
+                    ganttDataItem ⇒
+                        val size = DateUtils.daysBetween(ganttDataItem.start, ganttDataItem.end) + 1
+                        val offset = DateUtils.daysBetween(start, ganttDataItem.start);
+
+                        val _css = new js.Object {
+                            val width = ((size * cellWidth) - 9) + "px"
+                            val `margin-left` = ((offset * cellWidth) + 3) + "px"
+                        }
+                        val block = jQuery("<div>", new js.Object {
+                            val `class` = "ganttview-block"
+                            val title = ganttDataItem.name + ", " + size + " days"
+                            val css = _css
+                        })
+
+                        addBlockData(block, dataStructItem, ganttDataItem)
+
+                        ganttDataItem.color.foreach(block.css("background-color", _))
+
+                        block.append(jQuery("<div>", new js.Object {
+                            val `class` = "ganttview-block-text"
+                        }).text(size))
+
+                        jQuery(rows.at(rowIdx)).append(block)
+                        rowIdx += 1
+                }
+        }
+
+        //isc debugTrap rows.html()
+    }
+
+    def addBlockData(block: JQuery, data: DataStructItem, series: GanttDataItem): Unit = {
+        val blockData = new js.Object {
+            val id = data.id
+            val name = data.name
+        }
+
+        jQuery.extend(blockData, series)
+        block.data("block-data", blockData)
+    }
+
+    def applyLastClass(div: JQuery): Unit = {
+        jQuery("div.ganttview-grid-row div.ganttview-grid-row-cell:last-child", div).addClass("last")
+        jQuery("div.ganttview-hzheader-days div.ganttview-hzheader-day:last-child", div).addClass("last")
+        jQuery("div.ganttview-hzheader-months div.ganttview-hzheader-month:last-child", div).addClass("last")
     }
 }

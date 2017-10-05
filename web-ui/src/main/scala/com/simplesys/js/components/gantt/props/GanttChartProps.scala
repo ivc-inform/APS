@@ -58,28 +58,25 @@ class GanttChartProps extends CanvasProps {
 
             def build(): Unit = {
                 val minDays = math.floor((opts.slideWidth.get / opts.cellWidth.get) + 5)
-                val startEnd = DateUtils.getBoundaryDatesFromData(_data.get, minDays.toInt);
+                val startEnd = DateUtils.getBoundaryDatesFromData(_data.get, minDays.toInt)
 
                 opts.start = startEnd.minStart
                 opts.end = startEnd.maxEnd
 
                 //jQ(s"#${thiz.getID1}").html(h1("Hello World !!!").render)
-                val els = jQuery(s"#${thiz.getID1}")
+                val divChart = jQuery(s"#${thiz.getID1}")
 
-                els.each(
-                    (element: Element, _) ⇒ {
-                        val container = jQuery(element)
+                val div = jQuery("<div>", new js.Object {
+                    val `class` = "ganttview"
+                })
 
-                        val div = jQuery("<div>", new js.Object{
-                            val `class` = "ganttview"
-                        })
+                new Chart(div, opts).render()
+                isc debugTrap div.html()
+                divChart append div
 
-                        //isc debugTrap div
-
-                        new Chart(div, opts).render()
-                    }
-                )
-
+                val w = jQuery("div.ganttview-vtheader", divChart).outerWidth() + jQuery("div.ganttview-slide-container", divChart).outerWidth()
+                divChart.css("width", (w + 2) + "px")
+                
             }
     }.toThisFunc.opt
 
