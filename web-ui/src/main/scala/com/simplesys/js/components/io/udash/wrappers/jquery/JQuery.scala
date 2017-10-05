@@ -1060,15 +1060,15 @@ object JQuery {
 
             jquery.asInstanceOf[js.Dynamic].each(js.ThisFunction.fromFunction2((element: Element, idx: Int) => {
                 val cb = params match {
-                    case CallbackParameters(false, null, null) => c: ThisFunctionCallback => jQ(element).asInstanceOf[js.Dynamic].on(event, c)
-                    case CallbackParameters(false, null, data) => c: ThisFunctionCallback => jQ(element).asInstanceOf[js.Dynamic].on(event, data, c)
-                    case CallbackParameters(false, selector, null) => c: ThisFunctionCallback => jQ(element).asInstanceOf[js.Dynamic].on(event, selector, c)
-                    case CallbackParameters(false, selector, data) => c: ThisFunctionCallback => jQ(element).asInstanceOf[js.Dynamic].on(event, selector, data, c)
+                    case CallbackParameters(false, null, null) => c: ThisFunctionCallback => jQuery(element).asInstanceOf[js.Dynamic].on(event, c)
+                    case CallbackParameters(false, null, data) => c: ThisFunctionCallback => jQuery(element).asInstanceOf[js.Dynamic].on(event, data, c)
+                    case CallbackParameters(false, selector, null) => c: ThisFunctionCallback => jQuery(element).asInstanceOf[js.Dynamic].on(event, selector, c)
+                    case CallbackParameters(false, selector, data) => c: ThisFunctionCallback => jQuery(element).asInstanceOf[js.Dynamic].on(event, selector, data, c)
 
-                    case CallbackParameters(true, null, null) => c: ThisFunctionCallback => jQ(element).asInstanceOf[js.Dynamic].one(event, c)
-                    case CallbackParameters(true, null, data) => c: ThisFunctionCallback => jQ(element).asInstanceOf[js.Dynamic].one(event, data, c)
-                    case CallbackParameters(true, selector, null) => c: ThisFunctionCallback => jQ(element).asInstanceOf[js.Dynamic].one(event, selector, c)
-                    case CallbackParameters(true, selector, data) => c: ThisFunctionCallback => jQ(element).asInstanceOf[js.Dynamic].one(event, selector, data, c)
+                    case CallbackParameters(true, null, null) => c: ThisFunctionCallback => jQuery(element).asInstanceOf[js.Dynamic].one(event, c)
+                    case CallbackParameters(true, null, data) => c: ThisFunctionCallback => jQuery(element).asInstanceOf[js.Dynamic].one(event, data, c)
+                    case CallbackParameters(true, selector, null) => c: ThisFunctionCallback => jQuery(element).asInstanceOf[js.Dynamic].one(event, selector, c)
+                    case CallbackParameters(true, selector, data) => c: ThisFunctionCallback => jQuery(element).asInstanceOf[js.Dynamic].one(event, selector, data, c)
                 }
 
                 val registration: CallbackRegistration = new OnCallbackRegistration(event, callback, cb)

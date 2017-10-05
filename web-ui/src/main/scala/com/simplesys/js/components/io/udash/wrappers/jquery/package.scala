@@ -12,5 +12,5 @@ package object jquery {
   type EasingFunction = String
   type JQueryCallback = (Element, JQueryEvent) => Any
 
-  def jQ: JQueryStatic = js.Dynamic.global.jQuery.asInstanceOf[JQueryStatic]
+  def jQuery: JQueryStatic = js.Dynamic.global.jQuery.asInstanceOf[JQueryStatic]
 }

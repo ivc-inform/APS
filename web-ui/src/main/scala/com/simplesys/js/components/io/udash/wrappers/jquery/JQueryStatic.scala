@@ -242,7 +242,7 @@ object JQueryStatic {
             jQueryStatic.asInstanceOf[js.Dynamic].inArray(value.asInstanceOf[js.Dynamic], array.toJSArray, fromIndex).asInstanceOf[Int]
 
         def parse(data: String) = {
-            jQ(jQueryStatic.parseHTML(data)(0))
+            jQuery(jQueryStatic.parseHTML(data)(0))
         }
 
     }

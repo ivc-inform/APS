@@ -8,6 +8,7 @@ import com.simplesys.js.components.gantt._
 import com.simplesys.option.ScOption
 import com.simplesys.option.ScOption._
 import io.udash.wrappers.jquery._
+import org.scalajs.dom.Element
 
 import scala.scalajs.js
 import scala.scalajs.js.{Date, ThisFunction1}
@@ -27,7 +28,7 @@ class GanttChartProps extends CanvasProps {
             "<div style=\"width:100%;height:100%\"" + " " + s"id=${thiz.getID1}></div>"
     }.toThisFunc.opt
 
-    var ganttView: ScOption[ThisFunction1[classHandler, js.UndefOr[GanttChartOptions], JQuery]] = {
+    var ganttView: ScOption[ThisFunction1[classHandler, js.UndefOr[GanttChartOptions], _]] = {
         (thiz: classHandler, options: js.UndefOr[GanttChartOptions]) ⇒
             val defaults = new GanttChartOptions {
                 override val showWeekends = true
@@ -43,13 +44,13 @@ class GanttChartProps extends CanvasProps {
                 }
             }
 
-            val opts: GanttChartOptions = jQ.extend(true, defaults, options)
+            val opts: GanttChartOptions = jQuery.extend(true, defaults, options)
             //isc debugTrap opts
 
             var _data = opts.data
 
             if (_data.isEmpty)
-                opts.dataUrl.foreach(jQ.getJSON(_, (data: js.Array[_ <: DataStructItem], _, _) ⇒ _data = data))
+                opts.dataUrl.foreach(jQuery.getJSON(_, (data: js.Array[_ <: DataStructItem], _, _) ⇒ _data = data))
 
             if (_data.isDefined)
                 build()
@@ -57,12 +58,27 @@ class GanttChartProps extends CanvasProps {
 
             def build(): Unit = {
                 val minDays = math.floor((opts.slideWidth.get / opts.cellWidth.get) + 5)
-                //isc debugTrap minDays
                 val startEnd = DateUtils.getBoundaryDatesFromData(_data.get, minDays.toInt);
-                //isc debugTrap startEnd
-            }
 
-            jQ(s"#${thiz.getID1}").html(h1("Hello World !!!").render)
+                opts.start = startEnd.minStart
+                opts.end = startEnd.maxEnd
+
+                //jQ(s"#${thiz.getID1}").html(h1("Hello World !!!").render)
+                val els = jQuery(s"#${thiz.getID1}")
+
+                els.each(
+                    (element: Element, _) ⇒ {
+                        val container = jQuery(element)
+
+                        val div = jQuery("<div>", new js.Object{
+                            val `class` = "ganttview"
+                        })
+
+                        isc debugTrap div
+                    }
+                )
+
+            }
     }.toThisFunc.opt
 
 
