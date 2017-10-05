@@ -20,6 +20,10 @@ object DateUtils extends js.Object {
         }
 
         def isWeekend(): Boolean = date.getDay() % 6 == 0
+        def isToday(): Boolean = {
+            val d = new Date()
+            (date.getDate == d.getDate) && (date.getMonth == d.getMonth) && (date.getFullYear == d.getFullYear)
+        }
     }
 
     def daysBetween(start: Date, end: Date): Double = math.ceil((end.getTime() - start.getTime()) / (1000 * 3600 * 24))
@@ -27,10 +31,10 @@ object DateUtils extends js.Object {
     def getBoundaryDatesFromData(data: js.Array[_ <: DataStructItem], minDays: Int): BoundaryDatesFromData = {
         var _minStart = new Date()
         var _maxEnd = new Date()
-        
-        data.toSeqZipWithIndex.foreach {
+
+        data.zipWithIndex.foreach {
             case (dataStructItem, i) ⇒
-                dataStructItem.series.toSeqZipWithIndex.foreach {
+                dataStructItem.series.zipWithIndex.foreach {
                     case (ganttDataItem, j) ⇒
                         val start = ganttDataItem.start
                         val end = ganttDataItem.end

@@ -74,8 +74,8 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
 
         //isc debugTrap headerDiv
 
-        data.toSeqZipWithIndex.foreach {
-            case (dataStructItem, i) ⇒
+        data.foreach {
+            dataStructItem ⇒
 
                 val itemDiv = jQuery("<div>", new js.Object {
                     val `class` = "ganttview-vtheader-item"
@@ -104,8 +104,8 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
 
                 //isc debugTrap seriesDiv
 
-                dataStructItem.series.toSeqZipWithIndex.foreach {
-                    case (ganttDataItem, j) ⇒
+                dataStructItem.series.foreach {
+                    ganttDataItem ⇒
                         //isc debugTrap ganttDataItem
 
                         seriesDiv.append(jQuery("<div>", new js.Object {
@@ -134,11 +134,11 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
         var totalW = 0
 
         var y = 0
-        dates.toSeq.foreach {
+        dates.foreach {
             year ⇒
                 if (year.isDefigned) {
                     var m = 0
-                    year.toSeq.foreach {
+                    year.foreach {
                         mounth ⇒
                             if (mounth.isDefigned) {
                                 var w = mounth.length * cellWidth
@@ -153,7 +153,7 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                                     val css = _css
                                 }).append(monthNames(m) + "/" + y))
 
-                                mounth.toSeq.foreach {
+                                mounth.foreach {
                                     date ⇒
                                         if (date.isDefigned)
                                             daysDiv.append(jQuery("<div>", new js.Object {
@@ -175,6 +175,54 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
     }
 
     def addGrid(div: JQuery, data: js.Array[_ <: DataStructItem], dates: js.Array[js.Array[js.Array[Date]]], cellWidth: Int, showWeekends: Boolean, showToday: Boolean): Unit = {
+        val gridDiv = jQuery("<div>", new js.Object {
+            val `class` = "ganttview-grid"
+        })
 
+        val rowDiv = jQuery("<div>", new js.Object {
+            val `class` = "ganttview-grid-row"
+        })
+
+        dates.foreach {
+            year ⇒
+                if (year.isDefigned) {
+                    year.foreach {
+                        mounth ⇒
+                            if (mounth.isDefigned) {
+                                mounth.foreach {
+                                    date ⇒
+                                        if (date.isDefigned) {
+                                            val cellDiv = jQuery("<div>", new js.Object {
+                                                val `class` = "ganttview-grid-row-cell"
+                                            })
+
+                                            if (date.isWeekend && showWeekends)
+                                                cellDiv.addClass("ganttview-weekend")
+
+                                            if (date.isToday && showToday)
+                                                cellDiv.addClass("ganttview-today")
+
+                                            rowDiv.append(cellDiv)
+                                        }
+
+                                }
+                            }
+                    }
+                }
+        }
+
+        val w = jQuery("div.ganttview-grid-row-cell", rowDiv).length * cellWidth
+        rowDiv.css("width", w + "px")
+        gridDiv.css("width", w + "px")
+
+        data.foreach {
+            dataStructItem ⇒
+                dataStructItem.series.foreach {
+                    _ ⇒ gridDiv.append(isc.clone[JQuery](rowDiv))
+
+                }
+        }
+
+        div append gridDiv
     }
 }
