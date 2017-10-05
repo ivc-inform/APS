@@ -74,7 +74,9 @@ class GanttChartProps extends CanvasProps {
                             val `class` = "ganttview"
                         })
 
-                        isc debugTrap div
+                        //isc debugTrap div
+
+                        new Chart(div, opts).render()
                     }
                 )
 
