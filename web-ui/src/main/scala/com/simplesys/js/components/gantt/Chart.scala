@@ -1,16 +1,12 @@
 package com.simplesys.js.components.gantt
 
 import com.simplesys.SmartClient.System.isc
-import io.udash.wrappers.jquery.JQuery
+import com.simplesys.js.common._
+import com.simplesys.js.components.gantt.DateUtils._
+import io.udash.wrappers.jquery.{JQuery, _}
 
 import scala.scalajs.js
-import io.udash.wrappers.jquery._
-import com.simplesys.js.common._
-
-import scala.scalajs.js.{Date, UndefOr}
-import com.simplesys.js.components.gantt.DateUtils._
-
-import scala.collection.mutable
+import scala.scalajs.js.Date
 
 class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
     def render(): Unit = {
@@ -37,7 +33,8 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
             dates ⇒
                 //isc debugTrap dates
                 addHzHeader(slideDiv, dates, opts.cellWidth.get)
-                addGrid(slideDiv, opts.data.get, dates, opts.cellWidth.get, opts.showWeekends.get, opts.showToday.get);
+                addGrid(slideDiv, opts.data.get, dates, opts.cellWidth.get, opts.showWeekends.get, opts.showToday.get)
+                addBlockContainers(slideDiv, opts.data.get)
         }
     }
 
@@ -220,5 +217,23 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
 
         isc debugTrap gridDiv.html()
         div append gridDiv
+    }
+
+    def addBlockContainers(div: JQuery, data: js.Array[_ <: DataStructItem): Unit = {
+        val blocksDiv = jQuery("<div>", new js.Object {
+            val `class` = "ganttview-blocks"
+        })
+
+        data.foreach {
+            dataStructItem ⇒
+                dataStructItem.series.foreach {
+                    _ ⇒ blocksDiv.append(jQuery("<div>", new js.Object {
+                        val `class` = "ganttview-block-container"
+                    }));
+
+                }
+        }
+
+        div append blocksDiv
     }
 }
