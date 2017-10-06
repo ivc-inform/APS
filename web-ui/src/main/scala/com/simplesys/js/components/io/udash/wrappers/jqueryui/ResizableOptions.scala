@@ -3,28 +3,34 @@ package io.udash.wrappers.jqueryui
 import scala.scalajs.js
 
 trait ResizableOptions extends ResizableEvents {
-  var alsoResize: js.Any = js.undefined
+  val alsoResize: js.UndefOr[js.Any] = js.undefined
+
   // Selector, JQuery or Element
-  var animate: Boolean = js.native
-  var animateDuration: js.Any = js.native
+  val animate: js.UndefOr[Boolean] = js.undefined
+  val animateDuration: js.UndefOr[js.Any] = js.undefined
+
   // number or string
-  var animateEasing: String = js.native
-  var aspectRatio: js.Any = js.native
+  val animateEasing: js.UndefOr[String] = js.undefined
+  val aspectRatio: js.UndefOr[js.Any] = js.undefined
+  
   // boolean or number
-  var autoHide: Boolean = js.native
-  var cancel: String = js.native
-  var containment: js.Any = js.native
+  val autoHide: js.UndefOr[Boolean] = js.undefined
+  val cancel: String 
+  val containment: js.UndefOr[js.Any] = js.undefined
+
   // Selector, Element or string
-  var delay: Double = js.native
-  var disabled: Boolean = js.native
-  var distance: Double = js.native
-  var ghost: Boolean = js.native
-  var grid: js.Any = js.native
-  var handles: js.Any = js.native
+  val delay: js.UndefOr[Double] = js.undefined
+  val disabled: js.UndefOr[Boolean] = js.undefined
+  val distance: js.UndefOr[Double] = js.undefined
+  val ghost: js.UndefOr[Boolean] = js.undefined
+  val grid: js.UndefOr[js.Any] = js.undefined
+  val handles: js.UndefOr[js.Any] = js.undefined
+
+
   // string or object
-  var helper: String = js.native
-  var maxHeight: Double = js.native
-  var maxWidth: Double = js.native
-  var minHeight: Double = js.native
-  var minWidth: Double = js.native
+  val helper: js.UndefOr[String] = js.undefined
+  val maxHeight: js.UndefOr[Double] = js.undefined
+  val maxWidth: js.UndefOr[Double] = js.undefined
+  val minHeight: js.UndefOr[Double] = js.undefined
+  val minWidth: js.UndefOr[Double] = js.undefined
 }
