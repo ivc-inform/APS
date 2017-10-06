@@ -1,18 +1,17 @@
 package com.simplesys.js.components.gantt
 
 import com.simplesys.SmartClient.System.isc
-import com.simplesys.System.Types.Callback
 import com.simplesys.js.components.gantt.Behavior.BehaviorCallback
 import com.simplesys.js.components.gantt.DateUtils._
 import io.udash.wrappers.jquery.{JQuery, _}
 import io.udash.wrappers.jqueryui.JQueryUi._
-import io.udash.wrappers.jqueryui.{ResizableOptions, ResizableUIParams}
+import io.udash.wrappers.jqueryui.{DraggableOptions, ResizableOptions, ResizableUIParams}
 import org.scalajs.dom.Element
 import org.scalajs.dom.raw.Event
 
 import scala.scalajs.js
-import scala.scalajs.js.UndefOr._
 import scala.scalajs.js.Date
+import scala.scalajs.js.UndefOr._
 
 object Behavior {
     type BehaviorCallback = js.Function1[Option[js.Any], _]
@@ -45,7 +44,9 @@ class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
 
     def bindBlockDrag(div: JQuery, cellWidth:Int, startDate: Date, callback: js.UndefOr[BehaviorCallback] = js.undefined): Unit = {
         jQuery("div.ganttview-block", div).draggable(
-            
+          new DraggableOptions{
+
+          }
         )
     }
 
