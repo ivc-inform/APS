@@ -12,12 +12,31 @@ import org.scalajs.dom.raw.Event
 import scala.scalajs.js
 import scala.scalajs.js.Date
 import scala.scalajs.js.UndefOr._
+import scala.scalajs.js.annotation.JSName
 
 object Behavior {
     type BehaviorCallback = js.Function1[Option[js.Any], _]
 }
 
 class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
+    @JSName("apply")
+    def apply(): Unit = {
+        
+        opts.behavior.foreach {
+            behavior ⇒
+                if (behavior.clickable.getOrElse(false))
+                    bindBlockClick(div, behavior.onClick.get)
+
+
+                if (behavior.resizable.getOrElse(false))
+                    bindBlockResize(div, opts.cellWidth.get, opts.start.get, behavior.onResize)
+
+
+                if (behavior.draggable.getOrElse(false))
+                    bindBlockDrag(div, opts.cellWidth.get, opts.start.get, behavior.onDrag)
+        }
+    }
+
     def bindBlockClick(div: JQuery, callback: js.UndefOr[BehaviorCallback] = js.undefined): Unit = {
         jQuery("div.ganttview-block", div).on("click",
             (element: Element, event: JQueryEvent) ⇒ {
@@ -48,7 +67,7 @@ class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
                 override val axis = "x"
                 override val grid = js.Array(cellWidth, cellWidth)
                 override val stop = any2undefOrA({
-                    (thiz: js.Any, event: Event, ui:  DraggableEventUIParams) ⇒ {
+                    (thiz: js.Any, event: Event, ui: DraggableEventUIParams) ⇒ {
                         val block = jQuery(thiz)
                         updateDataAndPosition(div, block, cellWidth, startDate)
                         callback.foreach(callback ⇒ callback(block.data("block-data")))

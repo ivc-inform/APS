@@ -2,6 +2,8 @@ package com.simplesys.js.components.gantt
 
 import java.time.LocalDateTime
 
+import com.simplesys.js.components.gantt.Behavior.BehaviorCallback
+
 import scala.scalajs.js
 import scala.scalajs.js.Date
 
@@ -9,9 +11,9 @@ trait GanttChartBehavior extends js.Object {
     val clickable: js.UndefOr[Boolean] = js.undefined
     val draggable: js.UndefOr[Boolean] = js.undefined
     val resizable: js.UndefOr[Boolean] = js.undefined
-    val onClick: js.UndefOr[js.Function] = js.undefined
-    val onDrag: js.UndefOr[js.Function] = js.undefined
-    val onResize: js.UndefOr[js.Function] = js.undefined
+    val onClick: js.UndefOr[BehaviorCallback] = js.undefined
+    val onDrag: js.UndefOr[BehaviorCallback] = js.undefined
+    val onResize: js.UndefOr[BehaviorCallback] = js.undefined
 }
 
 trait GanttChartOptions extends js.Object {
