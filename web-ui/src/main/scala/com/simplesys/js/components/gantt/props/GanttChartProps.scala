@@ -26,8 +26,7 @@ class GanttChartProps extends CanvasProps {
                 style := "width:100%;height:100%",
                 id := thiz.getID1,
                 link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
-                link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css"),
-                link(href := "css/reset.css", rel := "stylesheet", `type` := "text/css")
+                link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css")
             ).render
     }.toThisFunc.opt
 
@@ -43,6 +42,8 @@ class GanttChartProps extends CanvasProps {
                 new GanttView(
                     thiz.getID1,
                     new GanttChartOptions {
+
+                        override val slideWidth = 1000
                         override val data = js.Array(
                             new DataStructItem {
                                 override val series = js.Array(
