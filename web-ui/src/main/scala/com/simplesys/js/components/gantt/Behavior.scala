@@ -1,14 +1,27 @@
 package com.simplesys.js.components.gantt
 
 import com.simplesys.SmartClient.System.isc
+import com.simplesys.System.Types.Callback
 import com.simplesys.js.components.gantt.DateUtils._
-import io.udash.wrappers.jquery.{JQuery, _}
+import io.udash.wrappers.jquery.{JQuery, JQueryCallback, JQueryEvent, _}
+import org.scalajs.dom.Element
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
 
 
 class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
+    def bindBlockClick(div: JQuery, callback: js.UndefOr[JQueryCallback] = js.undefined): Unit = {
+        jQuery("div.ganttview-block", div).on("click",
+            (element: Element, _) ⇒
+                callback.foreach(callback ⇒ callback(jQuery(element).data("block-data")))
+            )
+    }
+
+    def bindBlockResize(div: JQuery, cellWidth: Int, startDate: Date, callback: js.UndefOr[JQueryCallback] = js.undefined): Unit = {
+        jQuery("div.ganttview-block", div).resizable()
+    }
+
     def updateDataAndPosition(div: JQuery, block: JQuery, cellWidth: Int, startDate: Date): Unit = {
 
         val container = jQuery("div.ganttview-slide-container", div)
