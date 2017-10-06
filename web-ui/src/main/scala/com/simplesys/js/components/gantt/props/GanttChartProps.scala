@@ -5,13 +5,10 @@ import com.simplesys.SmartClient.System._
 import com.simplesys.System._
 import com.simplesys.function._
 import com.simplesys.js.components.gantt._
-import com.simplesys.option.ScOption
 import com.simplesys.option.ScOption._
-import io.udash.wrappers.jquery.jQuery
 
 import scala.scalajs.js
-import scala.scalajs.js.{Date, ThisFunction1}
-//import scalatags.JsDom.all._
+import scala.scalajs.js.Date
 
 class GanttChartProps extends CanvasProps {
     type classHandler <: GanttChart
@@ -24,11 +21,11 @@ class GanttChartProps extends CanvasProps {
     getInnerHTML = {
         (thiz: classHandler) ⇒
             import scalatags.Text.all._
+            //import scalatags.JsDom.all._
             div(
                 style := "width:100%;height:100%",
                 id := thiz.getID1
             ).render
-            //"<div style=\"width:100%;height:100%\"" + " " + s"id=${thiz.getID1}></div>"
     }.toThisFunc.opt
 
 
