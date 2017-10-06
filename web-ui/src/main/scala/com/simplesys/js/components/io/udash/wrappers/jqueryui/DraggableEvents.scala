@@ -2,10 +2,9 @@ package io.udash.wrappers.jqueryui
 
 import scala.scalajs.js
 
-@js.native
 trait DraggableEvents extends js.Object {
-  var create: DraggableEvent = js.native
-  var start: DraggableEvent = js.native
-  var drag: DraggableEvent = js.native
-  var stop: DraggableEvent = js.native
+  var create: js.UndefOr[DraggableEvent] = js.undefined
+  var start: js.UndefOr[DraggableEvent] = js.undefined
+  var drag: js.UndefOr[DraggableEvent] = js.undefined
+  var stop: js.UndefOr[DraggableEvent] = js.undefined
 }

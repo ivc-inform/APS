@@ -43,6 +43,12 @@ class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
         )
     }
 
+    def bindBlockDrag(div: JQuery, cellWidth:Int, startDate: Date, callback: js.UndefOr[BehaviorCallback] = js.undefined): Unit = {
+        jQuery("div.ganttview-block", div).draggable(
+            
+        )
+    }
+
     def updateDataAndPosition(div: JQuery, block: JQuery, cellWidth: Int, startDate: Date): Unit = {
 
         val container = jQuery("div.ganttview-slide-container", div)

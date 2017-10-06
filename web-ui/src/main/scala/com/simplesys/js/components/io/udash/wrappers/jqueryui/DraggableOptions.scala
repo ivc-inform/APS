@@ -4,34 +4,33 @@ import scala.scalajs.js
 import org.scalajs.dom.raw._
 import scala.scalajs.js.|
 
-@js.native
 trait DraggableOptions extends DraggableEvents {
-  var disabled: Boolean = js.native
-  var addClasses: Boolean = js.native
-  var appendTo: js.Any = js.native
-  var axis: String = js.native
-  var cancel: String = js.native
-  var connectToSortable: Element | js.Array[Element] | JQueryUi | String = js.native
-  var containment: js.Any = js.native
-  var cursor: String = js.native
-  var cursorAt: js.Any = js.native
-  var delay: Double = js.native
-  var distance: Double = js.native
-  var grid: js.Array[Double] = js.native
-  var handle: js.Any = js.native
-  var helper: js.Any = js.native
-  var iframeFix: js.Any = js.native
-  var opacity: Double = js.native
-  var refreshPositions: Boolean = js.native
-  var revert: js.Any = js.native
-  var revertDuration: Double = js.native
-  var scope: String = js.native
-  var scroll: Boolean = js.native
-  var scrollSensitivity: Double = js.native
-  var scrollSpeed: Double = js.native
-  var snap: js.Any = js.native
-  var snapMode: String = js.native
-  var snapTolerance: Double = js.native
-  var stack: String = js.native
-  var zIndex: Double = js.native
+  val disabled: js.UndefOr[Boolean] = js.undefined
+  val addClasses: js.UndefOr[Boolean] = js.undefined
+  val appendTo: js.UndefOr[js.Any] = js.undefined
+  val axis: js.UndefOr[String] = js.undefined
+  val cancel: js.UndefOr[String] = js.undefined
+  val connectToSortable: js.UndefOr[Element | js.Array[Element] | JQueryUi | String] = js.undefined
+  val containment: js.UndefOr[js.Any] = js.undefined
+  val cursor: js.UndefOr[String] = js.undefined
+  val cursorAt: js.UndefOr[js.Any] = js.undefined
+  val delay: js.UndefOr[Double] = js.undefined
+  val distance: js.UndefOr[Double] = js.undefined
+  val grid: js.UndefOr[js.Array[Double]] = js.undefined
+  val handle: js.UndefOr[js.Any] = js.undefined
+  val helper: js.UndefOr[js.Any] = js.undefined
+  val iframeFix: js.UndefOr[js.Any] = js.undefined
+  val opacity: js.UndefOr[Double] = js.undefined
+  val refreshPositions: js.UndefOr[Boolean] = js.undefined
+  val revert: js.UndefOr[js.Any] = js.undefined
+  val revertDuration: js.UndefOr[Double] = js.undefined
+  val scope: js.UndefOr[String] = js.undefined
+  val scroll: js.UndefOr[Boolean] = js.undefined
+  val scrollSensitivity: js.UndefOr[Double] = js.undefined
+  val scrollSpeed: js.UndefOr[Double] = js.undefined
+  val snap: js.UndefOr[js.Any] = js.undefined
+  val snapMode: js.UndefOr[String] = js.undefined
+  val snapTolerance: js.UndefOr[Double] = js.undefined
+  val stack: js.UndefOr[String] = js.undefined
+  val zIndex: js.UndefOr[Double] = js.undefined
 }
