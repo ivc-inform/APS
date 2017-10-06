@@ -6,10 +6,12 @@ import com.simplesys.js.components.gantt.Behavior.BehaviorCallback
 import com.simplesys.js.components.gantt.DateUtils._
 import io.udash.wrappers.jquery.{JQuery, _}
 import io.udash.wrappers.jqueryui.JQueryUi._
-import io.udash.wrappers.jqueryui.ResizableOptions
+import io.udash.wrappers.jqueryui.{ResizableOptions, ResizableUIParams}
 import org.scalajs.dom.Element
+import org.scalajs.dom.raw.Event
 
 import scala.scalajs.js
+import scala.scalajs.js.UndefOr._
 import scala.scalajs.js.Date
 
 object Behavior {
@@ -25,10 +27,18 @@ class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
         )
     }
 
-    def bindBlockResize(div: JQuery, cellWidth: Int, startDate: Date, callback: js.UndefOr[Callback] = js.undefined): Unit = {
+    def bindBlockResize(div: JQuery, cellWidth: Int, startDate: Date, callback: js.UndefOr[BehaviorCallback] = js.undefined): Unit = {
         jQuery("div.ganttview-block", div).resizable(
             new ResizableOptions {
-
+                override val grid = cellWidth.asInstanceOf[js.Any]
+                override val handles = "e,w".asInstanceOf[js.Any]
+                override val stop = any2undefOrA({
+                    (thiz: js.Any, event: Event, ui: ResizableUIParams) ⇒  {
+                        val block = jQuery(thiz)
+                        updateDataAndPosition(div, block, cellWidth, startDate)
+                        callback.foreach(callback ⇒ callback(block.data("block-data")))
+                    }
+                })
             }
         )
     }
