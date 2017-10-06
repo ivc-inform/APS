@@ -10,12 +10,12 @@ import org.scalajs.dom.Element
 import org.scalajs.dom.raw.Event
 
 import scala.scalajs.js
-import scala.scalajs.js.Date
+import scala.scalajs.js.{Date, UndefOr}
 import scala.scalajs.js.UndefOr._
 import scala.scalajs.js.annotation.JSName
 
 object Behavior {
-    type BehaviorCallback = js.Function1[Option[js.Any], _]
+    type BehaviorCallback = js.Function1[UndefOr[js.Any], _]
 }
 
 class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
@@ -25,15 +25,15 @@ class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
         opts.behavior.foreach {
             behavior ⇒
                 if (behavior.clickable.getOrElse(false))
-                    bindBlockClick(div, behavior.onClick.get)
+                    bindBlockClick(div, behavior.onClick)
 
 
-                if (behavior.resizable.getOrElse(false))
+                /*if (behavior.resizable.getOrElse(false))
                     bindBlockResize(div, opts.cellWidth.get, opts.start.get, behavior.onResize)
 
 
                 if (behavior.draggable.getOrElse(false))
-                    bindBlockDrag(div, opts.cellWidth.get, opts.start.get, behavior.onDrag)
+                    bindBlockDrag(div, opts.cellWidth.get, opts.start.get, behavior.onDrag)*/
         }
     }
 

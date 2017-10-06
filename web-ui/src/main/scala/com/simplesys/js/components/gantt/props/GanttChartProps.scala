@@ -1,5 +1,6 @@
 package com.simplesys.js.components.gantt.props
 
+import com.simplesys.SmartClient.DataBinding.props.JSONEncoderProps
 import com.simplesys.SmartClient.Foundation.props.CanvasProps
 import com.simplesys.SmartClient.System._
 import com.simplesys.System._
@@ -8,7 +9,8 @@ import com.simplesys.js.components.gantt._
 import com.simplesys.option.ScOption._
 
 import scala.scalajs.js
-import scala.scalajs.js.Date
+import scala.scalajs.js.UndefOr.any2undefOrA
+import scala.scalajs.js.{Date, UndefOr}
 
 class GanttChartProps extends CanvasProps {
     type classHandler <: GanttChart
@@ -23,7 +25,7 @@ class GanttChartProps extends CanvasProps {
             import scalatags.Text.all._
             //import scalatags.JsDom.all._
             div(
-                style := "width:100%;height:100%",
+                //style := "width:100%;height:100%",
                 id := thiz.getID1,
                 link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
                 link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css")
@@ -43,6 +45,17 @@ class GanttChartProps extends CanvasProps {
                     thiz.getID1,
                     new GanttChartOptions {
 
+                        override val behavior = new GanttChartBehavior {
+                            override val onClick = any2undefOrA({
+                                (data: UndefOr[js.Any]) ⇒ {
+                                    data.foreach {
+                                        data ⇒
+                                            val _data = data.asInstanceOf[GanttDataItem]
+                                            isc.info("You clicked on an event: { start: " + _data.start.toUTCString() + ", end: " + _data.end.toUTCString() + " }")
+                                    }
+                                }
+                            })
+                        }
                         override val slideWidth = 1000
                         override val data = js.Array(
                             new DataStructItem {
@@ -67,8 +80,8 @@ class GanttChartProps extends CanvasProps {
                             }
                         )
                     }
-                )//. helloWorld()
-                 . build()
+                ) //. helloWorld()
+                  .build()
 
                 thiz
             }

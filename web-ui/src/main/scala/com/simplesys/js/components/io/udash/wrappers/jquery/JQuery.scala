@@ -655,8 +655,8 @@ object JQuery {
 
         /** Get the value of an attribute for the first element in the set of matched elements. <br/>
           * See: <a href="http://api.jquery.com/attr/#attr-attributeName">jQuery Docs</a> */
-        def attr(attributeName: String): Option[String] =
-            jquery.asInstanceOf[js.Dynamic].attr(attributeName).asInstanceOf[UndefOr[String]].toOption
+        def attr(attributeName: String): UndefOr[String] =
+            jquery.asInstanceOf[js.Dynamic].attr(attributeName).asInstanceOf[UndefOr[String]]
 
         /** Set one or more attributes for the set of matched elements. <br/>
           * See: <a href="http://api.jquery.com/attr/#attr-attributeName-value">jQuery Docs</a> */
@@ -717,8 +717,8 @@ object JQuery {
 
         /** Return the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute. <br/>
           * See: <a href="http://api.jquery.com/data/#data-key">jQuery Docs</a> */
-        def data(key: String): Option[js.Any] =
-            jquery.asInstanceOf[js.Dynamic].data(key).asInstanceOf[UndefOr[js.Any]].toOption
+        def data(key: String): js.UndefOr[js.Any] =
+            jquery.asInstanceOf[js.Dynamic].data(key).asInstanceOf[UndefOr[js.Any]]
 
         /** Store arbitrary data associated with the matched elements. <br/>
           * See: <a href="http://api.jquery.com/data/#data-key-value">jQuery Docs</a> */
@@ -819,8 +819,8 @@ object JQuery {
 
         /** Retrieve one of the elements matched by the jQuery object. <br/>
           * See: <a href="http://api.jquery.com/get/#get-index">jQuery Docs</a> */
-        def get(index: Int): Option[Element] =
-            jquery.asInstanceOf[js.Dynamic].get(index).asInstanceOf[UndefOr[Element]].toOption
+        def get(index: Int): UndefOr[Element] =
+            jquery.asInstanceOf[js.Dynamic].get(index).asInstanceOf[UndefOr[Element]]
 
         /** Retrieve the elements matched by the jQuery object. <br/>
           * See: <a href="http://api.jquery.com/get/#get">jQuery Docs</a> */
