@@ -11,7 +11,7 @@ import io.udash.wrappers.jquery.jQuery
 
 import scala.scalajs.js
 import scala.scalajs.js.{Date, ThisFunction1}
-import scalatags.JsDom.all._
+//import scalatags.JsDom.all._
 
 class GanttChartProps extends CanvasProps {
     type classHandler <: GanttChart
@@ -23,8 +23,12 @@ class GanttChartProps extends CanvasProps {
 
     getInnerHTML = {
         (thiz: classHandler) ⇒
-            //println(jQuery(div(style := "\"width:100%;height:100%\"", id := thiz.getID1).render).html())
-            "<div style=\"width:100%;height:100%\"" + " " + s"id=${thiz.getID1}></div>"
+            import scalatags.Text.all._
+            div(
+                style := "width:100%;height:100%",
+                id := thiz.getID1
+            ).render
+            //"<div style=\"width:100%;height:100%\"" + " " + s"id=${thiz.getID1}></div>"
     }.toThisFunc.opt
 
 
@@ -47,27 +51,28 @@ class GanttChartProps extends CanvasProps {
                                         override val name = "Задача №1"
                                         override val start = new Date(2011, 8, 1)
                                         override val end = new Date(2011, 8, 3)
-                                    } /*,
-                                                        new GanttDataItem {
-                                                            override val name = "Задача №2"
-                                                            override val start = new Date(2011, 8, 2)
-                                                            override val end = new Date(2011, 8, 5)
-                                                            override val color = "#f0f0f0"
-                                                        }, new GanttDataItem {
-                                                            override val name = "Задача №3"
-                                                            override val start = new Date(2011, 8, 1)
-                                                            override val end = new Date(2011, 8, 10)
-                                                            override val color = "#e0e0e0"
-                                                        }*/
+                                    },
+                                    new GanttDataItem {
+                                        override val name = "Задача №2"
+                                        override val start = new Date(2011, 8, 2)
+                                        override val end = new Date(2011, 8, 5)
+                                        override val color = "#f0f0f0"
+                                    }, new GanttDataItem {
+                                        override val name = "Задача №3"
+                                        override val start = new Date(2011, 8, 1)
+                                        override val end = new Date(2011, 8, 10)
+                                        override val color = "#e0e0e0"
+                                    }
                                 )
                             }
                         )
                     }
-                ).build()
+                ). helloWorld()
+                 //. build()
 
                 thiz
             }
     }.toThisFunc.opt
-    
+
     redrawOnResize = false.opt
 }

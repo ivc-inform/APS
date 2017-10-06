@@ -1,12 +1,12 @@
 package com.simplesys.js.components.gantt
 
 import io.udash.wrappers.jquery.jQuery
-import scalatags.JsDom.all._
+
 //import scalatags.JsDom.all._
 
 import scala.scalajs.js
 
-class GanttView(id: String, options: js.UndefOr[GanttChartOptions]) extends js.Object {
+class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.Object {
     val defaults = new GanttChartOptions {
         override val showWeekends = true
         override val showToday = true
@@ -23,7 +23,7 @@ class GanttView(id: String, options: js.UndefOr[GanttChartOptions]) extends js.O
 
     def build(): Unit = {
 
-        val divChart = jQuery(s"#$id")
+        val divChart = jQuery(s"#$ID")
 
         val opts: GanttChartOptions = jQuery.extend(true, defaults, options)
 
@@ -50,7 +50,16 @@ class GanttView(id: String, options: js.UndefOr[GanttChartOptions]) extends js.O
             val w = jQuery("div.ganttview-vtheader", divChart).outerWidth() + jQuery("div.ganttview-slide-container", divChart).outerWidth()
             divChart.css("width", (w + 2) + "px")
         }
+    }
 
-         //divChart.append(h1("Hello World !").render)
+    def helloWorld(): Unit = {
+        val divChart = jQuery(s"#$ID")
+
+        /*import scalatags.Text.all._
+        val a = div(style := "width:100%;height:100%", id := "12456").render
+        println(a)*/
+
+        import scalatags.JsDom.all._
+        divChart.append(h1("Hello World !").render)
     }
 }
