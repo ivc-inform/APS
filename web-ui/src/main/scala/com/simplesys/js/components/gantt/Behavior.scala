@@ -26,14 +26,12 @@ class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
             behavior ⇒
                 if (behavior.clickable.getOrElse(false))
                     bindBlockClick(div, behavior.onClick)
-
-
+                
                 if (behavior.resizable.getOrElse(false))
                     bindBlockResize(div, opts.cellWidth.get, opts.start.get, behavior.onResize)
 
-
-                /*if (behavior.draggable.getOrElse(false))
-                    bindBlockDrag(div, opts.cellWidth.get, opts.start.get, behavior.onDrag)*/
+                if (behavior.draggable.getOrElse(false))
+                    bindBlockDrag(div, opts.cellWidth.get, opts.start.get, behavior.onDrag)
         }
     }
 

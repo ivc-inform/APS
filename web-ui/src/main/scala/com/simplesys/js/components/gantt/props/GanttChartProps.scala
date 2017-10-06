@@ -55,6 +55,24 @@ class GanttChartProps extends CanvasProps {
                                     }
                                 }
                             })
+                            override val onDrag = any2undefOrA({
+                                (data: UndefOr[js.Any]) ⇒ {
+                                    data.foreach {
+                                        data ⇒
+                                            val _data = data.asInstanceOf[GanttDataItem]
+                                            isc.info("You dragged an event: { start: " + _data.start.toUTCString() + ", end: " + _data.end.toUTCString() + " }")
+                                    }
+                                }
+                            })
+                            override val onResize = any2undefOrA({
+                                (data: UndefOr[js.Any]) ⇒ {
+                                    data.foreach {
+                                        data ⇒
+                                            val _data = data.asInstanceOf[GanttDataItem]
+                                            isc.info("You resized an event: { start: " + _data.start.toUTCString() + ", end: " + _data.end.toUTCString() + " }")
+                                    }
+                                }
+                            })
                         }
                         override val slideWidth = 1000
                         override val data = js.Array(
