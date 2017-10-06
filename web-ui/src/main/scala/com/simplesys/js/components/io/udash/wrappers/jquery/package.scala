@@ -10,7 +10,7 @@ package object jquery {
   /** See: <a href="http://api.jquery.com/category/selectors/">jQuery Docs</a> */
   type Selector = String
   type EasingFunction = String
-  type JQueryCallback = (Element, JQueryEvent) => Any
+  type JQueryCallback = (Element, JQueryEvent) => js.Any
 
   def jQuery: JQueryStatic = js.Dynamic.global.jQuery.asInstanceOf[JQueryStatic]
 }

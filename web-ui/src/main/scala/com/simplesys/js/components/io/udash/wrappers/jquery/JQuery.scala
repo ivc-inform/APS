@@ -120,7 +120,7 @@ trait JQuery extends js.Object {
 
     /** Store arbitrary data associated with the matched elements. <br/>
       * See: <a href="http://api.jquery.com/data/#data-key-value">jQuery Docs</a> */
-    def data(key: String, value: Any): JQuery = js.native
+    def data(key: String, value: js.Any): JQuery = js.native
 
     /** Return the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute. <br/>
       * See: <a href="http://api.jquery.com/data/#data-key">jQuery Docs</a> */
@@ -576,12 +576,12 @@ trait JQuery extends js.Object {
     /** Get the current value of the first element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/val/">jQuery Docs</a> */
     @JSName("val")
-    def value(): String | Int | Double | js.Array[Any] = js.native
+    def value(): String | Int | Double | js.Array[js.Any] = js.native
 
     /** Set the value of each element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/val/">jQuery Docs</a> */
     @JSName("val")
-    def value(value: String | Int | Double | js.Array[Any]): JQuery = js.native
+    def value(value: String | Int | Double | js.Array[js.Any]): JQuery = js.native
 
     /** Get the current computed width for the first element in the set of matched elements. <br/>
       * See: <a href="http://api.jquery.com/width/">jQuery Docs</a> */
@@ -619,10 +619,10 @@ object JQuery {
         import js.JSConverters._
 
         class OnCallbackRegistration(event: String, callback: JQueryCallback,
-                                     reg: (ThisFunction1[Element, JQueryEvent, Any]) => Any,
-                                     unreg: (String, ThisFunction1[Element, JQueryEvent, Any]) => js.Any = (event, c) => jquery.asInstanceOf[js.Dynamic].off(event, c))
+                                     reg: (ThisFunction1[Element, JQueryEvent, js.Any]) => js.Any,
+                                     unreg: (String, ThisFunction1[Element, JQueryEvent, js.Any]) => js.Any = (event, c) => jquery.asInstanceOf[js.Dynamic].off(event, c))
           extends CallbackRegistration {
-            private val c: ThisFunction1[Element, JQueryEvent, Any] = callback
+            private val c: ThisFunction1[Element, JQueryEvent, js.Any] = callback
             reg(c)
 
             override def unregister(): Unit = unreg(event, c)
@@ -640,17 +640,17 @@ object JQuery {
 
         /** Perform a custom animation of a set of CSS properties. <br/>
           * See: <a href="http://api.jquery.com/animate/">jQuery Docs</a> */
-        def animate(properties: Map[String, Any], duration: Int = 400, easing: EasingFunction = EasingFunction.swing, callback: (Element) => Any = (_) => {}): JQuery =
+        def animate(properties: Map[String, js.Any], duration: Int = 400, easing: EasingFunction = EasingFunction.swing, callback: (Element) => js.Any = (_) => {}): JQuery =
             jquery.asInstanceOf[js.Dynamic].animate(properties.toJSDictionary, duration, easing, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Perform a custom animation of a set of CSS properties. <br/>
           * See: <a href="http://api.jquery.com/animate/">jQuery Docs</a> */
-        def animate(properties: Map[String, Any], options: AnimationOptions): JQuery =
+        def animate(properties: Map[String, js.Any], options: AnimationOptions): JQuery =
             jquery.asInstanceOf[js.Dynamic].animate(properties.toJSDictionary, options.toJSDictionary).asInstanceOf[JQuery]
 
         /** Insert content, specified by the parameter, to the end of each element in the set of matched elements. <br/>
           * See: <a href="http://api.jquery.com/append/">jQuery Docs</a> */
-        def append(function: (Element, Int, String) => Any): JQuery =
+        def append(function: (Element, Int, String) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].append(js.ThisFunction.fromFunction3(function)).asInstanceOf[JQuery]
 
         /** Get the value of an attribute for the first element in the set of matched elements. <br/>
@@ -717,12 +717,12 @@ object JQuery {
 
         /** Return the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute. <br/>
           * See: <a href="http://api.jquery.com/data/#data-key">jQuery Docs</a> */
-        def data(key: String): Option[Any] =
-            jquery.asInstanceOf[js.Dynamic].data(key).asInstanceOf[UndefOr[Any]].toOption
+        def data(key: String): Option[js.Any] =
+            jquery.asInstanceOf[js.Dynamic].data(key).asInstanceOf[UndefOr[js.Any]].toOption
 
         /** Store arbitrary data associated with the matched elements. <br/>
           * See: <a href="http://api.jquery.com/data/#data-key-value">jQuery Docs</a> */
-        def data(obj: Map[String, Any]): JQuery =
+        def data(obj: Map[String, js.Any]): JQuery =
             jquery.asInstanceOf[js.Dynamic].data(obj.toJSDictionary).asInstanceOf[JQuery]
 
         /** Bind an event handler to the "dblclick" JavaScript event on an element. <br/>
@@ -735,7 +735,7 @@ object JQuery {
 
         /** Iterate over a jQuery object, executing a function for each matched element. <br/>
           * See: <a href="http://api.jquery.com/each/">jQuery Docs</a> */
-        def each(callback: (Element, Int) => Any): JQuery =
+        def each(callback: (Element, Int) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].each(js.ThisFunction.fromFunction2(callback)).asInstanceOf[JQuery]
 
         /** Bind an event handler to the "error" JavaScript event on an element. <br/>
@@ -750,7 +750,7 @@ object JQuery {
 
         /** Display the matched elements by fading them to opaque. <br/>
           * See: <a href="http://api.jquery.com/fadeIn/">jQuery Docs</a> */
-        def fadeIn(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery =
+        def fadeIn(duration: Int, easing: EasingFunction, callback: (Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].fadeIn(duration, easing, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Display the matched elements by fading them to opaque. <br/>
@@ -760,7 +760,7 @@ object JQuery {
 
         /** Hide the matched elements by fading them to transparent. <br/>
           * See: <a href="http://api.jquery.com/fadeOut/">jQuery Docs</a> */
-        def fadeOut(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery =
+        def fadeOut(duration: Int, easing: EasingFunction, callback: (Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].fadeOut(duration, easing, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Hide the matched elements by fading them to transparent. <br/>
@@ -770,17 +770,17 @@ object JQuery {
 
         /** Adjust the opacity of the matched elements. <br/>
           * See: <a href="http://api.jquery.com/fadeTo/">jQuery Docs</a> */
-        def fadeTo(duration: Int, opacity: Double, callback: (Element) => Any): JQuery =
+        def fadeTo(duration: Int, opacity: Double, callback: (Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].fadeTo(duration, opacity, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Adjust the opacity of the matched elements. <br/>
           * See: <a href="http://api.jquery.com/fadeTo/">jQuery Docs</a> */
-        def fadeTo(duration: Int, opacity: Double, easing: EasingFunction, callback: (Element) => Any): JQuery =
+        def fadeTo(duration: Int, opacity: Double, easing: EasingFunction, callback: (Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].fadeTo(duration, opacity, easing, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Display or hide the matched elements by animating their opacity. <br/>
           * See: <a href="http://api.jquery.com/fadeToggle/">jQuery Docs</a> */
-        def fadeToggle(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery =
+        def fadeToggle(duration: Int, easing: EasingFunction, callback: (Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].fadeToggle(duration, easing, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Display or hide the matched elements by animating their opacity. <br/>
@@ -834,7 +834,7 @@ object JQuery {
 
         /** Hide the matched elements. <br/>
           * See: <a href="http://api.jquery.com/hide/">jQuery Docs</a> */
-        def hide(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery =
+        def hide(duration: Int, easing: EasingFunction, callback: (Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].hide(duration, easing, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Hide the matched elements. <br/>
@@ -844,7 +844,7 @@ object JQuery {
 
         /** Bind two handlers to the matched elements, to be executed when the mouse pointer enters and leaves the elements. <br/>
           * See: <a href="http://api.jquery.com/hover/">jQuery Docs</a> */
-        def hover(handlerIn: (Element) => Any, handlerOut: (Element) => Any): JQuery = {
+        def hover(handlerIn: (Element) => js.Any, handlerOut: (Element) => js.Any): JQuery = {
             mouseEnter((el, _) => handlerIn(el))
             mouseLeave((el, _) => handlerOut(el))
             jquery
@@ -852,7 +852,7 @@ object JQuery {
 
         /** Bind a single handler to the matched elements, to be executed when the mouse pointer enters or leaves the elements. <br/>
           * See: <a href="http://api.jquery.com/hover/">jQuery Docs</a> */
-        def hover(handlerInOut: (Element) => Any): JQuery = hover(handlerInOut, handlerInOut)
+        def hover(handlerInOut: (Element) => js.Any): JQuery = hover(handlerInOut, handlerInOut)
 
         /** Set the CSS inner height of each element in the set of matched elements. <br/>
           * See: <a href="http://api.jquery.com/innerHeight/#innerHeight-value">jQuery Docs</a> */
@@ -895,12 +895,12 @@ object JQuery {
 
         /** Load data from the server and place the returned HTML into the matched element. <br/>
           * See: <a href="http://api.jquery.com/load/">jQuery Docs</a> */
-        def load(url: String, data: js.Any, callback: (Element, String, String, JQueryXHR) => Any): JQuery =
+        def load(url: String, data: js.Any, callback: (Element, String, String, JQueryXHR) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].load(url, data, js.ThisFunction.fromFunction4(callback)).asInstanceOf[JQuery]
 
         /** Pass each element in the current matched set through a function, producing a new jQuery object containing the return values. <br/>
           * See: <a href="http://api.jquery.com/map/">jQuery Docs</a> */
-        def map(callback: (Int, Element) => Any): JQuery =
+        def map(callback: (Int, Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].map(js.ThisFunction.fromFunction2(callback)).asInstanceOf[JQuery]
 
         /** Bind an event handler to the "mousedown" JavaScript event on an element. <br/>
@@ -1056,7 +1056,7 @@ object JQuery {
 
         private def separateCallbacks(event: String, callback: JQueryCallback, params: CallbackParameters): Unit = {
 
-            type ThisFunctionCallback = ThisFunction1[Element, JQueryEvent, Any]
+            type ThisFunctionCallback = ThisFunction1[Element, JQueryEvent, js.Any]
 
             jquery.asInstanceOf[js.Dynamic].each(js.ThisFunction.fromFunction2((element: Element, idx: Int) => {
                 val cb = params match {
@@ -1101,33 +1101,33 @@ object JQuery {
 
         /** Insert content, specified by the parameter, to the beginning of each element in the set of matched elements. <br/>
           * See: <a href="http://api.jquery.com/prepend/">jQuery Docs</a> */
-        def prepend(function: (Element, Int, String) => Any): JQuery =
+        def prepend(function: (Element, Int, String) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].prepend(js.ThisFunction.fromFunction3(function)).asInstanceOf[JQuery]
 
         /** Set one or more properties for the set of matched elements. <br/>
           * See: <a href="http://api.jquery.com/prop/">jQuery Docs</a> */
-        def prop(propertyName: String, function: (Element, Int, Any) => Any): JQuery =
+        def prop(propertyName: String, function: (Element, Int, js.Any) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].prop(propertyName, js.ThisFunction.fromFunction3(function)).asInstanceOf[JQuery]
 
         /** Set one or more properties for the set of matched elements. <br/>
           * See: <a href="http://api.jquery.com/prop/">jQuery Docs</a> */
-        def prop(properties: Map[String, Any]): JQuery =
+        def prop(properties: Map[String, js.Any]): JQuery =
             jquery.asInstanceOf[js.Dynamic].prop(properties.toJSDictionary).asInstanceOf[JQuery]
 
         /** Add a collection of DOM elements onto the jQuery stack. <br/>
           * See: <a href="http://api.jquery.com/pushStack/">jQuery Docs</a> */
-        def pushStack(elements: Seq[Any]): JQuery =
+        def pushStack(elements: Seq[js.Any]): JQuery =
             jquery.asInstanceOf[js.Dynamic].pushStack(elements.toJSArray).asInstanceOf[JQuery]
 
         /** Add a collection of DOM elements onto the jQuery stack. <br/>
           * See: <a href="http://api.jquery.com/pushStack/">jQuery Docs</a> */
-        def pushStack(elements: Seq[Any], name: String, arguments: Seq[Any]): JQuery =
+        def pushStack(elements: Seq[js.Any], name: String, arguments: Seq[js.Any]): JQuery =
             jquery.asInstanceOf[js.Dynamic].pushStack(elements.toJSArray, name, arguments.toJSArray).asInstanceOf[JQuery]
 
         /** Specify a function to execute when the DOM is fully loaded. <br/>
           * See: <a href="http://api.jquery.com/ready/">jQuery Docs</a> */
         @deprecated("Use jQ(callback) instead.", "1.1.0")
-        def ready(callback: (Element) => Any): JQuery =
+        def ready(callback: (Element) => js.Any): JQuery =
         jquery.asInstanceOf[js.Dynamic].ready(js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Remove a single class, multiple classes, or all classes from each element in the set of matched elements. <br/>
@@ -1166,7 +1166,7 @@ object JQuery {
 
         /** Display the matched elements. <br/>
           * See: <a href="http://api.jquery.com/show/">jQuery Docs</a> */
-        def show(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery =
+        def show(duration: Int, easing: EasingFunction, callback: (Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].show(duration, easing, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Display the matched elements. <br/>
@@ -1176,7 +1176,7 @@ object JQuery {
 
         /** Display the matched elements with a sliding motion. <br/>
           * See: <a href="http://api.jquery.com/slideDown/">jQuery Docs</a> */
-        def slideDown(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery =
+        def slideDown(duration: Int, easing: EasingFunction, callback: (Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].slideDown(duration, easing, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Display the matched elements with a sliding motion. <br/>
@@ -1186,7 +1186,7 @@ object JQuery {
 
         /** Display or hide the matched elements with a sliding motion. <br/>
           * See: <a href="http://api.jquery.com/slideToggle/">jQuery Docs</a> */
-        def slideToggle(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery =
+        def slideToggle(duration: Int, easing: EasingFunction, callback: (Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].slideToggle(duration, easing, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Display or hide the matched elements with a sliding motion. <br/>
@@ -1196,7 +1196,7 @@ object JQuery {
 
         /** Hide the matched elements with a sliding motion. <br/>
           * See: <a href="http://api.jquery.com/slideUp/">jQuery Docs</a> */
-        def slideUp(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery =
+        def slideUp(duration: Int, easing: EasingFunction, callback: (Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].slideUp(duration, easing, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Hide the matched elements with a sliding motion. <br/>
@@ -1224,7 +1224,7 @@ object JQuery {
 
         /** Display or hide the matched elements. <br/>
           * See: <a href="http://api.jquery.com/toggle/">jQuery Docs</a> */
-        def toggle(duration: Int, easing: EasingFunction, callback: (Element) => Any): JQuery =
+        def toggle(duration: Int, easing: EasingFunction, callback: (Element) => js.Any): JQuery =
             jquery.asInstanceOf[js.Dynamic].toggle(duration, easing, js.ThisFunction.fromFunction1(callback)).asInstanceOf[JQuery]
 
         /** Display or hide the matched elements. <br/>
@@ -1244,22 +1244,22 @@ object JQuery {
 
         /** Execute all handlers and behaviors attached to the matched elements for the given event type. <br/>
           * See: <a href="http://api.jquery.com/trigger/">jQuery Docs</a> */
-        def trigger(event: String | JQueryEvent, extraParams: Map[String, Any]): JQuery =
+        def trigger(event: String | JQueryEvent, extraParams: Map[String, js.Any]): JQuery =
             jquery.asInstanceOf[js.Dynamic].trigger(event.asInstanceOf[js.Dynamic], extraParams.toJSDictionary).asInstanceOf[JQuery]
 
         /** Execute all handlers and behaviors attached to the matched elements for the given event type. <br/>
           * See: <a href="http://api.jquery.com/trigger/">jQuery Docs</a> */
-        def trigger(event: String | JQueryEvent, extraParams: Seq[Any]): JQuery =
+        def trigger(event: String | JQueryEvent, extraParams: Seq[js.Any]): JQuery =
             jquery.asInstanceOf[js.Dynamic].trigger(event.asInstanceOf[js.Dynamic], extraParams.toJSArray).asInstanceOf[JQuery]
 
         /** Execute all handlers attached to an element for an event. <br/>
           * See: <a href="http://api.jquery.com/triggerHandler/">jQuery Docs</a> */
-        def triggerHandler(event: String | JQueryEvent, extraParams: Map[String, Any]): JQuery =
+        def triggerHandler(event: String | JQueryEvent, extraParams: Map[String, js.Any]): JQuery =
             jquery.asInstanceOf[js.Dynamic].triggerHandler(event.asInstanceOf[js.Dynamic], extraParams.toJSDictionary).asInstanceOf[JQuery]
 
         /** Execute all handlers attached to an element for an event. <br/>
           * See: <a href="http://api.jquery.com/triggerHandler/">jQuery Docs</a> */
-        def triggerHandler(event: String | JQueryEvent, extraParams: Seq[Any]): JQuery =
+        def triggerHandler(event: String | JQueryEvent, extraParams: Seq[js.Any]): JQuery =
             jquery.asInstanceOf[js.Dynamic].triggerHandler(event.asInstanceOf[js.Dynamic], extraParams.toJSArray).asInstanceOf[JQuery]
 
         /** Set the value of each element in the set of matched elements. <br/>

@@ -12,15 +12,16 @@ import scala.scalajs.js
 import scala.scalajs.js.Date
 
 object Behavior {
-    type BehaviorCallback = js.Function1[js.Any, _]
+    type BehaviorCallback = js.Function1[Option[js.Any], _]
 }
 
 class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
     def bindBlockClick(div: JQuery, callback: js.UndefOr[BehaviorCallback] = js.undefined): Unit = {
         jQuery("div.ganttview-block", div).on("click",
-            (element: Element, _) ⇒
-                callback.foreach(callback ⇒ callback(jQuery(element).data("block-data"), null))
-            )
+            (element: Element, event: JQueryEvent) ⇒ {
+                callback.foreach(callback ⇒ callback(jQuery(element).data("block-data")))
+            }
+        )
     }
 
     def bindBlockResize(div: JQuery, cellWidth: Int, startDate: Date, callback: js.UndefOr[Callback] = js.undefined): Unit = {
