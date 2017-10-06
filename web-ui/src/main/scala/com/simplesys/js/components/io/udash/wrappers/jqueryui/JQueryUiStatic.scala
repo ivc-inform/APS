@@ -4,7 +4,7 @@ import scala.scalajs.js
 import scala.scalajs.js.Date
 
 @js.native
-trait JQueryStatic extends js.Object {
+trait JQueryUiStatic extends js.Object {
   var ui: UI = js.native
   var datepicker: Datepicker = js.native
   var widget: Widget = js.native

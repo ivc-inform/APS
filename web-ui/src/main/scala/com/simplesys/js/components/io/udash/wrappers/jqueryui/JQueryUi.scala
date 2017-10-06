@@ -616,5 +616,5 @@ trait JQueryUi extends JQuery {
   def zIndex(): Double = js.native
   def zIndex(zIndex: Double): JQueryUi = js.native
   var widget: Widget = js.native
-  var jQuery: JQueryStatic = js.native
+  var jQuery: JQueryUiStatic = js.native
 }

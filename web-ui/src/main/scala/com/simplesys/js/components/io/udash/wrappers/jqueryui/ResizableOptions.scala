@@ -1,11 +1,9 @@
 package io.udash.wrappers.jqueryui
 
 import scala.scalajs.js
-import org.scalajs.dom.raw._
 
-@js.native
 trait ResizableOptions extends ResizableEvents {
-  var alsoResize: js.Any = js.native
+  var alsoResize: js.Any = js.undefined
   // Selector, JQuery or Element
   var animate: Boolean = js.native
   var animateDuration: js.Any = js.native

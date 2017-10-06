@@ -4,9 +4,10 @@ import com.simplesys.SmartClient.System.isc
 import com.simplesys.System.Types.Callback
 import com.simplesys.js.components.gantt.Behavior.BehaviorCallback
 import com.simplesys.js.components.gantt.DateUtils._
-import io.udash.wrappers.jquery.{JQuery, JQueryCallback, _}
-import org.scalajs.dom.Element
+import io.udash.wrappers.jquery.{JQuery, _}
 import io.udash.wrappers.jqueryui.JQueryUi._
+import io.udash.wrappers.jqueryui.ResizableOptions
+import org.scalajs.dom.Element
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
@@ -25,7 +26,11 @@ class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
     }
 
     def bindBlockResize(div: JQuery, cellWidth: Int, startDate: Date, callback: js.UndefOr[Callback] = js.undefined): Unit = {
-        jQuery("div.ganttview-block", div).resizable()
+        jQuery("div.ganttview-block", div).resizable(
+            new ResizableOptions {
+
+            }
+        )
     }
 
     def updateDataAndPosition(div: JQuery, block: JQuery, cellWidth: Int, startDate: Date): Unit = {
