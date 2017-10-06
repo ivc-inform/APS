@@ -2,23 +2,28 @@ package com.simplesys.js.components.gantt
 
 import com.simplesys.SmartClient.System.isc
 import com.simplesys.System.Types.Callback
+import com.simplesys.js.components.gantt.Behavior.BehaviorCallback
 import com.simplesys.js.components.gantt.DateUtils._
-import io.udash.wrappers.jquery.{JQuery, JQueryCallback, JQueryEvent, _}
+import io.udash.wrappers.jquery.{JQuery, JQueryCallback, _}
 import org.scalajs.dom.Element
+import io.udash.wrappers.jqueryui.JQueryUi._
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
 
+object Behavior {
+    type BehaviorCallback = js.Function1[js.Any, _]
+}
 
 class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
-    def bindBlockClick(div: JQuery, callback: js.UndefOr[JQueryCallback] = js.undefined): Unit = {
+    def bindBlockClick(div: JQuery, callback: js.UndefOr[BehaviorCallback] = js.undefined): Unit = {
         jQuery("div.ganttview-block", div).on("click",
             (element: Element, _) ⇒
-                callback.foreach(callback ⇒ callback(jQuery(element).data("block-data")))
+                callback.foreach(callback ⇒ callback(jQuery(element).data("block-data"), null))
             )
     }
 
-    def bindBlockResize(div: JQuery, cellWidth: Int, startDate: Date, callback: js.UndefOr[JQueryCallback] = js.undefined): Unit = {
+    def bindBlockResize(div: JQuery, cellWidth: Int, startDate: Date, callback: js.UndefOr[Callback] = js.undefined): Unit = {
         jQuery("div.ganttview-block", div).resizable()
     }
 

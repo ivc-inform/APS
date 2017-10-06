@@ -1,4 +1,4 @@
-package com.simplesys.js.components.io.udash.wrappers.jqueryui
+package io.udash.wrappers.jqueryui
 
 import scala.scalajs.js
 import scala.scalajs.js.|
