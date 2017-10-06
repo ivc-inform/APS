@@ -543,7 +543,7 @@ trait JQuery extends js.Object {
 
     /** Set the content of each element in the set of matched elements to the specified text. <br/>
       * See: <a href="http://api.jquery.com/text/#text-text/">jQuery Docs</a> */
-    def text(text: String | Double | Int | Boolean): JQuery = js.native
+    def text(text: String | Double | Int | Boolean ): JQuery = js.native
 
     /** Display or hide the matched elements. <br/>
       * See: <a href="http://api.jquery.com/toggle/">jQuery Docs</a> */

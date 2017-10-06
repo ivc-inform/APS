@@ -1,10 +1,34 @@
 package com.simplesys.js.components.gantt
 
-import io.udash.wrappers.jquery.JQuery
+import com.simplesys.SmartClient.System.isc
+import com.simplesys.js.components.gantt.DateUtils._
+import io.udash.wrappers.jquery.{JQuery, _}
 
 import scala.scalajs.js
+import scala.scalajs.js.Date
 
 
-class Behavior(container: JQuery, opts: GanttChartOptions) extends js.Object {
+class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
+    def updateDataAndPosition(div: JQuery, block: JQuery, cellWidth: Int, startDate: Date): Unit = {
 
+        val container = jQuery("div.ganttview-slide-container", div)
+        val scroll = container.scrollLeft()
+        val offset = block.offset().left - container.offset().left - 1 + scroll
+
+        // Set new start date
+        val daysFromStart = math.round(offset / cellWidth)
+        val newStart = isc.clone(startDate).addDays(daysFromStart.toInt)
+        block.data("block-data").foreach(_.asInstanceOf[js.Dynamic].start = newStart)
+
+        // Set new end date
+        val width = block.outerWidth()
+        val numberOfDays = Math.round(width / cellWidth) - 1
+        block.data("block-data").foreach(_.asInstanceOf[js.Dynamic].end = isc.clone(newStart).addDays(numberOfDays.toInt))
+
+        jQuery("div.ganttview-block-text", block).text((numberOfDays + 1).toDouble)
+
+        // Remove top and left properties to avoid incorrect block positioning,
+        // set position to relative to keep blocks relative to scrollbar when scrolling
+        block.css("top", "").css("left", "").css("position", "relative").css("margin-left", offset + "px")
+    }
 }
