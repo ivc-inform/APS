@@ -24,10 +24,12 @@ class GanttChartProps extends CanvasProps {
             //import scalatags.JsDom.all._
             div(
                 style := "width:100%;height:100%",
-                id := thiz.getID1
+                id := thiz.getID1,
+                link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
+                link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css"),
+                link(href := "css/reset.css", rel := "stylesheet", `type` := "text/css")
             ).render
     }.toThisFunc.opt
-
 
     draw = {
         (thiz: classHandler, args: JSUndefined[IscArray[JSAny]]) ⇒
@@ -64,8 +66,8 @@ class GanttChartProps extends CanvasProps {
                             }
                         )
                     }
-                ). helloWorld()
-                 //. build()
+                )//. helloWorld()
+                 . build()
 
                 thiz
             }
