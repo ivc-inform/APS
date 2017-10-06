@@ -15,7 +15,7 @@ trait ResizableOptions extends ResizableEvents {
   
   // boolean or number
   val autoHide: js.UndefOr[Boolean] = js.undefined
-  val cancel: String 
+  val cancel: js.UndefOr[String] = js.undefined
   val containment: js.UndefOr[js.Any] = js.undefined
 
   // Selector, Element or string
