@@ -82,7 +82,7 @@ class GanttChartProps extends CanvasProps {
                                         override val name = "Задача №1"
                                         override val start = new Date(2011, 8, 1)
                                         override val end = new Date(2011, 8, 3)
-                                    },
+                                    }/*,
                                     new GanttDataItem {
                                         override val name = "Задача №2"
                                         override val start = new Date(2011, 8, 2)
@@ -93,7 +93,7 @@ class GanttChartProps extends CanvasProps {
                                         override val start = new Date(2011, 8, 1)
                                         override val end = new Date(2011, 8, 10)
                                         override val color = "#e0e0e0"
-                                    }
+                                    }*/
                                 )
                             }
                         )
