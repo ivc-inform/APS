@@ -12,6 +12,12 @@ trait BoundaryDatesFromData extends js.Object {
 
 object DateUtils extends js.Object {
     implicit class DateOpts(date: Date) {
+        def dclone(): Date = {
+            val copy = new Date()
+            copy.setTime(date.getTime())
+            copy
+        }
+
         def addDays(days: Int): Date = {
             val res = new Date(date.valueOf)
             res.setDate(res.getDate + days)
@@ -53,7 +59,7 @@ object DateUtils extends js.Object {
         }
 
         if (daysBetween(_minStart, _maxEnd) < minDays) {
-            _maxEnd = jQuery.ivc_clone(_minStart).addDays(minDays)
+            _maxEnd = _minStart.dclone().addDays(minDays)
         }
 
         new BoundaryDatesFromData {

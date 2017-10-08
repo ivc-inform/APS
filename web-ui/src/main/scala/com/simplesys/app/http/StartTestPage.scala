@@ -29,7 +29,6 @@ class StartTestPage[Builder, Output <: FragT, FragT](val _title: String) {
                 div(id := "eventMessage"),
                 script(src := s"javascript/developed/jquery-3.2.1.js"),
                 script(src := s"javascript/developed/jquery-ui-1.12.1.js"),
-                script(src := s"javascript/developed/isc_tools.js"),
                 script(src := s"javascript/generated/generatedComponentsJS/web-ui-fastopt.js"),
                 script(lastScript)
             )
