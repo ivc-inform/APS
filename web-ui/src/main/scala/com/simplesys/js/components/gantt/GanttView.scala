@@ -107,8 +107,6 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
 
             val minDays = math.floor((opts.slideWidth.get / opts.cellWidth.get) + 5)
             val startEnd = DateUtils.getBoundaryDatesFromData(_data.get, minDays.toInt)
-            println(startEnd.minStart)
-            println(startEnd.maxEnd)
 //
 //            opts.start = startEnd.minStart
 //            opts.end = startEnd.maxEnd

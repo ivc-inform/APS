@@ -53,7 +53,6 @@ object DateUtils extends js.Object {
         }
 
         if (daysBetween(_minStart, _maxEnd) < minDays) {
-            println(minDays)
             _maxEnd = jQuery.ivc_clone(_minStart).addDays(minDays)
         }
 
