@@ -42,7 +42,7 @@ class TestDiagramPageContainer(val request: HttpServletRequest, val response: Ht
     def receive = {
         case GetData => {
             /*val html: String = "<!DOCTYPE html>" +
-              (new StartPage("Тесты".ellipsis, scalatags.Text)).bodyHTML(
+              (new StartPage("Тесты".ellipsis)).bodyHTML(
                   "CreateSimpleTypes();" +
                     "CreateSmartClientJS();" +
                     "CreateAppJS();" +
