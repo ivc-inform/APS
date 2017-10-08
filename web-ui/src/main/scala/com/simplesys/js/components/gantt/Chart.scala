@@ -65,14 +65,15 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
     }
 
     def addVtHeader(div: JQuery, data: js.Array[_ <: DataStructItem], cellHeight: Int): Unit = {
+        val _width = "300px"
 
-        val _css = new js.Object {
-            val width = "135px"
+        val cssTop = new js.Object {
+            val width = _width
         }
 
         val headerDiv = jQuery("<div>", new js.Object {
             val `class` = "ganttview-vtheader"
-            val css = _css
+            val css = cssTop
         })
 
         data.foreach {
@@ -100,14 +101,11 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                     val `class` = "ganttview-vtheader-series"
                 })
 
-                //isc debugTrap seriesDiv
-
                 dataStructItem.series.foreach {
                     ganttDataItem ⇒
-                        //isc debugTrap ganttDataItem
-
                         seriesDiv.append(jQuery("<div>", new js.Object {
                             val `class` = "ganttview-vtheader-series-name"
+                            val css = cssTop
                         }).append(ganttDataItem.name))
                 }
 
