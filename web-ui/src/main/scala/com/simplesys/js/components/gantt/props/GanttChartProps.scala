@@ -25,7 +25,7 @@ class GanttChartProps extends CanvasProps {
             import scalatags.Text.all._
             //import scalatags.JsDom.all._
             div(
-                //style := "width:100%;height:100%",
+                style := "width:100%;height:100%",
                 id := thiz.getID1,
                 link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
                 link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css")
