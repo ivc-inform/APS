@@ -83,13 +83,13 @@ class Behavior(div: JQuery, opts: GanttChartOptions) extends js.Object {
 
         // Set new start date
         val daysFromStart = math.round(offset / cellWidth)
-        val newStart = isc.clone(startDate).addDays(daysFromStart.toInt)
+        val newStart = startDate.dclone().addDays(daysFromStart.toInt)
         block.data("block-data").foreach(_.asInstanceOf[js.Dynamic].start = newStart)
 
         // Set new end date
         val width = block.outerWidth()
         val numberOfDays = Math.round(width / cellWidth) - 1
-        block.data("block-data").foreach(_.asInstanceOf[js.Dynamic].end = isc.clone(newStart).addDays(numberOfDays.toInt))
+        block.data("block-data").foreach(_.asInstanceOf[js.Dynamic].end = newStart.dclone().addDays(numberOfDays.toInt))
 
         jQuery("div.ganttview-block-text", block).text((numberOfDays + 1).toDouble)
 

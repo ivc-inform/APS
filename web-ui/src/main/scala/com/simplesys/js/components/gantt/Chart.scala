@@ -51,7 +51,7 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
 
         var last = start
         while (last.getTime() < end.getTime()) {
-            val next = isc.clone(last).addDays(1)
+            val next = last.dclone().addDays(1)
 
             if (dates(next.getFullYear()).isUndefigned)
                 dates.update(next.getFullYear(), js.Array())
