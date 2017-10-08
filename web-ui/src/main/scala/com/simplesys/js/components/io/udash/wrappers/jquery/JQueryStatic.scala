@@ -59,7 +59,7 @@ trait JQueryStatic extends js.Object {
     @JSName("Callbacks")
     def callbacks[FunType <: js.Function1[ArgType, js.Any], ArgType](flags: String = js.native): JQueryCallbacks[FunType, ArgType] = js.native
 
-    def ivc_clone(copy:js.Object, obj: js.Object): JQuery = js.native
+    def ivc_clone[T](obj: T): T = js.native
 
     /** Check to see if a DOM element is a descendant of another DOM element. <br/>
       * See: <a href="http://api.jquery.com/jQuery.contains/">jQuery Docs</a> */

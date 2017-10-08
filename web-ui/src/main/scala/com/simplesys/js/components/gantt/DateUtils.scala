@@ -53,8 +53,8 @@ object DateUtils extends js.Object {
         }
 
         if (daysBetween(_minStart, _maxEnd) < minDays) {
-            jQuery.ivc_clone(_maxEnd, _minStart)
-            _maxEnd.addDays(minDays)
+            println(minDays)
+            _maxEnd = jQuery.ivc_clone(_minStart).addDays(minDays)
         }
 
         new BoundaryDatesFromData {

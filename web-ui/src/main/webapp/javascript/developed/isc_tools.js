@@ -1,6 +1,6 @@
 (function (jQuery) {
 
-    jQuery.fn.ivc_clone = function (copy, obj) {
+    jQuery.fn.ivc_clone = function (obj) {
         var copy;
 
         // Handle the 3 simple types, and null or undefined
@@ -10,7 +10,7 @@
         if (obj instanceof Date) {
             copy = new Date();
             copy.setTime(obj.getTime());
-            return this;
+            return copy;
         }
 
         // Handle Array
@@ -19,7 +19,7 @@
             for (var i = 0, len = obj.length; i < len; i++) {
                 copy[i] = clone(obj[i]);
             }
-            return this;
+            return copy;
         }
 
         // Handle Object
@@ -28,7 +28,7 @@
             for (var attr in obj) {
                 if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
             }
-            return this;
+            return copy;
         }
 
         throw new Error("Unable to copy obj! Its type isn't supported.");
