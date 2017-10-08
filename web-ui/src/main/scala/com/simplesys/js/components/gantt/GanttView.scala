@@ -107,13 +107,15 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
 
             val minDays = math.floor((opts.slideWidth.get / opts.cellWidth.get) + 5)
             val startEnd = DateUtils.getBoundaryDatesFromData(_data.get, minDays.toInt)
-
-            opts.start = startEnd.minStart
-            opts.end = startEnd.maxEnd
-
-            val div = jQuery("<div>", new js.Object {
-                val `class` = "ganttview"
-            })
+            println(startEnd.minStart)
+            println(startEnd.maxEnd)
+//
+//            opts.start = startEnd.minStart
+//            opts.end = startEnd.maxEnd
+//
+//            val div = jQuery("<div>", new js.Object {
+//                val `class` = "ganttview"
+//            })
 
 //            new Chart(div, opts).render()
 //            divChart append div

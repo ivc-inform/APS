@@ -1,7 +1,6 @@
 package com.simplesys.js.components.gantt
 
-import com.simplesys.SmartClient.System.isc
-import com.simplesys.js.common._
+import io.udash.wrappers.jquery.jQuery
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
@@ -54,7 +53,7 @@ object DateUtils extends js.Object {
         }
 
         if (daysBetween(_minStart, _maxEnd) < minDays) {
-            _maxEnd = isc.clone(_minStart).addDays(minDays);
+            _maxEnd = jQuery.extend[Date](new Date(), _minStart).addDays(minDays);
         }
 
         new BoundaryDatesFromData {
