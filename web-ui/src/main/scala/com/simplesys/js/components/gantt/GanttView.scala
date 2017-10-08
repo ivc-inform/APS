@@ -115,13 +115,13 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
                 val `class` = "ganttview"
             })
 
-            new Chart(div, opts).render()
-            divChart append div
-
-            val w = jQuery("div.ganttview-vtheader", divChart).outerWidth() + jQuery("div.ganttview-slide-container", divChart).outerWidth()
-            divChart.css("width", (w + 2) + "px")
-
-            new Behavior(divChart, opts).apply()
+//            new Chart(div, opts).render()
+//            divChart append div
+//
+//            val w = jQuery("div.ganttview-vtheader", divChart).outerWidth() + jQuery("div.ganttview-slide-container", divChart).outerWidth()
+//            divChart.css("width", (w + 2) + "px")
+//
+//            new Behavior(divChart, opts).apply()
         }
     }
 

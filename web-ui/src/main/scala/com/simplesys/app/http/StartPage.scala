@@ -1,18 +1,18 @@
 package com.simplesys.app.http
 
-import scalatags.generic.Bundle
+import scalatags.Text.all._
+import scalatags.Text.tags2
 
 case class paths(subPath: String, subPath1: String)
 
-class StartPage[Builder, Output <: FragT, FragT](val _title: String, val bundle: Bundle[Builder, Output, FragT]) {
+class StartPage[Builder, Output <: FragT, FragT](val _title: String) {
     def bodyHTML(lastScript: String, fullOpt: Boolean = false) = {
-        import bundle.all._
 
         //val subPaths = paths(subPath = "javascript/generated/generatedComponents", subPath1 = "coffeeScript/main/")
         val subPaths = paths(subPath = "managed/javascript/isc-components/generated/generatedComponents", subPath1 = "coffeeScript/main/")
         html(lang := "en",
             head(
-                bundle.tags2.title(_title),
+                tags2.title(_title),
                 meta(httpEquiv := "Content-Type", content := "text/html; charset=utf-8")
             ),
             body(
