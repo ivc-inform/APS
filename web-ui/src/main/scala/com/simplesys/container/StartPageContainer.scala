@@ -1,7 +1,7 @@
 package com.simplesys.container
 
 import com.simplesys.annotation.RSTransfer
-import com.simplesys.app.http.StartPage
+import com.simplesys.app.http.{StartPage, StartTestPage}
 import com.simplesys.common._
 import com.simplesys.servlet.http.{HttpServletRequest, HttpServletResponse}
 import com.simplesys.servlet.{GetData, ServletActor, ServletContext}
@@ -41,17 +41,18 @@ class TestDiagramPageContainer(val request: HttpServletRequest, val response: Ht
 
     def receive = {
         case GetData => {
-            val textHTML = new StartPage("Тесты".ellipsis, scalatags.Text)
+            val textHTML = new StartTestPage("Тесты".ellipsis, scalatags.Text)
             
-            val html: String = "<!DOCTYPE html>" +
+            /*val html: String = "<!DOCTYPE html>" +
               textHTML.bodyHTML(
                   "CreateSimpleTypes();" +
                     "CreateSmartClientJS();" +
                     "CreateAppJS();" +
                     "GetTestDiagramPageUIContent();",
                   false
-              ).render.unEscape
+              ).render.unEscape*/
 
+            val html: String = "<!DOCTYPE html>" + textHTML.bodyHTML("GetTestDiagramGantt();").render.unEscape
 
             //logger debug html
             Out(html)
