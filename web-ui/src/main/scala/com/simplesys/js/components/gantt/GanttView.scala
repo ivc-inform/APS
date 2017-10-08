@@ -57,18 +57,18 @@ object GanttView {
                                 override val name = "Задача №1"
                                 override val start = new Date(2011, 8, 1)
                                 override val end = new Date(2011, 8, 3)
-                            } /*,
-                                            new GanttDataItem {
-                                                override val name = "Задача №2"
-                                                override val start = new Date(2011, 8, 2)
-                                                override val end = new Date(2011, 8, 5)
-                                                override val color = "#f0f0f0"
-                                            }, new GanttDataItem {
-                                                override val name = "Задача №3"
-                                                override val start = new Date(2011, 8, 1)
-                                                override val end = new Date(2011, 8, 10)
-                                                override val color = "#e0e0e0"
-                                            }*/
+                            },
+                            new GanttDataItem {
+                                override val name = "Задача №2"
+                                override val start = new Date(2011, 8, 2)
+                                override val end = new Date(2011, 8, 5)
+                                override val color = "#f0f0f0"
+                            }, new GanttDataItem {
+                                override val name = "Задача №3"
+                                override val start = new Date(2011, 8, 1)
+                                override val end = new Date(2011, 8, 10)
+                                override val color = "#e0e0e0"
+                            }
                         )
                     }
                 )
