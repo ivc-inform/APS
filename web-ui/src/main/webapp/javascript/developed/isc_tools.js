@@ -34,4 +34,6 @@
         throw new Error("Unable to copy obj! Its type isn't supported.");
     };
 
+    jQuery.ivc_clone = jQuery.fn.ivc_clone
+
 })(jQuery);
