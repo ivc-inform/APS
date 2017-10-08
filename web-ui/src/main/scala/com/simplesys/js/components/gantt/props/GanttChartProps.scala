@@ -98,7 +98,7 @@ class GanttChartProps extends CanvasProps {
                             }
                         )
                     }
-                ) //. helloWorld()
+                )
                   .build()
 
                 thiz
