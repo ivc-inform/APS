@@ -213,7 +213,7 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
         data.foreach {
             dataStructItem ⇒
                 dataStructItem.series.foreach {
-                    _ ⇒ gridDiv.append(isc.clone[JQuery](rowDiv))
+                    _ ⇒ gridDiv.append(rowDiv.clone(true, true))
 
                 }
         }
