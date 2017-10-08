@@ -118,9 +118,6 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
             new Chart(div, opts).render()
             divChart append div
 
-//            println(jQuery("div.ganttview-vtheader", divChart).outerWidth())
-//            println(jQuery("div.ganttview-slide-container", divChart).outerWidth())
-
             val w = jQuery("div.ganttview-vtheader", divChart).outerWidth() + jQuery("div.ganttview-slide-container", divChart).outerWidth()
             divChart.css("width", (w + 2) + "px")
 
@@ -130,10 +127,6 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
 
     def helloWorld(): Unit = {
         val divChart = jQuery(s"#$ID")
-
-        /*import scalatags.Text.all._
-        val a = div(style := "width:100%;height:100%", id := "12456").render
-        println(a)*/
 
         import scalatags.JsDom.all._
         divChart.append(h1("Hello World !").render)

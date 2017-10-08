@@ -1,7 +1,5 @@
 package com.simplesys.js.components.gantt
 
-import io.udash.wrappers.jquery.jQuery
-
 import scala.scalajs.js
 import scala.scalajs.js.Date
 

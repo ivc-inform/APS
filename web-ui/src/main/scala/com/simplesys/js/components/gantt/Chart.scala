@@ -113,7 +113,6 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                 headerDiv append itemDiv
         }
 
-        //isc debugTrap headerDiv
         div append headerDiv
     }
 
@@ -162,7 +161,6 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
         monthsDiv.css("width", totalW + "px")
         daysDiv.css("width", totalW + "px")
         headerDiv.append(monthsDiv).append(daysDiv)
-        //isc debugTrap headerDiv.html()
         div.append(headerDiv)
     }
 
@@ -215,7 +213,6 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                 }
         }
 
-        //isc debugTrap gridDiv.html()
         div append gridDiv
     }
 
@@ -271,8 +268,6 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                         rowIdx += 1
                 }
         }
-
-        //isc debugTrap rows.html()
     }
 
     def addBlockData(block: JQuery, data: DataStructItem, series: GanttDataItem): Unit = {

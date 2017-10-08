@@ -1,6 +1,5 @@
 package com.simplesys.js.components.gantt
 
-import com.simplesys.SmartClient.System.isc
 import com.simplesys.js.components.gantt.Behavior.BehaviorCallback
 import com.simplesys.js.components.gantt.DateUtils._
 import io.udash.wrappers.jquery.{JQuery, _}
@@ -10,9 +9,9 @@ import org.scalajs.dom.Element
 import org.scalajs.dom.raw.Event
 
 import scala.scalajs.js
-import scala.scalajs.js.{Date, UndefOr}
 import scala.scalajs.js.UndefOr._
 import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.{Date, UndefOr}
 
 object Behavior {
     type BehaviorCallback = js.Function1[UndefOr[js.Any], _]
