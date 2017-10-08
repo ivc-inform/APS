@@ -14,9 +14,9 @@ class StartTestPage[Builder, Output <: FragT, FragT](val _title: String) {
             body(
                 div(
                     id := "ganttChart",
-                    link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
                     link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css"),
                     link(href := "css/reset.css", rel := "stylesheet", `type` := "text/css"),
+                    link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
                     tags2.style(
                         body(
                             fontFamily := "tahoma, verdana, helvetica",
@@ -28,7 +28,6 @@ class StartTestPage[Builder, Output <: FragT, FragT](val _title: String) {
                 br,
                 div(id := "eventMessage"),
                 script(src := s"javascript/developed/jquery-3.2.1.js"),
-                script(src := s"javascript/developed/jquery-ui-1.12.1.js"),
                 script(src := s"javascript/developed/jquery-ui-1.12.1.js"),
                 script(src := s"javascript/generated/generatedComponentsJS/web-ui-fastopt.js"),
                 script(lastScript)
