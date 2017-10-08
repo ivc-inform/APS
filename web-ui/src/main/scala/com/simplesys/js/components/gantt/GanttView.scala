@@ -83,7 +83,7 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
         override val showToday = true
         override val cellWidth = 21
         override val cellHeight = 31
-        override val slideWidth = 500
+        override val slideWidth = 400
         override val vHeaderWidth = 100
         override val behavior = new GanttChartBehavior {
             override val clickable = true
@@ -117,6 +117,9 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
 
             new Chart(div, opts).render()
             divChart append div
+
+//            println(jQuery("div.ganttview-vtheader", divChart).outerWidth())
+//            println(jQuery("div.ganttview-slide-container", divChart).outerWidth())
 
             val w = jQuery("div.ganttview-vtheader", divChart).outerWidth() + jQuery("div.ganttview-slide-container", divChart).outerWidth()
             divChart.css("width", (w + 2) + "px")

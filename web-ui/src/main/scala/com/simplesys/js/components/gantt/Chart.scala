@@ -1,6 +1,5 @@
 package com.simplesys.js.components.gantt
 
-import com.simplesys.SmartClient.System.isc
 import com.simplesys.js.common._
 import com.simplesys.js.components.gantt.DateUtils._
 import io.udash.wrappers.jquery.{JQuery, _}
@@ -31,7 +30,7 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                 }
         }.foreach {
             dates ⇒
-                //isc debugTrap dates
+
                 addHzHeader(slideDiv, dates, opts.cellWidth.get)
                 addGrid(slideDiv, opts.data.get, dates, opts.cellWidth.get, opts.showWeekends.get, opts.showToday.get)
                 addBlockContainers(slideDiv, opts.data.get)
@@ -67,11 +66,14 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
 
     def addVtHeader(div: JQuery, data: js.Array[_ <: DataStructItem], cellHeight: Int): Unit = {
 
+        val _css = new js.Object {
+            val width = "135px"
+        }
+
         val headerDiv = jQuery("<div>", new js.Object {
             val `class` = "ganttview-vtheader"
+            val css = _css
         })
-
-        //isc debugTrap headerDiv
 
         data.foreach {
             dataStructItem ⇒
@@ -80,11 +82,8 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                     val `class` = "ganttview-vtheader-item"
                 })
 
-                //isc debugTrap itemDiv
-
                 dataStructItem.name.foreach {
                     name ⇒
-                        //isc debugTrap name
                         if (name.trim.nonEmpty) {
                             val _css = new js.Object {
                                 val height = (dataStructItem.series.length * cellHeight) + "px"
@@ -213,7 +212,7 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
         data.foreach {
             dataStructItem ⇒
                 dataStructItem.series.foreach {
-                    _ ⇒ gridDiv.append(rowDiv.clone(true, true))
+                    _ ⇒ gridDiv.append(rowDiv.clone(false, false))
 
                 }
         }
