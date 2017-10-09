@@ -13,12 +13,15 @@ import com.simplesys.System.{JSAny, NameStrong}
 import com.simplesys.System.Types.{ID, Visibility}
 import com.simplesys.app.GanttChart
 import com.simplesys.function._
+import com.simplesys.js.components.gantt.{DataStructItem, GanttDataItem}
 import com.simplesys.option.DoubleType._
 import com.simplesys.js.components.gantt.props.GanttChartProps
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS}
 
+import scala.scalajs.js
+import scala.scalajs.js.Date
 import scala.scalajs.js.annotation.JSExportTopLevel
 
 object TestDiagramPage extends WebTabSetApp {
@@ -65,6 +68,28 @@ object TestDiagramPage extends WebTabSetApp {
                                             new GanttChartProps {
                                                 identifier = "354E6DF4-FE83-FE30-0782-6E1BA40CA422".opt
                                                 height = "100%"
+                                                data = js.Array(
+                                                    new DataStructItem {
+                                                        override val series = js.Array(
+                                                            new GanttDataItem {
+                                                                override val name = "Задача №1"
+                                                                override val start = new Date(2011, 8, 1)
+                                                                override val end = new Date(2011, 8, 23)
+                                                            },
+                                                            new GanttDataItem {
+                                                                override val name = "Задача №2"
+                                                                override val start = new Date(2011, 8, 2)
+                                                                override val end = new Date(2011, 8, 5)
+                                                                override val color = "#f0f0f0"
+                                                            }, new GanttDataItem {
+                                                                override val name = "Задача №3"
+                                                                override val start = new Date(2011, 8, 1)
+                                                                override val end = new Date(2011, 8, 10)
+                                                                override val color = "#e0e0e0"
+                                                            }
+                                                        )
+                                                    }
+                                                ).opt
                                             }
                                         ), thiz)
                                     false

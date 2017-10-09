@@ -24,28 +24,7 @@ class GanttChartProps extends CanvasProps {
             s"${thiz.getID}_ganttChart"
     }.toThisFunc.opt
 
-    var data: ScOption[js.Array[_ <: DataStructItem]] = js.Array(
-        new DataStructItem {
-            override val series = js.Array(
-                new GanttDataItem {
-                    override val name = "Задача №1"
-                    override val start = new Date(2011, 8, 1)
-                    override val end = new Date(2011, 8, 3)
-                },
-                new GanttDataItem {
-                    override val name = "Задача №2"
-                    override val start = new Date(2011, 8, 2)
-                    override val end = new Date(2011, 8, 5)
-                    override val color = "#f0f0f0"
-                }, new GanttDataItem {
-                    override val name = "Задача №3"
-                    override val start = new Date(2011, 8, 1)
-                    override val end = new Date(2011, 8, 10)
-                    override val color = "#e0e0e0"
-                }
-            )
-        }
-    ).opt
+    var data: ScOption[js.Array[_ <: DataStructItem]] = ScNone
 
     getInnerHTML = {
         (thiz: classHandler) ⇒
