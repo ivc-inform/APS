@@ -1,9 +1,18 @@
 package com.simplesys.app.http
 
-import org.scalajs.dom.raw.StyleSheet
-
 import scalatags.Text.all._
 import scalatags.Text.tags2
+import scalatags.stylesheet.StyleSheet
+
+object BodyCSS extends StyleSheet {
+    initStyleSheet()
+    
+    val _body = cls(
+       fontFamily := "tahoma, verdana, helvetica",
+        fontSize := "0.8em",
+        padding := "10px"
+    )
+}
 
 class StartTestPage[Builder, Output <: FragT, FragT](val _title: String){
     def bodyHTML(lastScript: String) = {
@@ -19,14 +28,7 @@ class StartTestPage[Builder, Output <: FragT, FragT](val _title: String){
                     link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css"),
                     link(href := "css/reset.css", rel := "stylesheet", `type` := "text/css"),
                     link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
-
-                    /*tags2.style(
-                        css.body(
-                            fontFamily := "tahoma, verdana, helvetica",
-                            fontSize := "0.8em",
-                            padding := "10px"
-                        )
-                    )*/
+                    tags2.style("body {font-family: tahoma, verdana, helvetica; font-size: 0.8em; padding: 10px;}")
                 ),
                 br,
                 div(id := "eventMessage"),
