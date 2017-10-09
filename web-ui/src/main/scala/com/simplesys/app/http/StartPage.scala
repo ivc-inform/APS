@@ -95,6 +95,10 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String) {
                 script(src := s"javascript/developed/jquery-ui-1.12.1.js"),
 
                 link(href := "managed/css/common-webapp/logging_styles.css", rel := "stylesheet", `type` := "text/css"),
+                
+                link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css"),
+                //link(href := "css/reset.css", rel := "stylesheet", `type` := "text/css"),
+                link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
 
                 script(lastScript)
             )

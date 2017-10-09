@@ -11,6 +11,8 @@ import com.simplesys.option.ScOption._
 import scala.scalajs.js
 import scala.scalajs.js.UndefOr.any2undefOrA
 import scala.scalajs.js.{Date, UndefOr}
+import scalatags.Text.tags2
+import scalatags.Text.all._
 
 class GanttChartProps extends CanvasProps {
     type classHandler <: GanttChart
@@ -22,13 +24,12 @@ class GanttChartProps extends CanvasProps {
 
     getInnerHTML = {
         (thiz: classHandler) ⇒
-            import scalatags.Text.all._
-            //import scalatags.JsDom.all._
             div(
                 style := "width:100%;height:100%",
                 id := thiz.getID1,
+                link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css"),
                 link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
-                link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css")
+                tags2.style("body {font-family: tahoma, verdana, helvetica; font-size: 0.8em; padding: 10px;}")
             ).render
     }.toThisFunc.opt
 
@@ -82,7 +83,7 @@ class GanttChartProps extends CanvasProps {
                                         override val name = "Задача №1"
                                         override val start = new Date(2011, 8, 1)
                                         override val end = new Date(2011, 8, 3)
-                                    }/*,
+                                    },
                                     new GanttDataItem {
                                         override val name = "Задача №2"
                                         override val start = new Date(2011, 8, 2)
@@ -93,7 +94,7 @@ class GanttChartProps extends CanvasProps {
                                         override val start = new Date(2011, 8, 1)
                                         override val end = new Date(2011, 8, 10)
                                         override val color = "#e0e0e0"
-                                    }*/
+                                    }
                                 )
                             }
                         )

@@ -41,16 +41,16 @@ class TestDiagramPageContainer(val request: HttpServletRequest, val response: Ht
 
     def receive = {
         case GetData => {
-            /*val html: String = "<!DOCTYPE html>" +
+            val html: String = "<!DOCTYPE html>" +
               (new StartPage("Тесты".ellipsis)).bodyHTML(
                   "CreateSimpleTypes();" +
                     "CreateSmartClientJS();" +
                     "CreateAppJS();" +
                     "GetTestDiagramPageUIContent();",
                   false
-              ).render.unEscape*/
+              ).render.unEscape
 
-            val html: String = "<!DOCTYPE html>" + (new StartTestPage("Тесты".ellipsis)).bodyHTML("GetTestDiagramGantt();").render.unEscape
+            //val html: String = "<!DOCTYPE html>" + (new StartTestPage("Тесты".ellipsis)).bodyHTML("GetTestDiagramGantt();").render.unEscape
 
             //logger debug html
             Out(html)

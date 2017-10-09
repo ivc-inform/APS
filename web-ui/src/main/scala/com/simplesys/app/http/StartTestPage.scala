@@ -4,16 +4,6 @@ import scalatags.Text.all._
 import scalatags.Text.tags2
 import scalatags.stylesheet.StyleSheet
 
-object BodyCSS extends StyleSheet {
-    initStyleSheet()
-    
-    val _body = cls(
-       fontFamily := "tahoma, verdana, helvetica",
-        fontSize := "0.8em",
-        padding := "10px"
-    )
-}
-
 class StartTestPage[Builder, Output <: FragT, FragT](val _title: String){
     def bodyHTML(lastScript: String) = {
 
