@@ -13,7 +13,7 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
 
         val slideDiv = {
             val _css = new js.Object {
-                val width = (opts.slideWidth.get - 20) + "px"
+                val width = opts.slideWidth.get + "px"
             }
 
             jQuery("<div>", new js.Object {
