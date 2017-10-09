@@ -8,12 +8,10 @@ import scala.scalajs.js
 
 @js.native
 trait GanttChart extends Canvas {
-
+    val data: js.UndefOr[js.Array[_ <: DataStructItem]]
 }
 
 @js.native
 abstract trait AbstractGanttChartCompanion extends AbstractCanvasCompanion {
 }
 
-/*@js.native
-object GanttChart extends AbstractGanttChartCompanion*/
