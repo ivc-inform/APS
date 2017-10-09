@@ -37,6 +37,8 @@ class GanttChartProps extends CanvasProps {
             ).render
     }.toThisFunc.opt
 
+    var canvasWidth: ScOption[Int] = ScNone
+
     draw = {
         (thiz: classHandler, args: JSUndefined[IscArray[JSAny]]) ⇒
             if (!thiz.readyToDraw())
@@ -77,7 +79,7 @@ class GanttChartProps extends CanvasProps {
                                 }
                             })
                         }
-                        override val canvasWidth = thiz.getWidth()
+                        override val canvasWidth = thiz.canvasWidth
                         override val data = thiz.data
                     }
                 )

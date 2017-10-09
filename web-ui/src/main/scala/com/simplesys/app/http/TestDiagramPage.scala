@@ -68,6 +68,7 @@ object TestDiagramPage extends WebTabSetApp {
                                             new GanttChartProps {
                                                 identifier = "354E6DF4-FE83-FE30-0782-6E1BA40CA422".opt
                                                 height = "100%"
+                                                canvasWidth = (Page.getWidth() - 150).opt
                                                 data = js.Array(
                                                     new DataStructItem {
                                                         override val id = 1
@@ -83,6 +84,29 @@ object TestDiagramPage extends WebTabSetApp {
                                                                 override val start = new Date(2010, 0, 2)
                                                                 override val end = new Date(2010, 0, 5)
                                                                 override val color = "#f0f0f0"
+                                                            }
+                                                        )
+                                                    },
+                                                    new DataStructItem {
+                                                        override val id = 2
+                                                        override val name = "Feature 2"
+                                                        override val series: js.Array[_ <: GanttDataItem] = js.Array(
+                                                            new GanttDataItem {
+                                                                override val name = "Planned"
+                                                                override val start = new Date(2010, 0, 5)
+                                                                override val end = new Date(2010, 0, 20)
+                                                            },
+                                                            new GanttDataItem {
+                                                                override val name = "Actual"
+                                                                override val start = new Date(2010, 0, 6)
+                                                                override val end = new Date(2010, 0, 17)
+                                                                override val color = "#f0f0f0"
+                                                            },
+                                                            new GanttDataItem {
+                                                                override val name = "Projected"
+                                                                override val start = new Date(2010, 0, 6)
+                                                                override val end = new Date(2010, 0, 17)
+                                                                override val color = "#e0e0e0"
                                                             }
                                                         )
                                                     }
