@@ -87,7 +87,7 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
         override val canvasWidth: js.UndefOr[Int] = 1600
         override val vHeaderWidth: js.UndefOr[Int] = 200
         override val behavior = new GanttChartBehavior {
-            override val clickable = true
+            override val clickable = alse
             override val draggable = false
             override val resizable = false
         }
