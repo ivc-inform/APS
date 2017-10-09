@@ -35,8 +35,6 @@ class GanttChartProps extends CanvasProps {
 
     draw = {
         (thiz: classHandler, args: JSUndefined[IscArray[JSAny]]) ⇒
-            println(thiz.getWidth())
-
             if (!thiz.readyToDraw())
                 thiz
             else {
