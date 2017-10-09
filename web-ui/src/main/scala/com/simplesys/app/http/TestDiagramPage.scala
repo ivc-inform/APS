@@ -68,6 +68,7 @@ object TestDiagramPage extends WebTabSetApp {
                                             new GanttChartProps {
                                                 identifier = "354E6DF4-FE83-FE30-0782-6E1BA40CA422".opt
                                                 height = "100%"
+                                                canvasWidth = (Page.getWidth() - 150).opt
                                                 data = js.Array(
                                                     new DataStructItem {
                                                         override val id = 1

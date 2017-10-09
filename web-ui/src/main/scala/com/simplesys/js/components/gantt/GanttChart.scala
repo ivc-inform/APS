@@ -9,6 +9,7 @@ import scala.scalajs.js
 @js.native
 trait GanttChart extends Canvas {
     val data: js.UndefOr[js.Array[_ <: DataStructItem]]
+    val canvasWidth: js.UndefOr[Int]
 }
 
 @js.native
