@@ -72,7 +72,6 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
 
         val headerDiv = jQuery("<div>", new js.Object {
             val `class` = "ganttview-vtheader"
-            //val css = cssTop
         })
 
         data.foreach {
