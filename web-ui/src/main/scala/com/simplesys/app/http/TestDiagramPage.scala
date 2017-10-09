@@ -105,7 +105,7 @@ object TestDiagramPage extends WebTabSetApp {
                                                             new GanttDataItem {
                                                                 override val name = "Projected"
                                                                 override val start = new Date(2010, 0, 6)
-                                                                override val end = new Date(2010, 0, 17)
+                                                                override val end = new Date(2010, 0, 18)
                                                                 override val color = "#e0e0e0"
                                                             }
                                                         )
