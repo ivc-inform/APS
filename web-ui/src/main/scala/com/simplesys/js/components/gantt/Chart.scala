@@ -143,7 +143,7 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                                 monthsDiv.append(jQuery("<div>", new js.Object {
                                     val `class` = "ganttview-hzheader-month"
                                     val css = _css
-                                }).append(monthNames(m) + "/" + y))
+                                }).append(monthNames(m) + " " + y))
 
                                 mounth.foreach {
                                     date ⇒

@@ -3,10 +3,10 @@ package com.simplesys.js.components.gantt
 import com.simplesys.System.Types.Color
 
 import scala.scalajs.js
-import scala.scalajs.js.Date
+import scala.scalajs.js.{Date, |}
 
 trait DataStructItem extends js.Object {
-    val id: js.UndefOr[String] = js.undefined
+    val id: js.UndefOr[String | Int | Double] = js.undefined
     val name: js.UndefOr[String] = js.undefined
     val series: js.Array[_ <: GanttDataItem]
 }

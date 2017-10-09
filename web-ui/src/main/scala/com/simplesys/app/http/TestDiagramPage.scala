@@ -70,6 +70,25 @@ object TestDiagramPage extends WebTabSetApp {
                                                 height = "100%"
                                                 data = js.Array(
                                                     new DataStructItem {
+                                                        override val id = 1
+                                                        override val name = "Задача 1"
+                                                        override val series: js.Array[_ <: GanttDataItem] = js.Array(
+                                                            new GanttDataItem {
+                                                                override val name = "Planned"
+                                                                override val start = new Date(2010, 0, 1)
+                                                                override val end = new Date(2010, 0, 3)
+                                                            },
+                                                            new GanttDataItem {
+                                                                override val name = "Actual"
+                                                                override val start = new Date(2010, 0, 2)
+                                                                override val end = new Date(2010, 0, 5)
+                                                                override val color = "#f0f0f0"
+                                                            }
+                                                        )
+                                                    }
+                                                ).opt
+                                                /*data = js.Array(
+                                                    new DataStructItem {
                                                         override val series = js.Array(
                                                             new GanttDataItem {
                                                                 override val name = "Задача №1"
@@ -89,7 +108,7 @@ object TestDiagramPage extends WebTabSetApp {
                                                             }
                                                         )
                                                     }
-                                                ).opt
+                                                ).opt*/
                                             }
                                         ), thiz)
                                     false
