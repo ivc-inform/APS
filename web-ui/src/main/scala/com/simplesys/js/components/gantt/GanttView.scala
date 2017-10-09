@@ -85,7 +85,7 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
         override val cellHeight = 31
         override val slideWidth = 1000
         override val canvasWidth: js.UndefOr[Int] = 1600
-        override val vHeaderWidth: js.UndefOr[Int] = 200
+        override val vHeaderWidth: js.UndefOr[Int] = 150
         override val behavior = new GanttChartBehavior {
             override val clickable = false
             override val draggable = false
@@ -105,7 +105,7 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
             val options1 = if (options.isDefined) {
                 if (options.get.canvasWidth.isDefined) {
                     new GanttChartOptions {
-                        override val slideWidth = _canvasWidth - _vHeaderWidth - 5
+                        override val slideWidth = _canvasWidth - _vHeaderWidth - 10
                     }
                 } else js.Object()
             } else js.Object()
