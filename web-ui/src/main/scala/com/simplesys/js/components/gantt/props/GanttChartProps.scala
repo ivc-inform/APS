@@ -35,12 +35,12 @@ class GanttChartProps extends CanvasProps {
 
     draw = {
         (thiz: classHandler, args: JSUndefined[IscArray[JSAny]]) ⇒
+            println(thiz.getWidth())
 
             if (!thiz.readyToDraw())
                 thiz
             else {
-
-                thiz.Super("draw", args.getOrElse(IscArray[JSAny]()))
+                thiz.Super("draw")
 
                 new GanttView(
                     thiz.getID1,
@@ -75,7 +75,7 @@ class GanttChartProps extends CanvasProps {
                                 }
                             })
                         }
-                        override val slideWidth = 1000
+                        override val canvasWidth = thiz.getWidth()
                         override val data = js.Array(
                             new DataStructItem {
                                 override val series = js.Array(

@@ -65,10 +65,9 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
     }
 
     def addVtHeader(div: JQuery, data: js.Array[_ <: DataStructItem], cellHeight: Int): Unit = {
-        val _width = "300px"
 
         val cssTop = new js.Object {
-            val width = _width
+            val width = opts.vHeaderWidth.get + "px"
         }
 
         val headerDiv = jQuery("<div>", new js.Object {

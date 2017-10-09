@@ -83,8 +83,9 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
         override val showToday = true
         override val cellWidth = 21
         override val cellHeight = 31
-        override val slideWidth = 400
-        override val vHeaderWidth = 100
+        override val slideWidth = 1000
+        override val canvasWidth: js.UndefOr[Int] = 1600
+        override val vHeaderWidth: js.UndefOr[Int] = 200
         override val behavior = new GanttChartBehavior {
             override val clickable = true
             override val draggable = false
@@ -94,34 +95,48 @@ class GanttView(ID: String, options: js.UndefOr[GanttChartOptions]) extends js.O
 
     def build(): Unit = {
 
-        val divChart = jQuery(s"#$ID")
+        val _canvasWidth: Int = options.get.canvasWidth.getOrElse(defaults.canvasWidth.get)
+        val _vHeaderWidth: Int = options.get.vHeaderWidth.getOrElse(defaults.vHeaderWidth.get)
 
-        val opts: GanttChartOptions = jQuery.extend(true, defaults, options)
 
-        var _data = opts.data
+        if (_canvasWidth > _vHeaderWidth) {
+            val divChart = jQuery(s"#$ID")
 
-        if (_data.isEmpty)
-            opts.dataUrl.foreach(jQuery.getJSON(_, (data: js.Array[_ <: DataStructItem], _, _) ⇒ _data = data))
+            val options1 = if (options.isDefined) {
+                if (options.get.canvasWidth.isDefined) {
+                    new GanttChartOptions {
+                        override val slideWidth = _canvasWidth - _vHeaderWidth - 5
+                    }
+                } else js.Object()
+            } else js.Object()
 
-        if (_data.isDefined) {
+            val opts: GanttChartOptions = jQuery.extend(true, defaults, options, options1)
 
-            val minDays = math.floor((opts.slideWidth.get / opts.cellWidth.get) + 5)
-            val startEnd = DateUtils.getBoundaryDatesFromData(_data.get, minDays.toInt)
+            var _data = opts.data
 
-            opts.start = startEnd.minStart
-            opts.end = startEnd.maxEnd
+            if (_data.isEmpty)
+                opts.dataUrl.foreach(jQuery.getJSON(_, (data: js.Array[_ <: DataStructItem], _, _) ⇒ _data = data))
 
-            val div = jQuery("<div>", new js.Object {
-                val `class` = "ganttview"
-            })
+            if (_data.isDefined) {
 
-            new Chart(div, opts).render()
-            divChart append div
+                val minDays = math.floor((opts.slideWidth.get / opts.cellWidth.get) + 5)
+                val startEnd = DateUtils.getBoundaryDatesFromData(_data.get, minDays.toInt)
 
-            val w = jQuery("div.ganttview-vtheader", divChart).outerWidth() + jQuery("div.ganttview-slide-container", divChart).outerWidth()
-            divChart.css("width", (w + 2) + "px")
+                opts.start = startEnd.minStart
+                opts.end = startEnd.maxEnd
 
-            new Behavior(divChart, opts).apply()
+                val div = jQuery("<div>", new js.Object {
+                    val `class` = "ganttview"
+                })
+
+                new Chart(div, opts).render()
+                divChart append div
+
+                val w = jQuery("div.ganttview-vtheader", divChart).outerWidth() + jQuery("div.ganttview-slide-container", divChart).outerWidth()
+                divChart.css("width", (w + 2) + "px")
+
+                new Behavior(divChart, opts).apply()
+            }
         }
     }
 
