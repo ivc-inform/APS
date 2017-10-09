@@ -251,7 +251,7 @@ class Chart(div: JQuery, opts: GanttChartOptions) extends js.Object {
                         }
                         val block = jQuery("<div>", new js.Object {
                             val `class` = "ganttview-block"
-                            val title = ganttDataItem.name + ", " + size + " days"
+                            val title = ganttDataItem.name + ", " + size + (if (size > 1) " дней" else " день")
                             val css = _css
                         })
 
