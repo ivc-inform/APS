@@ -2,5 +2,5 @@ docker rmi ivcinform/aps:1.0.0.1
 docker run -d -p 8083:8080 --add-host uandrew-home:176.117.127.137 --restart on-failure:5 --name aps_1001 ivcinform/aps:1.0.0.1
 docker run -d -p 8083:8080 --add-host uandrew-home:192.168.0.101 --restart on-failure:5 --name aps_1001 ivcinform/aps:1.0.0.1
 
-docker run -d -p 1521:1521 --restart on-failure:5 --name b404_112 ivcinform/b404:11.2-1.0.0.1
+docker run -d -p 1521:1521 --restart on-failure:5 --name aps_112 ivcinform/oracle-11x64g:1.0.1
 
