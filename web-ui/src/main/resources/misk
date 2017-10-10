@@ -1,8 +1,8 @@
 docker rmi ivcinform/aps:1.0.0.1
 docker run -d -p 8083:8080 --add-host uandrew-home:176.117.127.137 --restart on-failure:5 --name aps_1001 ivcinform/aps:1.0.0.1
-docker run -d -p 8083:8080 --add-host uandrew-home:192.168.0.101 --restart on-failure:5 --name aps_1001 ivcinform/aps:1.0.0.1
+docker run -d -p 8083:8080 --add-host uandrew-home:192.168.0.102 --restart on-failure:5 --name aps_1001 ivcinform/aps:1.0.0.1
 
-docker run -d -p 1522:1521 --restart on-failure:5 --name aps_112 ivcinform/oracle-11x64g:1.0.1
+docker run -d -p 1522:1521 --restart on-failure:5 --name aps_112 ivcinform/aps-11x64g:1.0.0
 
 expdp system/dfqc2 DIRECTORY=DUMPS DUMPFILE=aps10102017.dmp SCHEMAS=aps logfile=main.log
 impdp system/dfqc2 dumpfile=aps10102017.dmp directory=dumps logfile=main.log
