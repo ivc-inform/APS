@@ -37,7 +37,6 @@ object CommonDeps {
 
         val scalaTestVersion = "3.0.3"
         val scalaTagsVersion = "0.6.7"
-        val uPickleVersion = "0.4.4"
 
         val scalaJSVersion = "1.4-SNAPSHOT"
         //val scalaJSVersion = "1.4.0.1"
@@ -78,7 +77,6 @@ object CommonDeps {
     val ssysLogBackWrapper = "com.simplesys.core" %% "logback-wrapper" % versions.ssysCoreVersion
     val scalaJSWrapper = "com.simplesys" %% "common-types" % versions.scalaJSVersion
     val scalaTags = "com.lihaoyi" %% "scalatags" % versions.scalaTagsVersion
-    val uPickle = "com.lihaoyi" %% "upickle" % versions.uPickleVersion
 
     val jettyRuner = "org.eclipse.jetty" % "jetty-runner" % versions.jettyVersion
 

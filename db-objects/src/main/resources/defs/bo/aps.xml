@@ -17,13 +17,13 @@
 							<defaults>
 								<showAttrs>
 									<attrName>id</attrName>
+									<attrName>caption</attrName>
 								</showAttrs>
 								<uiSettings uiFormType="singleListGrid"></uiSettings>
 							</defaults>
 							<constraints>
 								<uc uniqueType="pk">
 									<attrName>id</attrName>
-									<attrName>caption</attrName>
 								</uc>
 							</constraints>
 						</classSimple>
