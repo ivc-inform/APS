@@ -1,13 +1,35 @@
-
 <objectSchema xmlns="http://simpleSys.ru/xml/library/bo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://simpleSys.ru/xml/library/bo http://toucan.simplesys.lan/xml/xsd/v1.0.0-1/schema.xsd">
 	<group caption="Оптимальные производственные расписания" name="aps" prefix="APS">
 		<classes>
+			<classSimple autoTableMapping="true" caption="Операции заказов" name="orders">
+							<attrs>
+								<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+								<attr caption="Трудоемкость" name="complexity" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
+								<attr caption="Момент готовности" name="ready" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
+								<attr caption="Момент поступления" name="entry" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
+								<attr caption="Тип операции" name="oper_type" type="nInt" mandatory="true" useDbPrefix="false"></attr>
+								<attr caption="Степень важности" name="priority" type="nInt" mandatory="true" useDbPrefix="false"></attr>
+								<attr caption="Объем выполнения" name="execution" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
+							</attrs>
+							<defaults>
+								<showAttrs>
+									<attrName>id</attrName>
+								</showAttrs>
+								<uiSettings uiFormType="singleListGrid"></uiSettings>
+							</defaults>
+							<constraints>
+								<uc uniqueType="pk">
+									<attrName>id</attrName>
+								</uc>
+							</constraints>
+						</classSimple>
+
 			<classSimple autoTableMapping="true" caption="Производственный календарь" name="prod_calendar">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
-					<attr caption="Дата" name="ddate" type="dDate"  mandatory="true" useDbPrefix="false"></attr>
-					<attr caption="Смена" name="shift_num" type="nInt"  mandatory="true" useDbPrefix="false"></attr>
-					<attr caption="Продолжительность" name="duration" type="fDouble"  mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Дата" name="ddate" type="dDate" mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Смена" name="shift_num" type="nInt" mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Продолжительность" name="duration" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<showAttrs>
@@ -25,9 +47,9 @@
 			<classSimple autoTableMapping="true" caption="Матрица наладки" name="changeover">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
-					<attr caption="Наладка начальная" name="from_type" type="fDouble"  mandatory="true" useDbPrefix="false"></attr>
-					<attr caption="Наладка конечная" name="to_type" type="fDouble"  mandatory="true" useDbPrefix="false"></attr>
-					<attr caption="Время наладки" name="duration" type="fDouble"  mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Наладка начальная" name="from_type" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Наладка конечная" name="to_type" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Время наладки" name="duration" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<showAttrs>
@@ -48,8 +70,8 @@
 			<classSimple autoTableMapping="true" caption="Рабочие центры" name="rc">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_rc" type="id" useDbPrefix="false"></attr>
-					<attr caption="Код рабочего центра" name="scode" type="sCode"  mandatory="true" useDbPrefix="false"></attr>
-					<attr caption="Наименование рабочего центра" name="sname" type="sCaption"  mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Код рабочего центра" name="scode" type="sCode" mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Наименование рабочего центра" name="sname" type="sCaption" mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<showAttrs>
@@ -69,7 +91,7 @@
 			<classSimple autoTableMapping="true" caption="Параметры" name="params">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
-					<attr caption="Дата начала расписания" name="ddatein" type="dDateTime"  mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Дата начала расписания" name="ddatein" type="dDateTime" mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Первоначальная настройка машины" name="start_type" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Количество смен" name="shifts_count" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Психологический коэф - напряженность" name="tension" type="fDouble" useDbPrefix="false"></attr>
@@ -129,7 +151,6 @@
 					<attr caption="Порядковый номер в наборе варианта" name="pos" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Дата время начала" name="opertimestart" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Дата время окончания" name="opertimeend" type="dDateTime" useDbPrefix="false"></attr>
-					<attr caption="Операция заказа" name="id_order" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Длительность операции" name="duration" type="fDouble" useDbPrefix="false"></attr>
 					<attr caption="Название операции" name="item_name" type="sCode" useDbPrefix="false"></attr>
 				</attrs>
