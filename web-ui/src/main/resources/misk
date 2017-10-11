@@ -56,7 +56,7 @@ STARTUP
 @/u01/app/oracle/product/11.2/db_1/ord/im/admin/imchk.sql;
 
 
-sudo mkdir dumps;
+sudo mkdir /u01/app/oracle/product/11.2/db_1/dump;
 
 CREATE OR REPLACE DIRECTORY dumps AS '/u01/app/oracle/product/11.2/db_1/dumps';
 GRANT READ, WRITE ON DIRECTORY dumps TO system;
