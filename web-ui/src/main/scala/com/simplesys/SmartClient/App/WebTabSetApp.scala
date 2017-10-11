@@ -47,6 +47,8 @@ trait WebTabSetApp extends TabSetStack {
     protected val formItemsJS_admin_User_FRMITM: Seq[FormItem]
 
     protected val admin_User_codeGroup_NameStrong: NameStrong
+    protected val admin_User_captionGroup_NameStrong: NameStrong
+
     protected def getSettingsEditor(): SettingsEditor
 
     protected val functionButton = IconMenuButtonSS.create(
@@ -231,6 +233,14 @@ trait WebTabSetApp extends TabSetStack {
                                                             replacingFieldsList = Seq(
                                                                 new ListGridFieldProps {
                                                                     nameStrong = admin_User_codeGroup_NameStrong.opt
+                                                                    editorType = FormItemComponentType.LookupTreeGridEditorItem
+                                                                    editorProperties = LookupTreeGridEditorItem(
+                                                                        new LookupTreeGridEditorItemProps {
+                                                                            treeGridEditor = userGroupEditor.opt
+                                                                        }).opt
+                                                                },
+                                                                new ListGridFieldProps {
+                                                                    nameStrong = admin_User_captionGroup_NameStrong.opt
                                                                     editorType = FormItemComponentType.LookupTreeGridEditorItem
                                                                     editorProperties = LookupTreeGridEditorItem(
                                                                         new LookupTreeGridEditorItemProps {

@@ -42,6 +42,7 @@ object TestDiagramPage extends WebTabSetApp {
     override protected val formItemsJS_admin_User_FRMITM: Seq[FormItem] = FormItemsJS.admin_User_FRMITM
 
     override protected val admin_User_codeGroup_NameStrong: NameStrong = ScalaJSGen.admin_User_codeGroup_NameStrong
+    override protected val admin_User_captionGroup_NameStrong: NameStrong = ScalaJSGen.admin_User_captionGroup_NameStrong
 
     override protected def getSettingsEditor(): SettingsEditor = SettingsEditor.create(
         new SettingsEditorProps {
