@@ -32,14 +32,14 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
 
     val taskEditor = Tasks.create(
         new TasksProps {
-            dataSource = aps_orders_DS.opt
-            fields = aps_orders_FLDS.opt
-            editingFields = aps_orders_FRMITM.opt
+            dataSource = aps_tasks_DS.opt
+            fields = aps_tasks_FLDS.opt
+            editingFields = aps_tasks_FRMITM.opt
         })
 
     replacingFieldsList = Seq(
         new ListGridFieldProps {
-            nameStrong = aps_orders_code_orders_NameStrong.opt
+            nameStrong = aps_orders_code_task_NameStrong.opt
             `type` = ListGridFieldType.sCaption_SimpleType.opt
             editorType = FormItemComponentType.LookupTreeGridEditorItem
             editorProperties = LookupTreeGridEditorItem(
