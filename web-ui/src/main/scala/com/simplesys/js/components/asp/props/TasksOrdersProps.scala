@@ -5,13 +5,12 @@ import com.simplesys.SmartClient.App.props.CommonTreeListGridEditorComponentProp
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
 import com.simplesys.SmartClient.System.LookupTreeGridEditorItem
 import com.simplesys.System.Types.FormItemComponentType
-import com.simplesys.app.Orders
+import com.simplesys.app.Tasks
 import com.simplesys.js.components.asp.TasksOrders
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.DataSourcesJS._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.FormItemsJS._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.ListGridFiledsJS._
-import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS, admin_User_codeGroup_NameStrong}
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
 
 class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
@@ -31,8 +30,8 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
     captionMenuTree = "Задачи".opt
     captionMenuList = "Операции задач".opt
 
-    val userGroupEditor = Orders.create(
-        new OrdersProps {
+    val taskEditor = Tasks.create(
+        new TasksProps {
             dataSource = aps_orders_DS.opt
             fields = aps_orders_FLDS.opt
             editingFields = aps_orders_FRMITM.opt
@@ -40,11 +39,11 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
 
     replacingFieldsList = Seq(
         new ListGridFieldProps {
-            nameStrong = aps_orders_code_orders_NameStrong .opt
+            nameStrong = aps_orders_code_orders_NameStrong.opt
             editorType = FormItemComponentType.LookupTreeGridEditorItem
             editorProperties = LookupTreeGridEditorItem(
                 new LookupTreeGridEditorItemProps {
-                    treeGridEditor = userGroupEditor.opt
+                    treeGridEditor = taskEditor.opt
                 }).opt
         }
     ).opt

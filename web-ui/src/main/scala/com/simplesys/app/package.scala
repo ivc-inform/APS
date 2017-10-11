@@ -101,4 +101,5 @@ package object app {
     object GanttChart extends SCApply[GanttChart, GanttChartProps]
     object Orders extends SCApply[Orders, OrdersProps]
     object TasksOrders extends SCApply[TasksOrders, TasksOrdersProps]
+    object Tasks extends SCApply[Tasks, TasksProps]
 }
