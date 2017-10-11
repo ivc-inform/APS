@@ -4,6 +4,9 @@
 			<classSimple autoTableMapping="true" caption="Операции заказов" name="orders">
 							<attrs>
 								<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+								<attr caption="Код операции"  name="code" type="sCaption" mandatory="true" useDbPrefix="false"/>
+								<attr caption="Наименование операции" name="caption" type="sCode" mandatory="false" useDbPrefix="false"/>
+								<attr caption="Описание операции" name="description" type="sDescription" mandatory="false" useDbPrefix="false"/>
 								<attr caption="Трудоемкость" name="complexity" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 								<attr caption="Момент готовности" name="ready" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 								<attr caption="Момент поступления" name="entry" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
@@ -20,6 +23,7 @@
 							<constraints>
 								<uc uniqueType="pk">
 									<attrName>id</attrName>
+									<attrName>caption</attrName>
 								</uc>
 							</constraints>
 						</classSimple>
@@ -152,7 +156,6 @@
 					<attr caption="Дата время начала" name="opertimestart" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Дата время окончания" name="opertimeend" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Длительность операции" name="duration" type="fDouble" useDbPrefix="false"></attr>
-					<attr caption="Название операции" name="item_name" type="sCode" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<showAttrs>
@@ -164,11 +167,14 @@
 					<uc uniqueType="pk">
 						<attrName>id_item</attrName>
 					</uc>
-					<fk linkType="refIsOwner" mandatory="false" parent="rc">
+					<fk linkType="refIsOwner" mandatory="true" parent="rc">
 						<mapping attrNameLocal="idrc" attrNameRemote="id_rc"></mapping>
 					</fk>
-					<fk linkType="refIsOwner" mandatory="false" parent="result">
+					<fk linkType="refIsOwner" mandatory="true" parent="result">
 						<mapping attrNameLocal="id_result" attrNameRemote="id"></mapping>
+					</fk>
+					<fk linkType="refIsOwner" mandatory="true" parent="orders">
+						<mapping attrNameLocal="id_orders" attrNameRemote="id"></mapping>
 					</fk>
 				</constraints>
 			</classSimple>

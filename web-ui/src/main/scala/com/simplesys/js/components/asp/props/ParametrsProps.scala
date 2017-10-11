@@ -2,6 +2,7 @@ package com.simplesys.js.components.asp.props
 
 import com.simplesys.SmartClient.App.props.CommonListGridEditorComponentProps
 import com.simplesys.SmartClient.Layout.props.WindowSSProps
+import com.simplesys.SmartClient.System
 import com.simplesys.SmartClient.System._
 import com.simplesys.System._
 import com.simplesys.function._
@@ -23,7 +24,7 @@ class ParametrsProps extends CommonListGridEditorComponentProps {
     editingFields = FormItemsJS.aps_params_FRMITM.opt
     fields = ListGridFiledsJS.aps_params_FLDS.opt
 
-    editWindowProperties = WindowSS(
+    editWindowProperties = System.WindowSS(
         new WindowSSProps {
             width = 285
             height = 500

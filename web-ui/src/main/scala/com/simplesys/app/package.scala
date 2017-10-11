@@ -99,4 +99,5 @@ package object app {
     object ResultItem extends SCApply[ResultItem, ResultItemProps]
     object Result extends SCApply[Result, ResultProps]
     object GanttChart extends SCApply[GanttChart, GanttChartProps]
+    object Orders extends SCApply[Orders, OrdersProps]
 }
