@@ -3,7 +3,7 @@
 		<classes>
 			<classSimple autoTableMapping="true" caption="Операции заказов" name="orders">
 							<attrs>
-								<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+								<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="idorders" type="id" useDbPrefix="false"></attr>
 								<attr caption="Код операции"  name="code" type="sCaption" mandatory="true" useDbPrefix="false"/>
 								<attr caption="Наименование операции" name="caption" type="sCode" mandatory="false" useDbPrefix="false"/>
 								<attr caption="Описание операции" name="description" type="sDescription" mandatory="false" useDbPrefix="false"/>
@@ -16,14 +16,13 @@
 							</attrs>
 							<defaults>
 								<showAttrs>
-									<attrName>id</attrName>
 									<attrName>caption</attrName>
 								</showAttrs>
 								<uiSettings uiFormType="singleListGrid"></uiSettings>
 							</defaults>
 							<constraints>
 								<uc uniqueType="pk">
-									<attrName>id</attrName>
+									<attrName>idorders</attrName>
 								</uc>
 							</constraints>
 						</classSimple>
@@ -174,7 +173,7 @@
 						<mapping attrNameLocal="id_result" attrNameRemote="id"></mapping>
 					</fk>
 					<fk linkType="refIsOwner" mandatory="true" parent="orders">
-						<mapping attrNameLocal="id_orders" attrNameRemote="id"></mapping>
+						<mapping attrNameLocal="id_orders" attrNameRemote="idorders"></mapping>
 					</fk>
 				</constraints>
 			</classSimple>
