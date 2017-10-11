@@ -70,7 +70,7 @@ object ApsProcWindowMain extends WebTabSetApp {
                                     items = Seq(
                                         new MenuSSItemProps {
                                             name = "orders".opt
-                                            icon = app.ref_RefRefs.opt
+                                            icon = app.cards.opt
                                             title = "Задачи".ellipsis.opt
                                             click = {
                                                 (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
