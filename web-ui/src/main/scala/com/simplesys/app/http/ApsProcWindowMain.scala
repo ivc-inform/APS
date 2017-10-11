@@ -71,7 +71,7 @@ object ApsProcWindowMain extends WebTabSetApp {
                                         new MenuSSItemProps {
                                             name = "orders".opt
                                             icon = app.ref_RefRefs.opt
-                                            title = "Операции заказов".ellipsis.opt
+                                            title = "Задачи".ellipsis.opt
                                             click = {
                                                 (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
                                                     addTab(Tasks.create(new TasksProps), item)

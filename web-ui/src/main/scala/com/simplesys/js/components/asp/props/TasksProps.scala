@@ -23,4 +23,7 @@ class TasksProps extends CommonTreeListGridEditorComponentProps {
 
     fieldsList = ListGridFiledsJS.aps_orders_FLDS.opt
     editingListFields = FormItemsJS.aps_orders_FRMITM.opt
+
+    captionMenuTree = "Задачи".opt
+    captionMenuList = "Операции задач".opt
 }
