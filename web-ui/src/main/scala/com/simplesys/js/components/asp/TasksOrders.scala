@@ -6,12 +6,10 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 
 @js.native
-trait Tasks extends CommonTreeListGridEditorComponent {
+trait TasksOrders extends CommonTreeListGridEditorComponent {
 }
 
 @js.native
-abstract trait AbstractTasksCompanion extends AbstractCommonTreeListGridEditorComponentCompanion {
+abstract trait AbstractTasksOrdersCompanion extends AbstractCommonTreeListGridEditorComponentCompanion {
 }
 
-/*@js.native
-object Tasks extends AbstractTasksCompanion*/

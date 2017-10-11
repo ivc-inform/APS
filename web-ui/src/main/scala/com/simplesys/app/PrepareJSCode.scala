@@ -15,7 +15,7 @@ object PrepareJSCode extends StaticJSCode {
         isc.defineClass(Result.getClass.getSimpleName, CommonListGridEditorComponent.getClass.getSimpleName)
         isc.defineClass(ResultItem.getClass.getSimpleName, CommonListGridEditorComponent.getClass.getSimpleName)
         isc.defineClass(Orders.getClass.getSimpleName, CommonListGridEditorComponent.getClass.getSimpleName)
-        isc.defineClass(Tasks.getClass.getSimpleName, CommonTreeListGridEditorComponent.getClass.getSimpleName)
+        isc.defineClass(TasksOrders.getClass.getSimpleName, CommonTreeListGridEditorComponent.getClass.getSimpleName)
         isc.defineClass(GanttChart.getClass.getSimpleName, Canvas.getClass.getSimpleName)
     }
 }
