@@ -2,15 +2,15 @@ package com.simplesys.js.components.asp.props
 
 import com.simplesys.SmartClient.App.props._
 import com.simplesys.SmartClient.DataBinding.props.{AdvancedCriteriaProps, CriterionProps}
+import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
 import com.simplesys.SmartClient.Layout.props.TabSetSSProps
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.System.{AdvancedCriteria, Criterion, Tab, TabSetSS, _}
 import com.simplesys.System.JSAny
-import com.simplesys.System.Types.{ListGridEditEvent, OperatorId}
-import com.simplesys.app.{GanttChart, ResultItem}
+import com.simplesys.System.Types.{ListGridEditEvent, ListGridFieldType, OperatorId}
+import com.simplesys.app.ResultItem
 import com.simplesys.function._
 import com.simplesys.js.components.asp.Result
-import com.simplesys.js.components.gantt.props.GanttChartProps
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._

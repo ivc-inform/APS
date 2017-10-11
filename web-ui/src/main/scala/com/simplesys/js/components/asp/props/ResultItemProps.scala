@@ -1,15 +1,11 @@
 package com.simplesys.js.components.asp.props
 
 import com.simplesys.SmartClient.App.props._
-import com.simplesys.SmartClient.System._
-import com.simplesys.System.Types.ListGridEditEvent
-import com.simplesys.System._
-import com.simplesys.function._
+import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
+import com.simplesys.System.Types.{ListGridEditEvent, ListGridFieldType}
 import com.simplesys.js.components.asp.ResultItem
 import com.simplesys.option.ScOption._
-import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS}
-
-import scala.scalajs.js._
+import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS, aps_result_items_pos_NameStrong}
 
 class ResultItemProps extends CommonListGridEditorComponentProps {
     type classHandler <: ResultItem
@@ -23,4 +19,13 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
     editEvent = ListGridEditEvent.none.opt
 
     itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(false), miEdit(false), miRefresh()).opt
+
+    replacingFields = Seq(
+        new ListGridFieldProps {
+            nameStrong = aps_result_items_pos_NameStrong.opt
+            `type` = ListGridFieldType.nInt_SimpleType.opt
+            canSort = false.opt
+        }).opt
+
+    
 }
