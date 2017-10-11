@@ -259,6 +259,7 @@ isc.defineClass("ListGridEditor", isc.VLayoutSS, isc.GridEditorInterface).addPro
 			"cellClick"                       : @cellClick
 			"initialSort"                     : @initialSort
 			"canEdit"                         : @canEdit
+			"canSort"                         : @canSort
 			"filterOnKeypress"                : @filterOnKeypress
 			"selectionType"                   : @selectionType
 			"showRollOver"                    : @showRollOver

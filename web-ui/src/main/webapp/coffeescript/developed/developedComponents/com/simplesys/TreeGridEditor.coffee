@@ -287,6 +287,7 @@ isc.defineClass("TreeGridEditor", isc.VLayoutSS, isc.GridEditorInterface).addPro
 			"showOpenIcons"                   : @showOpenIcons
 			"cascadeSelection"                : @cascadeSelection
 			"canEdit"                         : @canEdit
+			"canSort"                         : @canSort
 			"filterOnKeypress"                : @filterOnKeypress
 			"selectionType"                   : @selectionType
 			"showRollOver"                    : @showRollOver

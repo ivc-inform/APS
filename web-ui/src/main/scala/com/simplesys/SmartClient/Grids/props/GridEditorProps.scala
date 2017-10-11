@@ -46,6 +46,7 @@ class GridEditorProps[T <: ListGridFieldProps, R <: ListGridRecordProps] extends
     var drawAheadRatio: ScOption[Double] = ScNone
     var autoSaveEdits: ScOption[Boolean] = ScNone
     var canEdit: ScOption[Boolean] = ScNone
+    var canSort: ScOption[Boolean] = ScNone
     var showRollOver: ScOption[Boolean] = ScNone
     var autoFetchData: ScOption[Boolean] = ScNone
     var showRowNumbers: ScOption[Boolean] = ScNone
