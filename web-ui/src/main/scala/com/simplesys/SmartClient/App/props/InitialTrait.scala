@@ -14,7 +14,7 @@ trait InitialTrait {
 
     def initWidget(thiz: Canvas, fields: JSUndefined[IscArray[ListGridField]], replacingFields: JSUndefined[IscArray[ListGridField]], editingFields: JSUndefined[IscArray[FormItem]]): (JSUndefined[IscArray[ListGridField]], JSUndefined[IscArray[FormItem]]) = {
 
-        //        println(s"InitialTrait.initWidget: thiz: ${thiz.getClassName()}(${thiz.getIdentifier()}) replacingFields: ${replacingFields.map(fields => fields.map(_.nameStrong.map(_.name)).mkString("[", ", ", "]"))}, editingFields: ${editingFields.map(fields => fields.map(_.nameStrong.map(_.name)).mkString("[", ", ", "]"))}")
+        println(s"InitialTrait.initWidget: thiz: ${thiz.getClassName()}(${thiz.getIdentifier()}) fields: ${fields.map(_.map(_.nameStrong.map(_.name)).mkString("[", ", ", "]"))}, replacingFields: ${replacingFields.map(_.map(_.nameStrong.map(_.name)).mkString("[", ", ", "]"))}, editingFields: ${editingFields.map(fields => fields.map(_.nameStrong.map(_.name)).mkString("[", ", ", "]"))}")
 
         fields.foreach(_.foreach(field => if (field.nameStrong.isDefined) field._name = field.nameStrong.get.name else thiz.logError("Field not have nameStrong, error #36")))
 

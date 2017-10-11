@@ -37,7 +37,7 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
             editingFields = aps_orders_FRMITM.opt
         })
 
-    /*replacingFieldsList = Seq(
+    replacingFieldsList = Seq(
         new ListGridFieldProps {
             nameStrong = aps_orders_code_orders_NameStrong.opt
             `type` = ListGridFieldType.sCaption_SimpleType.opt
@@ -47,5 +47,5 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
                     treeGridEditor = taskEditor.opt
                 }).opt
         }
-    ).opt*/
+    ).opt
 }
