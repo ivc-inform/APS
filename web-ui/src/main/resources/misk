@@ -1,3 +1,7 @@
+docker rmi $(docker images -q)
+
+docker rm $(docker ps -a -q)
+
 docker rmi ivcinform/aps:1.0.0.1
 docker run -d -p 8083:8080 --add-host uandrew-home:176.117.127.137 --restart on-failure:5 --name aps_1001 ivcinform/aps:1.0.0.1
 docker run -d -p 8083:8080 --add-host uandrew-home:192.168.0.102 --restart on-failure:5 --name aps_1001 ivcinform/aps:1.0.0.1
@@ -13,10 +17,10 @@ show parameter DB_CACHE_SIZE;
 show parameter STREAMS_POOL_SIZE;
 show parameter SGA_TARGET;
 
-ALTER SYSTEM SET SGA_TARGET=50G scope=spfile;
+ALTER SYSTEM SET SGA_TARGET=55G scope=spfile;
 ALTER SYSTEM SET SHARED_POOL_SIZE=5G scope=spfile;
 ALTER SYSTEM SET LARGE_POOL_SIZE=5G scope=spfile;
-ALTER SYSTEM SET JAVA_POOL_SIZE=500M scope=spfile;
+ALTER SYSTEM SET JAVA_POOL_SIZE=5G scope=spfile;
 ALTER SYSTEM SET DB_CACHE_SIZE=30G scope=spfile;
 ALTER SYSTEM SET STREAMS_POOL_SIZE=5G scope=spfile;
 
@@ -25,16 +29,14 @@ startup;
 
 ALTER USER SYS IDENTIFIED BY dfqc2;
 ALTER USER SYSTEM IDENTIFIED BY dfqc2;
-ALTER USER B404SP3DEMO IDENTIFIED BY dfqc2;
-GRANT DBA TO B404SP3DEMO;
+ALTER USER APS IDENTIFIED BY dfqc2;
+GRANT DBA TO APS;
 
 @/u01/app/oracle/product/11.2/db_1/javavm/install/initjvm.sql;
 @/u01/app/oracle/product/11.2/db_1/xdk/admin/initxml.sql;
 @/u01/app/oracle/product/11.2/db_1/xdk/admin/xmlja.sql;
 @/u01/app/oracle/product/11.2/db_1/rdbms/admin/catjava.sql;
 @/u01/app/oracle/product/11.2/db_1/rdbms/admin/catexf.sql;
-
-
 @/u01/app/oracle/product/11.2/db_1/ord/admin/ordinst.sql SYSAUX SYSAUX;
 @/u01/app/oracle/product/11.2/db_1/rdbms/admin/catqm.sql change_on_install SYSAUX TEMP YES;
 @/u01/app/oracle/product/11.2/db_1/rdbms/admin/catqm.sql xdb change_on_install SYSAUX TEMP YES;
