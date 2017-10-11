@@ -2,7 +2,62 @@ docker rmi ivcinform/aps:1.0.0.1
 docker run -d -p 8083:8080 --add-host uandrew-home:176.117.127.137 --restart on-failure:5 --name aps_1001 ivcinform/aps:1.0.0.1
 docker run -d -p 8083:8080 --add-host uandrew-home:192.168.0.102 --restart on-failure:5 --name aps_1001 ivcinform/aps:1.0.0.1
 
-docker run -d -p 1522:1521 --restart on-failure:5 --name aps_112 ivcinform/aps-11x64g:1.0.0
+docker run -d -p 1521:1521 --restart on-failure:5 --name aps_112 ivcinform/aps-11x64g:1.0.0
+
+qlplus / as sysdba
+
+show parameter SHARED_POOL_SIZE;
+show parameter LARGE_POOL_SIZE;
+show parameter JAVA_POOL_SIZE;
+show parameter DB_CACHE_SIZE;
+show parameter STREAMS_POOL_SIZE;
+show parameter SGA_TARGET;
+
+ALTER SYSTEM SET SGA_TARGET=50G scope=spfile;
+ALTER SYSTEM SET SHARED_POOL_SIZE=5G scope=spfile;
+ALTER SYSTEM SET LARGE_POOL_SIZE=5G scope=spfile;
+ALTER SYSTEM SET JAVA_POOL_SIZE=500M scope=spfile;
+ALTER SYSTEM SET DB_CACHE_SIZE=30G scope=spfile;
+ALTER SYSTEM SET STREAMS_POOL_SIZE=5G scope=spfile;
+
+shutdown immediate;
+startup;
+
+ALTER USER SYS IDENTIFIED BY dfqc2;
+ALTER USER SYSTEM IDENTIFIED BY dfqc2;
+ALTER USER B404SP3DEMO IDENTIFIED BY dfqc2;
+GRANT DBA TO B404SP3DEMO;
+
+@/u01/app/oracle/product/11.2/db_1/javavm/install/initjvm.sql;
+@/u01/app/oracle/product/11.2/db_1/xdk/admin/initxml.sql;
+@/u01/app/oracle/product/11.2/db_1/xdk/admin/xmlja.sql;
+@/u01/app/oracle/product/11.2/db_1/rdbms/admin/catjava.sql;
+@/u01/app/oracle/product/11.2/db_1/rdbms/admin/catexf.sql;
+
+
+@/u01/app/oracle/product/11.2/db_1/ord/admin/ordinst.sql SYSAUX SYSAUX;
+@/u01/app/oracle/product/11.2/db_1/rdbms/admin/catqm.sql change_on_install SYSAUX TEMP YES;
+@/u01/app/oracle/product/11.2/db_1/rdbms/admin/catqm.sql xdb change_on_install SYSAUX TEMP YES;
+
+
+ALTER SYSTEM SET DISPATCHERS="(PROTOCOL=TCP)(SERVICE=ORCLXDB)" SCOPE=both;
+GRANT EXECUTE ON utl_file TO xdb;
+GRANT EXECUTE ON dbms_lob TO xdb;
+@/u01/app/oracle/product/11.2/db_1/rdbms/admin/utlrp.sql;
+SHUTDOWN IMMEDIATE;
+STARTUP UPGRADE;
+@/u01/app/oracle/product/11.2/db_1/rdbms/admin/xsdbmig.sql;
+SHUTDOWN IMMEDIATE;
+STARTUP
+@/u01/app/oracle/product/11.2/db_1/rdbms/admin/catxdbj.sql;
+@/u01/app/oracle/product/11.2/db_1/ord/im/admin/iminst.sql;
+@/u01/app/oracle/product/11.2/db_1/ord/im/admin/imchk.sql;
+
+
+sudo mkdir dumps;
+
+CREATE OR REPLACE DIRECTORY dumps AS '/u01/app/oracle/product/11.2/db_1/dumps';
+GRANT READ, WRITE ON DIRECTORY dumps TO system;
 
 expdp system/dfqc2 DIRECTORY=DUMPS DUMPFILE=aps10102017.dmp SCHEMAS=aps logfile=main.log
 impdp system/dfqc2 dumpfile=aps10102017.dmp directory=dumps logfile=main.log
