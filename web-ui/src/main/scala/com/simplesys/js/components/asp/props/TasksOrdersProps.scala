@@ -3,8 +3,8 @@ package com.simplesys.js.components.asp.props
 import com.simplesys.SmartClient.App.formItems.props.LookupTreeGridEditorItemProps
 import com.simplesys.SmartClient.App.props.CommonTreeListGridEditorComponentProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
-import com.simplesys.SmartClient.System.LookupTreeGridEditorItem
-import com.simplesys.System.Types.FormItemComponentType
+import com.simplesys.SmartClient.System.{LookupTreeGridEditorItem, isc}
+import com.simplesys.System.Types.{FormItemComponentType, ListGridFieldType}
 import com.simplesys.app.Tasks
 import com.simplesys.js.components.asp.TasksOrders
 import com.simplesys.option.ScOption._
@@ -40,6 +40,7 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
     replacingFieldsList = Seq(
         new ListGridFieldProps {
             nameStrong = aps_orders_code_orders_NameStrong.opt
+            `type` = ListGridFieldType.sCaption_SimpleType.opt
             editorType = FormItemComponentType.LookupTreeGridEditorItem
             editorProperties = LookupTreeGridEditorItem(
                 new LookupTreeGridEditorItemProps {
