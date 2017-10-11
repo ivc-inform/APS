@@ -29,7 +29,7 @@ startup;
 
 ALTER USER SYS IDENTIFIED BY dfqc2;
 ALTER USER SYSTEM IDENTIFIED BY dfqc2;
-ALTER USER APS IDENTIFIED BY dfqc2;
+ALTER USER APS IDENTIFIED BY aps;
 GRANT DBA TO APS;
 
 @/u01/app/oracle/product/11.2/db_1/javavm/install/initjvm.sql;
@@ -56,7 +56,8 @@ STARTUP
 @/u01/app/oracle/product/11.2/db_1/ord/im/admin/imchk.sql;
 
 
-sudo mkdir /u01/app/oracle/product/11.2/db_1/dump;
+echo 'oracle ALL=(ALL) ALL' >> /etc/sudoers
+sudo mkdir /u01/app/oracle/product/11.2/db_1/dumps;
 
 CREATE OR REPLACE DIRECTORY dumps AS '/u01/app/oracle/product/11.2/db_1/dumps';
 GRANT READ, WRITE ON DIRECTORY dumps TO system;
