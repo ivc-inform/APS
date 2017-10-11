@@ -4,10 +4,10 @@ import com.simplesys.SmartClient.App.props._
 import com.simplesys.SmartClient.DataBinding.props.SortSpecifierProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
 import com.simplesys.SmartClient.System.SortSpecifier
-import com.simplesys.System.Types.{ListGridEditEvent, ListGridFieldType, SortDirection}
+import com.simplesys.System.Types.{Alignment, ListGridEditEvent, ListGridFieldType, SortDirection}
 import com.simplesys.js.components.asp.ResultItem
 import com.simplesys.option.ScOption._
-import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS, aps_result_items_pos_NameStrong}
+import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
 
 class ResultItemProps extends CommonListGridEditorComponentProps {
     type classHandler <: ResultItem
@@ -22,22 +22,27 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
 
     itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(false), miEdit(false), miRefresh()).opt
 
-    /*replacingFields = Seq(
+    replacingFields = Seq(
         new ListGridFieldProps {
             nameStrong = aps_result_items_pos_NameStrong.opt
+            align = Alignment.center.opt
             `type` = ListGridFieldType.nInt_SimpleType.opt
-            canSort = false.opt
-        }).opt*/
+        },
+        new ListGridFieldProps {
+            nameStrong = aps_result_items_duration_NameStrong.opt
+            align = Alignment.center.opt
+            `type` = ListGridFieldType.fDouble_SimpleType.opt
+        }).opt
 
     canSort = false.opt
-    
+
     initialSort = Seq(
         SortSpecifier(
-            new SortSpecifierProps{
+            new SortSpecifierProps {
                 property = aps_result_items_pos_NameStrong.name.opt
                 direction = SortDirection.ascending.opt
             }
         )
     ).opt
-    
+
 }
