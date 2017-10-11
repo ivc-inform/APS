@@ -3,18 +3,18 @@
           xmlns="http://simpleSys.ru/xml/library/app"
           xmlns:isc="http://simpleSys.ru/xml/library/ISC"
           xsi:schemaLocation="http://simpleSys.ru/xml/library/app http://toucan.simplesys.lan/xml/xsd/v1.0.0-1/schemaApp.xsd">
-    <Bo BoName="prod_calendar"
-        GroupName="math"
-        BoCaption="Производственный календарь"
+    <Bo BoName="rc"
+        GroupName="aps"
+        BoCaption="Рабочие центры"
         GroupCaption="Оптимальные производственные расписания"
         Enabled="true"/>
     <MenuPath>
         <isc:GroupTitle>Оптимальные производственные расписания</isc:GroupTitle>
-        <isc:Identifier>math</isc:Identifier>
+        <isc:Identifier>aps</isc:Identifier>
         <isc:Title>Оптимальные производственные расписания</isc:Title>
         <isc:MenuPath>
-            <isc:Identifier>math_prod_calendar</isc:Identifier>
-            <isc:Title>Производственный календарь</isc:Title>
+            <isc:Identifier>aps_rc</isc:Identifier>
+            <isc:Title>Рабочие центры</isc:Title>
         </isc:MenuPath>
     </MenuPath>
     <RootCanvas>
@@ -24,12 +24,12 @@
             <AutoSaveEdits>true</AutoSaveEdits>
             <AutoFitWidthApproach>both</AutoFitWidthApproach>
             <AutoFitFieldWidths>true</AutoFitFieldWidths>
-            <Identifier>editormath_prod_calendar</Identifier>
+            <Identifier>editoraps_rc</Identifier>
             <DataPageSize>simpleSyS.config.dataPageSize</DataPageSize>
             <DrawAheadRatio>simpleSyS.config.drawAheadRatio</DrawAheadRatio>
             <InitialSort>
                 <SortSpecifier>
-                    <Property>id</Property>
+                    <Property>id_rc</Property>
                 </SortSpecifier>
             </InitialSort>
             <CanEdit>true</CanEdit>

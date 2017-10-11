@@ -11,8 +11,8 @@ class RcProps extends CommonListGridEditorComponentProps {
 
     simpleTable = true.opt
 
-    dataSource = DataSourcesJS.math_rc_DS.opt
+    dataSource = DataSourcesJS.aps_rc_DS.opt
 
-    editingFields = FormItemsJS.math_rc_FRMITM.opt
-    fields = ListGridFiledsJS.math_rc_FLDS.opt
+    editingFields = FormItemsJS.aps_rc_FRMITM.opt
+    fields = ListGridFiledsJS.aps_rc_FLDS.opt
 }

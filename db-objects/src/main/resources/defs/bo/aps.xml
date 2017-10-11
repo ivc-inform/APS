@@ -1,6 +1,6 @@
 
 <objectSchema xmlns="http://simpleSys.ru/xml/library/bo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://simpleSys.ru/xml/library/bo http://toucan.simplesys.lan/xml/xsd/v1.0.0-1/schema.xsd">
-	<group caption="Оптимальные производственные расписания" name="math" prefix="MATH">
+	<group caption="Оптимальные производственные расписания" name="aps" prefix="APS">
 		<classes>
 			<classSimple autoTableMapping="true" caption="Производственный календарь" name="prod_calendar">
 				<attrs>

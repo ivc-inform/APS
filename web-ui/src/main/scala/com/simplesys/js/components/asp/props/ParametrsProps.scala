@@ -18,10 +18,10 @@ class ParametrsProps extends CommonListGridEditorComponentProps {
 
     //simpleTable = true.opt
 
-    dataSource = DataSourcesJS.math_params_DS.opt
+    dataSource = DataSourcesJS.aps_params_DS.opt
 
-    editingFields = FormItemsJS.math_params_FRMITM.opt
-    fields = ListGridFiledsJS.math_params_FLDS.opt
+    editingFields = FormItemsJS.aps_params_FRMITM.opt
+    fields = ListGridFiledsJS.aps_params_FLDS.opt
 
     editWindowProperties = WindowSS(
         new WindowSSProps {

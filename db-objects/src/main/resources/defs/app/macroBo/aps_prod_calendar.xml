@@ -3,28 +3,28 @@
           xmlns="http://simpleSys.ru/xml/library/app"
           xmlns:isc="http://simpleSys.ru/xml/library/ISC"
           xsi:schemaLocation="http://simpleSys.ru/xml/library/app http://toucan.simplesys.lan/xml/xsd/v1.0.0-1/schemaApp.xsd">
-    <Bo BoName="changeover"
-        GroupName="math"
-        BoCaption="Матрица наладки"
+    <Bo BoName="prod_calendar"
+        GroupName="aps"
+        BoCaption="Производственный календарь"
         GroupCaption="Оптимальные производственные расписания"
         Enabled="true"/>
     <MenuPath>
         <isc:GroupTitle>Оптимальные производственные расписания</isc:GroupTitle>
-        <isc:Identifier>math</isc:Identifier>
+        <isc:Identifier>aps</isc:Identifier>
         <isc:Title>Оптимальные производственные расписания</isc:Title>
         <isc:MenuPath>
-            <isc:Identifier>math_changeover</isc:Identifier>
-            <isc:Title>Матрица наладки</isc:Title>
+            <isc:Identifier>aps_prod_calendar</isc:Identifier>
+            <isc:Title>Производственный календарь</isc:Title>
         </isc:MenuPath>
     </MenuPath>
     <RootCanvas>
         <ListGridEditor>
             <useSelfName>false</useSelfName>
             <AutoFetchData>true</AutoFetchData>
-            <AutoSaveEdits>false</AutoSaveEdits>
+            <AutoSaveEdits>true</AutoSaveEdits>
             <AutoFitWidthApproach>both</AutoFitWidthApproach>
             <AutoFitFieldWidths>true</AutoFitFieldWidths>
-            <Identifier>editormath_changeover</Identifier>
+            <Identifier>editoraps_prod_calendar</Identifier>
             <DataPageSize>simpleSyS.config.dataPageSize</DataPageSize>
             <DrawAheadRatio>simpleSyS.config.drawAheadRatio</DrawAheadRatio>
             <InitialSort>
@@ -35,12 +35,11 @@
             <CanEdit>true</CanEdit>
             <CanSelectCells>false</CanSelectCells>
             <FetchDelay>500</FetchDelay>
-            <RecordComponentPoolingMode>Recycle</RecordComponentPoolingMode>
             <SelectionType>Multiple</SelectionType>
             <ShowAdvancedFilter>false</ShowAdvancedFilter>
             <ShowFilterEditor>true</ShowFilterEditor>
-            <ShowRecordComponents>true</ShowRecordComponents>
-            <ShowRecordComponentsByCell>true</ShowRecordComponentsByCell>
+            <ShowRecordComponents>false</ShowRecordComponents>
+            <ShowRecordComponentsByCell>false</ShowRecordComponentsByCell>
             <TextMatchStyle>txtMchStyleSubstring</TextMatchStyle>
             <WrapCells>true</WrapCells>
         </ListGridEditor>

@@ -15,10 +15,10 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
     type classHandler <: ResultItem
     identifier = "4EEF794F-EE8F-C38D-73D6-CF6F0F5170E3".opt
 
-    dataSource = DataSourcesJS.math_result_items_DS.opt
+    dataSource = DataSourcesJS.aps_result_items_DS.opt
 
-    editingFields = FormItemsJS.math_result_items_FRMITM.opt
-    fields = ListGridFiledsJS.math_result_items_FLDS.opt
+    editingFields = FormItemsJS.aps_result_items_FRMITM.opt
+    fields = ListGridFiledsJS.aps_result_items_FLDS.opt
 
     editEvent = ListGridEditEvent.none.opt
 

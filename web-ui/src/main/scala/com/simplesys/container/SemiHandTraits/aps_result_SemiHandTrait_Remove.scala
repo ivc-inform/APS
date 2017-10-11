@@ -1,6 +1,6 @@
-// This file is generated automatically (at 13.09.2017 20:34:26), do not spend any changes here, because they will be lost. Generator: "GenBOContainer, stage: #765"
+// This file is generated automatically (at 11.10.2017 10:12:14), do not spend any changes here, because they will be lost. Generator: "GenBOContainer, stage: #765"
 
-package ru.simplesys.defs.app.scala.container.math
+package ru.simplesys.defs.app.scala.container.aps
 
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.isc.system.ServletActorDyn
@@ -8,17 +8,17 @@ import com.simplesys.isc.dataBinging.DSRequestDyn
 import com.simplesys.common.Strings._
 import com.simplesys.jdbc.control.clob._
 import akka.actor.Actor
-import ru.simplesys.defs.bo.math._
+import ru.simplesys.defs.bo.aps._
 
  
-trait math_result_items_SemiHandTrait_Add extends SessionContextSupport with ServletActorDyn {
+trait aps_result_SemiHandTrait_Remove extends SessionContextSupport with ServletActorDyn {
     
 /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
     val requestData = new DSRequestDyn(request)    
     
-    logger debug s"Request for Add: ${newLine + requestData.toPrettyString}"    
+    logger debug s"Request for Remove: ${newLine + requestData.toPrettyString}"    
     
-    val dataSet = Result_itemsDS(oraclePool)    
+    val dataSet = ResultDS(oraclePool)    
 /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
     
      def receiveBase: Option[Actor.Receive] = None    

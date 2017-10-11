@@ -3,18 +3,18 @@
           xmlns="http://simpleSys.ru/xml/library/app"
           xmlns:isc="http://simpleSys.ru/xml/library/ISC"
           xsi:schemaLocation="http://simpleSys.ru/xml/library/app http://toucan.simplesys.lan/xml/xsd/v1.0.0-1/schemaApp.xsd">
-    <Bo BoName="result"
-        GroupName="math"
-        BoCaption="Коэффициент плановой загрузки"
+    <Bo BoName="params"
+        GroupName="aps"
+        BoCaption="Параметры"
         GroupCaption="Оптимальные производственные расписания"
         Enabled="true"/>
     <MenuPath>
         <isc:GroupTitle>Оптимальные производственные расписания</isc:GroupTitle>
-        <isc:Identifier>math</isc:Identifier>
+        <isc:Identifier>aps</isc:Identifier>
         <isc:Title>Оптимальные производственные расписания</isc:Title>
         <isc:MenuPath>
-            <isc:Identifier>math_result</isc:Identifier>
-            <isc:Title>Коэффициент плановой загрузки</isc:Title>
+            <isc:Identifier>aps_params</isc:Identifier>
+            <isc:Title>Параметры</isc:Title>
         </isc:MenuPath>
     </MenuPath>
     <RootCanvas>
@@ -24,7 +24,7 @@
             <AutoSaveEdits>true</AutoSaveEdits>
             <AutoFitWidthApproach>both</AutoFitWidthApproach>
             <AutoFitFieldWidths>true</AutoFitFieldWidths>
-            <Identifier>editormath_result</Identifier>
+            <Identifier>editoraps_params</Identifier>
             <DataPageSize>simpleSyS.config.dataPageSize</DataPageSize>
             <DrawAheadRatio>simpleSyS.config.drawAheadRatio</DrawAheadRatio>
             <InitialSort>

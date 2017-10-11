@@ -10,8 +10,8 @@ class ProdCalendarProps extends CommonListGridEditorComponentProps {
     identifier = "4EEF794F-EE8F-C38D-73D6-CF6F0F5170EE".opt
     simpleTable = true.opt
 
-    dataSource = DataSourcesJS.math_prod_calendar_DS.opt
+    dataSource = DataSourcesJS.aps_prod_calendar_DS.opt
 
-    editingFields = FormItemsJS.math_prod_calendar_FRMITM.opt
-    fields = ListGridFiledsJS.math_prod_calendar_FLDS.opt
+    editingFields = FormItemsJS.aps_prod_calendar_FRMITM.opt
+    fields = ListGridFiledsJS.aps_prod_calendar_FLDS.opt
 }

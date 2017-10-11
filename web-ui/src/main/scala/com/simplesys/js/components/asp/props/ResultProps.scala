@@ -14,7 +14,7 @@ import com.simplesys.js.components.gantt.props.GanttChartProps
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
-import ru.simplesys.defs.app.scala.container.math.ResultDataRecord
+import ru.simplesys.defs.app.scala.container.aps.ResultDataRecord
 
 class ResultProps extends CommonListGridEditorComponentProps {
     type classHandler <: Result
@@ -22,10 +22,10 @@ class ResultProps extends CommonListGridEditorComponentProps {
 
     //simpleTable = true.opt
 
-    dataSource = DataSourcesJS.math_result_DS.opt
+    dataSource = DataSourcesJS.aps_result_DS.opt
 
-    editingFields = FormItemsJS.math_result_FRMITM.opt
-    fields = ListGridFiledsJS.math_result_FLDS.opt
+    editingFields = FormItemsJS.aps_result_FRMITM.opt
+    fields = ListGridFiledsJS.aps_result_FLDS.opt
 
     editEvent = ListGridEditEvent.none.opt
     canExpandRecords = true.opt
@@ -42,7 +42,7 @@ class ResultProps extends CommonListGridEditorComponentProps {
                             criteria = Seq(
                                 Criterion(
                                     new CriterionProps {
-                                        fieldName = math_result_id_NameStrong.name.opt
+                                        fieldName = aps_result_id_NameStrong.name.opt
                                         operator = OperatorId.equals.opt
                                         value = record.id.getOrElse(0).asInstanceOf[JSAny].opt
                                     })
@@ -70,11 +70,11 @@ class ResultProps extends CommonListGridEditorComponentProps {
                         Tab(
                             new TabProps {
                                 icon = Common.cards.opt
-                                pane = GanttChart.create(
+                                /*pane = GanttChart.create(
                                   new GanttChartProps{
                                     data = ???
                                   }
-                                ).opt
+                                ).opt*/
                                 name = "gantt".opt
                                 title = "Диарамма Ганта".ellipsis.opt
                             }
