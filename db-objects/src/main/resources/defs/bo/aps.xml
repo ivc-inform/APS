@@ -4,13 +4,13 @@
 			<classSimple autoTableMapping="true" caption="Задачи" name="tasks">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="idtask" type="id" useDbPrefix="false"></attr>
-					<attr caption="Код задачи"  name="code" type="sCaption" mandatory="true" useDbPrefix="false"/>
-					<attr caption="Наименование задачи" name="caption" type="sCode" mandatory="false" useDbPrefix="false"/>
-					<attr caption="Описание задачи" name="description" type="sDescription" mandatory="false" useDbPrefix="false"/>
+					<attr caption="Код задачи"  name="code_task" type="sCaption" mandatory="true" useDbPrefix="false"/>
+					<attr caption="Наименование задачи" name="caption_task" type="sCode" mandatory="false" useDbPrefix="false"/>
+					<attr caption="Описание задачи" name="description_task" type="sDescription" mandatory="false" useDbPrefix="false"/>
 				</attrs>
 				<defaults>
 					<showAttrs>
-						<attrName>code</attrName>
+						<attrName>code_task</attrName>
 					</showAttrs>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
 				</defaults>
@@ -24,9 +24,9 @@
 			<classSimple autoTableMapping="true" caption="Операции заказов" name="orders">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="idorders" type="id" useDbPrefix="false"></attr>
-					<attr caption="Код операции"  name="code" type="sCaption" mandatory="true" useDbPrefix="false"/>
-					<attr caption="Наименование операции" name="caption" type="sCode" mandatory="false" useDbPrefix="false"/>
-					<attr caption="Описание операции" name="description" type="sDescription" mandatory="false" useDbPrefix="false"/>
+					<attr caption="Код операции"  name="code_orders" type="sCaption" mandatory="true" useDbPrefix="false"/>
+					<attr caption="Наименование операции" name="caption_orders" type="sCode" mandatory="false" useDbPrefix="false"/>
+					<attr caption="Описание операции" name="description_orders" type="sDescription" mandatory="false" useDbPrefix="false"/>
 					<attr caption="Трудоемкость" name="complexity" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Момент готовности" name="ready" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Момент поступления" name="entry" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
@@ -36,7 +36,7 @@
 				</attrs>
 				<defaults>
 					<showAttrs>
-						<attrName>caption</attrName>
+						<attrName>code_orders</attrName>
 					</showAttrs>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
 				</defaults>
