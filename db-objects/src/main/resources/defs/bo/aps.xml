@@ -127,10 +127,8 @@
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_item" type="id" useDbPrefix="false"></attr>
 					<attr caption="Порядковый номер в наборе варианта" name="pos" type="nInt" useDbPrefix="false"></attr>
-					<attr caption="Дата время начала операции" name="opertimestart" type="dDateTime" useDbPrefix="false"></attr>
-					<attr caption="Дата время окончания операции" name="opertimeend" type="dDateTime" useDbPrefix="false"></attr>
-					<attr caption="Дата время начала переналадки" name="settimestart" type="dDateTime" useDbPrefix="false"></attr>
-					<attr caption="Дата время окончания переналадки" name="settimeend" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Дата время начала" name="opertimestart" type="dDateTime" useDbPrefix="false"></attr>
+					<attr caption="Дата время окончания" name="opertimeend" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Операция заказа" name="id_order" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Длительность операции" name="duration" type="fDouble" useDbPrefix="false"></attr>
 					<attr caption="Название операции" name="item_name" type="sCode" useDbPrefix="false"></attr>
