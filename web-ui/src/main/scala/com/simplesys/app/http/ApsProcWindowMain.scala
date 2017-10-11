@@ -74,7 +74,7 @@ object ApsProcWindowMain extends WebTabSetApp {
                                             title = "Операции заказов".ellipsis.opt
                                             click = {
                                                 (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
-                                                    addTab(Orders.create(new OrdersProps), item)
+                                                    addTab(Tasks.create(new TasksProps), item)
                                             }.toFunc.opt
                                         },
                                         new MenuSSItemProps {
