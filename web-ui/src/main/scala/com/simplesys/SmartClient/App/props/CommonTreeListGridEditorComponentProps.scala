@@ -7,7 +7,6 @@ import com.simplesys.SmartClient.Grids.listGrid.ListGridField
 import com.simplesys.SmartClient.Grids.props.TreeListGridEditorProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
 import com.simplesys.SmartClient.System._
-import com.simplesys.System.Types.FetchMode
 import com.simplesys.System._
 import com.simplesys.function._
 import com.simplesys.option.ScOption._
@@ -66,6 +65,19 @@ class CommonTreeListGridEditorComponentProps extends TreeListGridEditorProps wit
         (thiz: classHandler, arguments: IscArray[JSAny]) =>
             //isc debugTrac (thiz.getClassName(), thiz.getIdentifier())
 
+            def checkReplacingField(fields: js.UndefOr[js.Array[ListGridField]], replacingFields: js.UndefOr[js.Array[ListGridField]]) {
+                        replacingFields.foreach {
+                            _.foreach {
+                                field ⇒
+                                    if (!fields.get.exists(_.nameStrong.get.name == field.nameStrong.get.name))
+                                        thiz.logError(s"Поле ${field.nameStrong.get.name} из replacingFields не найдено.")
+                            }
+                        }
+                    }
+
+
+            
+            checkReplacingField(thiz.fieldsList, thiz.replacingFieldsList)
             val res = initWidget(thiz, thiz.fieldsList, thiz.replacingFieldsList, thiz.editingListFields)
             thiz.fieldsList = res._1
             thiz.editingListFields = res._2
