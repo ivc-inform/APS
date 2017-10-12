@@ -249,10 +249,11 @@ class LookupTreeGridEditorItemProps extends CanvasItemProps {
                                                                                             isc.ask("Перейти в каталог переноса элемента ?", {
                                                                                                 (value: Boolean) =>
                                                                                                     if (value) {
-                                                                                                        treeGrid.foreach(_.deselectAllRecords())
-
-                                                                                                        val keyValue: TreeNode = treeGrid.get.findByKey(valueId).asInstanceOf[TreeNode]
-                                                                                                        treeGrid.foreach(grid => grid.selectRecord(keyValue))
+                                                                                                        treeGrid.foreach{
+                                                                                                            treeGrid ⇒
+                                                                                                                treeGrid.deselectAllRecords()
+                                                                                                                treeGrid.selectRecord(js.Dictionary(idFieldName → valueId).asInstanceOf[TreeNode])
+                                                                                                        }
 
                                                                                                         val rec = listGrid.findByKey(listGridKeys)
                                                                                                         listGrid selectRecord rec.asInstanceOf[ListGridRecord]
