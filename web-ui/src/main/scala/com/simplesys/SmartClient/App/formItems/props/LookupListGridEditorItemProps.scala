@@ -216,7 +216,7 @@ class LookupListGridEditorItemProps extends CanvasItemProps {
                                                                                         else
                                                                                             formItem.filteredGridList.foreach(_.fetchData(criteria = advancedCriteria))
 
-                                                                                        formItem setValue (res)
+                                                                                        formItem setValue res
 
                                                                                     } else {
                                                                                         if (editor.getSelectedRecords().length != 1)

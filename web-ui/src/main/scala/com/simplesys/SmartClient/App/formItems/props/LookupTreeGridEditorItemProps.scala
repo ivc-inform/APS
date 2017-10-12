@@ -246,10 +246,6 @@ class LookupTreeGridEditorItemProps extends CanvasItemProps {
                                                                                                     }
                                                                                                 }
 
-                                                                                            //isc debugTrap listGridKeys
-                                                                                            listGrid.saveAllEdits()
-                                                                                            listGrid.cancelEditing()
-
                                                                                             isc.ask("Перейти в каталог переноса элемента ?", {
                                                                                                 (value: Boolean) =>
                                                                                                     if (value) {
@@ -265,6 +261,7 @@ class LookupTreeGridEditorItemProps extends CanvasItemProps {
 
                                                                                         }
                                                                                     }
+                                                                                    thiz.owner.foreach(_.hide())
                                                                             }.toThisFunc.opt
                                                                         }
                                                                     )
