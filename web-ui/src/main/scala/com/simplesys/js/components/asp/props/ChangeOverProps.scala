@@ -21,7 +21,7 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
     editingFields = FormItemsJS.aps_changeover_FRMITM.opt
     fields = ListGridFiledsJS.aps_changeover_FLDS.opt
 
-    /*val rcEditor = Rc.create(new RcProps)
+    val rcEditor = Rc.create(new RcProps)
 
     val rcFilterEditor = Rc.create(
         new RcProps {
@@ -33,18 +33,7 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
 
     replacingFields = Seq(
         new ListGridFieldProps {
-            nameStrong = aps_rc_scode_NameStrong.opt
-            filterEditorType = FormItemComponentType.LookupListGridEditorItem
-            filterEditorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
-                listGridEditor = rcFilterEditor.opt
-            }).opt
-            editorType = FormItemComponentType.LookupListGridEditorItem
-            editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
-                listGridEditor = rcEditor.opt
-            }).opt
-        },
-        new ListGridFieldProps {
-            nameStrong = aps_rc_sname_NameStrong.opt
+            nameStrong = aps_rc_scode_rc_NameStrong.opt
             filterEditorType = FormItemComponentType.LookupListGridEditorItem
             filterEditorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
                 listGridEditor = rcFilterEditor.opt
@@ -54,5 +43,5 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
                 listGridEditor = rcEditor.opt
             }).opt
         }
-    ).opt*/
+    ).opt
 }
