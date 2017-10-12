@@ -37,7 +37,7 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
 
     replacingFieldsList = Seq(
         new ListGridFieldProps {
-            nameStrong = aps_orders_code_task_NameStrong.opt
+            nameStrong = aps_orders_code_task_id_task_NameStrong.opt
             `type` = ListGridFieldType.sCaption_SimpleType.opt
             editorType = FormItemComponentType.LookupTreeGridEditorItem
             editorProperties = LookupTreeGridEditorItem(
@@ -46,7 +46,7 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
                 }).opt
         },
         new ListGridFieldProps {
-            nameStrong = aps_orders_code_operstype_NameStrong.opt
+            nameStrong = aps_orders_code_operstype_oper_type_NameStrong.opt
             `type` = ListGridFieldType.sCaption_SimpleType.opt
             editorType = FormItemComponentType.LookupListGridEditorItem
             editorProperties = LookupListGridEditorItem(

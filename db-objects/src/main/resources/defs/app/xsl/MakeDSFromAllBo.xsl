@@ -24,15 +24,15 @@
 		<xsl:variable name="bos" as="node()*">
 			<xsl:document>
 				<isc:DataSources xmlns:isc="http://simpleSys.ru/xml/library/ISC" xmlns:common="http://simpleSys.ru/xml/library/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				                 xsi:schemaLocation="http://simpleSys.ru/xml/library/ISC http://toucan.simplesys.lan/xml/xsd/v1.0.0-1/schemaISC.xsd">
+                         xsi:schemaLocation="http://simpleSys.ru/xml/library/ISC http://toucan.simplesys.lan/xml/xsd/v1.0.0-1/schemaISC.xsd">
 					<xsl:message select="concat('Processing file: ', $inputBoFile)"/>
-					<!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:class[@name='ContractorGroup']"/>-->
-					<!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:class[@name='Gds']"/>-->
-					<!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:class[@group='test'][@name='TestMultiFKRoot']"/>-->
-					<!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:class[@group='test'][@name='TestMultiFKCh']"/>-->
-					<!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:class[@name='User'][@group='admin']"/>-->
-					<!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:clas s[@name='UserGroup'][@group='admin']"/>-->
-					<xsl:apply-templates select="$FileSource/bo:allClasses/bo:class"/>
+            <!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:class[@name='ContractorGroup']"/>-->
+            <!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:class[@name='Gds']"/>-->
+            <!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:class[@group='test'][@name='TestMultiFKRoot']"/>-->
+            <!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:class[@group='test'][@name='TestMultiFKCh']"/>-->
+            <!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:class[@name='User'][@group='admin']"/>-->
+            <!--<xsl:apply-templates select="$FileSource/bo:allClasses/bo:clas s[@name='UserGroup'][@group='admin']"/>-->
+            <xsl:apply-templates select="$FileSource/bo:allClasses/bo:class"/>
 				</isc:DataSources>
 
 				<xsl:message select="'Processing done.'"/>
@@ -61,12 +61,12 @@
 				<xsl:value-of select="concat($dataSourecId, '_DS')"/>
 			</isc:Identifier>
 			<isc:useSelfName>true</isc:useSelfName>
-			<!--<isc:AutoJoinTransactions>false</isc:AutoJoinTransactions>-->
-			<isc:DataURL>
+        <!--<isc:AutoJoinTransactions>false</isc:AutoJoinTransactions>-->
+        <isc:DataURL>
 				<xsl:value-of select="concat('logic/',$dataSourecId,'/*','@simpleSysContextPath')"/>
 			</isc:DataURL>
-			<!--<isc:DisableQueuing>false</isc:DisableQueuing>-->
-			<isc:JsonPrefix></isc:JsonPrefix>
+        <!--<isc:DisableQueuing>false</isc:DisableQueuing>-->
+        <isc:JsonPrefix></isc:JsonPrefix>
 			<isc:JsonSuffix></isc:JsonSuffix>
 			<isc:Fields>
 				<xsl:variable name="bo" select="."/>
@@ -81,7 +81,7 @@
 
 				<xsl:for-each select="bo:attrs/bo:attr">
 					<!--<xsl:sort select="@name"/>-->
-					<xsl:variable as="xs:string" name="fieldName" select="@name"/>
+            <xsl:variable as="xs:string" name="fieldName" select="@name"/>
 					<xsl:call-template name="bo:recField">
 						<xsl:with-param name="bo" select="$bo" tunnel="yes"/>
 						<xsl:with-param name="fieldName" select="$fieldName"/>
@@ -106,7 +106,7 @@
 								<xsl:variable as="xs:string" name="fieldName1" select="text()"/>
 								<xsl:for-each select="$bo1/bo:attrs/bo:attr[@name=$fieldName1]">
 									<!--<xsl:sort select="@name"/>-->
-									<xsl:call-template name="bo:recField">
+                    <xsl:call-template name="bo:recField">
 										<xsl:with-param name="bo" select="$bo1" tunnel="yes"/>
 										<xsl:with-param name="fieldName" select="$fieldName1"/>
 										<xsl:with-param name="nameLocal" select="$nameLocal"/>
@@ -180,7 +180,7 @@
 								<xsl:variable as="xs:string" name="fieldName1" select="text()"/>
 								<xsl:for-each select="$bo1/bo:attrs/bo:attr[@name=$fieldName1]">
 									<!--<xsl:sort select="@name"/>-->
-									<xsl:variable name="fieldName" as="xs:string" select="@name"/>
+                    <xsl:variable name="fieldName" as="xs:string" select="@name"/>
 									<xsl:variable name="fieldType" as="xs:string" select="@type"/>
 									<xsl:variable name="fieldMandatory" as="xs:boolean" select="@mandatory"/>
 
@@ -280,9 +280,16 @@
 			<xsl:call-template name="app:getLength">
 				<xsl:with-param name="type" select="@type"/>
 			</xsl:call-template>
-			<isc:Name>
-				<xsl:value-of select="$fieldName"/>
-			</isc:Name>
+			<xsl:if test="$fieldLookup='no'">
+				<isc:Name>
+					<xsl:value-of select="$fieldName"/>
+				</isc:Name>
+			</xsl:if>
+			<xsl:if test="$fieldLookup='yes'">
+				<isc:Name>
+					<xsl:value-of select="concat($fieldName, '_', $nameLocal)"/>
+				</isc:Name>
+			</xsl:if>
 			<isc:GenBySeq>
 				<xsl:value-of select="@genBySeq"/>
 			</isc:GenBySeq>
@@ -310,16 +317,16 @@
 					<xsl:with-param name="attrName" select="@name"/>
 				</xsl:call-template>
 			</xsl:if>
-			<!--<xsl:if test="$fieldLookup='no'">-->
-			<xsl:if test="@mandatory = true()">
+        <!--<xsl:if test="$fieldLookup='no'">-->
+        <xsl:if test="@mandatory = true()">
 				<xsl:if test="not(@calculated = true())">
 					<isc:Required>
 						<xsl:value-of select="@mandatory = true()"/>
 					</isc:Required>
 				</xsl:if>
 			</xsl:if>
-			<!--</xsl:if>-->
-			<xsl:if test="@caption">
+        <!--</xsl:if>-->
+        <xsl:if test="@caption">
 				<isc:Title>
 					<xsl:attribute name="key4MergeValue" select="$fieldName"/>
 					<xsl:value-of select="@caption"/>
