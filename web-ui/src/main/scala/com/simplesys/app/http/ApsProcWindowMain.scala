@@ -78,6 +78,16 @@ object ApsProcWindowMain extends WebTabSetApp {
                                             }.toFunc.opt
                                         },
                                         new MenuSSItemProps {
+                                            name = "rc".opt
+                                            icon = app.doctypes.opt
+                                            title = "Типы операций".ellipsis.opt
+                                            click = {
+                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
+                                                    addTab(OpersType.create(new OpersTypeProps), item)
+
+                                            }.toFunc.opt
+                                        },
+                                        new MenuSSItemProps {
                                             name = "prodCalendar".opt
                                             icon = app.cards.opt
                                             title = "Производственный календарь".ellipsis.opt

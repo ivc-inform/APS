@@ -96,6 +96,7 @@ package object app {
     object Parametrs extends SCApply[Parametrs, ParametrsProps]
     object ProdCalendar extends SCApply[ProdCalendar, ProdCalendarProps]
     object Rc extends SCApply[Rc, RcProps]
+    object OpersType extends SCApply[OpersType, OpersTypeProps]
     object ResultItem extends SCApply[ResultItem, ResultItemProps]
     object Result extends SCApply[Result, ResultProps]
     object GanttChart extends SCApply[GanttChart, GanttChartProps]
