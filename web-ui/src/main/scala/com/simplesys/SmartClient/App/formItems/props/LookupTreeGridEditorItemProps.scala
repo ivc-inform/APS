@@ -63,7 +63,7 @@ class LookupTreeGridEditorItemProps extends CanvasItemProps {
 
                                                                 val id = record.asInstanceOf[JSDynamic].selectDynamic(foreignIdField.name)
                                                                 editor.deselectAllRecords()
-                                                                editor.selectRecord(js.Dictionary(foreignIdField.name → id).asInstanceOf[js.Object])
+                                                                editor selectRecordsByKey id
                                                         }
                                             }
                                     }
@@ -202,14 +202,14 @@ class LookupTreeGridEditorItemProps extends CanvasItemProps {
                                                                                             "criteria" -> criteria
                                                                                         )
 
-                                                                                        //isc debugTrap formItem.filteredGridList
+                                                                                        isc debugTrap formItem.filteredGridList
 
                                                                                         if (formItem.filteredGridList.isEmpty)
                                                                                             isc.error("Нет поля formItem.filteredGrid.")
                                                                                         else
                                                                                             formItem.filteredGridList.foreach(_.fetchData(criteria = advancedCriteria))
 
-                                                                                        formItem setValue res
+                                                                                        formItem setValue (res)
 
                                                                                     } else {
                                                                                         if (editor.getSelectedRecords().length != 1)
@@ -246,23 +246,26 @@ class LookupTreeGridEditorItemProps extends CanvasItemProps {
                                                                                                     }
                                                                                                 }
 
+                                                                                            //isc debugTrap listGridKeys
+                                                                                            listGrid.saveAllEdits()
+                                                                                            listGrid.cancelEditing()
+
                                                                                             isc.ask("Перейти в каталог переноса элемента ?", {
                                                                                                 (value: Boolean) =>
                                                                                                     if (value) {
-                                                                                                        treeGrid.foreach{
-                                                                                                            treeGrid ⇒
-                                                                                                                treeGrid.deselectAllRecords()
-                                                                                                                treeGrid.selectRecord(js.Dictionary(idFieldName → valueId).asInstanceOf[TreeNode])
-                                                                                                        }
+                                                                                                        treeGrid.foreach(_.deselectAllRecords())
+
+                                                                                                        val keyValue: TreeNode = treeGrid.get.findByKey(valueId).asInstanceOf[TreeNode]
+                                                                                                        treeGrid.foreach(grid => grid.selectRecord(keyValue))
 
                                                                                                         val rec = listGrid.findByKey(listGridKeys)
                                                                                                         listGrid selectRecord rec.asInstanceOf[ListGridRecord]
                                                                                                     }
+                                                                                                    thiz.owner.foreach(_.hide())
                                                                                             })
 
                                                                                         }
                                                                                     }
-                                                                                    thiz.owner.foreach(_.hide())
                                                                             }.toThisFunc.opt
                                                                         }
                                                                     )
