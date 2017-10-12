@@ -125,13 +125,12 @@
 			<classSimple autoTableMapping="true" caption="Рабочие центры" name="rc">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_rc" type="id" useDbPrefix="false"></attr>
-					<attr caption="Код рабочего центра" name="scode" type="sCode" mandatory="true" useDbPrefix="false"></attr>
-					<attr caption="Наименование рабочего центра" name="sname" type="sCaption" mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Код рабочего центра" name="scode_rc" type="sCode" mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Наименование рабочего центра" name="sname_rc" type="sCaption" mandatory="false" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<showAttrs>
-						<attrName>scode</attrName>
-						<attrName>sname</attrName>
+						<attrName>scode_rc</attrName>
 					</showAttrs>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
 				</defaults>
