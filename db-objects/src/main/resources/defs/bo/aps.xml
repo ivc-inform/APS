@@ -83,9 +83,6 @@
 					<attr caption="Продолжительность" name="duration" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
-					<showAttrs>
-						<attrName>id</attrName>
-					</showAttrs>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
 				</defaults>
 				<constraints>
@@ -100,9 +97,6 @@
 					<attr caption="Время наладки" name="duration" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
-					<showAttrs>
-						<attrName>duration</attrName>
-					</showAttrs>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>                                                                                                                         
 				</defaults>
 				<constraints>
@@ -159,10 +153,6 @@
 					<attr caption="Горизонт планирования в часах" name="horizon_plan" type="nInt" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
-
-				<showAttrs>
-					<attrName>id</attrName>
-				</showAttrs>
 				<uiSettings uiFormType="singleListGrid"></uiSettings>
 				</defaults>
 				<constraints>
@@ -186,9 +176,6 @@
 					<attr caption="Коэффициент плановой загрузки" name="param_kl" type="nInt" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
-					<showAttrs>
-						<attrName>id</attrName>
-					</showAttrs>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
 				</defaults>
 				<constraints>
@@ -207,9 +194,6 @@
 					<attr caption="Длительность операции" name="duration" type="fDouble" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
-					<showAttrs>
-						<attrName>id_item</attrName>
-					</showAttrs>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
 				</defaults>
 				<constraints>
