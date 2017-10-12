@@ -24,6 +24,26 @@
 				</constraints>
 			</classSimple>
 
+			<classSimple autoTableMapping="true" caption="Типы операций" name="opers_type">
+				<attrs>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_operstype" type="id" useDbPrefix="false"></attr>
+					<attr caption="Код типа операции"  name="code_operstype" type="sCaption" mandatory="true" useDbPrefix="false"/>
+					<attr caption="Наименование типа операции" name="caption_operstype" type="sCode" mandatory="false" useDbPrefix="false"/>
+					<attr caption="Описание типа операции" name="description_operstype" type="sDescription" mandatory="false" useDbPrefix="false"/>
+				</attrs>
+				<defaults>
+					<showAttrs>
+						<attrName>code_operstype</attrName>
+					</showAttrs>
+					<uiSettings uiFormType="singleListGrid"></uiSettings>
+				</defaults>
+				<constraints>
+					<uc uniqueType="pk">
+						<attrName>id_operstype</attrName>
+					</uc>
+				</constraints>
+			</classSimple>
+
 			<classSimple autoTableMapping="true" caption="Операции заказов" name="orders">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="idorders" type="id" useDbPrefix="false"></attr>
@@ -33,7 +53,6 @@
 					<attr caption="Трудоемкость" name="complexity" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Момент готовности" name="ready" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Момент поступления" name="entry" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
-					<attr caption="Тип операции" name="oper_type" type="nInt" mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Степень важности" name="priority" type="nInt" mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Объем выполнения" name="execution" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
@@ -49,6 +68,9 @@
 					</uc>
 					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
 						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
+					</fk>
+					<fk linkType="refIsOwner" mandatory="true" parent="opers_type">
+						<mapping attrNameLocal="oper_type" attrNameRemote="id_operstype"></mapping>
 					</fk>
 				</constraints>
 			</classSimple>
@@ -75,23 +97,27 @@
 
 			<classSimple autoTableMapping="true" caption="Матрица наладки" name="changeover">
 				<attrs>
-					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
-					<attr caption="Наладка начальная" name="from_type" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
-					<attr caption="Наладка конечная" name="to_type" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Время наладки" name="duration" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<showAttrs>
-						<attrName>id</attrName>
+						<attrName>duration</attrName>
 					</showAttrs>
-					<uiSettings uiFormType="singleListGrid"></uiSettings>                                                                                                                         b
+					<uiSettings uiFormType="singleListGrid"></uiSettings>                                                                                                                         
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
-						<attrName>id</attrName>
+						<attrName>from_type</attrName>
+						<attrName>to_type</attrName>
 					</uc>
 					<fk linkType="refIsOwner" mandatory="true" parent="rc">
 						<mapping attrNameLocal="idrc" attrNameRemote="id_rc"></mapping>
+					</fk>
+					<fk linkType="refIsOwner" mandatory="true" parent="opers_type">
+						<mapping attrNameLocal="from_type" attrNameRemote="id_operstype"></mapping>
+					</fk>
+					<fk linkType="refIsOwner" mandatory="true" parent="opers_type">
+						<mapping attrNameLocal="to_type" attrNameRemote="id_operstype"></mapping>
 					</fk>
 				</constraints>
 			</classSimple>
@@ -104,7 +130,6 @@
 				</attrs>
 				<defaults>
 					<showAttrs>
-						<attrName>id_rc</attrName>
 						<attrName>scode</attrName>
 						<attrName>sname</attrName>
 					</showAttrs>
