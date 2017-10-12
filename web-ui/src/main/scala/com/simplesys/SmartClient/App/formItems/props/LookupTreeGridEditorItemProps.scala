@@ -202,14 +202,14 @@ class LookupTreeGridEditorItemProps extends CanvasItemProps {
                                                                                             "criteria" -> criteria
                                                                                         )
 
-                                                                                        isc debugTrap formItem.filteredGridList
+                                                                                        //isc debugTrap formItem.filteredGridList
 
                                                                                         if (formItem.filteredGridList.isEmpty)
                                                                                             isc.error("Нет поля formItem.filteredGrid.")
                                                                                         else
                                                                                             formItem.filteredGridList.foreach(_.fetchData(criteria = advancedCriteria))
 
-                                                                                        formItem setValue (res)
+                                                                                        formItem setValue res
 
                                                                                     } else {
                                                                                         if (editor.getSelectedRecords().length != 1)
