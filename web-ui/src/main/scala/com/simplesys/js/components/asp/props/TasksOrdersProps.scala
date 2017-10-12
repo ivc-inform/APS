@@ -1,11 +1,11 @@
 package com.simplesys.js.components.asp.props
 
-import com.simplesys.SmartClient.App.formItems.props.LookupTreeGridEditorItemProps
+import com.simplesys.SmartClient.App.formItems.props.{LookupListGridEditorItemProps, LookupTreeGridEditorItemProps}
 import com.simplesys.SmartClient.App.props.CommonTreeListGridEditorComponentProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
-import com.simplesys.SmartClient.System.{LookupTreeGridEditorItem, isc}
+import com.simplesys.SmartClient.System.{LookupListGridEditorItem, LookupTreeGridEditorItem, isc}
 import com.simplesys.System.Types.{FormItemComponentType, ListGridFieldType}
-import com.simplesys.app.Tasks
+import com.simplesys.app.{OpersType, Tasks}
 import com.simplesys.js.components.asp.TasksOrders
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.DataSourcesJS._
@@ -30,12 +30,10 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
     captionMenuTree = "Задачи".opt
     captionMenuList = "Операции задач".opt
 
-    val taskEditor = Tasks.create(
-        new TasksProps {
-            dataSource = aps_tasks_DS.opt
-            fields = aps_tasks_FLDS.opt
-            editingFields = aps_tasks_FRMITM.opt
-        })
+    val taskEditor = Tasks.create(new TasksProps)
+
+    val operTypeEditor = OpersType.create(new OpersTypeProps)
+
 
     replacingFieldsList = Seq(
         new ListGridFieldProps {
@@ -45,6 +43,15 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
             editorProperties = LookupTreeGridEditorItem(
                 new LookupTreeGridEditorItemProps {
                     treeGridEditor = taskEditor.opt
+                }).opt
+        },
+        new ListGridFieldProps {
+            nameStrong = aps_orders_code_operstype_NameStrong.opt
+            `type` = ListGridFieldType.sCaption_SimpleType.opt
+            editorType = FormItemComponentType.LookupListGridEditorItem
+            editorProperties = LookupListGridEditorItem(
+                new LookupListGridEditorItemProps {
+                    listGridEditor = operTypeEditor.opt
                 }).opt
         }
     ).opt
