@@ -18,6 +18,9 @@
 					<uc uniqueType="pk">
 						<attrName>idtask</attrName>
 					</uc>
+					<fk parent="tasks" linkType="refIsOwner" mandatory="false">
+						<mapping attrNameLocal="parent_task" attrNameRemote="idtask"/>
+					</fk>
 				</constraints>
 			</classSimple>
 
