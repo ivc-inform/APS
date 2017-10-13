@@ -48,7 +48,7 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
             editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
                 listGridEditor = rcEditor.opt
             }).opt
-        }/*,
+        },
         new ListGridFieldProps {
             nameStrong = aps_changeover_code_operstype_from_type_NameStrong.opt
             align = Alignment.center.opt
@@ -69,6 +69,6 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
                     identifier = "7016FFF2-D154-AE84-B63F-CCA5A7D07123".opt
                 }).opt
             }).opt
-        }*/
+        }
     ).opt
 }
