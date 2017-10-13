@@ -41,9 +41,9 @@ class ResultProps extends CommonListGridEditorComponentProps {
                             criteria = Seq(
                                 Criterion(
                                     new CriterionProps {
-                                        fieldName = aps_result_id_NameStrong.name.opt
+                                        fieldName = aps_result_items_id_result_NameStrong.name.opt
                                         operator = OperatorId.equals.opt
-                                        value = record.id.getOrElse(0).asInstanceOf[JSAny].opt
+                                        value = record.idresult.getOrElse(0).asInstanceOf[JSAny].opt
                                     })
                             ).opt
                         }

@@ -26,7 +26,7 @@
     <logger name="ru.simplesys.defs.bo.scenarios.Scr_CmpgnDS" level="debug"/>
     <logger name="ru.simplesys.defs.bo.admin.UserDS" level="debug"/>
     <logger name="ru.simplesys.defs.bo.aps.ChangeoverDS" level="debug"/>
-    <logger name="ru.simplesys.defs.bo.aps.Result_itemsDS" level="trace"/>
+    <logger name="ru.simplesys.defs.bo.aps.Result_itemsDS" level="debug"/>
     <logger name="ru.simplesys.defs.bo.admin.UserBo" level="debug"/>
     <logger name="ru.simplesys.defs.bo.eakd.AbonentsDS" level="debug"/>
     <logger name="com.simplesys.jdbc.control.ClassBO" level="debug"/>

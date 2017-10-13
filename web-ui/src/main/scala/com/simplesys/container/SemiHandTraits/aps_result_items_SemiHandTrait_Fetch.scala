@@ -4,24 +4,35 @@ package ru.simplesys.defs.app.scala.container.aps
 
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.isc.system.ServletActorDyn
-import com.simplesys.isc.dataBinging.DSRequestDyn
+import com.simplesys.isc.dataBinging.{DSRequestDyn, DSResponseDyn, DSResponseFailureExDyn}
 import com.simplesys.common.Strings._
 import com.simplesys.jdbc.control.clob._
 import akka.actor.Actor
+import com.simplesys.isc.dataBinging.RPC.RPCResponseDyn
+import com.simplesys.isc.dataBinging.dataSource.RecordDyn
+import com.simplesys.isc.grids.RecordsDynList
+import com.simplesys.jdbc.control.DSRequest
+import com.simplesys.servlet.GetData
+import com.simplesys.tuple.{TupleSS22, TupleSS23}
+import org.joda.time.LocalDateTime
 import ru.simplesys.defs.bo.aps._
+import com.simplesys.jdbc._
+import com.simplesys.common._
 
- 
+import scalaz.{Failure, Success}
+
+
 trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with ServletActorDyn {
-    
-/////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
-    val requestData = new DSRequestDyn(request)    
-    
-    logger debug s"Request for Fetch: ${newLine + requestData.toPrettyString}"    
-    
-    val dataSet = Result_itemsDS(oraclePool)    
-/////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
-    
-     def receiveBase: Option[Actor.Receive] = None    
-    
-     def wrapperBlobGetter(blob: Blob): String = blob.asString
+
+    /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
+    val requestData = new DSRequestDyn(request)
+
+    logger debug s"Request for Fetch: ${newLine + requestData.toPrettyString}"
+
+    val dataSet = Result_itemsDS(oraclePool)
+    /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
+
+    def receiveBase: Option[Actor.Receive] = None
+
+    def wrapperBlobGetter(blob: Blob): String = blob.asString
 }

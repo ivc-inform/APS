@@ -77,7 +77,7 @@
 
 			<classSimple autoTableMapping="true" caption="Производственный календарь" name="prod_calendar">
 				<attrs>
-					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_prod_calendar" type="id" useDbPrefix="false"></attr>
 					<attr caption="Дата" name="ddate" type="dDate" mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Смена" name="shift_num" type="nInt" mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Продолжительность" name="duration" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
@@ -87,7 +87,7 @@
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
-						<attrName>id</attrName>
+						<attrName>id_prod_calendar</attrName>
 					</uc>
 				</constraints>
 			</classSimple>
@@ -137,7 +137,7 @@
 
 			<classSimple autoTableMapping="true" caption="Параметры" name="params">
 				<attrs>
-					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_params" type="id" useDbPrefix="false"></attr>
 					<attr caption="Дата начала расписания" name="ddatein" type="dDateTime" mandatory="true" useDbPrefix="false"></attr>
 					<attr caption="Первоначальная настройка машины" name="start_type" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Количество смен" name="shifts_count" type="nInt" useDbPrefix="false"></attr>
@@ -157,14 +157,14 @@
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
-						<attrName>id</attrName>
+						<attrName>id_params</attrName>
 					</uc>
 				</constraints>
 			</classSimple>
 
 			<classSimple autoTableMapping="true" caption="Результаты" name="result">
 				<attrs>
-					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="idresult" type="id" useDbPrefix="false"></attr>
 					<attr caption="Номер варианта" name="scode" type="sCode" useDbPrefix="false"></attr>
 					<attr caption="Затраты на наладку" name="param_u" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Средняя полезность заказов" name="param_v" type="nInt" useDbPrefix="false"></attr>
@@ -180,7 +180,7 @@
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
-						<attrName>id</attrName>
+						<attrName>idresult</attrName>
 					</uc>
 				</constraints>
 			</classSimple>
@@ -188,6 +188,7 @@
 			<classSimple autoTableMapping="true" caption="Варианты" name="result_items">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_item" type="id" useDbPrefix="false"></attr>
+					<attr caption="Идентификатор" hidden="true" mandatory="true" name="id_result" type="id" useDbPrefix="false"></attr>
 					<attr caption="Порядковый номер в наборе варианта" name="pos" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Дата время начала" name="opertimestart" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Дата время окончания" name="opertimeend" type="dDateTime" useDbPrefix="false"></attr>
@@ -202,9 +203,6 @@
 					</uc>
 					<fk linkType="refIsOwner" mandatory="true" parent="rc">
 						<mapping attrNameLocal="idrc" attrNameRemote="id_rc"></mapping>
-					</fk>
-					<fk linkType="refIsOwner" mandatory="true" parent="result">
-						<mapping attrNameLocal="id_result" attrNameRemote="id"></mapping>
 					</fk>
 					<fk linkType="refIsOwner" mandatory="true" parent="orders">
 						<mapping attrNameLocal="id_orders" attrNameRemote="idorders"></mapping>
