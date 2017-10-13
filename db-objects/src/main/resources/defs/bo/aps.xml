@@ -92,7 +92,7 @@
 				</constraints>
 			</classSimple>
 
-			<classSimple autoTableMapping="true" caption="Матрица наладки" name="changeover">
+			<!--<classSimple autoTableMapping="true" caption="Матрица наладки" name="changeover">
 				<attrs>
 					<attr caption="Время наладки" name="duration" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
@@ -114,7 +114,7 @@
 						<mapping attrNameLocal="to_type" attrNameRemote="id_operstype"></mapping>
 					</fk>
 				</constraints>
-			</classSimple>
+			</classSimple>-->
 
 			<classSimple autoTableMapping="true" caption="Рабочие центры" name="rc">
 				<attrs>
