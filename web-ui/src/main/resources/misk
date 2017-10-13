@@ -62,6 +62,8 @@ sudo mkdir /u01/app/oracle/product/11.2/db_1/dumps;
 CREATE OR REPLACE DIRECTORY dumps AS '/u01/app/oracle/product/11.2/db_1/dumps';
 GRANT READ, WRITE ON DIRECTORY dumps TO system;
 
-expdp system/dfqc2 DIRECTORY=DUMPS DUMPFILE=aps12102017.dmp SCHEMAS=aps logfile=main.log
+expdp system/dfqc2 DIRECTORY=DUMPS DUMPFILE=aps13102017.dmp SCHEMAS=aps logfile=main.log
 impdp system/dfqc2 dumpfile=aps10102017.dmp directory=dumps logfile=main.log
+
+docker cp aps_112:/u01/app/oracle/product/11.2/db_1/dumps/aps13102017.dmp /home/uandrew/JOB/APS/dumps
 
