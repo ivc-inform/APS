@@ -65,5 +65,8 @@ GRANT READ, WRITE ON DIRECTORY dumps TO system;
 expdp system/dfqc2 DIRECTORY=DUMPS DUMPFILE=aps13102017.dmp SCHEMAS=aps logfile=main.log
 impdp system/dfqc2 dumpfile=aps10102017.dmp directory=dumps logfile=main.log
 
+
+DROP USER aps cascade;
 docker cp aps_112:/u01/app/oracle/product/11.2/db_1/dumps/aps13102017.dmp /home/uandrew/JOB/APS/dumps
+docker cp /home/uandrew/JOB/APS/dumps/aps13102017.dmp aps_112:/u01/app/oracle/product/11.2/db_1/dumps
 
