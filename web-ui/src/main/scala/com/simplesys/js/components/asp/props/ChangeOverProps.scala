@@ -4,8 +4,8 @@ import com.simplesys.SmartClient.App.formItems.props.LookupListGridEditorItemPro
 import com.simplesys.SmartClient.App.props.CommonListGridEditorComponentProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
 import com.simplesys.SmartClient.System.LookupListGridEditorItem
-import com.simplesys.System.Types.{FormItemComponentType, SelectionAppearance, SelectionStyle}
-import com.simplesys.app.Rc
+import com.simplesys.System.Types._
+import com.simplesys.app.{OpersType, Rc}
 import com.simplesys.js.components.asp.ChangeOver
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
@@ -33,7 +33,13 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
 
     replacingFields = Seq(
         new ListGridFieldProps {
-            nameStrong = aps_rc_scode_rc_NameStrong.opt
+            nameStrong = aps_changeover_duration_NameStrong.opt
+            `type` = ListGridFieldType.fDouble_SimpleType.opt
+            align = Alignment.center.opt
+        },
+        new ListGridFieldProps {
+            nameStrong = aps_changeover_scode_rc_idrc_NameStrong.opt
+            align = Alignment.center.opt
             filterEditorType = FormItemComponentType.LookupListGridEditorItem
             filterEditorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
                 listGridEditor = rcFilterEditor.opt
@@ -41,6 +47,27 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
             editorType = FormItemComponentType.LookupListGridEditorItem
             editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
                 listGridEditor = rcEditor.opt
+            }).opt
+        },
+        new ListGridFieldProps {
+            nameStrong = aps_changeover_code_operstype_from_type_NameStrong.opt
+            align = Alignment.center.opt
+            `type` = ListGridFieldType.sCaption_SimpleType.opt
+            editorType = FormItemComponentType.LookupListGridEditorItem
+            editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
+                listGridEditor = OpersType.create(new OpersTypeProps).opt
+            }).opt
+        },
+
+        new ListGridFieldProps {
+            nameStrong = aps_changeover_code_operstype_to_type_NameStrong.opt
+            align = Alignment.center.opt
+            `type` = ListGridFieldType.sCaption_SimpleType.opt
+            editorType = FormItemComponentType.LookupListGridEditorItem
+            editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
+                listGridEditor = OpersType.create(new OpersTypeProps{
+                    identifier = "7016FFF2-D154-AE84-B63F-CCA5A7D07123".opt
+                }).opt
             }).opt
         }
     ).opt
