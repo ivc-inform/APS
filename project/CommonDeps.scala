@@ -29,13 +29,13 @@ object CommonDeps {
         val jodaVersion = "2.8.2"
         val jodaConvertVersion = "1.7"
 
-        //val ssysCoreVersion = "1.4-SNAPSHOT"
-        val ssysCoreVersion = "1.4.0.2"
+        val ssysCoreVersion = "1.4-SNAPSHOT"
+        //val ssysCoreVersion = "1.4.0.2"
         val smartclientVersion = "11.1-v20170703.1"
 
         val servletAPIVersion = "3.1.0"
 
-        val scalaTestVersion = "3.0.3"
+        val scalaTestVersion = "3.0.4"
         val scalaTagsVersion = "0.6.7"
 
         val scalaJSVersion = "1.4-SNAPSHOT"
