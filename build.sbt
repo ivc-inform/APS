@@ -106,12 +106,7 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
     scalacOptions ++= (if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault") else Nil),
     skip in packageJSDependencies := false,
     jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv(),
-
-    /*jsDependencies ++= Seq(
-        "org.webjars" % "jquery" % "3.2.1" / "3.2.1/jquery.js",
-        "org.webjars" % "jquery-ui" % "1.12.1" / "1.12.1/jquery-ui.js"
-    ),*/
-
+    
     libraryDependencies ++= Seq(
         CommonDeps.servletAPI % Provided,
         CommonDeps.ssysCommon,
