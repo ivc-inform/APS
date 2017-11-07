@@ -97,7 +97,7 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
     jrebel.enabled := true,
 
     javaOptions in Jetty ++= Seq(
-        "-javaagent:../jrebel/jrebel.jar",
+        "-javaagent:jrebel/jrebel.jar",
         "-noverify",
         "-XX:+UseConcMarkSweepGC",
         "-XX:+CMSClassUnloadingEnabled"
