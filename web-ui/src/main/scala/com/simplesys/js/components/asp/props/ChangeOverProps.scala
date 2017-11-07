@@ -38,7 +38,7 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
             align = Alignment.center.opt
         },
         new ListGridFieldProps {
-            nameStrong = aps_changeover_scode_rc_NameStrong.opt
+            nameStrong = aps_changeover_scode_rc_Idrc_NameStrong.opt
             align = Alignment.center.opt
             filterEditorType = FormItemComponentType.LookupListGridEditorItem
             filterEditorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
@@ -48,9 +48,9 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
             editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
                 listGridEditor = rcEditor.opt
             }).opt
-        }/*,
+        },
         new ListGridFieldProps {
-            nameStrong = aps_changeover_code_operstype_from_type_NameStrong.opt
+            nameStrong = aps_changeover_code_operstype_From_type_NameStrong.opt
             align = Alignment.center.opt
             `type` = ListGridFieldType.sCaption_SimpleType.opt
             editorType = FormItemComponentType.LookupListGridEditorItem
@@ -60,7 +60,7 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
         },
 
         new ListGridFieldProps {
-            nameStrong = aps_changeover_code_operstype_to_type_NameStrong.opt
+            nameStrong = aps_changeover_code_operstype_To_type_NameStrong.opt
             align = Alignment.center.opt
             `type` = ListGridFieldType.sCaption_SimpleType.opt
             editorType = FormItemComponentType.LookupListGridEditorItem
@@ -69,6 +69,6 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
                     identifier = "7016FFF2-D154-AE84-B63F-CCA5A7D07123".opt
                 }).opt
             }).opt
-        }*/
+        }
     ).opt
 }
