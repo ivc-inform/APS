@@ -73,3 +73,4 @@ upgrade/
 *.zip
 managed/
 !src/main/webapp/javascript/developed/isc_tools.js
+!jrebel.jar
