@@ -232,10 +232,14 @@ class LookupListGridEditorItemProps extends CanvasItemProps {
                                                                                                 idField.setValue(valueId)
                                                                                             else {
                                                                                                 val editedField = formItem.foreignField.get
-                                                                                                //isc debugTrap(formItem.record, editedField, valueId)
-                                                                                                formItem.record.foreach(_.asInstanceOf[JSDynamic].updateDynamic(editedField)(valueId))
-                                                                                                form.setValue(editedField, valueId)
-                                                                                                //isc debugTrap (formItem.record)
+                                                                                                if (newRecord)
+                                                                                                    form.setValue(editedField, valueId)
+                                                                                                else {
+                                                                                                    //isc debugTrap(formItem.record, editedField, valueId)
+                                                                                                    formItem.record.foreach(_.asInstanceOf[JSDynamic].updateDynamic(editedField)(valueId))
+                                                                                                    form.setValue(editedField, valueId)
+                                                                                                    //isc debugTrap(formItem.record)
+                                                                                                }
                                                                                             }
 
                                                                                             //isc debugTrap(formItem.record)
