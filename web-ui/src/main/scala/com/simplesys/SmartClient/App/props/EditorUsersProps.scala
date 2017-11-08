@@ -2,7 +2,6 @@ package com.simplesys.SmartClient.App.props
 
 import com.simplesys.SmartClient.DataBinding.props.DSRequestProps
 import com.simplesys.SmartClient.Layout.props.WindowSSProps
-import com.simplesys.SmartClient.System._
 import com.simplesys.System._
 import com.simplesys.function._
 import com.simplesys.option.DoubleType._
