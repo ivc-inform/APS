@@ -244,8 +244,12 @@ class LookupListGridEditorItemProps extends CanvasItemProps {
                                                                                             recordFields.foreach {
                                                                                                 field =>
                                                                                                     if (editor.dataSource.getField(field).isDefined)
-                                                                                                        if (newRecord || !editor.dataSource.getField(field).get.primaryKey.getOrElse(false))
-                                                                                                            form.setValue(field, editor.getSelectedRecord().asInstanceOf[JSDynamic].selectDynamic(field))
+                                                                                                        if (newRecord || !editor.dataSource.getField(field).get.primaryKey.getOrElse(false)) {
+                                                                                                            val value = editor.getSelectedRecord().asInstanceOf[JSDynamic].selectDynamic(field)
+                                                                                                            val editedField = if (formItem.foreignField.isEmpty) field else s"${field}_${formItem.foreignField.get.capitalize}"
+                                                                                                            isc debugTrap(form, editedField, value)
+                                                                                                            form.setValue(editedField, value)
+                                                                                                        }
                                                                                             }
                                                                                         }
                                                                                     }
