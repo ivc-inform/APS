@@ -94,6 +94,7 @@
 
 			<classSimple autoTableMapping="true" caption="Матрица наладки" name="changeover">
 				<attrs>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_changeover" type="id" useDbPrefix="false"></attr>
 					<attr caption="Время наладки" name="duration" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
@@ -101,6 +102,9 @@
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
+						<attrName>id_changeover</attrName>
+					</uc>
+					<uc uniqueType="uq">
 						<attrName>from_type</attrName>
 						<attrName>to_type</attrName>
 					</uc>
