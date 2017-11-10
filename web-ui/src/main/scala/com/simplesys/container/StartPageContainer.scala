@@ -61,3 +61,30 @@ class TestDiagramPageContainer(val request: HttpServletRequest, val response: Ht
             throw new RuntimeException(s"Bad branch $x")
     }
 }
+
+//http://localhost:8084/aps/TestDiagramImprovedPage
+@RSTransfer(urlPattern = "/TestDiagramImprovedPage")
+class TestDiagramImprovedPageContainer(val request: HttpServletRequest, val response: HttpServletResponse, val servletContext: ServletContext) extends ServletActor {
+
+    def receive = {
+        case GetData => {
+            val html: String = "<!DOCTYPE html>" +
+              (new StartPage("Тесты".ellipsis)).bodyHTML(
+                  "CreateSimpleTypes();" +
+                    "CreateSmartClientJS();" +
+                    "CreateAppJS();" +
+                    "GetTestDiagramPageUIContent();",
+                  false
+              ).render.unEscape
+
+            //val html: String = "<!DOCTYPE html>" + (new StartTestPage("Тесты".ellipsis)).bodyHTML("GetTestDiagramGantt();").render.unEscape
+
+            //logger debug html
+            Out(html)
+
+            selfStop()
+        }
+        case x =>
+            throw new RuntimeException(s"Bad branch $x")
+    }
+}
