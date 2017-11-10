@@ -106,7 +106,7 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
     scalacOptions ++= (if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault") else Nil),
     skip in packageJSDependencies := false,
     jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv(),
-    
+
     libraryDependencies ++= Seq(
         CommonDeps.servletAPI % Provided,
         CommonDeps.ssysCommon,
@@ -126,11 +126,13 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
         CommonDeps.scalaJSWrapper,
         CommonDeps.scalaTags,
         CommonDeps.scalaURI,
+        CommonDeps.jsgantImproved,
         CommonDepsScalaJS.smartClientWrapper.value,
         CommonDepsScalaJS.macroJS.value,
         CommonDepsScalaJS.scalaTags.value,
         //CommonDepsScalaJS.jQuery.value,
-        CommonDepsScalaJS.scalaDom.value
+        CommonDepsScalaJS.scalaDom.value,
+        CommonDepsScalaJS.jsgantImproved.value
 
     )
 ).settings({
@@ -179,6 +181,10 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
             ),
             ("com.simplesys.core", "isc-misc") -> Seq(
                 Seq("javascript") -> Some(Seq("webapp", "managed", "javascript", "isc-misc"))
+            ),
+            ("com.simplesys", "jsgantt-improved") -> Seq(
+                Seq("javascript") -> Some(Seq("webapp", "managed", "javascript", "jsgantt-improved")),
+                Seq("css") -> Some(Seq("webapp", "managed", "css", "jsgantt-improved"))
             ),
             ("com.simplesys", "smartclient-js") -> Seq(
                 Seq("isomorphic") -> Some(Seq("webapp", "isomorphic"))
