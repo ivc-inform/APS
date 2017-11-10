@@ -69,17 +69,10 @@ class TestDiagramImprovedPageContainer(val request: HttpServletRequest, val resp
     def receive = {
         case GetData => {
             val html: String = "<!DOCTYPE html>" +
-              (new StartPage("Тесты".ellipsis)).bodyHTML(
-                  "CreateSimpleTypes();" +
-                    "CreateSmartClientJS();" +
-                    "CreateAppJS();" +
-                    "GetTestDiagramPageUIContent();",
-                  false
+              (new StartTestPage("Тесты".ellipsis)).bodyHTML(
+                  "GanttImprovedTest1();"
               ).render.unEscape
 
-            //val html: String = "<!DOCTYPE html>" + (new StartTestPage("Тесты".ellipsis)).bodyHTML("GetTestDiagramGantt();").render.unEscape
-
-            //logger debug html
             Out(html)
 
             selfStop()
