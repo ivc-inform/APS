@@ -11,11 +11,11 @@ import com.simplesys.SmartClient.Layout.props.{IconButtonSSProps, RibbonGroupSSP
 import com.simplesys.SmartClient.System.{Common, IconButtonSS, RibbonGroupSS, SettingsEditor, _}
 import com.simplesys.System.{JSAny, NameStrong}
 import com.simplesys.System.Types.{ID, Visibility}
-import com.simplesys.app.GanttChart
+import com.simplesys.app.{GanttChart, GanttImprovedChart}
 import com.simplesys.function._
 import com.simplesys.js.components.gantt.{DataStructItem, GanttDataItem}
 import com.simplesys.option.DoubleType._
-import com.simplesys.js.components.gantt.props.GanttChartProps
+import com.simplesys.js.components.gantt.props.{GanttChartProps, GanttImprovedChartProps}
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS}
@@ -53,7 +53,7 @@ object TestDiagramPage extends WebTabSetApp {
     override protected val managedUsersGroups = Seq(
         RibbonGroupSS.create(
             new RibbonGroupSSProps {
-                title = "TestDiagrams".ellipsis.opt
+                title = "Test".ellipsis.opt
                 //visibility = Visibility.hidden.opt
                 controls = Seq(
                     IconButtonSS.create(
@@ -134,6 +134,33 @@ object TestDiagramPage extends WebTabSetApp {
                                                         )
                                                     }
                                                 ).opt*/
+                                            }
+                                        ), thiz)
+                                    false
+                            }.toThisFunc.opt
+                        }
+                    )
+                ).opt
+            }
+        ),
+        RibbonGroupSS.create(
+            new RibbonGroupSSProps {
+                title = "Test".ellipsis.opt
+                //visibility = Visibility.hidden.opt
+                controls = Seq(
+                    IconButtonSS.create(
+                        new IconButtonSSProps {
+                            identifier = "BA4E6DF4-FE83-FE30-0782-6E1BA40CA432".opt
+                            title = "Gantt Improved Test".opt
+                            icon = Common.upload.opt
+                            orientation = "gorizontal".opt
+                            click = {
+                                (thiz: classHandler) =>
+                                    addTab(
+                                        GanttImprovedChart.create(
+                                            new GanttImprovedChartProps {
+                                                identifier = "354E6DF4-FE83-FE30-0782-6E1BA40CA422".opt
+                                                height = "100%"
                                             }
                                         ), thiz)
                                     false
