@@ -2,7 +2,6 @@ package com.simplesys.app.http
 
 import scalatags.Text.all._
 import scalatags.Text.tags2
-import scalatags.stylesheet.StyleSheet
 
 class StartTestPage[Builder, Output <: FragT, FragT](val _title: String){
     def bodyHTML(lastScript: String) = {

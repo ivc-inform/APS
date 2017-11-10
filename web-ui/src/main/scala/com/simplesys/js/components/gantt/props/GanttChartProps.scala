@@ -29,7 +29,7 @@ class GanttChartProps extends CanvasProps {
     getInnerHTML = {
         (thiz: classHandler) ⇒
             div(
-                style := "width:100%;height:100%",
+                style := "position:relative",
                 id := thiz.getID1,
                 link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css"),
                 link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
@@ -51,6 +51,10 @@ class GanttChartProps extends CanvasProps {
                     new GanttChartOptions {
 
                         override val behavior = new GanttChartBehavior {
+                            override val clickable = true
+                            override val draggable = true
+                            override val resizable = true
+                            
                             override val onClick = any2undefOrA({
                                 (data: UndefOr[js.Any]) ⇒ {
                                     data.foreach {

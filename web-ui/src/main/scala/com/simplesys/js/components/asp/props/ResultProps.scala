@@ -7,9 +7,10 @@ import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.System.{AdvancedCriteria, Criterion, Tab, TabSetSS, _}
 import com.simplesys.System.JSAny
 import com.simplesys.System.Types.{ListGridEditEvent, OperatorId}
-import com.simplesys.app.ResultItem
+import com.simplesys.app.{GanttChart, ResultItem}
 import com.simplesys.function._
 import com.simplesys.js.components.asp.Result
+import com.simplesys.js.components.gantt.props.GanttChartProps
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
@@ -69,11 +70,11 @@ class ResultProps extends CommonListGridEditorComponentProps {
                         Tab(
                             new TabProps {
                                 icon = Common.cards.opt
-                                /*pane = GanttChart.create(
+                                pane = GanttChart.create(
                                   new GanttChartProps{
-                                    data = ???
+                                    //data = ???
                                   }
-                                ).opt*/
+                                ).opt
                                 name = "gantt".opt
                                 title = "Диарамма Ганта".ellipsis.opt
                             }
