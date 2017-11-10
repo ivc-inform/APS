@@ -35,6 +35,7 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String) {
                 script(src := "isomorphic/client/modules/ISC_FileLoader.js"),
 
                 script(src := "managed/javascript/isc-misc/beautify.js"),
+                script(src := "managed/javascript/jsgantt-improved/jsgantt.js"),
                 script(src := "managed/javascript/common-webapp/generated/generatedComponents/coffeescript/coffeeScript/main/common.js"),
 
                 script(src := s"javascript/generated/generatedComponents/MakeAboutData.js"),
@@ -95,7 +96,8 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String) {
                 script(src := "javascript/developed/jquery-ui-1.12.1.js"),
 
                 link(href := "managed/css/common-webapp/logging_styles.css", rel := "stylesheet", `type` := "text/css"),
-                
+                link(href := "managed/css/jsgantt-improved/jsgantt.css", rel := "stylesheet", `type` := "text/css"),
+
                 link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css"),
                 //link(href := "css/reset.css", rel := "stylesheet", `type` := "text/css"),
                 link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
