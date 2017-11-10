@@ -1,7 +1,7 @@
 package com.simplesys.js.components.gantt.props
 
 import com.simplesys.SmartClient.Foundation.props.CanvasProps
-import com.simplesys.SmartClient.System.IscArray
+import com.simplesys.SmartClient.System.{Canvas, IscArray, isc}
 import com.simplesys.System.{JSAny, JSUndefined}
 import com.simplesys.function._
 import com.simplesys.gantt.GanttChart._
@@ -19,7 +19,6 @@ class GanttImprovedChartProps extends CanvasProps {
     type classHandler <: GanttImprovedChart
 
     height = "100%"
-    showHover = true.opt
     getID1 = {
         (thiz: classHandler) ⇒
             s"${thiz.getID}_ganttChartImproved"
@@ -33,6 +32,7 @@ class GanttImprovedChartProps extends CanvasProps {
                 `class` := "gantt"
             ).render
     }.toThisFunc.opt
+
 
     var canvasWidth: ScOption[Int] = ScNone
 
