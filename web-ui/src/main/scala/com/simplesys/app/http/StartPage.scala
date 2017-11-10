@@ -91,7 +91,6 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String) {
                 script(src := s"${subPaths.subPath}/coffeescript/${subPaths.subPath1}com/simplesys/LookupEditor.js"),
 
                 script(src := s"javascript/generated/generatedComponentsJS/${if (fullOpt) "web-ui-opt.js" else "web-ui-fastopt.js"}"),
-                //script(src := "javascript/generated/generatedComponentsJS/web-ui-jsdeps.js"),
                 script(src := "javascript/developed/jquery-3.2.1.js"),
                 script(src := "javascript/developed/jquery-ui-1.12.1.js"),
 
@@ -99,7 +98,6 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String) {
                 link(href := "managed/css/jsgantt-improved/jsgantt.css", rel := "stylesheet", `type` := "text/css"),
 
                 link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css"),
-                //link(href := "css/reset.css", rel := "stylesheet", `type` := "text/css"),
                 link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
 
                 script(lastScript)

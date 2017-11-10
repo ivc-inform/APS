@@ -27,7 +27,8 @@ class GanttImprovedChartProps extends CanvasProps {
     getInnerHTML = {
         (thiz: classHandler) ⇒
             div(
-                style := "position:relative",
+                //style := "position:relative",
+                style := "width:100%;height:100%",
                 id := thiz.getID1
             ).render
     }.toThisFunc.opt
