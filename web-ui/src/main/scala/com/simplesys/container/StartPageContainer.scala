@@ -70,7 +70,7 @@ class TestDiagramImprovedPageContainer(val request: HttpServletRequest, val resp
         case GetData => {
             val html: String = "<!DOCTYPE html>" +
               (new StartTestPage("Тесты".ellipsis)).bodyHTML(
-                  "GanttImprovedTest1();"
+                  "GanttImprovedTest();" //из "com.simplesys" %%% "jsgantt-improved"
               ).render.unEscape
 
             Out(html)
