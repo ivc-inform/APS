@@ -30,7 +30,6 @@ class GanttChartProps extends CanvasProps {
         (thiz: classHandler) ⇒
             div(
                 style := "position:relative",
-                //style := "width:100%;height:100%",
                 id := thiz.getID1,
                 link(href := "css/jquery-ui-1.12.1.css", rel := "stylesheet", `type` := "text/css"),
                 link(href := "css/jquery.ganttView.css", rel := "stylesheet", `type` := "text/css"),
