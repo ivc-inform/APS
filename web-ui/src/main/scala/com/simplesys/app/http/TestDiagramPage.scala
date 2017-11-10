@@ -159,7 +159,7 @@ object TestDiagramPage extends WebTabSetApp {
                                     addTab(
                                         GanttImprovedChart.create(
                                             new GanttImprovedChartProps {
-                                                identifier = "354E6DF4-FE83-FE30-0782-6E1BA40CA422".opt
+                                                identifier = "354E6DF4-FE83-FE30-0782-6E1BA40CA432".opt
                                                 height = "100%"
                                             }
                                         ), thiz)

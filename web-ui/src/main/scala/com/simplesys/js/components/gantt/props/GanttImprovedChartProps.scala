@@ -19,6 +19,7 @@ class GanttImprovedChartProps extends CanvasProps {
     type classHandler <: GanttImprovedChart
 
     height = "100%"
+    showHover = true.opt
     getID1 = {
         (thiz: classHandler) ⇒
             s"${thiz.getID}_ganttChartImproved"
