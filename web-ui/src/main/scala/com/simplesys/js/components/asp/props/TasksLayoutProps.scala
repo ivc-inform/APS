@@ -39,15 +39,6 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                     identifier = s"${thiz.identifier}_tabSet".opt
                     width = "*"
                     canCloseTabs = false.opt
-                    tabSelected = {
-                        (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, name: JSUndefined[String]) ⇒
-                          tab.pane.foreach{
-                              pane ⇒
-                                  val _pane = pane.asInstanceOf[ListGridEditor]
-                                  _pane.fullRefresh()
-                          }
-                            true
-                    }.toThisFunc.opt
                     tabs = Seq(
                         Tab(
                             new TabProps {
