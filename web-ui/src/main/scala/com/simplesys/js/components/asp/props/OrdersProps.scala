@@ -1,14 +1,9 @@
 package com.simplesys.js.components.asp.props
 
 import com.simplesys.SmartClient.App.props.CommonListGridEditorComponentProps
-import com.simplesys.SmartClient.System._
-import com.simplesys.System._
-import com.simplesys.function._
 import com.simplesys.js.components.asp.Orders
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS}
-
-import scala.scalajs.js._
 
 class OrdersProps extends CommonListGridEditorComponentProps {
     type classHandler <: Orders
