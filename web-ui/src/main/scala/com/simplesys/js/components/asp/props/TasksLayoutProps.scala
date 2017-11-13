@@ -50,24 +50,13 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                       CompoundGridsContextMenu.create(
                                           new CompoundGridsContextMenuProps {
                                               gridsContextMenuData = Seq(
-                                                new GridContextMenuData {
-                                                    override val captionMenu = "Задачи"
-                                                    override val grid = tasks
-                                                }
+                                                  new GridContextMenuData {
+                                                      override val captionMenu = "Задачи"
+                                                      override val grid = tasks
+                                                  }
                                               ).opt
                                           }
                                       )
-                                    thizTop setFuncMenu TreeListGridContextMenu.create(
-                                        new TreeListGridContextMenuProps {
-                                            captionMenuTree = "Задачи".opt
-                                            captionMenuList = tab.title.opt
-                                            simpleTableList = _pane.simpleTable.opt
-                                            simpleTableTree = tasks.simpleTable.opt
-                                            customMenuList = Seq().opt
-                                            customMenuTree = Seq().opt
-                                            owner = thiz.opt
-                                        }
-                                    )
                             }
                             true
                     }.toThisFunc.opt
