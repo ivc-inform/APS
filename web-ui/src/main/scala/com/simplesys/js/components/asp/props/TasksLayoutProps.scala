@@ -1,5 +1,6 @@
 package com.simplesys.js.components.asp.props
 
+import com.simplesys.SmartClient.App.props.TreeListGridContextMenuProps
 import com.simplesys.SmartClient.Foundation.Canvas
 import com.simplesys.SmartClient.Grids.ListGridEditor
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
@@ -24,21 +25,40 @@ class TasksLayoutProps extends ChainMasterDetailProps {
     identifier = "6256A539-4BE7-227E-2507-25896B994FC6".opt
 
     initWidget = {
-        (thiz: classHandler, args: IscArray[JSAny]) ⇒
-            thiz.Super("initWidget", args)
+        (thizTop: classHandler, args: IscArray[JSAny]) ⇒
+            thizTop.Super("initWidget", args)
 
             val tasks = Tasks.create(new TasksProps {
-                identifier = s"${thiz.identifier}_tasks".opt
+                identifier = s"${thizTop.identifier}_tasks".opt
                 width = "20%"
             })
             tasks.showResizeBar = true
-            thiz addMember tasks
+            thizTop addMember tasks
 
             val tabSet = TabSetSS.create(
                 new TabSetSSProps {
-                    identifier = s"${thiz.identifier}_tabSet".opt
+                    identifier = s"${thizTop.identifier}_tabSet".opt
                     width = "*"
                     canCloseTabs = false.opt
+                    tabSelected = {
+                        (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, name: JSUndefined[String]) ⇒
+                            tab.pane.foreach {
+                                pane ⇒
+                                    val _pane = pane.asInstanceOf[ListGridEditor]
+                                    thizTop setFuncMenu TreeListGridContextMenu.create(
+                                        new TreeListGridContextMenuProps {
+                                            captionMenuTree = "Задачи".opt
+                                            captionMenuList = tab.title.opt
+                                            simpleTableList = _pane.simpleTable.opt
+                                            simpleTableTree = tasks.simpleTable.opt
+                                            customMenuList = Seq().opt
+                                            customMenuTree = Seq().opt
+                                            owner = thiz.opt
+                                        }
+                                    )
+                            }
+                            true
+                    }.toThisFunc.opt
                     tabs = Seq(
                         Tab(
                             new TabProps {
@@ -107,9 +127,9 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                 }
             )
 
-            thiz addMember tabSet
+            thizTop addMember tabSet
 
-            thiz.getViewState()
+            thizTop.getViewState()
 
     }.toThisFunc.opt
 }
