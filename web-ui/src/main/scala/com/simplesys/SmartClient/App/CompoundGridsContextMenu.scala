@@ -8,9 +8,9 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 
 trait GridContextMenuData extends js.Object {
-    val simpleTable: Boolean = js.native
+    val simpleTable: js.UndefOr[Boolean] = js.undefined
     val captionMenu: String
-    val customMenu: Seq[MenuSSItem] = js.native
+    val customMenu: js.UndefOr[Seq[MenuSSItem]] = js.undefined
 }
 
 @js.native
