@@ -18,6 +18,7 @@ import com.simplesys.js.components.asp.TasksLayout
 import com.simplesys.option.ScOption._
 import com.simplesys.option.DoubleType._
 
+import scala.scalajs.js
 import scala.scalajs.js._
 
 class TasksLayoutProps extends ChainMasterDetailProps {
@@ -46,17 +47,21 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                             tab.pane.foreach {
                                 pane ⇒
                                     val _pane = pane.asInstanceOf[ListGridEditor]
-                                    thizTop setFuncMenu
+                                    /*thizTop setFuncMenu
                                       CompoundGridsContextMenu.create(
                                           new CompoundGridsContextMenuProps {
                                               gridsContextMenuData = Seq(
                                                   new GridContextMenuData {
                                                       override val captionMenu = "Задачи"
-                                                      override val grid = tasks
+                                                      override val grid = js.UndefOr.any2undefOrA(tasks.asInstanceOf[ListGridEditor])
+                                                  },
+                                                  new GridContextMenuData {
+                                                      override val captionMenu = tab.title
+                                                      override val grid = js.UndefOr.any2undefOrA(_pane)
                                                   }
                                               ).opt
                                           }
-                                      )
+                                      )*/
                             }
                             true
                     }.toThisFunc.opt
