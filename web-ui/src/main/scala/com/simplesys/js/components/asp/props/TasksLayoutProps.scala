@@ -6,7 +6,7 @@ import com.simplesys.SmartClient.System.Tab
 import com.simplesys.SmartClient.System._
 import com.simplesys.System._
 import com.simplesys.app
-import com.simplesys.app.{OpersType, ProdCalendar, Tasks}
+import com.simplesys.app._
 import com.simplesys.function._
 import com.simplesys.js.components.asp.TasksLayout
 import com.simplesys.option.ScOption._
@@ -57,6 +57,46 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                     new ProdCalendarProps {
                                         masterGrid = tasks.listGrid.opt
                                     }).opt
+                            }
+                        ),
+                        Tab(
+                            new TabProps {
+                                name = "changeOver".opt
+                                icon = app.doccats.opt
+                                title = "Матрица наладки".ellipsis.opt
+                                pane = ChangeOver.create(new ChangeOverProps {
+                                    masterGrid = tasks.listGrid.opt
+                                }).opt
+                            }
+                        ),
+                        Tab(
+                            new TabProps {
+                                name = "rc".opt
+                                icon = app.accounts.opt
+                                title = "Рабочие центры".ellipsis.opt
+                                pane = Rc.create(new RcProps {
+                                    masterGrid = tasks.listGrid.opt
+                                }).opt
+                            }
+                        ),
+                        Tab(
+                            new TabProps {
+                                name = "parametrs".opt
+                                icon = app.properties.opt
+                                title = "Параметры".ellipsis.opt
+                                pane = Parametrs.create(new ParametrsProps {
+                                    masterGrid = tasks.listGrid.opt
+                                }).opt
+                            }
+                        ),
+                        Tab(
+                            new TabProps {
+                                name = "result".opt
+                                icon = app.state.opt
+                                title = "Результаты расчетов".ellipsis.opt
+                                pane = Result.create(new ResultProps {
+                                    masterGrid = tasks.listGrid.opt
+                                }).opt
                             }
                         )
                     ).opt

@@ -78,54 +78,6 @@ object ApsProcWindowMain extends WebTabSetApp {
                                             }.toFunc.opt
                                         }/*,
                                         new MenuSSItemProps {
-                                            name = "rc".opt
-                                            icon = app.doctypes.opt
-                                            title = "Типы операций".ellipsis.opt
-                                            click = {
-                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
-                                                    addTab(OpersType.create(new OpersTypeProps), item)
-
-                                            }.toFunc.opt
-                                        },
-                                        new MenuSSItemProps {
-                                            name = "prodCalendar".opt
-                                            icon = app.cards.opt
-                                            title = "Производственный календарь".ellipsis.opt
-                                            click = {
-                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
-                                                    addTab(ProdCalendar.create(new ProdCalendarProps), item)
-                                            }.toFunc.opt
-                                        },
-                                        new MenuSSItemProps {
-                                            name = "changeOver".opt
-                                            icon = app.doccats.opt
-                                            title = "Матрица наладки".ellipsis.opt
-                                            click = {
-                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
-                                                    addTab(ChangeOver.create(new ChangeOverProps), item)
-
-                                            }.toFunc.opt
-                                        },
-                                        new MenuSSItemProps {
-                                            name = "rc".opt
-                                            icon = app.accounts.opt
-                                            title = "Рабочие центры".ellipsis.opt
-                                            click = {
-                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
-                                                    addTab(Rc.create(new RcProps), item)
-
-                                            }.toFunc.opt
-                                        },
-                                        new MenuSSItemProps {
-                                            name = "parametrs".opt
-                                            icon = app.properties.opt
-                                            title = "Параметры".ellipsis.opt
-                                            click = {
-                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
-                                                    addTab(Parametrs.create(new ParametrsProps), item)
-                                            }.toFunc.opt
-                                        },
-                                        new MenuSSItemProps {
                                             name = "result".opt
                                             icon = app.state.opt
                                             title = "Результаты расчетов".ellipsis.opt
