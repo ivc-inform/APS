@@ -40,7 +40,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                             new TabProps {
                                 name = "rc".opt
                                 pane = OpersType.create(
-                                    new OpersTypeProps{
+                                    new OpersTypeProps {
                                         masterGrid = tasks.listGrid.opt
                                     }
                                 ).opt
@@ -51,12 +51,12 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                         Tab(
                             new TabProps {
                                 name = "prodCalendar".opt
+                                icon = app.cards.opt
+                                title = "Производственный календарь".ellipsis.opt
                                 pane = ProdCalendar.create(
-                                    new ProdCalendarProps{
+                                    new ProdCalendarProps {
                                         masterGrid = tasks.listGrid.opt
                                     }).opt
-                                title = "Производственный календарь".ellipsis.opt
-                                icon = app.cards.opt
                             }
                         )
                     ).opt
