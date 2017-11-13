@@ -1,9 +1,13 @@
 package com.simplesys.js.components.asp.props
 
+import com.simplesys.SmartClient.Foundation.Canvas
+import com.simplesys.SmartClient.Grids.ListGridEditor
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.Layout.props.{ChainMasterDetailProps, HLayoutSSProps, TabSetSSProps}
+import com.simplesys.SmartClient.Layout.tabSet.Tab
 import com.simplesys.SmartClient.System.Tab
 import com.simplesys.SmartClient.System._
+import com.simplesys.System.Types.ID
 import com.simplesys.System._
 import com.simplesys.app
 import com.simplesys.app._
@@ -35,6 +39,15 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                     identifier = s"${thiz.identifier}_tabSet".opt
                     width = "*"
                     canCloseTabs = false.opt
+                    tabSelected = {
+                        (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, name: JSUndefined[String]) ⇒
+                          tab.pane.foreach{
+                              pane ⇒
+                                  val _pane = pane.asInstanceOf[ListGridEditor]
+                                  _pane.fullRefresh()
+                          }
+                            true
+                    }.toThisFunc.opt
                     tabs = Seq(
                         Tab(
                             new TabProps {
@@ -102,6 +115,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                     ).opt
                 }
             )
+
             thiz addMember tabSet
 
             thiz.getViewState()

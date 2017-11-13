@@ -66,18 +66,17 @@ isc.ListGrid.addProperties
 		if isc.isA.ListGrid(grid)
 			@masterGrid = grid
 			if isc.isA.DataSource(@dataSource)
-				forignKeyFields = @dataSource.getForignKeyFields()
-	
+					
 				@masterGrid.setSelectionChanged? (record, state) =>
 					masterSelectedRecords = @masterGrid.getSelectedRecords()
 					
 					@discardAllEdits()
-	
-					criteria = {}
+					
 					if pkFieldNames? and isc.isA.Object(pkFieldNames) and pkFieldNames.masterGridField? and pkFieldNames.detailGridField
 						pkFieldNames = [pkFieldNames]
 	
 					if isc.isA.Array(pkFieldNames) and pkFieldNames.length > 0
+						criteria = {}
 						pkFieldNames. forEach (item) ->
 							arrayRes = masterSelectedRecords.filter((rec) -> rec[item.masterGridField]?).map (rec) -> rec[item.masterGridField]
 	
@@ -94,6 +93,8 @@ isc.ListGrid.addProperties
 						else if masterSelectedRecords.length > 0
 							@logWarn1 "Criteria for MaterGrid not found", @getClassName()
 					else
+						criteria = {}
+						forignKeyFields = @dataSource.getForignKeyFields()
 						for field, value of forignKeyFields
 							if forignKeyFields[field].foreignKey.indexOf('.') isnt -1
 								masterGridField = forignKeyFields[field].foreignKey.substring(forignKeyFields[field].foreignKey.lastIndexOf('.') + 1)
