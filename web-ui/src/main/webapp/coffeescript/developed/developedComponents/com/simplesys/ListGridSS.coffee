@@ -69,11 +69,14 @@ isc.ListGrid.addProperties
 				forignKeyFields = @dataSource.getForignKeyFields()
 	
 				@masterGrid.setSelectionChanged? (record, state) =>
+					if (!state)
+						return
 					masterSelectedRecords = @masterGrid.getSelectedRecords()
 					
 					@discardAllEdits()
 	
 					criteria = {}
+					criteria.ts = simpleSyS.timeStamp()
 					if pkFieldNames? and isc.isA.Object(pkFieldNames) and pkFieldNames.masterGridField? and pkFieldNames.detailGridField
 						pkFieldNames = [pkFieldNames]
 	
