@@ -1,6 +1,7 @@
 package com.simplesys.js.components.asp.props
 
-import com.simplesys.SmartClient.App.props.TreeListGridContextMenuProps
+import com.simplesys.SmartClient.App.GridContextMenuData
+import com.simplesys.SmartClient.App.props.{CompoundGridsContextMenuProps, TreeListGridContextMenuProps}
 import com.simplesys.SmartClient.Foundation.Canvas
 import com.simplesys.SmartClient.Grids.ListGridEditor
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
@@ -45,6 +46,17 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                             tab.pane.foreach {
                                 pane ⇒
                                     val _pane = pane.asInstanceOf[ListGridEditor]
+                                    thizTop setFuncMenu
+                                      CompoundGridsContextMenu.create(
+                                          new CompoundGridsContextMenuProps {
+                                              gridsContextMenuData = Seq(
+                                                new GridContextMenuData {
+                                                    override val captionMenu = "Задачи"
+                                                    override val grid = tasks
+                                                }
+                                              ).opt
+                                          }
+                                      )
                                     thizTop setFuncMenu TreeListGridContextMenu.create(
                                         new TreeListGridContextMenuProps {
                                             captionMenuTree = "Задачи".opt

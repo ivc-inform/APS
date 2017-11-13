@@ -1,11 +1,13 @@
 package com.simplesys.SmartClient.App.props
 
 import com.simplesys.SmartClient.App.{CompoundGridsContextMenu, GridContextMenuData, TreeListGridContextMenu}
+import com.simplesys.SmartClient.Control.MenuSS
+import com.simplesys.SmartClient.Control.props.menu.MenuSSItemProps
 import com.simplesys.SmartClient.Control.props.{ListGridContextMenuProps, ListGridContextMenuWithFormProps, MenuSSProps, TreeGridContextMenuProps}
 import com.simplesys.SmartClient.System._
 import com.simplesys.System._
 import com.simplesys.function._
-import com.simplesys.option.ScNone
+import com.simplesys.option.{ScNone, ScOption}
 import com.simplesys.option.ScOption._
 
 import scala.scalajs.js._
@@ -13,7 +15,7 @@ import scala.scalajs.js._
 class CompoundGridsContextMenuProps extends MenuSSProps {
     type classHandler <: CompoundGridsContextMenu
 
-    var gridsContextMenuData: Option[Seq[GridContextMenuData]] = None
+    var gridsContextMenuData: ScOption[Seq[GridContextMenuData]] = ScNone
 
     initWidget = {
         (thizTop: classHandler, arguments: IscArray[JSAny]) =>
@@ -44,14 +46,32 @@ class CompoundGridsContextMenuProps extends MenuSSProps {
 
                     gridContextMenuData.grid.foreach {
                         grid ⇒
-                            if (isc.isA.ListGridEditor(grid)) {
-                                if (grid.simpleTable.getOrElse(false))
-                                    grid setContextMenu listGridEditorMenu
-                                else
-                                    grid setContextMenu listGridEditorMenuWithForm
+                            val menu: Seq[MenuSS] = if (isc.isA.ListGridEditor(grid)) {
+                                if (grid.simpleTable.getOrElse(false)) {
+                                    val res = listGridEditorMenu
+                                    grid setContextMenu res
+                                    Seq(res)
+                                }
+                                else {
+                                    val res = listGridEditorMenuWithForm
+                                    grid setContextMenu res
+                                    Seq(res)
+                                }
                             } else if (isc.isA.TreeGridEditor(grid)) {
-                                grid setContextMenu treeGridEditorMenu
-                            }
+                                val res = treeGridEditorMenu
+                                grid setContextMenu res
+                                Seq(res)
+                            } else Seq()
+
+                            val _menu = menu ++ gridContextMenuData.customMenu.getOrElse(Seq())
+                            thizTop.addItem(
+                                new MenuSSItemProps {
+                                    submenu = .opt
+                                    title = thiz.captionMenuList.ellipsis.opt
+                                    icon = Common.ellipsis.opt
+                                }
+                            )
+
                     }
             }
     }.toThisFunc.opt
