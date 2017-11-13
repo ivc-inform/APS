@@ -6,7 +6,7 @@ import com.simplesys.SmartClient.System.Tab
 import com.simplesys.SmartClient.System._
 import com.simplesys.System._
 import com.simplesys.app
-import com.simplesys.app.{OpersType, Tasks}
+import com.simplesys.app.{OpersType, ProdCalendar, Tasks}
 import com.simplesys.function._
 import com.simplesys.js.components.asp.TasksLayout
 import com.simplesys.option.ScOption._
@@ -39,9 +39,24 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                         Tab(
                             new TabProps {
                                 name = "rc".opt
-                                pane = OpersType.create(new OpersTypeProps).opt
+                                pane = OpersType.create(
+                                    new OpersTypeProps{
+                                        masterGrid = tasks.listGrid.opt
+                                    }
+                                ).opt
                                 title = "Типы операций".opt
                                 icon = app.doctypes.opt
+                            }
+                        ),
+                        Tab(
+                            new TabProps {
+                                name = "prodCalendar".opt
+                                pane = ProdCalendar.create(
+                                    new ProdCalendarProps{
+                                        masterGrid = tasks.listGrid.opt
+                                    }).opt
+                                title = "Производственный календарь".ellipsis.opt
+                                icon = app.cards.opt
                             }
                         )
                     ).opt
