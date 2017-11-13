@@ -41,6 +41,9 @@
 					<uc uniqueType="pk">
 						<attrName>id_operstype</attrName>
 					</uc>
+					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
+						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
+					</fk>
 				</constraints>
 			</classSimple>
 
@@ -89,6 +92,9 @@
 					<uc uniqueType="pk">
 						<attrName>id_prod_calendar</attrName>
 					</uc>
+					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
+						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
+					</fk>
 				</constraints>
 			</classSimple>
 
@@ -117,6 +123,9 @@
 					<fk linkType="refIsOwner" mandatory="true" parent="opers_type">
 						<mapping attrNameLocal="to_type" attrNameRemote="id_operstype"></mapping>
 					</fk>
+					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
+						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
+					</fk>
 				</constraints>
 			</classSimple>
 
@@ -136,6 +145,9 @@
 					<uc uniqueType="pk">
 						<attrName>id_rc</attrName>
 					</uc>
+					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
+						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
+					</fk>
 				</constraints>
 			</classSimple>
 
@@ -163,6 +175,9 @@
 					<uc uniqueType="pk">
 						<attrName>id_params</attrName>
 					</uc>
+					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
+						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
+					</fk>
 				</constraints>
 			</classSimple>
 
@@ -186,6 +201,9 @@
 					<uc uniqueType="pk">
 						<attrName>idresult</attrName>
 					</uc>
+					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
+						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
+					</fk>
 				</constraints>
 			</classSimple>
 
@@ -210,6 +228,9 @@
 					</fk>
 					<fk linkType="refIsOwner" mandatory="true" parent="orders">
 						<mapping attrNameLocal="id_orders" attrNameRemote="idorders"></mapping>
+					</fk>
+					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
+						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
 					</fk>
 				</constraints>
 			</classSimple>
