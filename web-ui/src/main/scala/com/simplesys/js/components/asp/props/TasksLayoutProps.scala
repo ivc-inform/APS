@@ -47,13 +47,13 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                             tab.pane.foreach {
                                 pane ⇒
                                     val _pane = pane.asInstanceOf[ListGridEditor]
-                                    /*thizTop setFuncMenu
+                                    thizTop setFuncMenu
                                       CompoundGridsContextMenu.create(
                                           new CompoundGridsContextMenuProps {
                                               gridsContextMenuData = Seq(
                                                   new GridContextMenuData {
                                                       override val captionMenu = "Задачи"
-                                                      override val grid = js.UndefOr.any2undefOrA(tasks.asInstanceOf[ListGridEditor])
+                                                      override val grid = js.UndefOr.any2undefOrA(tasks.asInstanceOf[ListGri])
                                                   },
                                                   new GridContextMenuData {
                                                       override val captionMenu = tab.title
@@ -61,7 +61,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                                   }
                                               ).opt
                                           }
-                                      )*/
+                                      )
                             }
                             true
                     }.toThisFunc.opt
