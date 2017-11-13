@@ -60,9 +60,12 @@ isc.ListGrid.addProperties
 
 	"setMasterGrid": (grid, pkFieldNames) ->
 		###console.log "setMasterGrid (grid: #{grid.getID()})"###
+  
 		if isc.isA.ListGridEditor(grid) or isc.isA.TreeGridEditor(grid)
 			grid = grid.grid
 
+		thisGrid = @
+		
 		if isc.isA.ListGrid(grid)
 			@masterGrid = grid
 			if isc.isA.DataSource(@dataSource)
@@ -91,6 +94,7 @@ isc.ListGrid.addProperties
 									criteria[item.detailGridField] = arrayRes
 	
 						if not isc.isA.emptyObject criteria
+							thisGrid.criteria = criteria
 							@fetchData(
 								criteria,
 								if @selectFirstRecordAfterFetch is true then () => @selectFirstRecord() ; return)
@@ -111,6 +115,7 @@ isc.ListGrid.addProperties
 									criteria[field] = arrayRes
 	
 						if not isc.isA.emptyObject criteria
+							thisGrid.criteria = criteria
 							@fetchData(
 								criteria,
 								if @selectFirstRecordAfterFetch is true then () => @selectFirstRecord(); return)
