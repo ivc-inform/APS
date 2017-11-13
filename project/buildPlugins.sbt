@@ -18,5 +18,6 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(/*RootP
       PluginDeps.xsbtWeb,
       PluginDeps.sbtNativePackager,
       PluginDeps.jrebelPlugin,
-      PluginDeps.scalaJSPlugin
+      PluginDeps.crossproject,
+      PluginDeps.sbtCrossproject
   )
