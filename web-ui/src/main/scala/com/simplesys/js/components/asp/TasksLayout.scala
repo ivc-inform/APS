@@ -5,10 +5,10 @@ import com.simplesys.SmartClient.Layout.{AbstractHLayoutSSCompanion, ChainMaster
 import scala.scalajs.js
 
 @js.native
-trait TaskLayout extends ChainMasterDetail {
+trait TasksLayout extends ChainMasterDetail {
 }
 
 @js.native
-abstract trait AbstractTaskLayoutCompanion extends AbstractHLayoutSSCompanion {
+abstract trait AbstractTasksLayoutCompanion extends AbstractHLayoutSSCompanion {
 }
 

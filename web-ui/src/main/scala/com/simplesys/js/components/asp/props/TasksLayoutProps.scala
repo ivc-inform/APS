@@ -5,13 +5,13 @@ import com.simplesys.SmartClient.System._
 import com.simplesys.System._
 import com.simplesys.app.Tasks
 import com.simplesys.function._
-import com.simplesys.js.components.asp.TaskLayout
+import com.simplesys.js.components.asp.TasksLayout
 import com.simplesys.option.ScOption._
 
 import scala.scalajs.js._
 
-class TaskLayoutProps extends ChainMasterDetailProps {
-    type classHandler <: TaskLayout
+class TasksLayoutProps extends ChainMasterDetailProps {
+    type classHandler <: TasksLayout
 
     identifier = "6256A539-4BE7-227E-2507-25896B994FC6".opt
 

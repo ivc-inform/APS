@@ -74,9 +74,9 @@ object ApsProcWindowMain extends WebTabSetApp {
                                             title = "Задачи".ellipsis.opt
                                             click = {
                                                 (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
-                                                    addTab(TasksOrders.create(new TasksOrdersProps), item)
+                                                    addTab(TasksLayout.create(new TasksLayoutProps), item)
                                             }.toFunc.opt
-                                        },
+                                        }/*,
                                         new MenuSSItemProps {
                                             name = "rc".opt
                                             icon = app.doctypes.opt
@@ -133,7 +133,7 @@ object ApsProcWindowMain extends WebTabSetApp {
                                                 (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
                                                     addTab(Result.create(new ResultProps), item)
                                             }.toFunc.opt
-                                        }
+                                        }*/
                                     ).opt
                                 }
                             ).opt
