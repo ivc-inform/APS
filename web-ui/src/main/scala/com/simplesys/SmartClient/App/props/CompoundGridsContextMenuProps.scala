@@ -21,6 +21,7 @@ class CompoundGridsContextMenuProps extends MenuSSProps {
         (thizTop: classHandler, arguments: IscArray[JSAny]) =>
             thizTop.Super("initWidget", arguments)
 
+            isc debugTrap thizTop.gridsContextMenuData
             thizTop.gridsContextMenuData.foreach {
                 gridContextMenuData ⇒
                     def listGridEditorMenu = ListGridContextMenu.create(
