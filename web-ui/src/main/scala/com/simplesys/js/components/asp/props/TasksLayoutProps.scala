@@ -53,7 +53,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                               gridsContextMenuData = Seq(
                                                   new GridContextMenuData {
                                                       override val captionMenu = "Задачи"
-                                                      override val grid = js.UndefOr.any2undefOrA(tasks.asInstanceOf[ListGri])
+                                                      override val grid = js.UndefOr.any2undefOrA(tasks.asInstanceOf[ListGridEditor])
                                                   },
                                                   new GridContextMenuData {
                                                       override val captionMenu = tab.title
