@@ -266,6 +266,7 @@ package object System {
 
     object SettingsEditor extends SCApply[SettingsEditor, SettingsEditorProps]
     object ListGridContextMenu extends SCApply[ListGridContextMenu, ListGridContextMenuProps]
+    object CompoundGridsContextMenu extends SCApply[CompoundGridsContextMenu, CompoundGridsContextMenuProps]
     object ListGridContextMenuWithForm extends SCApply[ListGridContextMenu, ListGridContextMenuWithFormProps]
     object TreeGridContextMenu extends SCApply[TreeGridContextMenu, TreeGridContextMenuProps]
     object TreeListGridContextMenu extends SCApply[TreeListGridContextMenu, TreeListGridContextMenuProps]
