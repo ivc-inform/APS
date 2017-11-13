@@ -28,7 +28,7 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
     editingListFields = aps_orders_FRMITM.opt
 
     captionMenuTree = "Задачи".opt
-    captionMenuList = "Операции задач".opt
+    captionMenuList = "Операции".opt
 
     val taskEditor = Tasks.create(new TasksProps)
 
