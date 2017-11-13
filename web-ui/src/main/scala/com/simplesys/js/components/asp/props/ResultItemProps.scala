@@ -34,15 +34,6 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
             nameStrong = aps_result_items_duration_NameStrong.opt
             align = Alignment.center.opt
             `type` = ListGridFieldType.fDouble_SimpleType.opt
-        },
-        new ListGridFieldProps {
-            nameStrong = aps_orders_code_task_Id_task_NameStrong.opt
-            `type` = ListGridFieldType.sCaption_SimpleType.opt
-            editorType = FormItemComponentType.LookupTreeGridEditorItem
-            editorProperties = LookupTreeGridEditorItem(
-                new LookupTreeGridEditorItemProps {
-                    treeGridEditor = Tasks.create(new TasksProps).opt
-                }).opt
         }
     ).opt
 
