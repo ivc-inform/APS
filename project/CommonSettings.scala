@@ -8,7 +8,7 @@ object CommonSettings {
     val scalaVersion = "2.12.4"
     val organization = "com.ivc-inform"
     val name = "aps"
-    val version = "1.0.0.1"
+    val baseVersion = "1.0"
     val scalacOptions = Seq(
       "-feature",
       "-language:higherKinds",

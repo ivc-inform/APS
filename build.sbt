@@ -8,12 +8,13 @@ import sbt.Keys.version
 
 name := CommonSettings.settingValues.name
 
-lazy val root = (project in file(".")).
-  aggregate(dbObjects, webUI, common, mathModule).
-  settings(
+lazy val root = (project in file("."))
+  .enablePlugins(GitVersioning)
+  .aggregate(dbObjects, webUI, common, mathModule)
+  .settings(
       inThisBuild(Seq(
+          git.baseVersion := CommonSettings.settingValues.baseVersion,
           scalaVersion := CommonSettings.settingValues.scalaVersion,
-          version := CommonSettings.settingValues.version,
           liquibaseUsername in DevConfig := "eakd",
           liquibasePassword in DevConfig := "eakd",
           liquibaseDriver in DevConfig := "oracle.jdbc.OracleDriver",
@@ -216,13 +217,12 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
         dockerExposedPorts in Docker := Seq(8080),
 
         //docker
-        version := CommonSettings.settingValues.version,
         packageName in Docker := CommonSettings.settingValues.name,
         dockerUsername in Docker := None,
         dockerRepository in Docker := Some("hub.docker.com"),
         dockerRepository := Some("ivcinform"),
         dockerUpdateLatest := false,
-        dockerAlias in Docker := DockerAlias(dockerRepository.value, (dockerUsername in Docker).value, CommonSettings.settingValues.name, Some(CommonSettings.settingValues.version)),
+        dockerAlias in Docker := DockerAlias(dockerRepository.value, (dockerUsername in Docker).value, CommonSettings.settingValues.name, Some(version.value)),
         dockerDocfileCommands := Seq(
             copy(s"webapp/", s"/var/lib/jetty/webapps/${CommonSettings.settingValues.name}"),
             entrypoint("/docker-entrypoint.sh"),
