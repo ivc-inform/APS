@@ -1,11 +1,11 @@
 package com.simplesys.js.components.asp.props
 
-import com.simplesys.SmartClient.App.formItems.props.LookupListGridEditorItemProps
+import com.simplesys.SmartClient.App.formItems.props.{LookupListGridEditorItemProps, LookupTreeGridEditorItemProps}
 import com.simplesys.SmartClient.App.props.CommonListGridEditorComponentProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
-import com.simplesys.SmartClient.System.LookupListGridEditorItem
+import com.simplesys.SmartClient.System.{LookupListGridEditorItem, LookupTreeGridEditorItem}
 import com.simplesys.System.Types._
-import com.simplesys.app.{OpersType, Rc}
+import com.simplesys.app.{OpersType, Rc, Tasks}
 import com.simplesys.js.components.asp.ChangeOver
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
@@ -58,17 +58,25 @@ class ChangeOverProps extends CommonListGridEditorComponentProps {
                 listGridEditor = OpersType.create(new OpersTypeProps).opt
             }).opt
         },
-
         new ListGridFieldProps {
             nameStrong = aps_changeover_code_operstype_To_type_NameStrong.opt
             align = Alignment.center.opt
             `type` = ListGridFieldType.sCaption_SimpleType.opt
             editorType = FormItemComponentType.LookupListGridEditorItem
             editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
-                listGridEditor = OpersType.create(new OpersTypeProps{
+                listGridEditor = OpersType.create(new OpersTypeProps {
                     identifier = "7016FFF2-D154-AE84-B63F-CCA5A7D07123".opt
                 }).opt
             }).opt
+        },
+        new ListGridFieldProps {
+            nameStrong = aps_orders_code_task_Id_task_NameStrong.opt
+            `type` = ListGridFieldType.sCaption_SimpleType.opt
+            editorType = FormItemComponentType.LookupTreeGridEditorItem
+            editorProperties = LookupTreeGridEditorItem(
+                new LookupTreeGridEditorItemProps {
+                    treeGridEditor = Tasks.create(new TasksProps).opt
+                }).opt
         }
     ).opt
 }

@@ -30,11 +30,6 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
     captionMenuTree = "Задачи".opt
     captionMenuList = "Операции".opt
 
-    val taskEditor = Tasks.create(new TasksProps)
-
-    val operTypeEditor = OpersType.create(new OpersTypeProps)
-
-
     replacingFieldsList = Seq(
         new ListGridFieldProps {
             nameStrong = aps_orders_code_task_Id_task_NameStrong.opt
@@ -42,7 +37,7 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
             editorType = FormItemComponentType.LookupTreeGridEditorItem
             editorProperties = LookupTreeGridEditorItem(
                 new LookupTreeGridEditorItemProps {
-                    treeGridEditor = taskEditor.opt
+                    treeGridEditor = Tasks.create(new TasksProps).opt
                 }).opt
         },
         new ListGridFieldProps {
@@ -51,7 +46,7 @@ class TasksOrdersProps extends CommonTreeListGridEditorComponentProps {
             editorType = FormItemComponentType.LookupListGridEditorItem
             editorProperties = LookupListGridEditorItem(
                 new LookupListGridEditorItemProps {
-                    listGridEditor = operTypeEditor.opt
+                    listGridEditor = OpersType.create(new OpersTypeProps).opt
                 }).opt
         }
     ).opt

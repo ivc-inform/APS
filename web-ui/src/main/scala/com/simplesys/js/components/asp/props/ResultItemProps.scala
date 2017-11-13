@@ -1,10 +1,12 @@
 package com.simplesys.js.components.asp.props
 
+import com.simplesys.SmartClient.App.formItems.props.LookupTreeGridEditorItemProps
 import com.simplesys.SmartClient.App.props._
 import com.simplesys.SmartClient.DataBinding.props.SortSpecifierProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
-import com.simplesys.SmartClient.System.SortSpecifier
-import com.simplesys.System.Types.{Alignment, ListGridEditEvent, ListGridFieldType, SortDirection}
+import com.simplesys.SmartClient.System.{LookupTreeGridEditorItem, SortSpecifier}
+import com.simplesys.System.Types._
+import com.simplesys.app.Tasks
 import com.simplesys.js.components.asp.ResultItem
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
@@ -32,7 +34,17 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
             nameStrong = aps_result_items_duration_NameStrong.opt
             align = Alignment.center.opt
             `type` = ListGridFieldType.fDouble_SimpleType.opt
-        }).opt
+        },
+        new ListGridFieldProps {
+            nameStrong = aps_orders_code_task_Id_task_NameStrong.opt
+            `type` = ListGridFieldType.sCaption_SimpleType.opt
+            editorType = FormItemComponentType.LookupTreeGridEditorItem
+            editorProperties = LookupTreeGridEditorItem(
+                new LookupTreeGridEditorItemProps {
+                    treeGridEditor = Tasks.create(new TasksProps).opt
+                }).opt
+        }
+    ).opt
 
     canSort = false.opt
 
