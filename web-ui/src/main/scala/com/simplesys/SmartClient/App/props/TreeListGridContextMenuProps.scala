@@ -26,7 +26,7 @@ class TreeListGridContextMenuProps extends MenuSSProps {
     var customSubMenuItem: ScOption[MenuSSItem] = ScNone
 
     initWidget = {
-        (thiz: TreeListGridContextMenu, arguments: IscArray[JSAny]) =>
+        (thiz: classHandler, arguments: IscArray[JSAny]) =>
             //isc debugTrac(thiz.getClassName(), thiz.getIdentifier())
            
             thiz.Super("initWidget", arguments)

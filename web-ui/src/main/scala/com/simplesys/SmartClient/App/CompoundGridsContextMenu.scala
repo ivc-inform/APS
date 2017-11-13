@@ -7,10 +7,10 @@ import com.simplesys.option.{ScNone, ScOption}
 import scala.scalajs.js
 import scala.scalajs.js.|
 
-trait MenuData extends js.Object {
-    val simpleTable: Boolean = true
+trait GridContextMenuData extends js.Object {
+    val simpleTable: Boolean = js.native
     val captionMenu: String
-    val customMenu: Seq[MenuSSItem] = Seq()
+    val customMenu: Seq[MenuSSItem] = js.native
 }
 
 @js.native
