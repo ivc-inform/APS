@@ -1,11 +1,11 @@
 package com.simplesys.js.components.asp
 
-import com.simplesys.SmartClient.Layout.{AbstractHLayoutSSCompanion, HLayoutSS}
+import com.simplesys.SmartClient.Layout.{AbstractHLayoutSSCompanion, ChainMasterDetail}
 
 import scala.scalajs.js
 
 @js.native
-trait TaskLayout extends HLayoutSS {
+trait TaskLayout extends ChainMasterDetail {
 }
 
 @js.native

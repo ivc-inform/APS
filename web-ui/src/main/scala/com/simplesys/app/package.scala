@@ -103,5 +103,6 @@ package object app {
     object GanttImprovedChart extends SCApply[GanttImprovedChart, GanttImprovedChartProps]
     object Orders extends SCApply[Orders, OrdersProps]
     object TasksOrders extends SCApply[TasksOrders, TasksOrdersProps]
+    object TaskLayout extends SCApply[TaskLayout, TaskLayoutProps]
     object Tasks extends SCApply[Tasks, TasksProps]
 }
