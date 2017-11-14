@@ -31,6 +31,8 @@ isc.defineClass("TreeGridEditor", isc.VLayoutSS, isc.GridEditorInterface).addPro
 	"getEditFormItem" : (field) ->
 		@grid.getEditFormItem field
 	"fetchData": (criteria, callback, requestProperties) ->
+		criteria = @grid.criteria unless criteria
+		
 		if @useClientFilteringSorting is false
 			_callback = (dsResponse, data, dsRequest) =>
 				@grid.selectFirstRecord() if @selectFirstRecordAfterFetch

@@ -38,7 +38,7 @@ isc.defineClass("ListGridEditor", isc.VLayoutSS, isc.GridEditorInterface).addPro
 		record
 	"selectFirstRecordAfterFetch": true
 	"fetchData"                  : (criteria, callback, requestProperties) ->
-		###criteria = @grid.criteria unless criteria###
+		criteria = @grid.criteria unless criteria
 		
 		if @useClientFilteringSorting is false
 			_callback = (dsResponse, data, dsRequest) =>

@@ -94,7 +94,7 @@ isc.ListGrid.addProperties
 									criteria[item.detailGridField] = arrayRes
 	
 						if not isc.isA.emptyObject criteria
-							thisGrid.initialCriteria = criteria
+							thisGrid.criteria = criteria
 							@fetchData(
 								criteria,
 								if @selectFirstRecordAfterFetch is true then () => @selectFirstRecord() ; return)
@@ -115,7 +115,7 @@ isc.ListGrid.addProperties
 									criteria[field] = arrayRes
 	
 						if not isc.isA.emptyObject criteria
-							thisGrid.initialCriteria = criteria
+							thisGrid.criteria = criteria
 							@fetchData(
 								criteria,
 								if @selectFirstRecordAfterFetch is true then () => @selectFirstRecord(); return)

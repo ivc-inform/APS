@@ -13,5 +13,3 @@ trait Tasks extends CommonTreeGridEditorComponent {
 abstract trait AbstractTasksCompanion extends AbstractCommonTreeGridEditorComponentCompanion {
 }
 
-/*@js.native
-object Tasks extends AbstractTasksCompanion*/

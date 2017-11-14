@@ -11,9 +11,9 @@ import com.simplesys.SmartClient.System.{Tab, _}
 import com.simplesys.System.Types.{HTMLString, ID}
 import com.simplesys.System._
 import com.simplesys.app
-import com.simplesys.app._
+import com.simplesys.app.{Tasks, _}
 import com.simplesys.function._
-import com.simplesys.js.components.asp.TasksLayout
+import com.simplesys.js.components.asp.{Tasks, TasksLayout}
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.{ScNone, ScOption}
 import com.simplesys.option.ScOption._
@@ -23,44 +23,25 @@ import scala.scalajs.js.ThisFunction1
 class TasksLayoutProps extends ChainMasterDetailProps {
     type classHandler <: TasksLayout
 
+    implicit def canvas2ListGridEditor(canvas: Canvas): ListGridEditor = canvas.asInstanceOf[ListGridEditor]
+
     identifier = "6256A539-4BE7-227E-2507-25896B994FC6".opt
 
-    /*var setFuncMenu: ScOption[ThisFunction1[classHandler, IscArray[Tab], _]] = {
-        (thiz: classHandler, tabs: IscArray[Tab]) ⇒
-            val a: JSArray[GridContextMenuData] = tabs.map(
-                tab ⇒
-                    if (tab.pane.isDefined)
-                        Some(new GridContextMenuData {
-                            override val captionMenu = tab.title
-                            override val grid = tab.pane.get.asInstanceOf[ListGridEditor]
-                            override val customMenu = Seq()
-                        })
-                    else
-                        None
-            ).filter(_.isDefined)
-
-            tab.pane.foreach {
-                pane ⇒
-                    val _pane = pane.asInstanceOf[ListGridEditor]
-
-                //isc debugTrap a
-
-
-            }
-
-    }.toThisFunc.opt*/
+    var tasks: ScOption[Tasks] = ScNone
 
     initWidget = {
         (thizTop: classHandler, args: IscArray[JSAny]) ⇒
 
             thizTop.Super("initWidget", args)
 
-            val tasks = Tasks.create(new TasksProps {
+
+            thizTop.tasks = Tasks.create(new TasksProps {
                 identifier = s"${thizTop.identifier}_tasks".opt
                 width = "20%"
             })
-            tasks.showResizeBar = true
-            thizTop addMember tasks
+
+            thizTop.tasks.showResizeBar = true
+            thizTop addMember thizTop.tasks
 
             val tabSet = TabSetSS.create(
                 new TabSetSSProps {
@@ -69,7 +50,23 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                     canCloseTabs = false.opt
                     tabSelected = {
                         (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, name: JSUndefined[String]) ⇒
-
+                            thizTop.funcMenu =
+                              CompoundGridsContextMenu.create(
+                                  new CompoundGridsContextMenuProps {
+                                      gridsContextMenuData = Seq(
+                                          new GridContextMenuData {
+                                              override val captionMenu = "Задачи"
+                                              override val grid = thizTop.tasks
+                                              override val customMenu = Seq()
+                                          },
+                                          new GridContextMenuData {
+                                              override val captionMenu = tab.title
+                                              override val grid = tab.pane.get
+                                              override val customMenu = Seq()
+                                          }
+                                      ).opt
+                                  }
+                              )
                             true
                     }.toThisFunc.opt
                     tabs = Seq(
@@ -78,7 +75,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                 name = "rc".opt
                                 pane = OpersType.create(
                                     new OpersTypeProps {
-                                        masterGrid = tasks.listGrid.opt
+                                        masterGrid = thizTop.tasks.listGrid.opt
                                     }
                                 ).opt
                                 title = "Типы операций".opt
@@ -92,7 +89,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                 title = "Производственный календарь".ellipsis.opt
                                 pane = ProdCalendar.create(
                                     new ProdCalendarProps {
-                                        masterGrid = tasks.listGrid.opt
+                                        masterGrid = thizTop.tasks.listGrid.opt
                                     }).opt
                             }
                         ),
@@ -102,7 +99,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                 icon = app.doccats.opt
                                 title = "Матрица наладки".ellipsis.opt
                                 pane = ChangeOver.create(new ChangeOverProps {
-                                    masterGrid = tasks.listGrid.opt
+                                    masterGrid = thizTop.tasks.listGrid.opt
                                 }).opt
                             }
                         ),
@@ -112,7 +109,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                 icon = app.accounts.opt
                                 title = "Рабочие центры".ellipsis.opt
                                 pane = Rc.create(new RcProps {
-                                    masterGrid = tasks.listGrid.opt
+                                    masterGrid = thizTop.tasks.listGrid.opt
                                 }).opt
                             }
                         ),
@@ -122,7 +119,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                 icon = app.properties.opt
                                 title = "Параметры".ellipsis.opt
                                 pane = Parametrs.create(new ParametrsProps {
-                                    masterGrid = tasks.listGrid.opt
+                                    masterGrid = thizTop.tasks.listGrid.opt
                                 }).opt
                             }
                         ),
@@ -132,7 +129,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                 icon = app.state.opt
                                 title = "Результаты расчетов".ellipsis.opt
                                 pane = Result.create(new ResultProps {
-                                    masterGrid = tasks.listGrid.opt
+                                    masterGrid = thizTop.tasks.listGrid.opt
                                 }).opt
                             }
                         )
@@ -148,12 +145,12 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                       gridsContextMenuData = Seq(
                           new GridContextMenuData {
                               override val captionMenu = "Задачи"
-                              override val grid = tasks.asInstanceOf[ListGridEditor]
+                              override val grid = thizTop.tasks
                               override val customMenu = Seq()
                           },
                           new GridContextMenuData {
                               override val captionMenu = tabSet.getSelectedTab().get.title
-                              override val grid = tabSet.getSelectedTab().get.pane.get.asInstanceOf[ListGridEditor]
+                              override val grid = tabSet.getSelectedTab().get.pane.get
                               override val customMenu = Seq()
                           }
                       ).opt

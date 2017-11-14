@@ -6,6 +6,7 @@ import scala.scalajs.js
 
 @js.native
 trait TasksLayout extends ChainMasterDetail {
+    var tasks: Tasks
 }
 
 @js.native
