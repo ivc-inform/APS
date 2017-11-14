@@ -19,27 +19,27 @@ class CompoundGridsContextMenuProps extends MenuSSProps {
         (thizTop: classHandler, arguments: IscArray[JSAny]) =>
             thizTop.Super("initWidget", arguments)
 
-            isc debugTrap 0
-            isc debugTrap thizTop.gridsContextMenuData
+            //isc debugTrap 0
+            //isc debugTrap thizTop.gridsContextMenuData
             thizTop.gridsContextMenuData.foreach {
                 gridContextMenuData ⇒
                     def listGridEditorMenu = ListGridContextMenu.create(
                         new ListGridContextMenuProps {
-                            customMenu = if (gridContextMenuData.customMenu.isEmpty) ScNone else gridContextMenuData.customMenu.opt
+                            customMenu = gridContextMenuData.customMenu.opt
                             owner = gridContextMenuData.grid.opt
                         }
                     )
 
                     def listGridEditorMenuWithForm = ListGridContextMenuWithForm.create(
                         new ListGridContextMenuWithFormProps {
-                            customMenu = if (gridContextMenuData.customMenu.isEmpty) ScNone else gridContextMenuData.customMenu.opt
+                            customMenu = gridContextMenuData.customMenu.opt
                             owner = gridContextMenuData.grid.opt
                         }
                     )
 
                     def treeGridEditorMenu = TreeGridContextMenu.create(
                         new TreeGridContextMenuProps {
-                            customMenu = if (gridContextMenuData.customMenu.isEmpty) ScNone else gridContextMenuData.customMenu.opt
+                            customMenu = gridContextMenuData.customMenu.opt
                             owner = gridContextMenuData.grid.opt
                         }
                     )

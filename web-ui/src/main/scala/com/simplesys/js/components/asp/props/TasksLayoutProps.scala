@@ -25,6 +25,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
     initWidget = {
         (thizTop: classHandler, args: IscArray[JSAny]) ⇒
 
+            thizTop.Super("initWidget", args)
             val tasks = Tasks.create(new TasksProps {
                 identifier = s"${thizTop.identifier}_tasks".opt
                 width = "20%"
@@ -134,7 +135,6 @@ class TasksLayoutProps extends ChainMasterDetailProps {
             )
 
             thizTop addMember tabSet
-            thizTop.Super("initWidget", args)
 
             thizTop.getViewState()
 
