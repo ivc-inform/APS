@@ -6,7 +6,7 @@ import com.simplesys.SmartClient.DataBinding.props.SortSpecifierProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
 import com.simplesys.SmartClient.System.{LookupListGridEditorItem, LookupTreeGridEditorItem, SortSpecifier}
 import com.simplesys.System.Types._
-import com.simplesys.app.{OpersType, Rc, Tasks}
+import com.simplesys.app.{OpersType, Orders, Rc, Tasks}
 import com.simplesys.js.components.asp.ResultItem
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
@@ -42,6 +42,16 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
             editorType = FormItemComponentType.LookupListGridEditorItem
             editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
                 listGridEditor = Rc.create(new RcProps).opt
+            }).opt
+        },
+        new ListGridFieldProps {
+            nameStrong = aps_result_items_code_orders_Id_orders_NameStrong.opt
+            align = Alignment.center.opt
+            editorType = FormItemComponentType.LookupListGridEditorItem
+            editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
+                listGridEditor = Orders.create(new OrdersProps{
+                    identifier = "7DDBAEBA-DEDD-267F-95E6-F5F6EB36A122".opt
+                }).opt
             }).opt
         },
         new ListGridFieldProps {

@@ -85,6 +85,18 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                     tabs = Seq(
                         Tab(
                             new TabProps {
+                                name = "orders".opt
+                                pane = Orders.create(
+                                    new OrdersProps {
+                                        masterGrid = thizTop.tasks.listGrid.opt
+                                    }
+                                ).opt
+                                title = "Операции".ellipsis.opt
+                                icon = app.doccats.opt
+                            }
+                        ),
+                        Tab(
+                            new TabProps {
                                 name = "rc".opt
                                 pane = OpersType.create(
                                     new OpersTypeProps {
