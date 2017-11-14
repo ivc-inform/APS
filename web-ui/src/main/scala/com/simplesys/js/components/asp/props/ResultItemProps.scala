@@ -45,14 +45,14 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
             }).opt
         },
         new ListGridFieldProps {
-            nameStrong = aps_changeover_code_operstype_From_type_NameStrong.opt
-            align = Alignment.center.opt
+            nameStrong = aps_orders_code_task_Id_task_NameStrong.opt
             `type` = ListGridFieldType.sCaption_SimpleType.opt
-            editorType = FormItemComponentType.LookupListGridEditorItem
-            editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
-                listGridEditor = OpersType.create(new OpersTypeProps).opt
-            }).opt
-        },
+            editorType = FormItemComponentType.LookupTreeGridEditorItem
+            editorProperties = LookupTreeGridEditorItem(
+                new LookupTreeGridEditorItemProps {
+                    treeGridEditor = Tasks.create(new TasksProps).opt
+                }).opt
+        }
     ).opt
 
     canSort = false.opt
