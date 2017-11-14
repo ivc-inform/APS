@@ -2,6 +2,7 @@ package com.simplesys.SmartClient.App.props
 
 import com.simplesys.SmartClient.App.{CompoundGridsContextMenu, GridContextMenuData}
 import com.simplesys.SmartClient.Control.MenuSS
+import com.simplesys.SmartClient.Control.menu.MenuSSItem
 import com.simplesys.SmartClient.Control.props.menu.MenuSSItemProps
 import com.simplesys.SmartClient.Control.props.{ListGridContextMenuProps, ListGridContextMenuWithFormProps, MenuSSProps, TreeGridContextMenuProps}
 import com.simplesys.SmartClient.System.{MenuSSItem, _}
@@ -20,26 +21,29 @@ class CompoundGridsContextMenuProps extends MenuSSProps {
             thizTop.Super("initWidget", arguments)
 
             //isc debugTrap 0
-            //isc debugTrap thizTop.gridsContextMenuData
+            isc debugTrap thizTop.gridsContextMenuData
+
+            implicit def getCustomMenuOpt(seq: Seq[MenuSSItem]): ScOption[Seq[MenuSSItem]] = if (seq.isEmpty) ScNone else seq.opt
+
             thizTop.gridsContextMenuData.foreach {
                 gridContextMenuData ⇒
                     def listGridEditorMenu = ListGridContextMenu.create(
                         new ListGridContextMenuProps {
-                            customMenu = gridContextMenuData.customMenu.opt
+                            customMenu = gridContextMenuData.customMenu
                             owner = gridContextMenuData.grid.opt
                         }
                     )
 
                     def listGridEditorMenuWithForm = ListGridContextMenuWithForm.create(
                         new ListGridContextMenuWithFormProps {
-                            customMenu = gridContextMenuData.customMenu.opt
+                            customMenu = gridContextMenuData.customMenu
                             owner = gridContextMenuData.grid.opt
                         }
                     )
 
                     def treeGridEditorMenu = TreeGridContextMenu.create(
                         new TreeGridContextMenuProps {
-                            customMenu = gridContextMenuData.customMenu.opt
+                            customMenu = gridContextMenuData.customMenu
                             owner = gridContextMenuData.grid.opt
                         }
                     )

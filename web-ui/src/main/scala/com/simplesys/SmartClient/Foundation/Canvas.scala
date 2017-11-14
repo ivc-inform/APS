@@ -4,6 +4,7 @@ import com.simplesys.SmartClient.Control.MenuSS
 import com.simplesys.SmartClient.DataBinding.Callbacks._
 import com.simplesys.SmartClient.Forms.formsItems.CanvasItem
 import com.simplesys.SmartClient.Forms.ValuesManager
+import com.simplesys.SmartClient.Layout.tabSet.Tab
 import com.simplesys.SmartClient.Layout.{PrintWindow, TabSetSS, WindowSS}
 import com.simplesys.SmartClient.System._
 import com.simplesys.SmartClient.Tools.{EditContext, EditNode}
@@ -28,6 +29,7 @@ import com.simplesys.System.Types.VerticalAlignment._
 import com.simplesys.System.Types.Visibility._
 import com.simplesys.System.Types._
 import com.simplesys.System.{JSAny, JSObject, JSUndefined}
+import com.simplesys.option.{ScNone, ScOption}
 import org.scalajs.dom.DocumentEvent
 import org.scalajs.dom.html.Element
 import org.scalajs.dom.raw.HTMLElement

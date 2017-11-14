@@ -8,24 +8,53 @@ import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.Layout.props.{ChainMasterDetailProps, TabSetSSProps}
 import com.simplesys.SmartClient.Layout.tabSet.Tab
 import com.simplesys.SmartClient.System.{Tab, _}
-import com.simplesys.System.Types.ID
+import com.simplesys.System.Types.{HTMLString, ID}
 import com.simplesys.System._
 import com.simplesys.app
 import com.simplesys.app._
 import com.simplesys.function._
 import com.simplesys.js.components.asp.TasksLayout
 import com.simplesys.option.DoubleType._
+import com.simplesys.option.{ScNone, ScOption}
 import com.simplesys.option.ScOption._
+
+import scala.scalajs.js.ThisFunction1
 
 class TasksLayoutProps extends ChainMasterDetailProps {
     type classHandler <: TasksLayout
 
     identifier = "6256A539-4BE7-227E-2507-25896B994FC6".opt
 
+    /*var setFuncMenu: ScOption[ThisFunction1[classHandler, IscArray[Tab], _]] = {
+        (thiz: classHandler, tabs: IscArray[Tab]) ⇒
+            val a: JSArray[GridContextMenuData] = tabs.map(
+                tab ⇒
+                    if (tab.pane.isDefined)
+                        Some(new GridContextMenuData {
+                            override val captionMenu = tab.title
+                            override val grid = tab.pane.get.asInstanceOf[ListGridEditor]
+                            override val customMenu = Seq()
+                        })
+                    else
+                        None
+            ).filter(_.isDefined)
+
+            tab.pane.foreach {
+                pane ⇒
+                    val _pane = pane.asInstanceOf[ListGridEditor]
+
+                //isc debugTrap a
+
+
+            }
+
+    }.toThisFunc.opt*/
+
     initWidget = {
         (thizTop: classHandler, args: IscArray[JSAny]) ⇒
 
             thizTop.Super("initWidget", args)
+
             val tasks = Tasks.create(new TasksProps {
                 identifier = s"${thizTop.identifier}_tasks".opt
                 width = "20%"
@@ -40,30 +69,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                     canCloseTabs = false.opt
                     tabSelected = {
                         (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, name: JSUndefined[String]) ⇒
-                            tab.pane.foreach {
-                                pane ⇒
-                                    val _pane = pane.asInstanceOf[ListGridEditor]
 
-                                    //isc debugTrap a
-
-                                    thizTop setFuncMenu
-                                      CompoundGridsContextMenu.create(
-                                          new CompoundGridsContextMenuProps {
-                                              gridsContextMenuData = Seq(
-                                                  new GridContextMenuData {
-                                                      override val captionMenu = "Задачи"
-                                                      override val grid = tasks.asInstanceOf[ListGridEditor]
-                                                      override val customMenu = Seq()
-                                                  },
-                                                  new GridContextMenuData {
-                                                      override val captionMenu = tab.title
-                                                      override val grid = _pane
-                                                      override val customMenu = Seq()
-                                                  }
-                                              ).opt
-                                          }
-                                      )
-                            }
                             true
                     }.toThisFunc.opt
                     tabs = Seq(
@@ -135,6 +141,24 @@ class TasksLayoutProps extends ChainMasterDetailProps {
             )
 
             thizTop addMember tabSet
+
+            thizTop.funcMenu =
+              CompoundGridsContextMenu.create(
+                  new CompoundGridsContextMenuProps {
+                      gridsContextMenuData = Seq(
+                          new GridContextMenuData {
+                              override val captionMenu = "Задачи"
+                              override val grid = tasks.asInstanceOf[ListGridEditor]
+                              override val customMenu = Seq()
+                          },
+                          new GridContextMenuData {
+                              override val captionMenu = tabSet.getSelectedTab().get.title
+                              override val grid = tabSet.getSelectedTab().get.pane.get.asInstanceOf[ListGridEditor]
+                              override val customMenu = Seq()
+                          }
+                      ).opt
+                  }
+              )
 
             thizTop.getViewState()
 

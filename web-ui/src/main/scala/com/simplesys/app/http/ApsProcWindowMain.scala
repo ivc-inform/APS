@@ -76,16 +76,7 @@ object ApsProcWindowMain extends WebTabSetApp {
                                                 (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
                                                     addTab(TasksLayout.create(new TasksLayoutProps), item)
                                             }.toFunc.opt
-                                        }/*,
-                                        new MenuSSItemProps {
-                                            name = "result".opt
-                                            icon = app.state.opt
-                                            title = "Результаты расчетов".ellipsis.opt
-                                            click = {
-                                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
-                                                    addTab(Result.create(new ResultProps), item)
-                                            }.toFunc.opt
-                                        }*/
+                                        }
                                     ).opt
                                 }
                             ).opt
