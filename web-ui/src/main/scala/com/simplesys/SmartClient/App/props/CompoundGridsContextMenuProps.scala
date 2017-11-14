@@ -75,7 +75,7 @@ class CompoundGridsContextMenuProps extends MenuSSProps {
                                 MenuSSItem(
                                     new MenuSSItemProps {
                                         submenu = menu.opt
-                                        title = gridContextMenuData.captionMenu.ellipsis.opt
+                                        title = gridContextMenuData.captionMenu.opt
                                         icon = Common.ellipsis.opt
                                     })
                             )

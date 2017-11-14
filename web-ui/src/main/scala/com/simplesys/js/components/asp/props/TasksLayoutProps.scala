@@ -29,6 +29,25 @@ class TasksLayoutProps extends ChainMasterDetailProps {
 
     var tasks: ScOption[Tasks] = ScNone
 
+    def getMenu(thizTop: classHandler, tab:Tab) = {
+        CompoundGridsContextMenu.create(
+            new CompoundGridsContextMenuProps {
+                gridsContextMenuData = Seq(
+                    new GridContextMenuData {
+                        override val captionMenu = "Задачи".ellipsis
+                        override val grid = thizTop.tasks
+                        override val customMenu = Seq()
+                    },
+                    new GridContextMenuData {
+                        override val captionMenu = tab.title
+                        override val grid = tab.pane.get
+                        override val customMenu = Seq()
+                    }
+                ).opt
+            }
+        )
+    }
+
     initWidget = {
         (thizTop: classHandler, args: IscArray[JSAny]) ⇒
 
@@ -51,25 +70,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                     tabSelected = {
                         (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, name: JSUndefined[String]) ⇒
 
-                            simpleSyS.functionButton.foreach {
-                                _.menu =
-                                  CompoundGridsContextMenu.create(
-                                      new CompoundGridsContextMenuProps {
-                                          gridsContextMenuData = Seq(
-                                              new GridContextMenuData {
-                                                  override val captionMenu = "Задачи"
-                                                  override val grid = thizTop.tasks
-                                                  override val customMenu = Seq()
-                                              },
-                                              new GridContextMenuData {
-                                                  override val captionMenu = tab.title
-                                                  override val grid = tab.pane.get
-                                                  override val customMenu = Seq()
-                                              }
-                                          ).opt
-                                      }
-                                  )
-                            }
+                            simpleSyS.functionButton.foreach (_.menu = getMenu(thizTop, tab))
                             true
                     }.toThisFunc.opt
                     tabs = Seq(
@@ -81,7 +82,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                         masterGrid = thizTop.tasks.listGrid.opt
                                     }
                                 ).opt
-                                title = "Типы операций".opt
+                                title = "Типы операций".ellipsis.opt
                                 icon = app.doctypes.opt
                             }
                         ),
@@ -142,23 +143,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
 
             thizTop addMember tabSet
 
-            thizTop.funcMenu =
-              CompoundGridsContextMenu.create(
-                  new CompoundGridsContextMenuProps {
-                      gridsContextMenuData = Seq(
-                          new GridContextMenuData {
-                              override val captionMenu = "Задачи"
-                              override val grid = thizTop.tasks
-                              override val customMenu = Seq()
-                          },
-                          new GridContextMenuData {
-                              override val captionMenu = tabSet.getSelectedTab().get.title
-                              override val grid = tabSet.getSelectedTab().get.pane.get
-                              override val customMenu = Seq()
-                          }
-                      ).opt
-                  }
-              )
+            thizTop.funcMenu = getMenu(thizTop, tabSet.getSelectedTab().get)
 
             thizTop.getViewState()
 

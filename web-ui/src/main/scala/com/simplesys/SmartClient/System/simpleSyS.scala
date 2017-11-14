@@ -29,9 +29,6 @@ trait appStruct extends JSObject {
 @js.native
 @JSGlobal
 object simpleSyS extends JSObject {
-
-    import com.simplesys.System._
-
     def checkOwner(canvas: Canvas): Canvas = js.native
     def _enableDeleteFromTree(menu: MenuSSItem): Boolean = js.native
     def _openFolders(menu: MenuSS): void = js.native
