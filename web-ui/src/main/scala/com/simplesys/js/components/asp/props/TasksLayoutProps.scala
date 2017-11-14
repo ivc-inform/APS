@@ -9,7 +9,7 @@ import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.Layout.props.{ChainMasterDetailProps, TabSetSSProps}
 import com.simplesys.SmartClient.Layout.tabSet.Tab
 import com.simplesys.SmartClient.System.{Tab, _}
-import com.simplesys.System.Types.ID
+import com.simplesys.System.Types.{ID, SelectionAppearance, SelectionStyle}
 import com.simplesys.System._
 import com.simplesys.app
 import com.simplesys.app.{Tasks, _}
@@ -41,7 +41,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                             MenuSSItem(
                                 new MenuSSItemProps {
                                     title = "Произвести расчет варианта".ellipsis.opt
-                                    icon = Common.calculator.opt
+                                    icon = Common.calc.opt
                                 })
                         )
                     },
@@ -63,6 +63,8 @@ class TasksLayoutProps extends ChainMasterDetailProps {
 
             thizTop.tasks = Tasks.create(new TasksProps {
                 identifier = s"${thizTop.identifier}_tasks".opt
+                selectionAppearance = SelectionAppearance.checkbox.opt
+                selectionType = SelectionStyle.multiple.opt
                 width = "20%"
             })
 
