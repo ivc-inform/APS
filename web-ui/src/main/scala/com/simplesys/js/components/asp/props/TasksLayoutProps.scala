@@ -2,6 +2,7 @@ package com.simplesys.js.components.asp.props
 
 import com.simplesys.SmartClient.App.GridContextMenuData
 import com.simplesys.SmartClient.App.props.CompoundGridsContextMenuProps
+import com.simplesys.SmartClient.Control.props.menu.MenuSSItemProps
 import com.simplesys.SmartClient.Foundation.Canvas
 import com.simplesys.SmartClient.Grids.ListGridEditor
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
@@ -29,14 +30,20 @@ class TasksLayoutProps extends ChainMasterDetailProps {
 
     var tasks: ScOption[Tasks] = ScNone
 
-    def getMenu(thizTop: classHandler, tab:Tab) = {
+    def getMenu(thizTop: classHandler, tab: Tab) = {
         CompoundGridsContextMenu.create(
             new CompoundGridsContextMenuProps {
                 gridsContextMenuData = Seq(
                     new GridContextMenuData {
                         override val captionMenu = "Задачи".ellipsis
                         override val grid = thizTop.tasks
-                        override val customMenu = Seq()
+                        override val customMenu = Seq(
+                            MenuSSItem(
+                                new MenuSSItemProps {
+                                    title = "Произвести расчет варианта".ellipsis.opt
+                                    icon = Common.calculator.opt
+                                })
+                        )
                     },
                     new GridContextMenuData {
                         override val captionMenu = tab.title
@@ -70,7 +77,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                     tabSelected = {
                         (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, name: JSUndefined[String]) ⇒
 
-                            simpleSyS.functionButton.foreach (_.menu = getMenu(thizTop, tab))
+                            simpleSyS.functionButton.foreach(_.menu = getMenu(thizTop, tab))
                             true
                     }.toThisFunc.opt
                     tabs = Seq(

@@ -37,6 +37,7 @@ object Common {
     val properties = "properties.png"
     val gradient = "gpadient.png"
     val copy = "copy.png"
+    val calculator = "calculator.png"
     val send = "send.png"
     val exportDB = "exportDB.png"
     val systemservice = "systemservice.png"
