@@ -1,25 +1,21 @@
 package com.simplesys.js.components.asp.props
 
 import com.simplesys.SmartClient.App.GridContextMenuData
-import com.simplesys.SmartClient.App.props.{CompoundGridsContextMenuProps, TreeListGridContextMenuProps}
+import com.simplesys.SmartClient.App.props.CompoundGridsContextMenuProps
 import com.simplesys.SmartClient.Foundation.Canvas
 import com.simplesys.SmartClient.Grids.ListGridEditor
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
-import com.simplesys.SmartClient.Layout.props.{ChainMasterDetailProps, HLayoutSSProps, TabSetSSProps}
+import com.simplesys.SmartClient.Layout.props.{ChainMasterDetailProps, TabSetSSProps}
 import com.simplesys.SmartClient.Layout.tabSet.Tab
-import com.simplesys.SmartClient.System.Tab
-import com.simplesys.SmartClient.System._
+import com.simplesys.SmartClient.System.{Tab, _}
 import com.simplesys.System.Types.ID
 import com.simplesys.System._
 import com.simplesys.app
 import com.simplesys.app._
 import com.simplesys.function._
 import com.simplesys.js.components.asp.TasksLayout
-import com.simplesys.option.ScOption._
 import com.simplesys.option.DoubleType._
-
-import scala.scalajs.js
-import scala.scalajs.js._
+import com.simplesys.option.ScOption._
 
 class TasksLayoutProps extends ChainMasterDetailProps {
     type classHandler <: TasksLayout
@@ -28,7 +24,6 @@ class TasksLayoutProps extends ChainMasterDetailProps {
 
     initWidget = {
         (thizTop: classHandler, args: IscArray[JSAny]) ⇒
-            thizTop.Super("initWidget", args)
 
             val tasks = Tasks.create(new TasksProps {
                 identifier = s"${thizTop.identifier}_tasks".opt
@@ -47,17 +42,22 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                             tab.pane.foreach {
                                 pane ⇒
                                     val _pane = pane.asInstanceOf[ListGridEditor]
+
+                                    //isc debugTrap a
+
                                     thizTop setFuncMenu
                                       CompoundGridsContextMenu.create(
                                           new CompoundGridsContextMenuProps {
                                               gridsContextMenuData = Seq(
                                                   new GridContextMenuData {
                                                       override val captionMenu = "Задачи"
-                                                      override val grid = js.UndefOr.any2undefOrA(tasks.asInstanceOf[ListGridEditor])
+                                                      override val grid = tasks.asInstanceOf[ListGridEditor]
+                                                      override val customMenu = Seq()
                                                   },
                                                   new GridContextMenuData {
                                                       override val captionMenu = tab.title
-                                                      override val grid = js.UndefOr.any2undefOrA(_pane)
+                                                      override val grid = _pane
+                                                      override val customMenu = Seq()
                                                   }
                                               ).opt
                                           }
@@ -134,6 +134,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
             )
 
             thizTop addMember tabSet
+            thizTop.Super("initWidget", args)
 
             thizTop.getViewState()
 
