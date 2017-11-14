@@ -40,7 +40,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                         override val customMenu = Seq(
                             MenuSSItem(
                                 new MenuSSItemProps {
-                                    title = "Произвести расчет варианта".ellipsis.opt
+                                    title = "Произвести расчет".ellipsis.opt
                                     icon = Common.calc.opt
                                 })
                         )
