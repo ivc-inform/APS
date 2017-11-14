@@ -1,12 +1,12 @@
 package com.simplesys.js.components.asp.props
 
-import com.simplesys.SmartClient.App.formItems.props.LookupTreeGridEditorItemProps
+import com.simplesys.SmartClient.App.formItems.props.{LookupListGridEditorItemProps, LookupTreeGridEditorItemProps}
 import com.simplesys.SmartClient.App.props._
 import com.simplesys.SmartClient.DataBinding.props.SortSpecifierProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
-import com.simplesys.SmartClient.System.{LookupTreeGridEditorItem, SortSpecifier}
+import com.simplesys.SmartClient.System.{LookupListGridEditorItem, LookupTreeGridEditorItem, SortSpecifier}
 import com.simplesys.System.Types._
-import com.simplesys.app.Tasks
+import com.simplesys.app.{OpersType, Rc, Tasks}
 import com.simplesys.js.components.asp.ResultItem
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
@@ -20,7 +20,8 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
     editingFields = FormItemsJS.aps_result_items_FRMITM.opt
     fields = ListGridFiledsJS.aps_result_items_FLDS.opt
 
-    editEvent = ListGridEditEvent.none.opt
+    //editEvent = ListGridEditEvent.none.opt
+    editEvent = ListGridEditEvent.doubleClick.opt
 
     itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(false), miEdit(false), miRefresh()).opt
 
@@ -34,7 +35,24 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
             nameStrong = aps_result_items_duration_NameStrong.opt
             align = Alignment.center.opt
             `type` = ListGridFieldType.fDouble_SimpleType.opt
-        }
+        },
+        new ListGridFieldProps {
+            nameStrong = aps_changeover_scode_rc_Idrc_NameStrong.opt
+            align = Alignment.center.opt
+            editorType = FormItemComponentType.LookupListGridEditorItem
+            editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
+                listGridEditor = Rc.create(new RcProps).opt
+            }).opt
+        },
+        new ListGridFieldProps {
+            nameStrong = aps_changeover_code_operstype_From_type_NameStrong.opt
+            align = Alignment.center.opt
+            `type` = ListGridFieldType.sCaption_SimpleType.opt
+            editorType = FormItemComponentType.LookupListGridEditorItem
+            editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
+                listGridEditor = OpersType.create(new OpersTypeProps).opt
+            }).opt
+        },
     ).opt
 
     canSort = false.opt
