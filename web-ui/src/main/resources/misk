@@ -59,7 +59,7 @@ STARTUP
 echo 'oracle ALL=(ALL) ALL' >> /etc/sudoers
 sudo mkdir /u01/app/oracle/product/11.2/db_1/dumps;
 
-DROP USER ASP CASCADE;
+DROP USER APS CASCADE;
 CREATE OR REPLACE DIRECTORY dumps AS '/u01/app/oracle/product/11.2/db_1/dumps';
 GRANT READ, WRITE ON DIRECTORY dumps TO system;
 
