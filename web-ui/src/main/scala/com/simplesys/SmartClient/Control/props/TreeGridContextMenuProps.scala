@@ -41,12 +41,6 @@ class TreeGridContextMenuProps extends MenuSSProps {
                         owner.startEditingNewInForm()
 
             }.toFunc.opt
-            enableIf = {
-                (target: Canvas, menu: MenuSS, item: MenuSSItem) =>
-                    val owner = item.owner.asInstanceOf[TreeGridEditor]
-                    simpleSyS checkOwner owner
-                    owner.getSelectedRecords().length == 1
-            }.toFunc.opt
         })
 
     def newMenuItem = MenuSSItem(
@@ -65,7 +59,7 @@ class TreeGridContextMenuProps extends MenuSSProps {
                     //isc debugTrap(parentIdField, idField)
 
                     val request: DSRequest = if (owner.treeGrid.newRequestProperties.isDefined) (owner.treeGrid.newRequestProperties.get) () else DSRequest(
-                        new DSRequestProps {
+                        new DSRequestProps{
                             data = js.Object().opt
                         }
                     )
