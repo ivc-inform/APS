@@ -8,17 +8,17 @@ import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.Layout.props.{ChainMasterDetailProps, TabSetSSProps}
 import com.simplesys.SmartClient.Layout.tabSet.Tab
 import com.simplesys.SmartClient.System.{Tab, _}
-import com.simplesys.System.Types.{HTMLString, ID}
+import com.simplesys.System.Types.ID
 import com.simplesys.System._
 import com.simplesys.app
 import com.simplesys.app.{Tasks, _}
 import com.simplesys.function._
 import com.simplesys.js.components.asp.{Tasks, TasksLayout}
 import com.simplesys.option.DoubleType._
-import com.simplesys.option.{ScNone, ScOption}
 import com.simplesys.option.ScOption._
+import com.simplesys.option.{ScNone, ScOption}
 
-import scala.scalajs.js.ThisFunction1
+import scala.scalajs.js.UndefOr._
 
 class TasksLayoutProps extends ChainMasterDetailProps {
     type classHandler <: TasksLayout
@@ -50,23 +50,26 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                     canCloseTabs = false.opt
                     tabSelected = {
                         (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, name: JSUndefined[String]) ⇒
-                            thizTop.funcMenu =
-                              CompoundGridsContextMenu.create(
-                                  new CompoundGridsContextMenuProps {
-                                      gridsContextMenuData = Seq(
-                                          new GridContextMenuData {
-                                              override val captionMenu = "Задачи"
-                                              override val grid = thizTop.tasks
-                                              override val customMenu = Seq()
-                                          },
-                                          new GridContextMenuData {
-                                              override val captionMenu = tab.title
-                                              override val grid = tab.pane.get
-                                              override val customMenu = Seq()
-                                          }
-                                      ).opt
-                                  }
-                              )
+
+                            simpleSyS.functionButton.foreach {
+                                _.menu =
+                                  CompoundGridsContextMenu.create(
+                                      new CompoundGridsContextMenuProps {
+                                          gridsContextMenuData = Seq(
+                                              new GridContextMenuData {
+                                                  override val captionMenu = "Задачи"
+                                                  override val grid = thizTop.tasks
+                                                  override val customMenu = Seq()
+                                              },
+                                              new GridContextMenuData {
+                                                  override val captionMenu = tab.title
+                                                  override val grid = tab.pane.get
+                                                  override val customMenu = Seq()
+                                              }
+                                          ).opt
+                                      }
+                                  )
+                            }
                             true
                     }.toThisFunc.opt
                     tabs = Seq(

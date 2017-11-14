@@ -59,6 +59,8 @@ trait WebTabSetApp extends TabSetStack {
         }
     )
 
+    simpleSyS.functionButton = functionButton
+
     protected val functionGroup = RibbonGroupSS.create(
         new RibbonGroupSSProps {
             title = "Управление".ellipsis.opt
@@ -67,6 +69,7 @@ trait WebTabSetApp extends TabSetStack {
                 functionButton
             ).opt
         })
+
 
     protected val managedUsersGroups: Seq[RibbonGroupSS]
     protected val progectManagedDevsGroups: Seq[RibbonGroupSS]
