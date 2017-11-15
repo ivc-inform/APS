@@ -105,9 +105,6 @@
 				</attrs>
 				<defaults>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
-					<showAttrs>
-						<attrName>idchangeover</attrName>
-					</showAttrs>
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
@@ -229,13 +226,13 @@
 					<fk linkType="refIsOwner" mandatory="true" parent="rc">
 						<mapping attrNameLocal="idrc" attrNameRemote="id_rc"></mapping>
 					</fk>
-					<fk linkType="refIsOwner" mandatory="true" parent="orders">
+					<fk linkType="refIsOwner" mandatory="false" parent="orders">
 						<mapping attrNameLocal="id_orders" attrNameRemote="idorders"></mapping>
 					</fk>
 					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
 						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
 					</fk>
-					<fk linkType="refIsOwner" mandatory="true" parent="changeover">
+					<fk linkType="refIsOwner" mandatory="false" parent="changeover">
 						<mapping attrNameLocal="id_changeover" attrNameRemote="idchangeover"></mapping>
 					</fk>
 				</constraints>
