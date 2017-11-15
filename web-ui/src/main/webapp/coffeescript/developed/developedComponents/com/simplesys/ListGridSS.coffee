@@ -72,8 +72,8 @@ isc.ListGrid.addProperties
 				forignKeyFields = @dataSource.getForignKeyFields()
 	
 				@masterGrid.setSelectionChanged? (record, state) =>
-					if (!state)
-						return
+					###if (!state)
+						return###
 					masterSelectedRecords = @masterGrid.getSelectedRecords()
 					
 					@discardAllEdits()
