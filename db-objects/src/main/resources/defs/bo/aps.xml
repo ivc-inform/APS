@@ -100,11 +100,14 @@
 
 			<classSimple autoTableMapping="true" caption="Матрица наладки" name="changeover">
 				<attrs>
-					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_changeover" type="id" useDbPrefix="false"></attr>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="idchangeover" type="id" useDbPrefix="false"></attr>
 					<attr caption="Время наладки" name="duration" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
-					<uiSettings uiFormType="singleListGrid"></uiSettings>                                                                                                                         
+					<uiSettings uiFormType="singleListGrid"></uiSettings>
+					<showAttrs>
+						<attrName>id_changeover</attrName>
+					</showAttrs>
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
@@ -231,6 +234,9 @@
 					</fk>
 					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
 						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
+					</fk>
+					<fk linkType="refIsOwner" mandatory="true" parent="changeover">
+						<mapping attrNameLocal="id_changeover" attrNameRemote="idchangeover"></mapping>
 					</fk>
 				</constraints>
 			</classSimple>
