@@ -106,12 +106,12 @@
 				<defaults>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
 					<showAttrs>
-						<attrName>id_changeover</attrName>
+						<attrName>idchangeover</attrName>
 					</showAttrs>
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
-						<attrName>id_changeover</attrName>
+						<attrName>idchangeover</attrName>
 					</uc>
 					<uc uniqueType="uq">
 						<attrName>from_type</attrName>
