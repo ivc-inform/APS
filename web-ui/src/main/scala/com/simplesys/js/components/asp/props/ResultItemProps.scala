@@ -15,8 +15,16 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
     type classHandler <: ResultItem
     identifier = "4EEF794F-EE8F-C38D-73D6-CF6F0F5170E3".opt
 
-    editingFields = (FormItemsJS.aps_result_items_FRMITM ++ FormItemsJS.aps_changeover_FRMITM.filter(item ⇒ item.nameStrong.get.name == aps_changeover_code_operstype_From_type_NameStrong.name || item.nameStrong.get.name == aps_changeover_code_operstype_To_type_NameStrong.name)).opt
-    fields = (ListGridFiledsJS.aps_result_items_FLDS ++ ListGridFiledsJS.aps_changeover_FLDS.filter(item ⇒ item.nameStrong.get.name == aps_changeover_code_operstype_From_type_NameStrong.name || item.nameStrong.get.name == aps_changeover_code_operstype_To_type_NameStrong.name)).opt
+    editingFields = (FormItemsJS.aps_result_items_FRMITM ++ FormItemsJS.aps_changeover_FRMITM.filter(item ⇒ item.nameStrong.get.name == aps_changeover_code_operstype_From_type_NameStrong.name || item.nameStrong.get.name == aps_changeover_code_operstype_To_type_NameStrong.name)).map {
+        item ⇒
+            item.canEdit = item.nameStrong.get.name == aps_result_items_opertimestart_NameStrong.name || item.nameStrong.get.name == aps_result_items_opertimeend_NameStrong.name
+            item
+    }.opt
+    fields = (ListGridFiledsJS.aps_result_items_FLDS ++ ListGridFiledsJS.aps_changeover_FLDS.filter(item ⇒ item.nameStrong.get.name == aps_changeover_code_operstype_From_type_NameStrong.name || item.nameStrong.get.name == aps_changeover_code_operstype_To_type_NameStrong.name)).map {
+        item ⇒
+            item.canEdit = (item.nameStrong.get.name == aps_result_items_opertimestart_NameStrong.name || item.nameStrong.get.name == aps_result_items_opertimeend_NameStrong.name).opt
+            item
+    }.opt
 
     dataSource = DataSourcesJS.aps_result_items_DS.opt
 
@@ -30,11 +38,13 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
             nameStrong = aps_result_items_pos_NameStrong.opt
             align = Alignment.center.opt
             `type` = ListGridFieldType.nInt_SimpleType.opt
+            canEdit = false.opt
         },
         new ListGridFieldProps {
             nameStrong = aps_result_items_duration_NameStrong.opt
             align = Alignment.center.opt
             `type` = ListGridFieldType.fDouble_SimpleType.opt
+            canEdit = false.opt
         },
         new ListGridFieldProps {
             nameStrong = aps_changeover_scode_rc_Idrc_NameStrong.opt
@@ -43,16 +53,18 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
             editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
                 listGridEditor = Rc.create(new RcProps).opt
             }).opt
+            canEdit = false.opt
         },
         new ListGridFieldProps {
             nameStrong = aps_result_items_code_orders_Id_orders_NameStrong.opt
             align = Alignment.center.opt
             editorType = FormItemComponentType.LookupListGridEditorItem
             editorProperties = LookupListGridEditorItem(new LookupListGridEditorItemProps {
-                listGridEditor = Orders.create(new OrdersProps{
+                listGridEditor = Orders.create(new OrdersProps {
                     identifier = "7DDBAEBA-DEDD-267F-95E6-F5F6EB36A122".opt
                 }).opt
             }).opt
+            canEdit = false.opt
         },
         new ListGridFieldProps {
             nameStrong = aps_orders_code_task_Id_task_NameStrong.opt
@@ -62,6 +74,7 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
                 new LookupTreeGridEditorItemProps {
                     treeGridEditor = Tasks.create(new TasksProps).opt
                 }).opt
+            canEdit = false.opt
         }
     ).opt
 
