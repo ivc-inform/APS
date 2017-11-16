@@ -2,9 +2,7 @@ package com.simplesys.SmartClient.App.props
 
 import com.simplesys.SmartClient.App.CommonTreeListGridEditorComponent
 import com.simplesys.SmartClient.Control.menu.MenuSSItem
-import com.simplesys.SmartClient.Forms.formsItems.FormItem
 import com.simplesys.SmartClient.Foundation.props.canvas.ImgPropertiesProps
-import com.simplesys.SmartClient.Grids.listGrid.ListGridField
 import com.simplesys.SmartClient.Grids.props.TreeListGridEditorProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
 import com.simplesys.SmartClient.System._
@@ -12,8 +10,6 @@ import com.simplesys.System._
 import com.simplesys.function._
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
-
-import scala.scalajs.js
 
 class CommonTreeListGridEditorComponentProps extends TreeListGridEditorProps with InitialTrait {
     type classHandler <: CommonTreeListGridEditorComponent
