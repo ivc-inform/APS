@@ -233,8 +233,7 @@ class LookupTreeGridEditorItemProps extends CanvasItemProps {
                                                                                                             form.setValue(field, editor.getSelectedRecord().asInstanceOf[JSDynamic].selectDynamic(field))
                                                                                             }
 
-                                                                                            val treeGrid = formItem.grid.masterTreeGrid
-                                                                                            val listGrid: ListGrid = formItem.grid
+                                                                                            val listGrid = isc.debugTrap(formItem.grid)
                                                                                             val listGridKeys = js.Object()
 
                                                                                             if (formItem.record.isDefined && formItem.record.get != null)
@@ -250,20 +249,23 @@ class LookupTreeGridEditorItemProps extends CanvasItemProps {
                                                                                             listGrid.saveAllEdits()
                                                                                             listGrid.cancelEditing()
 
-                                                                                            isc.ask("Перейти в каталог переноса элемента ?", {
-                                                                                                (value: Boolean) =>
-                                                                                                    if (value) {
-                                                                                                        treeGrid.foreach(_.deselectAllRecords())
 
-                                                                                                        val keyValue: TreeNode = treeGrid.get.findByKey(valueId).asInstanceOf[TreeNode]
-                                                                                                        treeGrid.foreach(grid => grid.selectRecord(keyValue))
+                                                                                            formItem.grid.masterTreeGrid.foreach {
+                                                                                                treeGrid ⇒
+                                                                                                    isc.ask("Перейти в каталог переноса элемента ?", {
+                                                                                                        (value: Boolean) =>
+                                                                                                            if (value) {
+                                                                                                                treeGrid.deselectAllRecords()
 
-                                                                                                        val rec = listGrid.findByKey(listGridKeys)
-                                                                                                        listGrid selectRecord rec.asInstanceOf[ListGridRecord]
-                                                                                                    }
-                                                                                                    thiz.owner.foreach(_.hide())
-                                                                                            })
+                                                                                                                val keyValue: TreeNode = treeGrid.findByKey(valueId).asInstanceOf[TreeNode]
+                                                                                                                treeGrid.selectRecord(keyValue)
 
+                                                                                                                val rec = listGrid.findByKey(listGridKeys)
+                                                                                                                listGrid selectRecord rec.asInstanceOf[ListGridRecord]
+                                                                                                            }
+                                                                                                            thiz.owner.foreach(_.hide())
+                                                                                                    })
+                                                                                            }
                                                                                         }
                                                                                     }
                                                                             }.toThisFunc.opt

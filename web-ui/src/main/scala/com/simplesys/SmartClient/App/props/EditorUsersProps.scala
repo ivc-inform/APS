@@ -26,7 +26,7 @@ class EditorUsersProps extends CommonTreeListGridEditorComponentProps {
     captionMenuTree = "Группы пользователей".opt
     captionMenuList = "Пользователи".opt
 
-    newTreeRequestProperties = {
+    /*newTreeRequestProperties = {
         (thiz: classHandler) =>
             DSRequest(
                 new DSRequestProps {
@@ -36,9 +36,9 @@ class EditorUsersProps extends CommonTreeListGridEditorComponentProps {
                 }
             )
 
-    }.toThisFunc.opt
+    }.toThisFunc.opt*/
 
-    newListRequestProperties = {
+    /*newListRequestProperties = {
         (thiz: classHandler) =>
             DSRequest(
                 new DSRequestProps {
@@ -48,7 +48,7 @@ class EditorUsersProps extends CommonTreeListGridEditorComponentProps {
                 }
             )
 
-    }.toThisFunc.opt
+    }.toThisFunc.opt*/
 
     //showListFilterEditor = false.opt
 
