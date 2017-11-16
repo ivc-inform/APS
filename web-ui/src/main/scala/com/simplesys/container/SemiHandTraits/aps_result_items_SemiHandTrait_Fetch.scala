@@ -2,22 +2,22 @@
 
 package ru.simplesys.defs.app.scala.container.aps
 
-import com.simplesys.app.SessionContextSupport
-import com.simplesys.isc.system.ServletActorDyn
-import com.simplesys.isc.dataBinging.{DSRequestDyn, DSResponseDyn, DSResponseFailureExDyn}
-import com.simplesys.common.Strings._
-import com.simplesys.jdbc.control.clob._
 import akka.actor.Actor
+import com.simplesys.app.SessionContextSupport
+import com.simplesys.common.Strings._
 import com.simplesys.isc.dataBinging.RPC.RPCResponseDyn
 import com.simplesys.isc.dataBinging.dataSource.RecordDyn
+import com.simplesys.isc.dataBinging.{DSRequestDyn, DSResponseDyn, DSResponseFailureExDyn}
 import com.simplesys.isc.grids.RecordsDynList
-import com.simplesys.jdbc.control.DSRequest
-import com.simplesys.servlet.GetData
-import com.simplesys.tuple.{TupleSS22, TupleSS23, TupleSS33}
-import org.joda.time.LocalDateTime
-import ru.simplesys.defs.bo.aps._
+import com.simplesys.isc.system.ServletActorDyn
 import com.simplesys.jdbc._
-import com.simplesys.common._
+import com.simplesys.jdbc.control.DSRequest
+import com.simplesys.jdbc.control.clob._
+import com.simplesys.servlet.GetData
+import com.simplesys.tuple.TupleSS33
+import org.joda.time.LocalDateTime
+import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{aps_changeover_code_operstype_From_type_NameStrong, aps_changeover_code_operstype_To_type_NameStrong}
+import ru.simplesys.defs.bo.aps._
 
 import scalaz.{Failure, Success}
 
@@ -30,6 +30,8 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
     logger debug s"Request for Fetch: ${newLine + requestData.toPrettyString}"
 
     val dataSet = Result_itemsDS(oraclePool)
+    val dataSetOpersType = Opers_typeDS(oraclePool)
+
     /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
 
     def receiveBase: Option[Actor.Receive] = Some({
@@ -40,8 +42,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
             logger debug s"data: ${newLine + data.toPrettyString}"
 
             val _data = RecordsDynList()
-            val qty
-            : Int = requestData.EndRow.toInt - requestData.StartRow.toInt + 1
+            val qty: Int = requestData.EndRow.toInt - requestData.StartRow.toInt + 1
 
             val select = dataSet.Fetch(
                 dsRequest = DSRequest(
@@ -55,6 +56,12 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
 
             Out(classDyn = select.result match {
                 case Success(list) => {
+                    val opersTypes: Seq[Opers_typeDSData] = dataSetOpersType.selectPList().result match {
+                        case Success(list) ⇒ list
+                        case Failure(_) ⇒ List()
+                    }
+
+
                     list foreach {
                         case TupleSS33(
                         durationResult_items: Array[Double],
@@ -120,7 +127,9 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                                 "idrc_Id_changeover" -> idrcChangeover_Id_changeover,
                                 "from_type_Id_changeover" -> from_typeChangeover_Id_changeover,
                                 "to_type_Id_changeover" -> to_typeChangeover_Id_changeover,
-                                "id_task_Id_changeover" -> id_taskChangeover_Id_changeover
+                                "id_task_Id_changeover" -> id_taskChangeover_Id_changeover,
+                                aps_changeover_code_operstype_From_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == from_typeChangeover_Id_changeover.headOption).headOption.map(_.code_operstypeOpers_type),
+                                aps_changeover_code_operstype_To_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == to_typeChangeover_Id_changeover.headOption).headOption.map(_.code_operstypeOpers_type)
                             )
                         case x =>
                             new RuntimeException(s"mached as : $x")
