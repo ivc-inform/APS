@@ -134,8 +134,8 @@ isc.defineClass("LoginWindow", isc.WindowSS).addProperties
 						form.hideItem "loginFailure"
 						return
 					"name"               : "login"
-					"title"              : "\u041B\u043E\u0433\u0438\u043D"
-					"requiredMessage"    : "\u041F\u043E\u043B\u0435 '\u041B\u043E\u0433\u0438\u043D' \u0434\u043E\u043B\u0436\u043D\u043E \u0431\u044B\u0442\u044C \u0437\u0430\u043F\u043E\u043B\u043D\u0435\u043D\u043E."
+					"title"              : "Логин"
+					"requiredMessage"    : "Поле 'Логин' должно быть заполнено."
 					"width"              : 250
 					"value"              : @login
 					"_showValueAfterDraw": -> undefined; return
@@ -167,9 +167,9 @@ isc.defineClass("LoginWindow", isc.WindowSS).addProperties
 						form.hideItem "loginFailure"
 						return
 					"name"           : "password"
-					"title"          : "\u041F\u0430\u0440\u043E\u043B\u044C"
+					"title"          : "Пароль"
 					"width"          : 250
-					"requiredMessage": "\u041F\u043E\u043B\u0435 '\u041F\u0430\u0440\u043E\u043B\u044C' \u0434\u043E\u043B\u0436\u043D\u043E \u0431\u044B\u0442\u044C \u0437\u0430\u043F\u043E\u043B\u043D\u0435\u043D\u043E."
+					"requiredMessage": "Поле 'Пароль' должно быть заполнено."
 					"editorType"     : "PasswordItem"
 					"value"          : (isc.OfflineSS.get "#{@getIdentifier()}#{@login}password" if @savePassword)
 				}
