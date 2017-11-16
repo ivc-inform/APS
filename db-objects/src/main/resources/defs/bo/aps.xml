@@ -3,7 +3,7 @@
 		<classes>
 			<classSimple autoTableMapping="true" caption="Задачи" name="tasks">
 				<attrs>
-					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="idtask" type="id" useDbPrefix="false"></attr>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="false" name="idtask" type="id" useDbPrefix="false"></attr>
 					<attr caption="Код задачи"  name="code_task" type="sCaption" mandatory="true" useDbPrefix="false"/>
 					<attr caption="Наименование задачи" name="caption_task" type="sCode" mandatory="false" useDbPrefix="false"/>
 					<attr caption="Описание задачи" name="description_task" type="sDescription" mandatory="false" useDbPrefix="false"/>
@@ -26,7 +26,7 @@
 
 			<classSimple autoTableMapping="true" caption="Типы операций" name="opers_type">
 				<attrs>
-					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_operstype" type="id" useDbPrefix="false"></attr>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="false" name="id_operstype" type="id" useDbPrefix="false"></attr>
 					<attr caption="Код типа операции"  name="code_operstype" type="sCaption" mandatory="true" useDbPrefix="false"/>
 					<attr caption="Наименование типа операции" name="caption_operstype" type="sCode" mandatory="false" useDbPrefix="false"/>
 					<attr caption="Описание типа операции" name="description_operstype" type="sDescription" mandatory="false" useDbPrefix="false"/>
@@ -49,8 +49,8 @@
 
 			<classSimple autoTableMapping="true" caption="Операции заказов" name="orders">
 				<attrs>
-					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="idorders" type="id" useDbPrefix="false"></attr>
-					<attr caption="Код операции"  name="code_orders" type="sCaption" mandatory="true" useDbPrefix="false"/>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="false" name="idorders" type="id" useDbPrefix="false"></attr>
+					<attr caption="Код операции"  name="code_orders" type="sCaption" mandatory="false" useDbPrefix="false"/>
 					<attr caption="Наименование операции" name="caption_orders" type="sCode" mandatory="false" useDbPrefix="false"/>
 					<attr caption="Описание операции" name="description_orders" type="sDescription" mandatory="false" useDbPrefix="false"/>
 					<attr caption="Трудоемкость" name="complexity" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
@@ -100,7 +100,7 @@
 
 			<classSimple autoTableMapping="true" caption="Матрица наладки" name="changeover">
 				<attrs>
-					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="idchangeover" type="id" useDbPrefix="false"></attr>
+					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="false" name="idchangeover" type="id" useDbPrefix="false"></attr>
 					<attr caption="Время наладки" name="duration" type="fDouble" mandatory="false" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
@@ -114,7 +114,7 @@
 						<attrName>from_type</attrName>
 						<attrName>to_type</attrName>
 					</uc>
-					<fk linkType="refIsOwner" mandatory="true" parent="rc">
+					<fk linkType="refIsOwner" mandatory="false" parent="rc">
 						<mapping attrNameLocal="idrc" attrNameRemote="id_rc"></mapping>
 					</fk>
 					<fk linkType="refIsOwner" mandatory="false" parent="opers_type">
@@ -123,7 +123,7 @@
 					<fk linkType="refIsOwner" mandatory="false" parent="opers_type">
 						<mapping attrNameLocal="to_type" attrNameRemote="id_operstype"></mapping>
 					</fk>
-					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
+					<fk linkType="refIsOwner" mandatory="false" parent="tasks">
 						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
 					</fk>
 				</constraints>
