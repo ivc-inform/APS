@@ -6,7 +6,7 @@ import com.simplesys.SmartClient.DataBinding.props.SortSpecifierProps
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
 import com.simplesys.SmartClient.System.{LookupListGridEditorItem, LookupTreeGridEditorItem, SortSpecifier}
 import com.simplesys.System.Types._
-import com.simplesys.app.{OpersType, Orders, Rc, Tasks}
+import com.simplesys.app._
 import com.simplesys.js.components.asp.ResultItem
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
@@ -15,10 +15,10 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
     type classHandler <: ResultItem
     identifier = "4EEF794F-EE8F-C38D-73D6-CF6F0F5170E3".opt
 
-    dataSource = DataSourcesJS.aps_result_items_DS.opt
+    editingFields = (FormItemsJS.aps_result_items_FRMITM ++ FormItemsJS.aps_changeover_FRMITM.filter(item ⇒ item.nameStrong.get.name == aps_changeover_code_operstype_From_type_NameStrong.name || item.nameStrong.get.name == aps_changeover_code_operstype_To_type_NameStrong.name)).opt
+    fields = (ListGridFiledsJS.aps_result_items_FLDS ++ ListGridFiledsJS.aps_changeover_FLDS.filter(item ⇒ item.nameStrong.get.name == aps_changeover_code_operstype_From_type_NameStrong.name || item.nameStrong.get.name == aps_changeover_code_operstype_To_type_NameStrong.name)).opt
 
-    editingFields = FormItemsJS.aps_result_items_FRMITM.opt
-    fields = ListGridFiledsJS.aps_result_items_FLDS.opt
+    dataSource = DataSourcesJS.aps_result_items_DS.opt
 
     //editEvent = ListGridEditEvent.none.opt
     editEvent = ListGridEditEvent.doubleClick.opt

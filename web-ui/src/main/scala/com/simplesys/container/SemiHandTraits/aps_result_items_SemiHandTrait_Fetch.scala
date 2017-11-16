@@ -32,15 +32,16 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
     val dataSet = Result_itemsDS(oraclePool)
     /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
 
-    def receiveBase: Option[Actor.Receive] = Some(
-        {
+    def receiveBase: Option[Actor.Receive] = Some({
+        case GetData => {
             logger debug s"request: ${newLine + requestData.toPrettyString}"
 
             val data = requestData.Data
             logger debug s"data: ${newLine + data.toPrettyString}"
 
             val _data = RecordsDynList()
-            val qty: Int = requestData.EndRow.toInt - requestData.StartRow.toInt + 1
+            val qty
+            : Int = requestData.EndRow.toInt - requestData.StartRow.toInt + 1
 
             val select = dataSet.Fetch(
                 dsRequest = DSRequest(
@@ -53,10 +54,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                 ))
 
             Out(classDyn = select.result match {
-                case Success(list) ⇒ {
-
-                    
-
+                case Success(list) => {
                     list foreach {
                         case TupleSS33(
                         durationResult_items: Array[Double],
@@ -91,38 +89,38 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                         idtaskTasks_Id_task: Array[Long],
                         code_taskTasks_Id_task: String,
                         id_rcRc_Idrc: Long,
-                        scode_rcRc_Idrc: String) ⇒
+                        scode_rcRc_Idrc: String) =>
                             _data += RecordDyn(
-                                "id_item" → id_itemResult_items,
-                                "pos" → posResult_items,
-                                "opertimestart" → opertimestartResult_items,
-                                "opertimeend" → opertimeendResult_items,
-                                "duration" → durationResult_items,
-                                "id_result" → id_resultResult_items,
-                                "idrc" → idrcResult_items,
-                                "id_orders" → id_ordersResult_items,
-                                "id_task" → id_taskResult_items,
-                                "id_changeover" → id_changeoverResult_items,
-                                "idresult_Id_result" → idresultResult_Id_result,
-                                "scode_Id_result" → scodeResult_Id_result,
-                                "param_u_Id_result" → param_uResult_Id_result,
-                                "param_v_Id_result" → param_vResult_Id_result,
-                                "param_kg_Id_result" → param_kgResult_Id_result,
-                                "param_kz_Id_result" → param_kzResult_Id_result,
-                                "param_cmax_Id_result" → param_cmaxResult_Id_result,
-                                "param_tc_Id_result" → param_tcResult_Id_result,
-                                "param_tmax_Id_result" → param_tmaxResult_Id_result,
-                                "param_kl_Id_result" → param_klResult_Id_result,
-                                "id_task_Id_result" → id_taskResult_Id_result,
-                                "scode_rc_Idrc" → scode_rcRc_Idrc,
-                                "code_orders_Id_orders" → code_ordersOrders_Id_orders,
-                                "code_task_Id_task" → code_taskTasks_Id_task,
-                                "idchangeover_Id_changeover" → idchangeoverChangeover_Id_changeover,
-                                "duration_Id_changeover" → durationChangeover_Id_changeover,
-                                "idrc_Id_changeover" → idrcChangeover_Id_changeover,
-                                "from_type_Id_changeover" → from_typeChangeover_Id_changeover,
-                                "to_type_Id_changeover" → to_typeChangeover_Id_changeover,
-                                "id_task_Id_changeover" → id_taskChangeover_Id_changeover
+                                "id_item" -> id_itemResult_items,
+                                "pos" -> posResult_items,
+                                "opertimestart" -> opertimestartResult_items,
+                                "opertimeend" -> opertimeendResult_items,
+                                "duration" -> durationResult_items,
+                                "id_result" -> id_resultResult_items,
+                                "idrc" -> idrcResult_items,
+                                "id_orders" -> id_ordersResult_items,
+                                "id_task" -> id_taskResult_items,
+                                "id_changeover" -> id_changeoverResult_items,
+                                "idresult_Id_result" -> idresultResult_Id_result,
+                                "scode_Id_result" -> scodeResult_Id_result,
+                                "param_u_Id_result" -> param_uResult_Id_result,
+                                "param_v_Id_result" -> param_vResult_Id_result,
+                                "param_kg_Id_result" -> param_kgResult_Id_result,
+                                "param_kz_Id_result" -> param_kzResult_Id_result,
+                                "param_cmax_Id_result" -> param_cmaxResult_Id_result,
+                                "param_tc_Id_result" -> param_tcResult_Id_result,
+                                "param_tmax_Id_result" -> param_tmaxResult_Id_result,
+                                "param_kl_Id_result" -> param_klResult_Id_result,
+                                "id_task_Id_result" -> id_taskResult_Id_result,
+                                "scode_rc_Idrc" -> scode_rcRc_Idrc,
+                                "code_orders_Id_orders" -> code_ordersOrders_Id_orders,
+                                "code_task_Id_task" -> code_taskTasks_Id_task,
+                                "idchangeover_Id_changeover" -> idchangeoverChangeover_Id_changeover,
+                                "duration_Id_changeover" -> durationChangeover_Id_changeover,
+                                "idrc_Id_changeover" -> idrcChangeover_Id_changeover,
+                                "from_type_Id_changeover" -> from_typeChangeover_Id_changeover,
+                                "to_type_Id_changeover" -> to_typeChangeover_Id_changeover,
+                                "id_task_Id_changeover" -> id_taskChangeover_Id_changeover
                             )
                         case x =>
                             new RuntimeException(s"mached as : $x")
@@ -133,7 +131,9 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     new DSResponseDyn {
                         Status = RPCResponseDyn.statusSuccess
                         Data = _data
-                        TotalRows = requestData.StartRow.toInt + (if (qty == list.length) qty * 2 else list.length)
+                        TotalRows = requestData.StartRow.toInt + (if (qty == list.length)
+                            qty * 2
+                        else list.length)
                     }
                 }
                 case Failure(_) =>
@@ -142,7 +142,9 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
 
             selfStop()
         }
-    )
+        case x =>
+            throw new RuntimeException(s"Bad branch $x")
+    })
 
     def wrapperBlobGetter(blob: Blob): String = blob.asString
 }

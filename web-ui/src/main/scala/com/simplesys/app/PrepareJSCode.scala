@@ -1,9 +1,8 @@
 package com.simplesys.app
 
 import com.simplesys.SmartClient.App.StaticJSCode
-import com.simplesys.SmartClient.DataBinding.dataSource.DataSourceField
-import com.simplesys.SmartClient.System.{Canvas, ChainMasterDetail, CommonListGridEditorComponent, CommonTreeGridEditorComponent, CommonTreeListGridEditorComponent, HLayoutSS, isc}
-import ru.simplesys.defs.app.gen.scala.ScalaJSGen.DataSourcesJS
+import com.simplesys.SmartClient.System.{Canvas, ChainMasterDetail, CommonListGridEditorComponent, CommonTreeGridEditorComponent, CommonTreeListGridEditorComponent, isc}
+import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, ListGridFiledsJS, aps_changeover_code_operstype_From_type_NameStrong, aps_changeover_code_operstype_To_type_NameStrong}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportTopLevel
@@ -25,6 +24,9 @@ object PrepareJSCode extends StaticJSCode {
         isc.defineClass(GanttChart.getClass.getSimpleName, Canvas.getClass.getSimpleName)
         isc.defineClass(GanttImprovedChart.getClass.getSimpleName, Canvas.getClass.getSimpleName)
 
+
+        DataSourcesJS.aps_result_items_DS.fieldsObj.update(aps_changeover_code_operstype_From_type_NameStrong.name, DataSourcesJS.aps_changeover_DS.fieldsObj(aps_changeover_code_operstype_From_type_NameStrong.name))
+        DataSourcesJS.aps_result_items_DS.fieldsObj.update(aps_changeover_code_operstype_To_type_NameStrong.name, DataSourcesJS.aps_changeover_DS.fieldsObj(aps_changeover_code_operstype_To_type_NameStrong.name))
 
         js.Object.keys(DataSourcesJS.aps_result_items_DS.fieldsObj.asInstanceOf[js.Object]).foreach {
             key ⇒
