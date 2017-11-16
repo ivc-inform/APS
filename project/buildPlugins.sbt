@@ -3,7 +3,7 @@ import sbt._
 import sbt.Project._
 
 
-/lazy val devPlugin = uri("../../sbt-plugins/dev-plugin")
+//lazy val devPlugin = uri("../../sbt-plugins/dev-plugin")
 //lazy val sbtCoffeeScript = uri("../../sbt-plugins/sbt-coffeescript")
 //lazy val sbtNativePackager = uri("../../sbt-plugins/sbt-native-packager")
 //lazy val mergeJS = uri("../../sbt-plugins/merge-js")
