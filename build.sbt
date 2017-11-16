@@ -131,7 +131,7 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
         CommonDepsScalaJS.smartClientWrapper.value,
         CommonDepsScalaJS.macroJS.value,
         CommonDepsScalaJS.scalaTags.value,
-        //CommonDepsScalaJS.jQuery.value,
+        CommonDepsScalaJS.jQuery.value,
         CommonDepsScalaJS.scalaDom.value,
         CommonDepsScalaJS.jsgantImproved.value
 
