@@ -23,8 +23,7 @@
 				</constraints>
 				<defaults>
 					<showAttrs>
-						<attrName>codeGroup</attrName>                                          	
-						<attrName>captionGroup</attrName>
+						<attrName>codeGroup</attrName>
 					</showAttrs>
 					<uiSettings uiFormType="singleTreeGrid"/>
 				</defaults>
