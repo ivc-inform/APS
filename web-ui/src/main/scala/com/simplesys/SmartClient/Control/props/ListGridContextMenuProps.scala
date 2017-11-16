@@ -34,7 +34,13 @@ object ListGridContextMenuProps {
                 (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
                     val owner = item.owner.asInstanceOf[ListGridEditor]
                     simpleSyS checkOwner owner
-                    owner.startEditingNewInForm()
+                    
+                    if (owner.treeGrid.newRequestProperties.isDefined)
+                        owner.startEditingNewInForm(
+                            requestProperties = (owner.treeGrid.newRequestProperties.get) ()
+                        )
+                    else
+                        owner.startEditingNewInForm()
             }.toFunc.opt
             enableIf = {
                 (target: Canvas, menu: MenuSS, item: MenuSSItem) =>

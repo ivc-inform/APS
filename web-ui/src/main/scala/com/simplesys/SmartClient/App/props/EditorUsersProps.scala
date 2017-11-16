@@ -38,7 +38,19 @@ class EditorUsersProps extends CommonTreeListGridEditorComponentProps {
 
     }.toThisFunc.opt
 
-    showListFilterEditor = false.opt
+    newListRequestProperties = {
+        (thiz: classHandler) =>
+            DSRequest(
+                new DSRequestProps {
+                    data = (new NewDSRequestData {
+                        override val active = true
+                    }).opt
+                }
+            )
+
+    }.toThisFunc.opt
+
+    //showListFilterEditor = false.opt
 
     replacingFieldsList = Seq(
         new ListGridFieldProps {
