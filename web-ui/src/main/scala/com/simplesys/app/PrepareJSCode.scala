@@ -1,8 +1,11 @@
 package com.simplesys.app
 
 import com.simplesys.SmartClient.App.StaticJSCode
+import com.simplesys.SmartClient.DataBinding.dataSource.DataSourceField
 import com.simplesys.SmartClient.System.{Canvas, ChainMasterDetail, CommonListGridEditorComponent, CommonTreeGridEditorComponent, CommonTreeListGridEditorComponent, HLayoutSS, isc}
+import ru.simplesys.defs.app.gen.scala.ScalaJSGen.DataSourcesJS
 
+import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportTopLevel
 
 object PrepareJSCode extends StaticJSCode {
@@ -21,5 +24,15 @@ object PrepareJSCode extends StaticJSCode {
         isc.defineClass(Tasks.getClass.getSimpleName, CommonTreeGridEditorComponent.getClass.getSimpleName)
         isc.defineClass(GanttChart.getClass.getSimpleName, Canvas.getClass.getSimpleName)
         isc.defineClass(GanttImprovedChart.getClass.getSimpleName, Canvas.getClass.getSimpleName)
+
+
+        js.Object.keys(DataSourcesJS.aps_result_items_DS.fieldsObj.asInstanceOf[js.Object]).foreach {
+            key ⇒
+                val ds = DataSourcesJS.aps_result_items_DS.fieldsObj(key)
+                ds.required = false
+                DataSourcesJS.aps_result_items_DS.fieldsObj.update(key, ds)
+        }
+
+        //isc debugTrap DataSourcesJS.aps_result_items_DS.fieldsObj
     }
 }

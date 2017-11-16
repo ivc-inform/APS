@@ -31,7 +31,7 @@ import com.simplesys.System.Types._
 import com.simplesys.System.{JSAny, JSObject, JSUndefined}
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSGlobal
+import scala.scalajs.js.annotation.{JSGlobal, JSName}
 import scala.scalajs.js.|
 
 @js.native
@@ -109,6 +109,8 @@ trait DataSource extends Class {
     def fetchRecord(pkValue: JSAny, requestProperties: DSRequest = js.native, callback: DSCallback = js.native): void
     def fieldMatchesFilter(fieldValue: JSAny, filterValue: JSAny, requestProperties: DSRequest = js.native): Boolean
     val fields: IscArray[DataSourceField]
+    @JSName("fields")
+    val fieldsObj: js.Dictionary[DataSourceField]
     val fileContentsField: String
     val fileFormatField: String
     val fileLastModifiedField: String

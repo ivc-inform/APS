@@ -101,7 +101,7 @@ trait DataSourceField extends JSObject {
     val propertiesOnly: Boolean
     val readOnlyEditorType: FormItem
     val relatedTableAlias: String
-    val required: Boolean
+    var required: js.UndefOr[Boolean]
     val rootValue: JSAny
     val sequenceName: String
     val showFileInline: Boolean

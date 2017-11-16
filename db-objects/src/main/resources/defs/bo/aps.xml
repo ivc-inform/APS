@@ -101,7 +101,7 @@
 			<classSimple autoTableMapping="true" caption="Матрица наладки" name="changeover">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="idchangeover" type="id" useDbPrefix="false"></attr>
-					<attr caption="Время наладки" name="duration" type="fDouble" mandatory="true" useDbPrefix="false"></attr>
+					<attr caption="Время наладки" name="duration" type="fDouble" mandatory="false" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
@@ -117,10 +117,10 @@
 					<fk linkType="refIsOwner" mandatory="true" parent="rc">
 						<mapping attrNameLocal="idrc" attrNameRemote="id_rc"></mapping>
 					</fk>
-					<fk linkType="refIsOwner" mandatory="true" parent="opers_type">
+					<fk linkType="refIsOwner" mandatory="false" parent="opers_type">
 						<mapping attrNameLocal="from_type" attrNameRemote="id_operstype"></mapping>
 					</fk>
-					<fk linkType="refIsOwner" mandatory="true" parent="opers_type">
+					<fk linkType="refIsOwner" mandatory="false" parent="opers_type">
 						<mapping attrNameLocal="to_type" attrNameRemote="id_operstype"></mapping>
 					</fk>
 					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
@@ -210,7 +210,6 @@
 			<classSimple autoTableMapping="true" caption="Варианты" name="result_items">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="id_item" type="id" useDbPrefix="false"></attr>
-					<attr caption="Идентификатор" hidden="true" mandatory="true" name="id_result" type="id" useDbPrefix="false"></attr>
 					<attr caption="Порядковый номер в наборе варианта" name="pos" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Дата время начала" name="opertimestart" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Дата время окончания" name="opertimeend" type="dDateTime" useDbPrefix="false"></attr>
@@ -223,6 +222,9 @@
 					<uc uniqueType="pk">
 						<attrName>id_item</attrName>
 					</uc>
+					<fk linkType="refIsOwner" mandatory="true" parent="result">
+						<mapping attrNameLocal="id_result" attrNameRemote="idresult"></mapping>
+					</fk>
 					<fk linkType="refIsOwner" mandatory="true" parent="rc">
 						<mapping attrNameLocal="idrc" attrNameRemote="id_rc"></mapping>
 					</fk>

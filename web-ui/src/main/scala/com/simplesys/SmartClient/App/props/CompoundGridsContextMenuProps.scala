@@ -21,7 +21,7 @@ class CompoundGridsContextMenuProps extends MenuSSProps {
             thizTop.Super("initWidget", arguments)
 
             //isc debugTrap 0
-            isc debugTrap thizTop.gridsContextMenuData
+            //isc debugTrap thizTop.gridsContextMenuData
 
             implicit def getCustomMenuOpt(seq: Seq[MenuSSItem]): ScOption[Seq[MenuSSItem]] = if (seq.isEmpty) ScNone else seq.opt
 
