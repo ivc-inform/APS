@@ -75,6 +75,7 @@ class LookupTreeGridEditorItemProps extends CanvasItemProps {
     createCanvas = {
         (thizTop: classHandler, form: DynamicFormSS, item: CanvasItem) =>
 
+            //isc debugTrap thizTop
             val df = DynamicFormSS.create(
                 new DynamicFormSSProps {
                     cellPadding = 0.opt
@@ -217,52 +218,76 @@ class LookupTreeGridEditorItemProps extends CanvasItemProps {
 
                                                                                             val valueId = record.asInstanceOf[JSDynamic].selectDynamic(idFieldName)
 
-                                                                                            if (thizTop.record.isEmpty || thizTop.record.get == null)
-                                                                                                idField.setValue(valueId)
-                                                                                            else
-                                                                                                thizTop.record.foreach(_.asInstanceOf[JSDynamic].updateDynamic(thizTop.foreignField.get)(valueId))
+                                                                                            val newRecord = thizTop.record.isEmpty || thizTop.record.get == null
 
+                                                                                            if (newRecord && idField != null)
+                                                                                                idField.setValue(valueId)
+                                                                                            else {
+                                                                                                val editedField = thizTop.foreignField.get
+                                                                                                if (newRecord)
+                                                                                                    form.setValue(editedField, valueId)
+                                                                                                else {
+                                                                                                    //isc debugTrap(thizTop.record, editedField, valueId)
+                                                                                                    thizTop.record.foreach(_.asInstanceOf[JSDynamic].updateDynamic(editedField)(valueId))
+                                                                                                    form.setValue(editedField, valueId)
+                                                                                                    //isc debugTrap(thizTop.record)
+                                                                                                }
+                                                                                            }
+
+                                                                                            //isc debugTrap(thizTop.record)
 
                                                                                             val recordFields = js.Object.keys(record)
                                                                                             recordFields.foreach {
                                                                                                 field =>
                                                                                                     if (editor.dataSource.getField(field).isDefined)
-                                                                                                        if (!editor.dataSource.getField(field).get.primaryKey.getOrElse(false))
-                                                                                                            form.setValue(field, editor.getSelectedRecord().asInstanceOf[JSDynamic].selectDynamic(field))
+                                                                                                        if (newRecord || !editor.dataSource.getField(field).get.primaryKey.getOrElse(false)) {
+                                                                                                            val value = editor.getSelectedRecord().asInstanceOf[JSDynamic].selectDynamic(field)
+                                                                                                            val editedField = if (thizTop.foreignField.isEmpty) field else s"${field}_${thizTop.foreignField.get.capitalize}"
+                                                                                                            //isc debugTrap(form, editedField, value)
+                                                                                                            form.setValue(editedField, value)
+                                                                                                        }
                                                                                             }
 
-                                                                                            val listGrid = isc.debugTrap(thizTop.grid)
-                                                                                            val listGridKeys = js.Object()
+                                                                                            if (thizTop.grid.isEmpty)
+                                                                                                thiz.owner.foreach(_.hide())
 
-                                                                                            if (thizTop.record.isDefined && thizTop.record.get != null)
-                                                                                                listGrid.dataSource.foreach {
-                                                                                                    _.getPrimaryKeyFieldNames().foreach {
-                                                                                                        fieldName =>
-                                                                                                            //isc debugTrap (thizTop.record, fieldName, thizTop.record.get.asInstanceOf[JSDynamic].selectDynamic(fieldName))
-                                                                                                            listGridKeys.asInstanceOf[JSDynamic].updateDynamic(fieldName)(thizTop.record.get.asInstanceOf[JSDynamic].selectDynamic(fieldName))
-                                                                                                    }
-                                                                                                }
 
-                                                                                            //isc debugTrap listGridKeys
-                                                                                            listGrid.saveAllEdits()
-                                                                                            listGrid.cancelEditing()
+                                                                                            thizTop.grid.foreach {
+                                                                                                listGrid ⇒
+                                                                                                    val listGridKeys = js.Object()
 
-                                                                                            thizTop.grid.masterTreeGrid.foreach {
-                                                                                                treeGrid ⇒
-                                                                                                    isc.ask("Перейти в каталог переноса элемента ?", {
-                                                                                                        (value: Boolean) =>
-                                                                                                            if (value) {
-                                                                                                                treeGrid.deselectAllRecords()
-
-                                                                                                                val keyValue: TreeNode = treeGrid.findByKey(valueId).asInstanceOf[TreeNode]
-                                                                                                                treeGrid.selectRecord(keyValue)
-
-                                                                                                                val rec = listGrid.findByKey(listGridKeys)
-                                                                                                                listGrid selectRecord rec.asInstanceOf[ListGridRecord]
+                                                                                                    if (thizTop.record.isDefined && thizTop.record.get != null)
+                                                                                                        listGrid.dataSource.foreach {
+                                                                                                            _.getPrimaryKeyFieldNames().foreach {
+                                                                                                                fieldName =>
+                                                                                                                    //isc debugTrap (thizTop.record, fieldName, thizTop.record.get.asInstanceOf[JSDynamic].selectDynamic(fieldName))
+                                                                                                                    listGridKeys.asInstanceOf[JSDynamic].updateDynamic(fieldName)(thizTop.record.get.asInstanceOf[JSDynamic].selectDynamic(fieldName))
                                                                                                             }
-                                                                                                            thiz.owner.foreach(_.hide())
-                                                                                                    })
+                                                                                                        }
+
+                                                                                                    //isc debugTrap listGridKeys
+                                                                                                    listGrid.saveAllEdits()
+                                                                                                    listGrid.cancelEditing()
+
+                                                                                                    listGrid.masterTreeGrid.foreach {
+                                                                                                        treeGrid ⇒
+                                                                                                            isc.ask("Перейти в каталог переноса элемента ?", {
+                                                                                                                (value: Boolean) =>
+                                                                                                                    if (value) {
+                                                                                                                        treeGrid.deselectAllRecords()
+
+                                                                                                                        val keyValue: TreeNode = treeGrid.findByKey(valueId).asInstanceOf[TreeNode]
+                                                                                                                        treeGrid.selectRecord(keyValue)
+
+                                                                                                                        val rec = listGrid.findByKey(listGridKeys)
+                                                                                                                        listGrid selectRecord rec.asInstanceOf[ListGridRecord]
+                                                                                                                    }
+                                                                                                                    thiz.owner.foreach(_.hide())
+                                                                                                            })
+                                                                                                    }
                                                                                             }
+
+
                                                                                         }
                                                                                     }
                                                                             }.toThisFunc.opt

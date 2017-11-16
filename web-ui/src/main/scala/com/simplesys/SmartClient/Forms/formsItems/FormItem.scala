@@ -358,7 +358,7 @@ trait FormItem extends Class {
     var filteredGridList: JSUndefined[ListGridEditor]
     @JSName("filteredGrid")
     var filteredGridTree: JSUndefined[TreeGridEditor]
-    val grid: ListGrid
+    val grid: js.UndefOr[ListGrid]
 }
 
 @js.native
