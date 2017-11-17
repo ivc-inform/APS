@@ -101,7 +101,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                                 "id_changeover" -> id_changeoverResult_items,
                                 "scode_Id_result" -> scodeResult_Id_result,
                                 "scode_rc_Idrc" -> scode_rcRc_Idrc,
-                                "code_orders_Id_orders" -> code_ordersOrders_Id_orders,
+                                "code_orders_Id_orders" -> (if (code_ordersOrders_Id_orders.length == 0) "Переналадка" else code_ordersOrders_Id_orders),
                                 "code_task_Id_task" -> code_taskTasks_Id_task,
                                 "idchangeover_Id_changeover" -> idchangeoverChangeover_Id_changeover,
                                 "duration_Id_changeover" -> durationChangeover_Id_changeover,
