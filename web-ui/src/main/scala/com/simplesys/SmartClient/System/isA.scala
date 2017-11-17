@@ -43,6 +43,9 @@ trait isAStatic extends JSAny {
     def TreeGridEditor(`object`: JSAny): Boolean
     def TreeGrid(`object`: JSAny): Boolean
     def TreeListGridEditor(`object`: JSAny): Boolean
+    def ListGridContextMenu(`object`: JSAny): Boolean
+    def TreeGridContextMenu(`object`: JSAny): Boolean
+    def ListGridContextMenuWithForm(`object`: JSAny): Boolean
     def LookupListGridEditorItem(`object`: JSAny): Boolean
     def ToolStripButton(`object`: JSAny): Boolean
     def FormItem(`object`: JSAny): Boolean

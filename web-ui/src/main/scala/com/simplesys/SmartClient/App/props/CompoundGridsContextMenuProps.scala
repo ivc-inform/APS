@@ -20,56 +20,15 @@ class CompoundGridsContextMenuProps extends MenuSSProps {
         (thizTop: classHandler, arguments: IscArray[JSAny]) =>
             thizTop.Super("initWidget", arguments)
 
-            //isc debugTrap 0
-            //isc debugTrap thizTop.gridsContextMenuData
-
             implicit def getCustomMenuOpt(seq: Seq[MenuSSItem]): ScOption[Seq[MenuSSItem]] = if (seq.isEmpty) ScNone else seq.opt
 
             thizTop.gridsContextMenuData.foreach {
                 gridContextMenuData ⇒
-                    def listGridEditorMenu = ListGridContextMenu.create(
-                        new ListGridContextMenuProps {
-                            customMenu = gridContextMenuData.customMenu
-                            owner = gridContextMenuData.grid.opt
-                        }
-                    )
 
-                    def listGridEditorMenuWithForm = ListGridContextMenuWithForm.create(
-                        new ListGridContextMenuWithFormProps {
-                            customMenu = gridContextMenuData.customMenu
-                            owner = gridContextMenuData.grid.opt
-                        }
-                    )
-
-                    def treeGridEditorMenu = TreeGridContextMenu.create(
-                        new TreeGridContextMenuProps {
-                            customMenu = gridContextMenuData.customMenu
-                            owner = gridContextMenuData.grid.opt
-                        }
-                    )
-
-                    val grid = gridContextMenuData.grid
-
-                    val menu: Option[MenuSS] =
-                        if (isc.isA.ListGridEditor(grid)) {
-                            if (grid.simpleTable.getOrElse(false)) {
-                                val res = listGridEditorMenu
-                                grid setContextMenu res
-                                Some(res)
-                            }
-                            else {
-                                val res = listGridEditorMenuWithForm
-                                grid setContextMenu res
-                                Some(res)
-                            }
-                        } else if (isc.isA.TreeGridEditor(grid)) {
-                            val res = treeGridEditorMenu
-                            grid setContextMenu res
-                            Some(res)
-                        } else
-                            None
-
-                    menu.foreach {
+                    //isc debugTrap(gridContextMenuData.grid, gridContextMenuData.grid.funcMenu)
+                    (if (isc.isA.ListGridContextMenu(gridContextMenuData.grid.funcMenu) || isc.isA.ListGridContextMenuWithForm(gridContextMenuData.grid.funcMenu) || isc.isA.TreeGridContextMenu(gridContextMenuData.grid.funcMenu))
+                        Some(gridContextMenuData.grid.funcMenu.get)
+                    else None).foreach {
                         menu ⇒
                             thizTop.addItem(
                                 MenuSSItem(

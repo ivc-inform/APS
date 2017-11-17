@@ -117,7 +117,7 @@ trait Canvas extends com.simplesys.SmartClient.System.Class {
     def containsFocus(): Boolean
     def containsPoint(x: Int, y: Int, withinViewport: Boolean = js.native): Boolean
     var contents: HTMLString
-    var contextMenu: MenuSS
+    var contextMenu: js.UndefOr[MenuSS]
     val cursor: Cursor
     val customEdges: IscArray[String]
     val dataPath: DataPath

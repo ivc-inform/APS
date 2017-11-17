@@ -76,10 +76,9 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                     identifier = s"${thizTop.identifier}_tabSet".opt
                     width = "*"
                     canCloseTabs = false.opt
-                    tabSelected = {
-                        (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, name: JSUndefined[String]) ⇒
-
-                            simpleSyS.functionButton.foreach(_.menu = getMenu(thizTop, tab))
+                    tabDeselected = {
+                        (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, newTab : Tab) ⇒
+                            simpleSyS.functionButton.foreach(_.menu = getMenu(thizTop, newTab))
                             true
                     }.toThisFunc.opt
                     tabs = Seq(

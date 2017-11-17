@@ -91,7 +91,7 @@ class TabSetProps extends CanvasProps {
     var tabBarPosition: ScOption[Side] = ScNone
     var tabBarProperties: ScOption[TabBar] = ScNone
     var tabBarThickness: ScOption[Int] = ScNone
-    var tabDeselected: ScOption[js.Function5[Int, Canvas, ID, Tab, Tab, Boolean]] = ScNone
+    var tabDeselected: ScOption[ThisFunction5[classHandler, Int, Canvas, js.UndefOr[ID], Tab, Tab, Boolean]] = ScNone
     var tabSelected: ScOption[ThisFunction5[classHandler, Int, Canvas, JSUndefined[ID], Tab, JSUndefined[String], Boolean]] = ScNone
     var tabIconClick: ScOption[js.Function1[Tab, _]] = ScNone
     var tabPicker: ScOption[ImgButton] = ScNone
