@@ -184,7 +184,7 @@
 			<classSimple autoTableMapping="true" caption="Результаты" name="result">
 				<attrs>
 					<attr caption="Идентификатор" genBySeq="true" hidden="true" mandatory="true" name="idresult" type="id" useDbPrefix="false"></attr>
-					<attr caption="Номер варианта" name="scode" type="sCode" useDbPrefix="false"></attr>
+					<attr caption="Код варианта" name="scode" type="sCode" useDbPrefix="false"></attr>
 					<attr caption="Затраты на наладку" name="param_u" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Средняя полезность заказов" name="param_v" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Коэффициент группирования" name="param_kg" type="nInt" useDbPrefix="false"></attr>
@@ -196,6 +196,9 @@
 				</attrs>
 				<defaults>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>
+					<showAttrs>
+						<attrName>scode</attrName>
+					</showAttrs>
 				</defaults>
 				<constraints>
 					<uc uniqueType="pk">
