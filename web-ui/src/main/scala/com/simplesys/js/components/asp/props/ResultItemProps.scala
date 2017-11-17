@@ -15,37 +15,14 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
     type classHandler <: ResultItem
     identifier = "4EEF794F-EE8F-C38D-73D6-CF6F0F5170E3".opt
 
-    /*editingFields = (FormItemsJS.aps_result_items_FRMITM ++ FormItemsJS.aps_changeover_FRMITM.filter(item ⇒ item.nameStrong.get.name == aps_changeover_code_operstype_From_type_NameStrong.name || item.nameStrong.get.name == aps_changeover_code_operstype_To_type_NameStrong.name)).map {
-        item ⇒
-            item.nameStrong.get.name match {
-                /*case aps_changeover_code_operstype_From_type_NameStrong.name ⇒
-                    item.title += " до переналадки"
-                    item
-                case aps_changeover_code_operstype_To_type_NameStrong.name ⇒
-                    item.title += " после переналадки"
-                    item*/
-                case aps_result_items_opertimestart_NameStrong.name ⇒
-                    item.canEdit = true
-                    item
-                case aps_result_items_opertimeend_NameStrong.name ⇒
-                    item.canEdit = true
-                    item
-                /*case aps_result_scode_NameStrong.name ⇒
-                    item.hidden = true
-                    item*/
-                case _ ⇒
-                    item.canEdit = false
-                    item
-            }
-    }.opt*/
     fields = (ListGridFiledsJS.aps_result_items_FLDS ++ ListGridFiledsJS.aps_changeover_FLDS.filter(item ⇒ item.nameStrong.get.name == aps_changeover_code_operstype_From_type_NameStrong.name || item.nameStrong.get.name == aps_changeover_code_operstype_To_type_NameStrong.name)).map {
         item ⇒
             item.nameStrong.get.name match {
                 case aps_changeover_code_operstype_From_type_NameStrong.name ⇒
-                    item.title = "Код операции до переналадки".opt
+                    item.title = "Код типа операции до переналадки".opt
                     item
                 case aps_changeover_code_operstype_To_type_NameStrong.name ⇒
-                    item.title = "Код операции после переналадки".opt
+                    item.title = "Код типа  операции после переналадки".opt
                     item
                 case aps_result_items_opertimestart_NameStrong.name ⇒
                     item.canEdit = true.opt
