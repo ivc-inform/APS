@@ -20,9 +20,11 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
             item.nameStrong.get.name match {
                 case aps_changeover_code_operstype_From_type_NameStrong.name ⇒
                     item.title = "Код типа операции до переналадки".opt
+                    item.canEdit = false.opt
                     item
                 case aps_changeover_code_operstype_To_type_NameStrong.name ⇒
                     item.title = "Код типа  операции после переналадки".opt
+                    item.canEdit = false.opt
                     item
                 case aps_result_items_opertimestart_NameStrong.name ⇒
                     item.canEdit = true.opt
