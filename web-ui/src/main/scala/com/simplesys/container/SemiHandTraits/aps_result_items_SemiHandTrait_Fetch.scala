@@ -14,7 +14,7 @@ import com.simplesys.jdbc._
 import com.simplesys.jdbc.control.DSRequest
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.GetData
-import com.simplesys.tuple.TupleSS33
+import com.simplesys.tuple.{TupleSS24, TupleSS33}
 import org.joda.time.LocalDateTime
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{aps_changeover_code_operstype_From_type_NameStrong, aps_changeover_code_operstype_To_type_NameStrong}
 import ru.simplesys.defs.bo.aps._
@@ -63,7 +63,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
 
 
                     list foreach {
-                        case TupleSS33(
+                        case TupleSS24(
                         durationResult_items: Array[Double],
                         id_changeoverResult_items: Array[Long],
                         id_itemResult_items: Long,
@@ -83,15 +83,6 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                         idordersOrders_Id_orders: Array[Long],
                         code_ordersOrders_Id_orders: Array[String],
                         idresultResult_Id_result: Long,
-                        id_taskResult_Id_result: Array[Long],
-                        param_cmaxResult_Id_result: Array[Long],
-                        param_kgResult_Id_result: Array[Long],
-                        param_klResult_Id_result: Array[Long],
-                        param_kzResult_Id_result: Array[Long],
-                        param_tcResult_Id_result: Array[Long],
-                        param_tmaxResult_Id_result: Array[Long],
-                        param_uResult_Id_result: Array[Long],
-                        param_vResult_Id_result: Array[Long],
                         scodeResult_Id_result: Array[String],
                         idtaskTasks_Id_task: Array[Long],
                         code_taskTasks_Id_task: String,
@@ -108,17 +99,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                                 "id_orders" -> id_ordersResult_items,
                                 "id_task" -> id_taskResult_items,
                                 "id_changeover" -> id_changeoverResult_items,
-                                "idresult_Id_result" -> idresultResult_Id_result,
                                 "scode_Id_result" -> scodeResult_Id_result,
-                                "param_u_Id_result" -> param_uResult_Id_result,
-                                "param_v_Id_result" -> param_vResult_Id_result,
-                                "param_kg_Id_result" -> param_kgResult_Id_result,
-                                "param_kz_Id_result" -> param_kzResult_Id_result,
-                                "param_cmax_Id_result" -> param_cmaxResult_Id_result,
-                                "param_tc_Id_result" -> param_tcResult_Id_result,
-                                "param_tmax_Id_result" -> param_tmaxResult_Id_result,
-                                "param_kl_Id_result" -> param_klResult_Id_result,
-                                "id_task_Id_result" -> id_taskResult_Id_result,
                                 "scode_rc_Idrc" -> scode_rcRc_Idrc,
                                 "code_orders_Id_orders" -> code_ordersOrders_Id_orders,
                                 "code_task_Id_task" -> code_taskTasks_Id_task,
