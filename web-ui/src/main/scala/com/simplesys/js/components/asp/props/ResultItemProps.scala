@@ -18,11 +18,13 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
     editingFields = (FormItemsJS.aps_result_items_FRMITM ++ FormItemsJS.aps_changeover_FRMITM.filter(item ⇒ item.nameStrong.get.name == aps_changeover_code_operstype_From_type_NameStrong.name || item.nameStrong.get.name == aps_changeover_code_operstype_To_type_NameStrong.name)).map {
         item ⇒
             item.canEdit = item.nameStrong.get.name == aps_result_items_opertimestart_NameStrong.name || item.nameStrong.get.name == aps_result_items_opertimeend_NameStrong.name
+            item.hidden = item.nameStrong.get.name == aps_result_items_code_orders_Id_orders_NameStrong.name
             item
     }.opt
     fields = (ListGridFiledsJS.aps_result_items_FLDS ++ ListGridFiledsJS.aps_changeover_FLDS.filter(item ⇒ item.nameStrong.get.name == aps_changeover_code_operstype_From_type_NameStrong.name || item.nameStrong.get.name == aps_changeover_code_operstype_To_type_NameStrong.name)).map {
         item ⇒
             item.canEdit = (item.nameStrong.get.name == aps_result_items_opertimestart_NameStrong.name || item.nameStrong.get.name == aps_result_items_opertimeend_NameStrong.name).opt
+            item.hidden = (item.nameStrong.get.name == aps_result_items_code_orders_Id_orders_NameStrong.name).opt
             item
     }.opt
 
