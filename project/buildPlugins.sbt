@@ -1,6 +1,5 @@
-import ru.simplesys.eakd.sbtbuild.{CommonSettings, PluginDeps}
+import ru.simplesys.eakd.sbtbuild.{CommonDeps, CommonSettings, PluginDeps}
 import sbt._
-import sbt.Project._
 
 
 lazy val devPlugin = uri("../../sbt-plugins/dev-plugin")
@@ -8,7 +7,9 @@ lazy val devPlugin = uri("../../sbt-plugins/dev-plugin")
 //lazy val sbtNativePackager = uri("../../sbt-plugins/sbt-native-packager")
 //lazy val mergeJS = uri("../../sbt-plugins/merge-js")
 
-lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(RootProject(devPlugin)  /*RootProject(sbtCoffeeScript)*/  /*RootProject(sbtNativePackager)*/ /*, RootProject(mergeJS)*/).
+lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(RootProject(devPlugin) /*RootProject(sbtCoffeeScript)*/
+    /*RootProject(sbtNativePackager)*/
+    /*, RootProject(mergeJS)*/).
   settings(sbt.inThisBuild(CommonSettings.defaultSettings)).
   settings(
       classpathTypes += "maven-plugin",
@@ -19,5 +20,8 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(RootPro
       PluginDeps.sbtNativePackager,
       PluginDeps.jrebelPlugin,
       PluginDeps.crossproject,
-      PluginDeps.sbtCrossproject
+      PluginDeps.sbtCrossproject,
+      libraryDependencies ++= Seq(
+          CommonDeps.circeExtender
+      )
   )

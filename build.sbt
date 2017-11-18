@@ -1,6 +1,5 @@
 import com.simplesys.jrebel.JRebelPlugin
 import com.simplesys.jrebel.JRebelPlugin._
-import com.simplesys.json.{JsonList, JsonObject}
 import com.typesafe.sbt.packager.docker.DockerPlugin._
 import ru.simplesys.eakd.sbtbuild.{CommonDeps, CommonDepsScalaJS, CommonSettings, PluginDeps}
 import ru.simplesys.plugins.sourcegen.DevPlugin._
@@ -231,8 +230,6 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
 
             val aboutFile: File = (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponents" / "MakeAboutData.js"
 
-            val list = JsonList()
-
             import scala.reflect.ClassTag
             import scala.reflect.runtime.universe._
             import scala.reflect.runtime.{universe ⇒ ru}
@@ -247,26 +244,25 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui")).
                 val decls = `type`.declarations.sorted.filter(_.isMethod).filter(!_.name.toString.contains("<init>"))
                 val im = classLoaderMirror reflect e
 
-                decls.foreach {
+                Common.list append (decls.map {
                     item =>
-
                         val shippingTermSymb = `type`.declaration(ru.newTermName(item.name.toString)).asTerm
                         val shippingFieldMirror = im reflectField shippingTermSymb
                         val res = shippingFieldMirror.get.toString()
 
-                        list += JsonObject("libName" -> item.name.toString, "libVersion" -> res)
-                }
+                        Info(item.name.toString, res)
+                }: _ *)
             }
 
-            list ++= Seq(
-                JsonObject("libName" -> "Разработка :", "libVersion" -> "АО ИВЦ \"Информ\" (info@ivc-inform.ru)"),
-                JsonObject("libName" -> "Версия :", "libVersion" -> version.value)
-            )
+            Common.list append (Seq(
+                Info("Разработка :", "АО ИВЦ \"Информ\" (info@ivc-inform.ru)"),
+                Info("Версия :", version.value)
+            ): _*)
 
             makeVersionList(CommonDeps.versions)
             makeVersionList(PluginDeps.versions)
 
-            IO.write(aboutFile, s"simpleSyS.aboutData = ${list.toPrettyString}")
+            IO.write(aboutFile, s"simpleSyS.aboutData = ${Common.spaces2}")
             Seq()
         }
 
