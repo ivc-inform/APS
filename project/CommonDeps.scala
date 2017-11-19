@@ -22,7 +22,7 @@ object PluginDeps {
     val sbtCrossproject = addSbtPlugin("org.scala-native" % "sbt-scalajs-crossproject" % versions.scalaCrossProjectPluginVersion)
     val crossproject = addSbtPlugin("org.scala-native" % "sbt-crossproject" %  versions.scalaCrossProjectPluginVersion)
     val jrebelPlugin = addSbtPlugin("com.simplesys" % "jrebel-plugin" % versions.jrabelPluginVersion)
-    val circeExtender1 = "com.simplesys.core" %% "circe-extender" % CommonDeps.versions.ssysCoreVersion
+    val circeExtender = "com.simplesys.core" %% "circe-extender" % CommonDeps.versions.ssysCoreVersion
 }
 
 object CommonDeps {
