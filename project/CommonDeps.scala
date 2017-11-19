@@ -53,8 +53,6 @@ object CommonDeps {
         val scalaURIVersion = "0.4.16"
         val configWrapperVersion = "0.4.4"
         val jsgantImprovedVersion = "0.9.4-SNAPSHOT"
-
-        val circeVersion = "0.8.0"
     }
 
     val servletAPI = "javax.servlet" % "javax.servlet-api" % versions.servletAPIVersion
@@ -107,10 +105,5 @@ object CommonDeps {
     val scalaURI = "com.netaporter" %% "scala-uri" % versions.scalaURIVersion
     val configWrapper = "com.github.kxbmap" %% "configs" % versions.configWrapperVersion
     val jsgantImproved = "com.simplesys" %% "jsgantt-improved" % versions.jsgantImprovedVersion
-
-    val circeCore = "io.circe" %% "circe-core" % versions.circeVersion
-    val circeGeneric = "io.circe" %% "circe-generic" % versions.circeVersion
-    val circeParcer = "io.circe" %% "circe-parser" % versions.circeVersion
-
 }
 

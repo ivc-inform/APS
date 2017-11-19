@@ -31,9 +31,6 @@ lazy val common = Project(id = "common", base = file("common")).settings(
         CommonDeps.commonsIO,
         CommonDeps.configWrapper,
         CommonDeps.ssysCommon,
-        CommonDeps.circeCore,
-        CommonDeps.circeGeneric,
-        CommonDeps.circeParcer,
         CommonDeps.scalaTest % Test
     )
 )
