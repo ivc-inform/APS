@@ -9,11 +9,12 @@ import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.ServletActor
 import ru.simplesys.defs.bo.aps._
 import com.simplesys.circe.Circe._
+import com.simplesys.isc.dataBinging.DSRequest
 
 trait aps_opers_type_SemiHandTrait_Update extends SessionContextSupport with ServletActor {
 
     /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
-    val requestData = new DSRequestDyn(request)
+    val requestData = new DSRequest(request.JSONData)
 
     logger debug s"Request for Update: ${newLine + requestData.toPrettyString}"
 
