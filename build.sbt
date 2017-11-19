@@ -76,7 +76,8 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
       DevPlugin, MergeWebappPlugin, SbtCoffeeScript, ScalaJSPlugin, JettyPlugin, WarPlugin, WebappPlugin, JRebelPlugin, DockerPlugin, JavaAppPackaging
   )
   .dependsOn(
-      dbObjects
+      dbObjects,
+      RootProject(CommonDeps.circeExtender)
   )
   .aggregate(dbObjects).settings(
 

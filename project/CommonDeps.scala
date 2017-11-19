@@ -73,7 +73,7 @@ object CommonDeps {
     val ssysCoreDomains = "com.simplesys.core" %% "core-domains" % versions.ssysCoreVersion
     val ssysScalaGen = "com.simplesys.core" %% "scala-gen" % versions.ssysCoreVersion
     //val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
-    val circeExtender = uri("../../sbt-plugins/dev-plugin")
+    val circeExtender = uri("../../Job/simplesys/circe-extender")
 
     val oraclePoolDataSources = "com.simplesys.core" %% "oracle-pool-datasources" % versions.ssysCoreVersion
     val hikariPoolDataSources = "com.simplesys.core" %% "hikari-cp" % versions.ssysCoreVersion
