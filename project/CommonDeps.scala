@@ -1,6 +1,6 @@
 package ru.simplesys.eakd.sbtbuild
 
-import sbt._
+import sbt.{ModuleID, ProjectRef, _}
 
 object PluginDeps {
 
@@ -26,6 +26,8 @@ object PluginDeps {
 }
 
 object CommonDeps {
+
+    //case class SsysConf(projectRef: ProjectRef, moduleID: ModuleID)
 
     object versions {
         val scalaModulesVersion = "1.0.6"
@@ -82,12 +84,12 @@ object CommonDeps {
     val ssysCommonWebapp = ProjectRef(uriSimpleSys, "common-webapp")
 
     //val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
-    val ssysJDBCWrapper = ProjectRef(uriSimpleSys, "jdbc-wrapper")
+    val ssysJDBCWrapper: ProjectRef = ProjectRef(uriSimpleSys, "jdbc-wrapper")
 
     //val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
     val circeExtender = ProjectRef(uriSimpleSys, "circe-extender")
 
-    val oraclePoolDataSources = "com.simplesys.core" %% "oracle-pool-datasources" % versions.ssysCoreVersion
+    val oraclePoolDataSources: ModuleID = "com.simplesys.core" %% "oracle-pool-datasources" % versions.ssysCoreVersion
     val hikariPoolDataSources = "com.simplesys.core" %% "hikari-cp" % versions.ssysCoreVersion
     val ssysLogBackWrapper = "com.simplesys.core" %% "logback-wrapper" % versions.ssysCoreVersion
     val scalaJSWrapper = "com.simplesys" %% "common-types" % versions.scalaJSVersion
