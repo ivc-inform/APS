@@ -46,14 +46,14 @@ lazy val testModule = Project(id = "test", base = file("test")).
 
 lazy val dbObjects = Project(id = "db-objects", base = file("db-objects"))
   .dependsOn(
-      common/*,
-      RootProject(CommonDeps.ssysJDBCWrapper)*/
+      common,
+      CommonDeps.ssysJDBCWrapper
   )
   .enablePlugins(DevPlugin)
   .settings(
       libraryDependencies ++= Seq(
           CommonDeps.ssysCoreLibrary,
-          CommonDeps.ssysJDBCWrapper,
+          //CommonDeps.ssysJDBCWrapper,
           CommonDeps.oraclePoolDataSources,
           CommonDeps.hikariPoolDataSources,
           CommonDeps.jdbcOracle12,
@@ -81,8 +81,8 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
   .dependsOn(
       dbObjects,
       CommonDeps.circeExtender,
-//      CommonDeps.ssysServletWrapper,
-//      CommonDeps.ssysCommonWebapp
+      CommonDeps.ssysServletWrapper,
+      CommonDeps.ssysCommonWebapp
   )
   .aggregate(dbObjects).settings(
 
@@ -114,9 +114,10 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
         CommonDeps.ssysScalaIOExtender,
         CommonDeps.ssysXMLExtender,
         CommonDeps.ssysIscMisc,
+
         //CommonDeps.circeExtender,
-        CommonDeps.ssysCommonWebapp,
-        CommonDeps.ssysServletWrapper,
+        //CommonDeps.ssysCommonWebapp,
+        //CommonDeps.ssysServletWrapper,
 
         CommonDeps.smartclient,
 

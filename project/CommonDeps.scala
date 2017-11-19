@@ -55,6 +55,8 @@ object CommonDeps {
         val jsgantImprovedVersion = "0.9.4-SNAPSHOT"
     }
 
+    val uriSimpleSys = uri("../../JOB/simplesys")
+
     val servletAPI = "javax.servlet" % "javax.servlet-api" % versions.servletAPIVersion
 
     val smartclient = "com.simplesys" % "smartclient-js" % versions.smartclientVersion
@@ -73,17 +75,17 @@ object CommonDeps {
     val ssysCoreDomains = "com.simplesys.core" %% "core-domains" % versions.ssysCoreVersion
     val ssysScalaGen = "com.simplesys.core" %% "scala-gen" % versions.ssysCoreVersion
 
-    val ssysServletWrapper = "com.simplesys.core" %% "servlet-wrapper" % versions.ssysCoreVersion
-    //val ssysServletWrapper = uri("../../JOB/simplesys/servlet-wrapper")
+    //val ssysServletWrapper = "com.simplesys.core" %% "servlet-wrapper" % versions.ssysCoreVersion
+    val ssysServletWrapper = ProjectRef(uriSimpleSys, "servlet-wrapper")
 
-    val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
-    //val ssysCommonWebapp = uri("../../JOB/simplesys/common-webapp")
+    //val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
+    val ssysCommonWebapp = ProjectRef(uriSimpleSys, "common-webapp")
 
-    val ssysJDBCWrapper: ModuleID = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
-    //val ssysJDBCWrapper = uri("../../JOB/simplesys/jdbc-wrapper")
+    //val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
+    val ssysJDBCWrapper = ProjectRef(uriSimpleSys, "jdbc-wrapper")
 
     //val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
-    val circeExtender = ProjectRef(uri("../../JOB/simplesys"), "circe-extender")
+    val circeExtender = ProjectRef(uriSimpleSys, "circe-extender")
 
     val oraclePoolDataSources = "com.simplesys.core" %% "oracle-pool-datasources" % versions.ssysCoreVersion
     val hikariPoolDataSources = "com.simplesys.core" %% "hikari-cp" % versions.ssysCoreVersion
