@@ -3,7 +3,7 @@
 package ru.simplesys.defs.app.scala.container.aps
 
 import com.simplesys.app.SessionContextSupport
-import com.simplesys.isc.system.ServletActor
+import com.simplesys.servlet.isc.ServletActor
 import com.simplesys.isc.dataBinging.DSRequest
 import com.simplesys.common.Strings._
 import com.simplesys.jdbc.control.clob._
@@ -14,7 +14,7 @@ import ru.simplesys.defs.bo.aps._
 trait aps_orders_SemiHandTrait_Remove extends SessionContextSupport with ServletActor {
     
 /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
-    val requestData = new DSRequest(request)
+    val requestData = new DSRequest(request.JSONData)
     
     logger debug s"Request for Remove: ${newLine + requestData.toPrettyString}"    
     

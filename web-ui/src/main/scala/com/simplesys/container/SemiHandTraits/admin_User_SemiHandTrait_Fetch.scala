@@ -14,7 +14,7 @@ import ru.simplesys.defs.bo.admin._
 trait admin_User_SemiHandTrait_Fetch extends SessionContextSupport with ServletActor {
     
 /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
-    val requestData = new DSRequest(request)
+    val requestData = new DSRequest(request.JSONData)
     
     logger debug s"Request for Fetch: ${newLine + requestData.toPrettyString}"    
     
