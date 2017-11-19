@@ -3,7 +3,7 @@
 package ru.simplesys.defs.app.scala.container.aps
 
 import com.simplesys.app.SessionContextSupport
-import com.simplesys.isc.system.ServletActorDyn
+import com.simplesys.isc.system.ServletActor
 import com.simplesys.isc.dataBinging.DSRequest
 import com.simplesys.common.Strings._
 import com.simplesys.jdbc.control.clob._
@@ -11,7 +11,7 @@ import akka.actor.Actor
 import ru.simplesys.defs.bo.aps._
 
  
-trait aps_result_SemiHandTrait_Fetch extends SessionContextSupport with ServletActorDyn {
+trait aps_result_SemiHandTrait_Fetch extends SessionContextSupport with ServletActor {
     
 /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
     val requestData = new DSRequest(request)

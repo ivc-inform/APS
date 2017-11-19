@@ -9,7 +9,7 @@ import com.simplesys.isc.dataBinging.RPC.RPCResponseDyn
 import com.simplesys.isc.dataBinging.dataSource.RecordDyn
 import com.simplesys.isc.dataBinging.{DSRequest, DSResponseDyn, DSResponseFailureExDyn}
 import com.simplesys.isc.grids.RecordsDynList
-import com.simplesys.isc.system.ServletActorDyn
+import com.simplesys.isc.system.ServletActor
 import com.simplesys.jdbc._
 import com.simplesys.jdbc.control.DSRequest
 import com.simplesys.jdbc.control.clob._
@@ -22,7 +22,7 @@ import ru.simplesys.defs.bo.aps._
 import scalaz.{Failure, Success}
 
 
-trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with ServletActorDyn {
+trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with ServletActor {
 
     /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
     val requestData = new DSRequest(request)
