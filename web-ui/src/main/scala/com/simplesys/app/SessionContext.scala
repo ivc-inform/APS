@@ -8,6 +8,7 @@ import com.simplesys.servlet.http.HttpSession
 import com.simplesys.servlet.isc.ServletActor
 import oracle.ucp.jdbc.PoolDataSource
 import com.simplesys.common.Strings._
+import com.simplesys.sql.SQLDialect
 
 trait SessionContextSupport {
     this: ServletActor =>
