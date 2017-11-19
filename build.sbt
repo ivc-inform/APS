@@ -39,18 +39,21 @@ lazy val testModule = Project(id = "test", base = file("test")).
   dependsOn(dbObjects).
   settings(
       libraryDependencies ++= Seq(
-          CommonDeps.ssysJDBCWrapper,
+          //CommonDeps.ssysJDBCWrapper,
           CommonDeps.scalaTest % Test
       )
   )
 
-lazy val dbObjects = Project(id = "db-objects", base = file("db-objects")).
-  dependsOn(common).
-  enablePlugins(DevPlugin).
-  settings(
+lazy val dbObjects = Project(id = "db-objects", base = file("db-objects"))
+  .dependsOn(
+      common,
+      RootProject(CommonDeps.ssysJDBCWrapper)
+  )
+  .enablePlugins(DevPlugin)
+  .settings(
       libraryDependencies ++= Seq(
           CommonDeps.ssysCoreLibrary,
-          CommonDeps.ssysJDBCWrapper,
+          //CommonDeps.ssysJDBCWrapper,
           CommonDeps.oraclePoolDataSources,
           CommonDeps.hikariPoolDataSources,
           CommonDeps.jdbcOracle12,
@@ -77,7 +80,9 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
   )
   .dependsOn(
       dbObjects,
-      RootProject(CommonDeps.circeExtender)
+      RootProject(CommonDeps.circeExtender),
+      RootProject(CommonDeps.ssysServletWrapper),
+      RootProject(CommonDeps.ssysCommonWebapp)
   )
   .aggregate(dbObjects).settings(
 
@@ -105,12 +110,13 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
     libraryDependencies ++= Seq(
         CommonDeps.servletAPI % Provided,
         CommonDeps.ssysCommon,
-        CommonDeps.ssysCommonWebapp,
         CommonDeps.ssysIscComponents,
         CommonDeps.ssysScalaIOExtender,
         CommonDeps.ssysXMLExtender,
         CommonDeps.ssysIscMisc,
+        //CommonDeps.ssysCommonWebapp,
         //CommonDeps.circeExtender,
+        //CommonDeps.ssysServletWrapper,
 
         CommonDeps.smartclient,
 

@@ -59,7 +59,6 @@ object CommonDeps {
 
     val smartclient = "com.simplesys" % "smartclient-js" % versions.smartclientVersion
 
-    val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
     val ssysIscComponents = "com.simplesys.core" %% "isc-components" % versions.ssysCoreVersion
     val ssysIscMisc = "com.simplesys.core" %% "isc-misc" % versions.ssysCoreVersion
 
@@ -70,9 +69,19 @@ object CommonDeps {
     val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
     val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
     val ssysScalaIOExtender = "com.simplesys.core" %% "scala-io-extender" % versions.ssysCoreVersion
-    val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
+
     val ssysCoreDomains = "com.simplesys.core" %% "core-domains" % versions.ssysCoreVersion
     val ssysScalaGen = "com.simplesys.core" %% "scala-gen" % versions.ssysCoreVersion
+
+    //val ssysServletWrapper = "com.simplesys.core" %% "servlet-wrapper" % versions.ssysCoreVersion
+    val ssysServletWrapper = uri("../../JOB/simplesys/servlet-wrapper")
+
+    //val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
+    val ssysCommonWebapp = uri("../../JOB/simplesys/common-webapp")
+
+    //val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
+    val ssysJDBCWrapper = uri("../../JOB/simplesys/jdbc-wrapper")
+
     //val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
     val circeExtender = uri("../../JOB/simplesys/circe-extender")
 
