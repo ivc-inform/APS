@@ -26,11 +26,13 @@ lazy val root = (project in file("."))
       publishArtifact in(Compile, packageSrc) := false
   )
 
-lazy val common = Project(id = "common", base = file("common")).settings(
+lazy val common = Project(id = "common", base = file("common"))
+    .dependsOn(CommonDeps.ssysCommon)
+  .settings(
     libraryDependencies ++= Seq(
         CommonDeps.commonsIO,
         CommonDeps.configWrapper,
-        CommonDeps.ssysCommon,
+        //CommonDeps.ssysCommon,
         CommonDeps.scalaTest % Test
     )
 )
@@ -109,7 +111,6 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
 
     libraryDependencies ++= Seq(
         CommonDeps.servletAPI % Provided,
-        CommonDeps.ssysCommon,
         CommonDeps.ssysIscComponents,
         CommonDeps.ssysScalaIOExtender,
         CommonDeps.ssysXMLExtender,

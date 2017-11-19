@@ -71,11 +71,13 @@ object CommonDeps {
     val ssysCoreUtils = "com.simplesys.core" %% "core-utils" % versions.ssysCoreVersion
     val ssysAkkaExtender = "com.simplesys.core" %% "akka-extender" % versions.ssysCoreVersion
     val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
-    val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
     val ssysScalaIOExtender = "com.simplesys.core" %% "scala-io-extender" % versions.ssysCoreVersion
 
     val ssysCoreDomains = "com.simplesys.core" %% "core-domains" % versions.ssysCoreVersion
     val ssysScalaGen = "com.simplesys.core" %% "scala-gen" % versions.ssysCoreVersion
+
+    //val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
+    val ssysCommon = ProjectRef(uriSimpleSys, "common")
 
     //val ssysServletWrapper = "com.simplesys.core" %% "servlet-wrapper" % versions.ssysCoreVersion
     val ssysServletWrapper = ProjectRef(uriSimpleSys, "servlet-wrapper")

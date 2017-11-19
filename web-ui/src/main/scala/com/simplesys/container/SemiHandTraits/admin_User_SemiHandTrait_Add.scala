@@ -4,7 +4,7 @@ package ru.simplesys.defs.app.scala.container.admin
 
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.isc.system.ServletActorDyn
-import com.simplesys.isc.dataBinging.DSRequestDyn
+import com.simplesys.isc.dataBinging.DSRequest
 import com.simplesys.common.Strings._
 import com.simplesys.jdbc.control.clob._
 import akka.actor.Actor
@@ -15,7 +15,7 @@ import ru.simplesys.defs.bo.admin._
 trait admin_User_SemiHandTrait_Add extends SessionContextSupport with ServletActor {
     
 /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
-    val requestData = new DSRequestDyn(request)    
+    val requestData = new DSRequest(request)
     
     logger debug s"Request for Add: ${newLine + requestData.toPrettyString}"    
     
