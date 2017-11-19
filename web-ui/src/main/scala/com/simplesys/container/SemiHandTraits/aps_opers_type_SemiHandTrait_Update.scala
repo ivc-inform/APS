@@ -6,7 +6,7 @@ import akka.actor.Actor
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.common.Strings._
 import com.simplesys.jdbc.control.clob._
-import com.simplesys.servlet.ServletActor
+import com.simplesys.servlet.isc.ServletActor
 import ru.simplesys.defs.bo.aps._
 import com.simplesys.circe.Circe._
 

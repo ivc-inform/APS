@@ -7,7 +7,7 @@ import com.simplesys.isc.dataBinging.DSRequest
 import com.simplesys.common.Strings._
 import com.simplesys.jdbc.control.clob._
 import akka.actor.Actor
-import com.simplesys.servlet.ServletActor
+import com.simplesys.servlet.isc.ServletActor
 import com.simplesys.isc.system.ServletActor
 import ru.simplesys.defs.bo.admin._
 import com.simplesys.circe.Circe._
