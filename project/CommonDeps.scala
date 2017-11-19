@@ -20,7 +20,7 @@ object PluginDeps {
     val xsbtWeb = addSbtPlugin("com.earldouglas" % "xsbt-web-plugin" % versions.xsbtWebVersion)
     val sbtNativePackager = addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % versions.sbtNativePackagerVersion)
     val sbtCrossproject = addSbtPlugin("org.scala-native" % "sbt-scalajs-crossproject" % versions.scalaCrossProjectPluginVersion)
-    val crossproject = addSbtPlugin("org.scala-native" % "sbt-crossproject" %  versions.scalaCrossProjectPluginVersion)
+    val crossproject = addSbtPlugin("org.scala-native" % "sbt-crossproject" % versions.scalaCrossProjectPluginVersion)
     val jrebelPlugin = addSbtPlugin("com.simplesys" % "jrebel-plugin" % versions.jrabelPluginVersion)
     val circeExtender = "com.simplesys.core" %% "circe-extender" % CommonDeps.versions.ssysCoreVersion
 }
@@ -53,6 +53,8 @@ object CommonDeps {
         val scalaURIVersion = "0.4.16"
         val configWrapperVersion = "0.4.4"
         val jsgantImprovedVersion = "0.9.4-SNAPSHOT"
+
+        val circeVersion = "0.8.0"
     }
 
     val servletAPI = "javax.servlet" % "javax.servlet-api" % versions.servletAPIVersion
@@ -73,14 +75,14 @@ object CommonDeps {
     val ssysCoreDomains = "com.simplesys.core" %% "core-domains" % versions.ssysCoreVersion
     val ssysScalaGen = "com.simplesys.core" %% "scala-gen" % versions.ssysCoreVersion
 
-    //val ssysServletWrapper = "com.simplesys.core" %% "servlet-wrapper" % versions.ssysCoreVersion
-    val ssysServletWrapper = uri("../../JOB/simplesys/servlet-wrapper")
+    val ssysServletWrapper = "com.simplesys.core" %% "servlet-wrapper" % versions.ssysCoreVersion
+    //val ssysServletWrapper = uri("../../JOB/simplesys/servlet-wrapper")
 
-    //val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
-    val ssysCommonWebapp = uri("../../JOB/simplesys/common-webapp")
+    val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
+    //val ssysCommonWebapp = uri("../../JOB/simplesys/common-webapp")
 
-    //val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
-    val ssysJDBCWrapper = uri("../../JOB/simplesys/jdbc-wrapper")
+    val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
+    //val ssysJDBCWrapper = uri("../../JOB/simplesys/jdbc-wrapper")
 
     //val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
     val circeExtender = uri("../../JOB/simplesys/circe-extender")
@@ -105,6 +107,10 @@ object CommonDeps {
     val scalaURI = "com.netaporter" %% "scala-uri" % versions.scalaURIVersion
     val configWrapper = "com.github.kxbmap" %% "configs" % versions.configWrapperVersion
     val jsgantImproved = "com.simplesys" %% "jsgantt-improved" % versions.jsgantImprovedVersion
+
+    val circeCore = "io.circe" %% "circe-core" % versions.circeVersion
+    val circeGeneric = "io.circe" %% "circe-generic" % versions.circeVersion
+    val circeParcer = "io.circe" %% "circe-parser" % versions.circeVersion
 
 }
 
