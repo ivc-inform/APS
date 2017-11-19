@@ -58,6 +58,7 @@ object CommonDeps {
     }
 
     val uriSimpleSys = uri("../../JOB/simplesys")
+    val withSimpleSysSources = true
 
     val servletAPI = "javax.servlet" % "javax.servlet-api" % versions.servletAPIVersion
 
@@ -75,9 +76,6 @@ object CommonDeps {
     //val ssysCoreLibrary = "com.simplesys.core" %% "core-library" % versions.ssysCoreVersion
     val ssysCoreLibrary = ProjectRef(uriSimpleSys, "core-library")
 
-    //val ssysCoreUtils = "com.simplesys.core" %% "core-utils" % versions.ssysCoreVersion
-    val ssysCoreUtils = ProjectRef(uriSimpleSys, "core-utils")
-
     //val ssysAkkaExtender = "com.simplesys.core" %% "akka-extender" % versions.ssysCoreVersion
     val ssysAkkaExtender = ProjectRef(uriSimpleSys, "akka-extender")
 
@@ -86,12 +84,6 @@ object CommonDeps {
 
     //val ssysScalaIOExtender = "com.simplesys.core" %% "scala-io-extender" % versions.ssysCoreVersion
     val ssysScalaIOExtender = ProjectRef(uriSimpleSys, "scala-io-extender")
-
-    //val ssysCoreDomains = "com.simplesys.core" %% "core-domains" % versions.ssysCoreVersion
-    val ssysCoreDomains = ProjectRef(uriSimpleSys, "core-domains")
-
-    //val ssysScalaGen = "com.simplesys.core" %% "scala-gen" % versions.ssysCoreVersion
-    val ssysScalaGen = ProjectRef(uriSimpleSys, "scala-gen")
 
     //val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
     val ssysCommon = ProjectRef(uriSimpleSys, "common")
