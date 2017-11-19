@@ -27,15 +27,15 @@ lazy val root = (project in file("."))
   )
 
 lazy val common = Project(id = "common", base = file("common"))
-    .dependsOn(CommonDeps.ssysCommon)
+  .dependsOn(CommonDeps.ssysCommon)
   .settings(
-    libraryDependencies ++= Seq(
-        CommonDeps.commonsIO,
-        CommonDeps.configWrapper,
-        //CommonDeps.ssysCommon,
-        CommonDeps.scalaTest % Test
-    )
-)
+      libraryDependencies ++= Seq(
+          CommonDeps.commonsIO,
+          CommonDeps.configWrapper,
+          //CommonDeps.ssysCommon,
+          CommonDeps.scalaTest % Test
+      )
+  )
 
 lazy val testModule = Project(id = "test", base = file("test")).
   dependsOn(dbObjects).
@@ -49,12 +49,13 @@ lazy val testModule = Project(id = "test", base = file("test")).
 lazy val dbObjects = Project(id = "db-objects", base = file("db-objects"))
   .dependsOn(
       common,
-      CommonDeps.ssysJDBCWrapper
+      CommonDeps.ssysJDBCWrapper,
+      CommonDeps.ssysCoreLibrary
   )
   .enablePlugins(DevPlugin)
   .settings(
       libraryDependencies ++= Seq(
-          CommonDeps.ssysCoreLibrary,
+          //CommonDeps.ssysCoreLibrary,
           //CommonDeps.ssysJDBCWrapper,
           CommonDeps.oraclePoolDataSources,
           CommonDeps.hikariPoolDataSources,
@@ -84,7 +85,11 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
       dbObjects,
       CommonDeps.circeExtender,
       CommonDeps.ssysServletWrapper,
-      CommonDeps.ssysCommonWebapp
+      CommonDeps.ssysCommonWebapp,
+      CommonDeps.ssysIscComponents,
+      CommonDeps.ssysScalaIOExtender,
+      CommonDeps.ssysXMLExtender,
+      CommonDeps.ssysIscMisc
   )
   .aggregate(dbObjects).settings(
 
@@ -111,11 +116,10 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
 
     libraryDependencies ++= Seq(
         CommonDeps.servletAPI % Provided,
-        CommonDeps.ssysIscComponents,
-        CommonDeps.ssysScalaIOExtender,
-        CommonDeps.ssysXMLExtender,
-        CommonDeps.ssysIscMisc,
-
+        //CommonDeps.ssysIscComponents,
+        //CommonDeps.ssysScalaIOExtender,
+        //CommonDeps.ssysXMLExtender,
+        //CommonDeps.ssysIscMisc,
         //CommonDeps.circeExtender,
         //CommonDeps.ssysCommonWebapp,
         //CommonDeps.ssysServletWrapper,
@@ -131,6 +135,7 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
         CommonDeps.scalaTags,
         CommonDeps.scalaURI,
         CommonDeps.jsgantImproved,
+        
         CommonDepsScalaJS.smartClientWrapper.value,
         CommonDepsScalaJS.macroJS.value,
         CommonDepsScalaJS.scalaTags.value,
