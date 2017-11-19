@@ -8,10 +8,11 @@ import com.simplesys.isc.dataBinging.DSRequestDyn
 import com.simplesys.common.Strings._
 import com.simplesys.jdbc.control.clob._
 import akka.actor.Actor
+import com.simplesys.servlet.ServletActor
 import ru.simplesys.defs.bo.admin._
 
  
-trait admin_User_SemiHandTrait_Add extends SessionContextSupport with ServletActorDyn {
+trait admin_User_SemiHandTrait_Add extends SessionContextSupport with ServletActor {
     
 /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
     val requestData = new DSRequestDyn(request)    
