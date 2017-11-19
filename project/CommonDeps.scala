@@ -22,6 +22,7 @@ object PluginDeps {
     val sbtCrossproject = addSbtPlugin("org.scala-native" % "sbt-scalajs-crossproject" % versions.scalaCrossProjectPluginVersion)
     val crossproject = addSbtPlugin("org.scala-native" % "sbt-crossproject" %  versions.scalaCrossProjectPluginVersion)
     val jrebelPlugin = addSbtPlugin("com.simplesys" % "jrebel-plugin" % versions.jrabelPluginVersion)
+    val circeExtender1 = "com.simplesys.core" %% "circe-extender" % CommonDeps.versions.ssysCoreVersion
 }
 
 object CommonDeps {
@@ -73,7 +74,7 @@ object CommonDeps {
     val ssysCoreDomains = "com.simplesys.core" %% "core-domains" % versions.ssysCoreVersion
     val ssysScalaGen = "com.simplesys.core" %% "scala-gen" % versions.ssysCoreVersion
     //val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
-    val circeExtender = uri("../../Job/simplesys/circe-extender")
+    val circeExtender = uri("../../JOB/simplesys/circe-extender")
 
     val oraclePoolDataSources = "com.simplesys.core" %% "oracle-pool-datasources" % versions.ssysCoreVersion
     val hikariPoolDataSources = "com.simplesys.core" %% "hikari-cp" % versions.ssysCoreVersion
