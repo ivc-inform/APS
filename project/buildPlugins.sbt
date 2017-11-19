@@ -7,7 +7,7 @@ lazy val devPlugin = uri("../../sbt-plugins/dev-plugin")
 //lazy val sbtNativePackager = uri("../../sbt-plugins/sbt-native-packager")
 //lazy val mergeJS = uri("../../sbt-plugins/merge-js")
 
-lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(RootProject(devPlugin) /*RootProject(sbtCoffeeScript)*/
+lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(RootProject(devPlugin), RootProject(CommonDeps.circeExtender) /*RootProject(sbtCoffeeScript)*/
     /*RootProject(sbtNativePackager)*/
     /*, RootProject(mergeJS)*/).
   settings(sbt.inThisBuild(CommonSettings.defaultSettings)).
@@ -22,6 +22,6 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(RootPro
       PluginDeps.crossproject,
       PluginDeps.sbtCrossproject,
       libraryDependencies ++= Seq(
-          CommonDeps.circeExtender
+            //CommonDeps.circeExtender
       )
   )

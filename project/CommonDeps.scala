@@ -72,7 +72,8 @@ object CommonDeps {
     val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
     val ssysCoreDomains = "com.simplesys.core" %% "core-domains" % versions.ssysCoreVersion
     val ssysScalaGen = "com.simplesys.core" %% "scala-gen" % versions.ssysCoreVersion
-    val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
+    //val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
+    val circeExtender = uri("../../sbt-plugins/dev-plugin")
 
     val oraclePoolDataSources = "com.simplesys.core" %% "oracle-pool-datasources" % versions.ssysCoreVersion
     val hikariPoolDataSources = "com.simplesys.core" %% "hikari-cp" % versions.ssysCoreVersion
