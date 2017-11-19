@@ -80,9 +80,9 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
   )
   .dependsOn(
       dbObjects,
-      RootProject(CommonDeps.circeExtender)/*,
-      RootProject(CommonDeps.ssysServletWrapper),
-      RootProject(CommonDeps.ssysCommonWebapp)*/
+      CommonDeps.circeExtender,
+//      CommonDeps.ssysServletWrapper,
+//      CommonDeps.ssysCommonWebapp
   )
   .aggregate(dbObjects).settings(
 
