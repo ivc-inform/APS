@@ -45,11 +45,11 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
             val select = dataSet.Fetch(
                 dsRequest = DsRequest(
                     sqlDialect = sessionContext.getSQLDialect,
-                    startRow = requestData.StartRow,
-                    endRow = requestData.EndRow,
-                    sortBy = requestData.SortBy,
+                    startRow = requestData.startRow.getOrElse(0),
+                    endRow = requestData.endRow.getOrElse(0),
+                    sortBy = requestData.sortBy,
                     data = data,
-                    textMatchStyle = requestData.TextMatchStyle.toString
+                    textMatchStyle = requestData.textMatchStyle
                 ))
 
             Out(out = select.result match {
