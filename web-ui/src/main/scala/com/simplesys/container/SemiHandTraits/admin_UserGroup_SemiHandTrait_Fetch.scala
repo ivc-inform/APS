@@ -4,6 +4,7 @@ package ru.simplesys.defs.app.scala.container.admin
 
 import akka.actor.Actor
 import com.simplesys.app.SessionContextSupport
+import com.simplesys.common.Strings._
 import com.simplesys.isc.dataBinging.DSRequest
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.ServletActor

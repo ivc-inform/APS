@@ -64,38 +64,38 @@ object CommonDeps {
 
     val smartclient = "com.simplesys" % "smartclient-js" % versions.smartclientVersion
 
-    //val ssysIscComponents = "com.simplesys.core" %% "isc-components" % versions.ssysCoreVersion
-    val ssysIscComponents = ProjectRef(uriSimpleSys, "isc-components")
+    val ssysIscComponents = "com.simplesys.core" %% "isc-components" % versions.ssysCoreVersion
+    //val ssysIscComponents = ProjectRef(uriSimpleSys, "isc-components")
 
-    //val ssysIscMisc = "com.simplesys.core" %% "isc-misc" % versions.ssysCoreVersion
-    val ssysIscMisc = ProjectRef(uriSimpleSys, "isc-misc")
+    val ssysIscMisc = "com.simplesys.core" %% "isc-misc" % versions.ssysCoreVersion
+    //val ssysIscMisc = ProjectRef(uriSimpleSys, "isc-misc")
 
-    //val ssysXMLExtender = "com.simplesys.core" %% "xml-extender" % versions.ssysCoreVersion
-    val ssysXMLExtender = ProjectRef(uriSimpleSys, "xml-extender")
+    val ssysXMLExtender = "com.simplesys.core" %% "xml-extender" % versions.ssysCoreVersion
+    //val ssysXMLExtender = ProjectRef(uriSimpleSys, "xml-extender")
 
-    //val ssysCoreLibrary = "com.simplesys.core" %% "core-library" % versions.ssysCoreVersion
-    val ssysCoreLibrary = ProjectRef(uriSimpleSys, "core-library")
+    val ssysCoreLibrary = "com.simplesys.core" %% "core-library" % versions.ssysCoreVersion
+    //val ssysCoreLibrary = ProjectRef(uriSimpleSys, "core-library")
 
-    //val ssysAkkaExtender = "com.simplesys.core" %% "akka-extender" % versions.ssysCoreVersion
-    val ssysAkkaExtender = ProjectRef(uriSimpleSys, "akka-extender")
+    val ssysAkkaExtender = "com.simplesys.core" %% "akka-extender" % versions.ssysCoreVersion
+    //val ssysAkkaExtender = ProjectRef(uriSimpleSys, "akka-extender")
 
-    //val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
-    val ssysConfigWrapper = ProjectRef(uriSimpleSys, "config-wrapper")
+    val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
+    //val ssysConfigWrapper = ProjectRef(uriSimpleSys, "config-wrapper")
 
-    //val ssysScalaIOExtender = "com.simplesys.core" %% "scala-io-extender" % versions.ssysCoreVersion
-    val ssysScalaIOExtender = ProjectRef(uriSimpleSys, "scala-io-extender")
+    val ssysScalaIOExtender = "com.simplesys.core" %% "scala-io-extender" % versions.ssysCoreVersion
+    //val ssysScalaIOExtender = ProjectRef(uriSimpleSys, "scala-io-extender")
 
-    //val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
-    val ssysCommon = ProjectRef(uriSimpleSys, "common")
+    val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
+    //val ssysCommon = ProjectRef(uriSimpleSys, "common")
 
-    //val ssysServletWrapper = "com.simplesys.core" %% "servlet-wrapper" % versions.ssysCoreVersion
-    val ssysServletWrapper = ProjectRef(uriSimpleSys, "servlet-wrapper")
+    val ssysServletWrapper = "com.simplesys.core" %% "servlet-wrapper" % versions.ssysCoreVersion
+    //val ssysServletWrapper = ProjectRef(uriSimpleSys, "servlet-wrapper")
 
-    //val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
-    val ssysCommonWebapp = ProjectRef(uriSimpleSys, "common-webapp")
+    val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
+    //val ssysCommonWebapp = ProjectRef(uriSimpleSys, "common-webapp")
 
-    //val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
-    val ssysJDBCWrapper: ProjectRef = ProjectRef(uriSimpleSys, "jdbc-wrapper")
+    val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
+    //val ssysJDBCWrapper: ProjectRef = ProjectRef(uriSimpleSys, "jdbc-wrapper")
 
     //val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
     val circeExtender = ProjectRef(uriSimpleSys, "circe-extender")

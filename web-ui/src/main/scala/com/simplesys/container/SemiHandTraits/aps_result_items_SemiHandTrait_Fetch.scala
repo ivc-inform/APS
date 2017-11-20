@@ -5,17 +5,11 @@ package ru.simplesys.defs.app.scala.container.aps
 import akka.actor.Actor
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.common.Strings._
-import com.simplesys.isc.dataBinging.RPC.RPCResponseDyn
-import com.simplesys.isc.dataBinging.dataSource.RecordDyn
-import com.simplesys.isc.dataBinging.{DSRequest, DSResponseDyn, DSResponseFailureExDyn}
-import com.simplesys.isc.grids.RecordsDynList
-import com.simplesys.servlet.isc.ServletActor
-import com.simplesys.jdbc._
+import com.simplesys.isc.dataBinging.DSRequest
+import com.simplesys.circe.Circe._
 import com.simplesys.jdbc.control.DSRequest
 import com.simplesys.jdbc.control.clob._
-import com.simplesys.servlet.GetData
-import com.simplesys.tuple.{TupleSS24, TupleSS33}
-import org.joda.time.LocalDateTime
+import com.simplesys.servlet.isc.{GetData, ServletActor}
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{aps_changeover_code_operstype_From_type_NameStrong, aps_changeover_code_operstype_To_type_NameStrong}
 import ru.simplesys.defs.bo.aps._
 
@@ -38,7 +32,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
         case GetData => {
             logger debug s"request: ${newLine + requestData.toPrettyString}"
 
-            val data = requestData.Data
+            val data = requestData.data
             logger debug s"data: ${newLine + data.toPrettyString}"
 
             val _data = RecordsDynList()

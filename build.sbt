@@ -27,12 +27,14 @@ lazy val root = (project in file("."))
   )
 
 lazy val common = Project(id = "common", base = file("common"))
-  .dependsOn(CommonDeps.ssysCommon)
+  .dependsOn(
+      //CommonDeps.ssysCommon
+  )
   .settings(
       libraryDependencies ++= Seq(
           CommonDeps.commonsIO,
           CommonDeps.configWrapper,
-          //CommonDeps.ssysCommon,
+          CommonDeps.ssysCommon,
           CommonDeps.scalaTest % Test
       )
   )
@@ -49,14 +51,14 @@ lazy val testModule = Project(id = "test", base = file("test")).
 lazy val dbObjects = Project(id = "db-objects", base = file("db-objects"))
   .dependsOn(
       common,
-      CommonDeps.ssysJDBCWrapper,
-      CommonDeps.ssysCoreLibrary
+//      CommonDeps.ssysJDBCWrapper,
+//      CommonDeps.ssysCoreLibrary
   )
   .enablePlugins(DevPlugin)
   .settings(
       libraryDependencies ++= Seq(
-          //CommonDeps.ssysCoreLibrary,
-          //CommonDeps.ssysJDBCWrapper,
+          CommonDeps.ssysCoreLibrary,
+          CommonDeps.ssysJDBCWrapper,
           CommonDeps.oraclePoolDataSources,
           CommonDeps.hikariPoolDataSources,
           CommonDeps.jdbcOracle12,
@@ -84,12 +86,13 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
   .dependsOn(
       dbObjects,
       CommonDeps.circeExtender,
-      CommonDeps.ssysServletWrapper,
-      CommonDeps.ssysCommonWebapp,
-      CommonDeps.ssysIscComponents,
-      CommonDeps.ssysScalaIOExtender,
-      CommonDeps.ssysXMLExtender,
-      CommonDeps.ssysIscMisc
+//      CommonDeps.ssysServletWrapper,
+//      CommonDeps.ssysCommonWebapp,
+//      CommonDeps.ssysCommon,
+//      CommonDeps.ssysIscComponents,
+//      CommonDeps.ssysScalaIOExtender,
+//      CommonDeps.ssysXMLExtender,
+//      CommonDeps.ssysIscMisc
   )
   .aggregate(dbObjects).settings(
 
@@ -116,13 +119,13 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
 
     libraryDependencies ++= Seq(
         CommonDeps.servletAPI % Provided,
-        //CommonDeps.ssysIscComponents,
-        //CommonDeps.ssysScalaIOExtender,
-        //CommonDeps.ssysXMLExtender,
-        //CommonDeps.ssysIscMisc,
+        CommonDeps.ssysIscComponents,
+        CommonDeps.ssysScalaIOExtender,
+        CommonDeps.ssysXMLExtender,
+        CommonDeps.ssysIscMisc,
         //CommonDeps.circeExtender,
-        //CommonDeps.ssysCommonWebapp,
-        //CommonDeps.ssysServletWrapper,
+        CommonDeps.ssysCommonWebapp,
+        CommonDeps.ssysServletWrapper,
 
         CommonDeps.smartclient,
 

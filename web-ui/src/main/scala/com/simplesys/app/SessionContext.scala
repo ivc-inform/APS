@@ -1,14 +1,12 @@
 package com.simplesys.app
 
-import ch.qos.logback.core.db.dialect.SQLDialect
+import com.simplesys.common.Strings._
+import com.simplesys.db.pool.PoolDataSource
 import com.simplesys.listener.AppLifeCycleEvent
 import com.simplesys.log.Logging
 import com.simplesys.servlet.ServletContext
 import com.simplesys.servlet.http.HttpSession
 import com.simplesys.servlet.isc.ServletActor
-import com.simplesys.db.pool.PoolDataSource
-import com.simplesys.common.Strings._
-import com.simplesys.sql.SQLDialect
 
 trait SessionContextSupport {
     this: ServletActor =>
