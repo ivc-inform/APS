@@ -6,7 +6,7 @@ import com.simplesys.log.Logging
 import com.simplesys.servlet.ServletContext
 import com.simplesys.servlet.http.HttpSession
 import com.simplesys.servlet.isc.ServletActor
-import oracle.ucp.jdbc.PoolDataSource
+import com.simplesys.db.pool.PoolDataSource
 import com.simplesys.common.Strings._
 import com.simplesys.sql.SQLDialect
 
@@ -53,7 +53,7 @@ class SessionContext(protected val session: Option[HttpSession]) extends Logging
     private[this] var oraclePool: PoolDataSource = null
     def getOraclePool = oraclePool
 
-    def getSQLDialect: SQLDialect = oraclePool.sqlDialect
+    def getSQLDialect: com.simplesys.sql.SQLDialect = oraclePool.sqlDialect
 
     /*private[this] var birtEngine: IReportEngine = null
     def getBirtEngine = birtEngine*/
