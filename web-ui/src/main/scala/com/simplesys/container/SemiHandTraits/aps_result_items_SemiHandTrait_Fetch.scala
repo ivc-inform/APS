@@ -95,9 +95,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                         code_taskTasks_Id_task: String,
                         id_rcRc_Idrc: Long,
                         scode_rcRc_Idrc: String) =>
-                            _data += fromJsonObject(
-                                JsonObject.fromIterable(
-                                    Seq("id_item" -> id_itemResult_items,
+                            _data += fromJsonObject(JsonObject.fromIterable(Seq("id_item" -> id_itemResult_items,
                                         "pos" -> posResult_items,
                                         "opertimestart" -> opertimestartResult_items,
                                         "opertimeend" -> opertimeendResult_items,
@@ -118,8 +116,8 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                                         "to_type_Id_changeover" -> to_typeChangeover_Id_changeover,
                                         "id_task_Id_changeover" -> id_taskChangeover_Id_changeover,
                                         aps_changeover_code_operstype_From_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == from_typeChangeover_Id_changeover.headOption).headOption.map(_.code_operstypeOpers_type),
-                                        aps_changeover_code_operstype_To_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == to_typeChangeover_Id_changeover.headOption).headOption.map(_.code_operstypeOpers_type)))
-                            )
+                                        aps_changeover_code_operstype_To_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == to_typeChangeover_Id_changeover.headOption).headOption.map(_.code_operstypeOpers_type)
+                            )))
                         case x =>
                             new RuntimeException(s"mached as : $x")
                     }
