@@ -8,7 +8,7 @@ import com.simplesys.app.SessionContext.{loggedAttributeName, _}
 import com.simplesys.app._
 import com.simplesys.common.Strings._
 import com.simplesys.common.equality.SimpleEquality._
-import com.simplesys.isc.dataBinging.DSRequest._
+import com.simplesys.isc.dataBinging.DSRequestDyn._
 import com.simplesys.jdbc.control.classBO.Where
 import com.simplesys.jdbc.exception.NoDataFoundException
 import com.simplesys.messages.ActorConfig._

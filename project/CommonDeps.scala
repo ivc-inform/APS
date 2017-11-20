@@ -91,8 +91,8 @@ object CommonDeps {
     val ssysServletWrapper = "com.simplesys.core" %% "servlet-wrapper" % versions.ssysCoreVersion
     //val ssysServletWrapper = ProjectRef(uriSimpleSys, "servlet-wrapper")
 
-    val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
-    //val ssysCommonWebapp = ProjectRef(uriSimpleSys, "common-webapp")
+    //val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
+    val ssysCommonWebapp = ProjectRef(uriSimpleSys, "common-webapp")
 
     val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
     //val ssysJDBCWrapper: ProjectRef = ProjectRef(uriSimpleSys, "jdbc-wrapper")
