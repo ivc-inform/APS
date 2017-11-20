@@ -7,13 +7,14 @@ import java.time.LocalDateTime
 import akka.actor.Actor
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.common.Strings._
-import com.simplesys.isc.dataBinging.{DSRequest, DSResponse, RPCResponse}
+import com.simplesys.isc.dataBinging.{DSRequest, DSResponse, DSResponseFailureEx, RPCResponse}
 import com.simplesys.circe.Circe._
 import com.simplesys.jdbc.control.DsRequest
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.{GetData, ServletActor}
 import io.circe.Json
 import io.circe.Json._
+import io.circe.JsonObject
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{aps_changeover_code_operstype_From_type_NameStrong, aps_changeover_code_operstype_To_type_NameStrong}
 import ru.simplesys.defs.bo.aps._
 
@@ -40,7 +41,9 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
             val data = requestData.data
             logger debug s"data: ${newLine + data.toPrettyString}"
 
-            val qty: Int = {val res = requestData.endRow.getOrElse(0).toInt - requestData.startRow.getOrElse(0).toInt + 1; if (res < 0) 0 else res}
+            val qty: Int = {
+                val res = requestData.endRow.getOrElse(0).toInt - requestData.startRow.getOrElse(0).toInt + 1; if (res < 0) 0 else res
+            }
 
             val select = dataSet.Fetch(
                 dsRequest = DsRequest(
@@ -49,7 +52,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     endRow = requestData.endRow.getOrElse(0),
                     sortBy = requestData.sortBy,
                     data = data,
-                    textMatchStyle = requestData.textMatchStyle
+                    textMatchStyle = requestData.textMatchStyle.get
                 ))
 
             Out(out = select.result match {
@@ -88,37 +91,39 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                         code_taskTasks_Id_task: String,
                         id_rcRc_Idrc: Long,
                         scode_rcRc_Idrc: String) =>
-                            _data += JsonObject (
-                                "id_item" -> id_itemResult_items,
-                                "pos" -> posResult_items,
-                                "opertimestart" -> opertimestartResult_items,
-                                "opertimeend" -> opertimeendResult_items,
-                                "duration" -> durationResult_items,
-                                "id_result" -> id_resultResult_items,
-                                "idrc" -> idrcResult_items,
-                                "id_orders" -> id_ordersResult_items,
-                                "id_task" -> id_taskResult_items,
-                                "id_changeover" -> id_changeoverResult_items,
-                                "scode_Id_result" -> scodeResult_Id_result,
-                                "scode_rc_Idrc" -> scode_rcRc_Idrc,
-                                "code_orders_Id_orders" -> (if (code_ordersOrders_Id_orders.length == 0) "Переналадка" else code_ordersOrders_Id_orders),
-                                "code_task_Id_task" -> code_taskTasks_Id_task,
-                                "idchangeover_Id_changeover" -> idchangeoverChangeover_Id_changeover,
-                                "duration_Id_changeover" -> durationChangeover_Id_changeover,
-                                "idrc_Id_changeover" -> idrcChangeover_Id_changeover,
-                                "from_type_Id_changeover" -> from_typeChangeover_Id_changeover,
-                                "to_type_Id_changeover" -> to_typeChangeover_Id_changeover,
-                                "id_task_Id_changeover" -> id_taskChangeover_Id_changeover,
-                                aps_changeover_code_operstype_From_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == from_typeChangeover_Id_changeover.headOption).headOption.map(_.code_operstypeOpers_type),
-                                aps_changeover_code_operstype_To_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == to_typeChangeover_Id_changeover.headOption).headOption.map(_.code_operstypeOpers_type)
+                            _data += fromJsonObject(
+                                JsonObject.fromIterable(
+                                    Seq("id_item" -> id_itemResult_items,
+                                        "pos" -> posResult_items,
+                                        "opertimestart" -> opertimestartResult_items,
+                                        "opertimeend" -> opertimeendResult_items,
+                                        "duration" -> durationResult_items,
+                                        "id_result" -> id_resultResult_items,
+                                        "idrc" -> idrcResult_items,
+                                        "id_orders" -> id_ordersResult_items,
+                                        "id_task" -> id_taskResult_items,
+                                        "id_changeover" -> id_changeoverResult_items,
+                                        "scode_Id_result" -> scodeResult_Id_result,
+                                        "scode_rc_Idrc" -> scode_rcRc_Idrc,
+                                        "code_orders_Id_orders" -> (if (code_ordersOrders_Id_orders.length == 0) "Переналадка" else code_ordersOrders_Id_orders),
+                                        "code_task_Id_task" -> code_taskTasks_Id_task,
+                                        "idchangeover_Id_changeover" -> idchangeoverChangeover_Id_changeover,
+                                        "duration_Id_changeover" -> durationChangeover_Id_changeover,
+                                        "idrc_Id_changeover" -> idrcChangeover_Id_changeover,
+                                        "from_type_Id_changeover" -> from_typeChangeover_Id_changeover,
+                                        "to_type_Id_changeover" -> to_typeChangeover_Id_changeover,
+                                        "id_task_Id_changeover" -> id_taskChangeover_Id_changeover,
+                                        aps_changeover_code_operstype_From_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == from_typeChangeover_Id_changeover.headOption).headOption.map(_.code_operstypeOpers_type),
+                                        aps_changeover_code_operstype_To_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == to_typeChangeover_Id_changeover.headOption).headOption.map(_.code_operstypeOpers_type)))
                             )
                         case x =>
                             new RuntimeException(s"mached as : $x")
                     }
 
-                    logger debug s"_data: ${newLine + _data.toPrettyString}"
+                    _data.foreach(x ⇒ logger debug s"_data: ${newLine + x.toPrettyString}")
 
-                    DSResponse {
+
+                    new DSResponse {
                         status = RPCResponse.statusSuccess
                         data = _data
                         totalRows = requestData.StartRow.toInt + (if (qty == list.length) qty * 2 else list.length)
