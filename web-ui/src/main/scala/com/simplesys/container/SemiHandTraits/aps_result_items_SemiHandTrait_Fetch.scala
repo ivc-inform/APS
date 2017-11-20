@@ -2,17 +2,22 @@
 
 package ru.simplesys.defs.app.scala.container.aps
 
+import java.time.LocalDateTime
+
 import akka.actor.Actor
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.common.Strings._
-import com.simplesys.isc.dataBinging.DSRequest
+import com.simplesys.isc.dataBinging.{DSRequest, DSResponse, RPCResponse}
 import com.simplesys.circe.Circe._
-import com.simplesys.jdbc.control.DSRequest
+import com.simplesys.jdbc.control.DsRequest
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.{GetData, ServletActor}
+import io.circe.Json
+import io.circe.Json._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{aps_changeover_code_operstype_From_type_NameStrong, aps_changeover_code_operstype_To_type_NameStrong}
 import ru.simplesys.defs.bo.aps._
 
+import scala.collection.mutable.ArrayBuffer
 import scalaz.{Failure, Success}
 
 
@@ -35,11 +40,10 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
             val data = requestData.data
             logger debug s"data: ${newLine + data.toPrettyString}"
 
-            val _data = RecordsDynList()
-            val qty: Int = requestData.EndRow.toInt - requestData.StartRow.toInt + 1
+            val qty: Int = {val res = requestData.endRow.getOrElse(0).toInt - requestData.startRow.getOrElse(0).toInt + 1; if (res < 0) 0 else res}
 
             val select = dataSet.Fetch(
-                dsRequest = DSRequest(
+                dsRequest = DsRequest(
                     sqlDialect = sessionContext.getSQLDialect,
                     startRow = requestData.StartRow,
                     endRow = requestData.EndRow,
@@ -48,13 +52,15 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     textMatchStyle = requestData.TextMatchStyle.toString
                 ))
 
-            Out(classDyn = select.result match {
+            Out(out = select.result match {
                 case Success(list) => {
                     val opersTypes: Seq[Opers_typeDSData] = dataSetOpersType.selectPList().result match {
                         case Success(list) ⇒ list
                         case Failure(_) ⇒ List()
                     }
 
+
+                    val _data = ArrayBuffer.empty[Json]
 
                     list foreach {
                         case TupleSS24(
@@ -82,7 +88,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                         code_taskTasks_Id_task: String,
                         id_rcRc_Idrc: Long,
                         scode_rcRc_Idrc: String) =>
-                            _data += RecordDyn(
+                            _data += JsonObject (
                                 "id_item" -> id_itemResult_items,
                                 "pos" -> posResult_items,
                                 "opertimestart" -> opertimestartResult_items,
@@ -112,16 +118,14 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
 
                     logger debug s"_data: ${newLine + _data.toPrettyString}"
 
-                    new DSResponseDyn {
-                        Status = RPCResponseDyn.statusSuccess
-                        Data = _data
-                        TotalRows = requestData.StartRow.toInt + (if (qty == list.length)
-                            qty * 2
-                        else list.length)
+                    DSResponse {
+                        status = RPCResponse.statusSuccess
+                        data = _data
+                        totalRows = requestData.StartRow.toInt + (if (qty == list.length) qty * 2 else list.length)
                     }
                 }
                 case Failure(_) =>
-                    new DSResponseFailureExDyn(select)
+                    new DSResponseFailureEx(select)
             })
 
             selfStop()
