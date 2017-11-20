@@ -7,11 +7,12 @@ import java.time.LocalDateTime
 import akka.actor.Actor
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.common.Strings._
-import com.simplesys.isc.dataBinging.{DSRequest, DSResponse, DSResponseFailureEx, RPCResponse}
+import com.simplesys.isc.dataBinging._
 import com.simplesys.circe.Circe._
 import com.simplesys.jdbc.control.DsRequest
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.{GetData, ServletActor}
+import com.simplesys.tuple.TupleSS24
 import io.circe.Json
 import io.circe.Json._
 import io.circe.JsonObject
@@ -20,6 +21,8 @@ import ru.simplesys.defs.bo.aps._
 
 import scala.collection.mutable.ArrayBuffer
 import scalaz.{Failure, Success}
+import io.circe.syntax._
+import io.circe.generic.auto._
 
 
 trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with ServletActor {
@@ -42,20 +45,21 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
             logger debug s"data: ${newLine + data.toPrettyString}"
 
             val qty: Int = {
-                val res = requestData.endRow.getOrElse(0).toInt - requestData.startRow.getOrElse(0).toInt + 1; if (res < 0) 0 else res
+                val res = requestData.endRow.getOrElse(0) - requestData.startRow.getOrElse(0) + 1;
+                if (res < 0) 0 else res
             }
 
             val select = dataSet.Fetch(
-                dsRequest = DsRequest(
+                dsRequest = new DsRequest(
                     sqlDialect = sessionContext.getSQLDialect,
                     startRow = requestData.startRow.getOrElse(0),
                     endRow = requestData.endRow.getOrElse(0),
-                    sortBy = requestData.sortBy,
+                    sortBy = requestData.sortBy.getOrElse(Json.Null),
                     data = data,
                     textMatchStyle = requestData.textMatchStyle.get
                 ))
 
-            Out(out = select.result match {
+            val out:Json = select.result match {
                 case Success(list) => {
                     val opersTypes: Seq[Opers_typeDSData] = dataSetOpersType.selectPList().result match {
                         case Success(list) ⇒ list
@@ -122,16 +126,16 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
 
                     _data.foreach(x ⇒ logger debug s"_data: ${newLine + x.toPrettyString}")
 
-
-                    new DSResponse {
-                        status = RPCResponse.statusSuccess
-                        data = _data
-                        totalRows = requestData.StartRow.toInt + (if (qty == list.length) qty * 2 else list.length)
-                    }
+                    DSResponse (
+                        data = arr(_data: _*),
+                        status = RPCResponse.statusSuccess,
+                        totalRows = Some(requestData.startRow.getOrElse(0) + (if (qty == list.length) qty * 2 else list.length))
+                    ).asJson
                 }
                 case Failure(_) =>
-                    new DSResponseFailureEx(select)
-            })
+                    (new DSResponseFailureEx(select)).asJson
+            }
+            Out(out = out)
 
             selfStop()
         }
