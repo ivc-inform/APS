@@ -124,8 +124,8 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
         CommonDeps.ssysXMLExtender,
         CommonDeps.ssysIscMisc,
         CommonDeps.circeExtender,
-        CommonDeps.ssysCommonWebapp,
         CommonDeps.ssysServletWrapper,
+        CommonDeps.ssysCommonWebapp,
 
         CommonDeps.smartclient,
 

@@ -79,8 +79,8 @@ object CommonDeps {
     val ssysAkkaExtender = "com.simplesys.core" %% "akka-extender" % versions.ssysCoreVersion
     //val ssysAkkaExtender = ProjectRef(uriSimpleSys, "akka-extender")
 
-    //val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
-    val ssysConfigWrapper = ProjectRef(uriSimpleSys, "config-wrapper")
+    val ssysConfigWrapper = "com.simplesys.core" %% "config-wrapper" % versions.ssysCoreVersion
+    //val ssysConfigWrapper = ProjectRef(uriSimpleSys, "config-wrapper")
 
     val ssysScalaIOExtender = "com.simplesys.core" %% "scala-io-extender" % versions.ssysCoreVersion
     //val ssysScalaIOExtender = ProjectRef(uriSimpleSys, "scala-io-extender")
