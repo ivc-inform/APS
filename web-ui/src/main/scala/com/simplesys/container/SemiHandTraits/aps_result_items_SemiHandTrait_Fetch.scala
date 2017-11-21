@@ -131,7 +131,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     ).asJson
                 }
                 case Failure(_) =>
-                    (new DSResponseFailureEx(select)).asJson
+                    DSResponseFailureEx(select.printException.get.message, select.printException.get.stackTrace).asJson
             }
             Out(out = out)
 
