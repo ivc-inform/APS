@@ -91,14 +91,14 @@ object CommonDeps {
     val ssysServletWrapper = "com.simplesys.core" %% "servlet-wrapper" % versions.ssysCoreVersion
     //val ssysServletWrapper = ProjectRef(uriSimpleSys, "servlet-wrapper")
 
-    //val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
-    val ssysCommonWebapp = ProjectRef(uriSimpleSys, "common-webapp")
+    val ssysCommonWebapp = "com.simplesys.core" %% "common-webapp" % versions.ssysCoreVersion
+    //val ssysCommonWebapp = ProjectRef(uriSimpleSys, "common-webapp")
 
     val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
     //val ssysJDBCWrapper: ProjectRef = ProjectRef(uriSimpleSys, "jdbc-wrapper")
 
-    //val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
-    val circeExtender = ProjectRef(uriSimpleSys, "circe-extender")
+    val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
+    //val circeExtender = ProjectRef(uriSimpleSys, "circe-extender")
 
     val oraclePoolDataSources: ModuleID = "com.simplesys.core" %% "oracle-pool-datasources" % versions.ssysCoreVersion
     val hikariPoolDataSources = "com.simplesys.core" %% "hikari-cp" % versions.ssysCoreVersion
