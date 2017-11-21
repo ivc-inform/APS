@@ -55,7 +55,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     startRow = requestData.startRow.getOrElse(0),
                     endRow = requestData.endRow.getOrElse(0),
                     sortBy = requestData.sortBy,
-                    data = data.asObject.getOrElse(JsonObject.empty),
+                    data = data,
                     textMatchStyle = requestData.textMatchStyle.get
                 ))
 
