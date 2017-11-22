@@ -7,7 +7,7 @@ import com.simplesys.servlet.http.{HttpServletRequest, HttpServletResponse}
 import com.simplesys.servlet.{GetData, ServletActor, ServletContext}
 import com.simplesys.SmartClient.System._
 
-//http://localhost:8084/aps/StartPage
+//http://localhost:8085/aps/StartPage
 @RSTransfer(urlPattern = "/StartPage")
 class StartPageContainer(val request: HttpServletRequest, val response: HttpServletResponse, val servletContext: ServletContext) extends ServletActor {
 
@@ -35,7 +35,7 @@ class StartPageContainer(val request: HttpServletRequest, val response: HttpServ
     }
 }
 
-//http://localhost:8084/aps/TestDiagramPage
+//http://localhost:8085/aps/TestDiagramPage
 @RSTransfer(urlPattern = "/TestDiagramPage")
 class TestDiagramPageContainer(val request: HttpServletRequest, val response: HttpServletResponse, val servletContext: ServletContext) extends ServletActor {
 
@@ -62,7 +62,7 @@ class TestDiagramPageContainer(val request: HttpServletRequest, val response: Ht
     }
 }
 
-//http://localhost:8084/aps/TestDiagramImprovedPage
+//http://localhost:8085/aps/TestDiagramImprovedPage
 @RSTransfer(urlPattern = "/TestDiagramImprovedPage")
 class TestDiagramImprovedPageContainer(val request: HttpServletRequest, val response: HttpServletResponse, val servletContext: ServletContext) extends ServletActor {
 
