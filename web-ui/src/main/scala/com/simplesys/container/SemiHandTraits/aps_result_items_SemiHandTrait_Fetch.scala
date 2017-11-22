@@ -23,6 +23,8 @@ import scala.collection.mutable.ArrayBuffer
 import scalaz.{Failure, Success}
 import io.circe.syntax._
 import io.circe.generic.auto._
+import de.heikoseeberger.akkahttpcirce.CirceEnum._
+//import de.heikoseeberger.akkahttpcirce.CirceEnum._ Необходим для правильного отображения Enum типа case object from sealed trait; в общем случае это имеет вид {"name":{}}
 
 
 trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with ServletActor {
