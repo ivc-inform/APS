@@ -43,7 +43,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
         case GetData => {
             logger debug s"request: ${newLine + requestData.toPrettyString}"
 
-            val data = requestData.data
+            val data = requestData.request.getJsonObject("data")
             logger debug s"data: ${newLine + data.toPrettyString}"
 
             val qty: Int = {
