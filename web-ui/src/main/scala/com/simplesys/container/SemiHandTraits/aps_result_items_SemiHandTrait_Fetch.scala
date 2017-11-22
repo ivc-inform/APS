@@ -61,7 +61,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     textMatchStyle = requestData.textMatchStyle.getOrElse("exact")
                 ))
 
-            val out:Json = select.result match {
+            val out = select.result match {
                 case Success(list) => {
                     val opersTypes: Seq[Opers_typeDSData] = dataSetOpersType.selectPList().result match {
                         case Success(list) ⇒ list
@@ -130,10 +130,10 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                         data = arr(_data: _*),
                         status = RPCResponse.statusSuccess,
                         totalRows = Some(requestData.startRow.getOrElse(0) + (if (qty == list.length) qty * 2 else list.length))
-                    ).asJson
+                    )
                 }
                 case Failure(_) =>
-                    DSResponseFailureEx(select.printException.get.message, select.printException.get.stackTrace).asJson
+                    DSResponseFailureEx(select.printException.get.message, select.printException.get.stackTrace)
             }
             Out(out = out)
 
