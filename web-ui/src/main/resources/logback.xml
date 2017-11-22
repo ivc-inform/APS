@@ -31,6 +31,7 @@
     <logger name="ru.simplesys.defs.bo.eakd.AbonentsDS" level="debug"/>
     <logger name="com.simplesys.jdbc.control.ClassBO" level="debug"/>
     <logger name="com.simplesys.jdbc.control.Table" level="debug"/>
+    <logger name="com.simplesys.jdbc.control.DsRequest" level="trace"/>
 
     <logger name="com.simplesys.filter.ReLoginAxFilter" level="debug"/>
     <logger name="com.simplesys.oracle.pool.OraclePoolDataSource" level="debug"/>

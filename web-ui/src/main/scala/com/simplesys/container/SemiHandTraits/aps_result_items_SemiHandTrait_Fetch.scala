@@ -56,7 +56,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     endRow = requestData.endRow.getOrElse(0),
                     sortBy = requestData.sortBy,
                     data = data,
-                    textMatchStyle = requestData.textMatchStyle.get
+                    textMatchStyle = requestData.textMatchStyle.getOrElse("exact")
                 ))
 
             val out:Json = select.result match {
