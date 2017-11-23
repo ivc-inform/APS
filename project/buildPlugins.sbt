@@ -21,7 +21,7 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(/*RootP
       PluginDeps.jrebelPlugin,
       PluginDeps.crossproject,
       PluginDeps.sbtCrossproject,
-      PluginDeps.sbtHydraPlugin,
+      //PluginDeps.sbtHydraPlugin,
       libraryDependencies ++= Seq(
           PluginDeps.circeExtender
       )

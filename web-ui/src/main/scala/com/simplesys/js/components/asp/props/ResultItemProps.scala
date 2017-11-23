@@ -35,8 +35,11 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
                 case aps_result_items_scode_Id_result_NameStrong.name ⇒
                     item.hidden = true.opt
                     item
-                case _ ⇒
+                case aps_result_items_duration_NameStrong.name ⇒
                     item.canEdit = false.opt
+                    item
+                case _ ⇒
+                    item.canEdit = true.opt
                     item
             }
     }.opt
@@ -46,7 +49,7 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
     //editEvent = ListGridEditEvent.none.opt
     editEvent = ListGridEditEvent.doubleClick.opt
 
-    itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(false), miEdit(false), miRefresh()).opt
+    //itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(false), miEdit(false), miRefresh()).opt
 
     replacingFields = Seq(
         new ListGridFieldProps {

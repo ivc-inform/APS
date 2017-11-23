@@ -20,7 +20,7 @@ import io.circe.Json._
 import io.circe.generic.auto._
 import io.circe.syntax._
 import io.circe.{Json, JsonObject}
-import ru.simplesys.defs.bo.aps.{Result_items, Result_itemsDS}
+import ru.simplesys.defs.bo.aps.{ChangeoverDS, Result_items, Result_itemsDS}
 
 import scala.collection.mutable.ArrayBuffer
 import scalaz.{Failure, Success}
@@ -33,11 +33,13 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
     logger debug s"Request for Update: ${newLine + requestData.toPrettyString}"
 
     val dataSet = Result_itemsDS(oraclePool)
+    val dataSetCHOV = ChangeoverDS(oraclePool)
+
     /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
 
-    def duration(opertimestart: Option[LocalDateTime], opertimeend: Option[LocalDateTime]): Option[Double] = opertimestart.flatMap {
+    def getDuration(opertimestart: Option[LocalDateTime], opertimeend: Option[LocalDateTime]): Option[Double] = opertimestart.flatMap {
         opertimestart ⇒
-           opertimeend.map {
+            opertimeend.map {
                 opertimeend ⇒
                     truncateAt((opertimeend.getMillis - opertimestart.getMillis) / 1000.00 / 60.00 / 60.00, 4)
             }
@@ -58,19 +60,25 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                           .getJsonObject("data")
 
                         logger debug s"data: ${newLine + data.toPrettyString}"
+
+                        val a = getDuration(data.getLocalDateTimeOpt("opertimestart"), data.getLocalDateTimeOpt("opertimeend"))
+                        val duration: Option[Double] = if (data.getLongOpt("idrc_Id_changeover").isDefined) None else a
+                        val durationCHOV: Option[Double] = if (data.getLongOpt("idrc_Id_changeover").isDefined) a else None
+
                         val result_itemsData =
                             Result_items(
                                 id_item = data.getLong("id_item"),
                                 pos = data.getLongOpt("pos"),
                                 opertimestart = data.getLocalDateTimeOpt("opertimestart"),
                                 opertimeend = data.getLocalDateTimeOpt("opertimeend"),
-                                duration = data.getDoubleOpt("duration"),
+                                duration = duration,
                                 id_result = data.getLong("id_result"),
                                 idrc = data.getLong("idrc"),
                                 id_orders = data.getLongOpt("id_orders"),
                                 id_task = data.getLongOpt("id_task"),
                                 id_changeover = data.getLongOpt("id_changeover")
                             )
+
 
                         listResponse append DSResponse(
                             status = RPCResponse.statusSuccess,
@@ -80,7 +88,7 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                     "pos" -> result_itemsData.pos,
                                     "opertimestart" -> result_itemsData.opertimestart,
                                     "opertimeend" -> result_itemsData.opertimeend,
-                                    "duration" -> duration(result_itemsData.opertimestart, result_itemsData.opertimeend),
+                                    "duration" -> result_itemsData.duration,
                                     "id_result" -> result_itemsData.id_result,
                                     "idrc" -> result_itemsData.idrc,
                                     "id_orders" -> result_itemsData.id_orders,
@@ -88,21 +96,14 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                     "id_changeover" -> result_itemsData.id_changeover,
                                     "scode_Id_result" -> data.getStringOpt("scode_Id_result"),
                                     "scode_rc_Idrc" -> data.getString("scode_rc_Idrc"),
-                                    "code_orders_Id_orders" -> data.getStringOpt(
-                                        "code_orders_Id_orders"),
+                                    "code_orders_Id_orders" -> data.getStringOpt("code_orders_Id_orders"),
                                     "code_task_Id_task" -> data.getString("code_task_Id_task"),
-                                    "idchangeover_Id_changeover" -> data.getLongOpt(
-                                        "idchangeover_Id_changeover"),
-                                    "duration_Id_changeover" -> data.getDoubleOpt(
-                                        "duration_Id_changeover"),
-                                    "idrc_Id_changeover" -> data.getLongOpt(
-                                        "idrc_Id_changeover"),
-                                    "from_type_Id_changeover" -> data.getLongOpt(
-                                        "from_type_Id_changeover"),
-                                    "to_type_Id_changeover" -> data.getLongOpt(
-                                        "to_type_Id_changeover"),
-                                    "id_task_Id_changeover" -> data.getLongOpt(
-                                        "id_task_Id_changeover")
+                                    "idchangeover_Id_changeover" -> data.getLongOpt("idchangeover_Id_changeover"),
+                                    "duration_Id_changeover" -> durationCHOV,
+                                    "idrc_Id_changeover" -> data.getLongOpt("idrc_Id_changeover"),
+                                    "from_type_Id_changeover" -> data.getLongOpt("from_type_Id_changeover"),
+                                    "to_type_Id_changeover" -> data.getLongOpt("to_type_Id_changeover"),
+                                    "id_task_Id_changeover" -> data.getLongOpt("id_task_Id_changeover")
                                 )))
                         ).asJson
 
@@ -117,18 +118,20 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                               .getOrElse(Transaction())
                               .operations
                               .flatMap { operation => {
-                                  val data = operation.getJsonObjectOpt("oldValues") ++ operation
-                                    .getJsonObjectOpt("data")
+                                  val data = operation.getJsonObjectOpt("oldValues") ++ operation.getJsonObjectOpt("data")
                                   logger debug (s"data: ${newLine + data.toPrettyString}")
+
+                                  val a = getDuration(data.getLocalDateTimeOpt("opertimestart"), data.getLocalDateTimeOpt("opertimeend"))
+                                  val duration: Option[Double] = if (data.getLongOpt("idrc_Id_changeover").isDefined) None else a
+                                  val durationCHOV: Option[Double] = if (data.getLongOpt("idrc_Id_changeover").isDefined) a else None
 
                                   val result_itemsData =
                                       Result_items(
                                           id_item = data.getLong("id_item"),
                                           pos = data.getLongOpt("pos"),
-                                          opertimestart =
-                                            data.getLocalDateTimeOpt("opertimestart"),
+                                          opertimestart = data.getLocalDateTimeOpt("opertimestart"),
                                           opertimeend = data.getLocalDateTimeOpt("opertimeend"),
-                                          duration = data.getDoubleOpt("duration"),
+                                          duration = duration,
                                           id_result = data.getLong("id_result"),
                                           idrc = data.getLong("idrc"),
                                           id_orders = data.getLongOpt("id_orders"),
@@ -143,31 +146,22 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                           "pos" -> result_itemsData.pos,
                                           "opertimestart" -> result_itemsData.opertimestart,
                                           "opertimeend" -> result_itemsData.opertimeend,
-                                          "duration" -> duration(result_itemsData.opertimestart, result_itemsData.opertimeend),
+                                          "duration" -> result_itemsData.duration,
                                           "id_result" -> result_itemsData.id_result,
                                           "idrc" -> result_itemsData.idrc,
                                           "id_orders" -> result_itemsData.id_orders,
                                           "id_task" -> result_itemsData.id_task,
                                           "id_changeover" -> result_itemsData.id_changeover,
-                                          "scode_Id_result" -> data.getStringOpt(
-                                              "scode_Id_result"),
+                                          "scode_Id_result" -> data.getStringOpt("scode_Id_result"),
                                           "scode_rc_Idrc" -> data.getString("scode_rc_Idrc"),
-                                          "code_orders_Id_orders" -> data.getStringOpt(
-                                              "code_orders_Id_orders"),
-                                          "code_task_Id_task" -> data.getString(
-                                              "code_task_Id_task"),
-                                          "idchangeover_Id_changeover" -> data.getLongOpt(
-                                              "idchangeover_Id_changeover"),
-                                          "duration_Id_changeover" -> data.getDoubleOpt(
-                                              "duration_Id_changeover"),
-                                          "idrc_Id_changeover" -> data.getLongOpt(
-                                              "idrc_Id_changeover"),
-                                          "from_type_Id_changeover" -> data.getLongOpt(
-                                              "from_type_Id_changeover"),
-                                          "to_type_Id_changeover" -> data.getLongOpt(
-                                              "to_type_Id_changeover"),
-                                          "id_task_Id_changeover" -> data.getLongOpt(
-                                              "id_task_Id_changeover")
+                                          "code_orders_Id_orders" -> data.getStringOpt("code_orders_Id_orders"),
+                                          "code_task_Id_task" -> data.getString("code_task_Id_task"),
+                                          "idchangeover_Id_changeover" -> data.getLongOpt("idchangeover_Id_changeover"),
+                                          "duration_Id_changeover" -> durationCHOV,
+                                          "idrc_Id_changeover" -> data.getLongOpt("idrc_Id_changeover"),
+                                          "from_type_Id_changeover" -> data.getLongOpt("from_type_Id_changeover"),
+                                          "to_type_Id_changeover" -> data.getLongOpt("to_type_Id_changeover"),
+                                          "id_task_Id_changeover" -> data.getLongOpt("id_task_Id_changeover")
                                       )))
                                   ).asJson
                                   dataSet.updatePWithoutCommit(
