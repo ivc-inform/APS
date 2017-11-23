@@ -3,6 +3,8 @@
 package ru.simplesys.defs.app.scala.container.aps
 
 // import de.heikoseeberger.akkahttpcirce.CirceEnum._ Необходим для правильного отображения Enum типа case object from sealed trait; в общем случае это имеет вид {"name":{}}
+import java.time.LocalDateTime
+
 import akka.actor.Actor
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.circe.Circe._
@@ -61,6 +63,21 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                 id_changeover = data.getLongOpt("id_changeover")
                             )
 
+                        val opertimestart: Option[LocalDateTime] = result_itemsData.opertimestart
+                        opertimestart.foreach(opertimestart ⇒ println(s"opertimestart: ${localDateTime2Str(opertimestart)}"))
+
+                        val opertimeend: Option[LocalDateTime] = result_itemsData.opertimeend
+                        opertimeend.foreach(opertimeend ⇒ println(s"opertimeend: ${localDateTime2Str(opertimeend)}"))
+
+                        val duration = result_itemsData.opertimestart.map {
+                            opertimestart ⇒
+                                result_itemsData.opertimeend.map {
+                                    opertimeend ⇒
+                                        BigDecimal((opertimeend.getMillis - opertimestart.getMillis) / 1000 / 60 / 60).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
+
+                                }
+                        }.flatten
+
                         listResponse append DSResponse(
                             status = RPCResponse.statusSuccess,
                             data = fromJsonObject(
@@ -69,7 +86,7 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                     "pos" -> result_itemsData.pos,
                                     "opertimestart" -> result_itemsData.opertimestart,
                                     "opertimeend" -> result_itemsData.opertimeend,
-                                    "duration" -> result_itemsData.duration,
+                                    "duration" -> (if (duration.isDefined) duration else result_itemsData.duration),
                                     "id_result" -> result_itemsData.id_result,
                                     "idrc" -> result_itemsData.idrc,
                                     "id_orders" -> result_itemsData.id_orders,
