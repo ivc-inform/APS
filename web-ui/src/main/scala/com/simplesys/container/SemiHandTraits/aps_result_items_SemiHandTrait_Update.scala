@@ -113,9 +113,13 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                             idchangeover ⇒
                                 dataSetCHOV.selectPOne(where = Where(dataSetCHOV.idchangeoverChangeover === idchangeover)).result match {
                                     case Success(item) ⇒
+                                        println(item)
                                         val chOV = new Changeover(idchangeover = item.idchangeoverChangeover, duration = durationCHOV, idrc = item.idrcChangeover, from_type = item.from_typeChangeover, to_type = item.to_typeChangeover, id_task = item.id_taskChangeover)
+                                        println(chOV)
                                         dataSetCHOV.updateP(values = chOV, where = Where(dataSetCHOV.idchangeoverChangeover === idchangeover))
-                                    case Failure(fail) ⇒ throw fail
+                                    case Failure(fail) ⇒
+                                        println(fail)
+                                        throw fail
                                 }
                         }
                         res
