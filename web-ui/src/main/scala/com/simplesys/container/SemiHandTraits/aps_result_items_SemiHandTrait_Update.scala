@@ -107,15 +107,18 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                 )))
                         ).asJson
 
-                        val res = dataSet.updateP(values = result_itemsData,where = Where(dataSet.id_itemResult_items === result_itemsData.id_item))
+                        val res = dataSet.updateP(values = result_itemsData, where = Where(dataSet.id_itemResult_items === result_itemsData.id_item))
 
-                        dataSetCHOV.selectPOne(where = Where(dataSetCHOV.idchangeoverChangeover === data.getLongOpt("idchangeover_Id_changeover"))).result match {
-                            case Success (item) ⇒
-                                val chOV = new Changeover(idchangeover = item.idchangeoverChangeover, duration = durationCHOV, idrc = item.idrcChangeover, from_type = item.from_typeChangeover, to_type = item.to_typeChangeover, id_task = item.id_taskChangeover)
-                                dataSetCHOV.updateP(values = chOV , where = Where(dataSetCHOV.idchangeoverChangeover === data.getLongOpt("idchangeover_Id_changeover")))
-                            case  Failure(fail) ⇒ throw fail
+                        data.getLongOpt("idchangeover_Id_changeover").foreach {
+                            idchangeover ⇒
+                                dataSetCHOV.selectPOne(where = Where(dataSetCHOV.idchangeoverChangeover === idchangeover)).result match {
+                                    case Success(item) ⇒
+                                        val chOV = new Changeover(idchangeover = item.idchangeoverChangeover, duration = durationCHOV, idrc = item.idrcChangeover, from_type = item.from_typeChangeover, to_type = item.to_typeChangeover, id_task = item.id_taskChangeover)
+                                        dataSetCHOV.updateP(values = chOV, where = Where(dataSetCHOV.idchangeoverChangeover === idchangeover))
+                                    case Failure(fail) ⇒ throw fail
+                                }
                         }
-                        res 
+                        res
                     }
                     case _ =>
                         transaction(dataSet.dataSource) { connection =>
