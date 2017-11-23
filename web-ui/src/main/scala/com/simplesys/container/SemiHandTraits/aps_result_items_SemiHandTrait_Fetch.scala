@@ -6,24 +6,19 @@ import java.time.LocalDateTime
 
 import akka.actor.Actor
 import com.simplesys.app.SessionContextSupport
+import com.simplesys.circe.Circe._
 import com.simplesys.common.Strings._
 import com.simplesys.isc.dataBinging._
-import com.simplesys.circe.Circe._
 import com.simplesys.jdbc.control.DsRequest
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.{GetData, ServletActor}
-import com.simplesys.tuple.TupleSS24
-import io.circe.Json
 import io.circe.Json._
-import io.circe.JsonObject
+import io.circe.{Json, JsonObject}
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{aps_changeover_code_operstype_From_type_NameStrong, aps_changeover_code_operstype_To_type_NameStrong}
 import ru.simplesys.defs.bo.aps._
 
 import scala.collection.mutable.ArrayBuffer
 import scalaz.{Failure, Success}
-import io.circe.syntax._
-import io.circe.generic.auto._
-import de.heikoseeberger.akkahttpcirce.CirceEnum._
 //import de.heikoseeberger.akkahttpcirce.CirceEnum._ Необходим для правильного отображения Enum типа case object from sealed trait; в общем случае это имеет вид {"name":{}}
 
 
