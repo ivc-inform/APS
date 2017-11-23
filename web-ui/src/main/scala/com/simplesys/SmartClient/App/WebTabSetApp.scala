@@ -22,6 +22,7 @@ import com.simplesys.SmartClient.Tools.WindowsStack
 import com.simplesys.System.Types._
 import com.simplesys.System._
 import com.simplesys.function._
+import com.simplesys.js.components.gantt.DateUtils
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 
