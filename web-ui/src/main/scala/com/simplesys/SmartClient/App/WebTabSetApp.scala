@@ -8,7 +8,7 @@ import com.simplesys.SmartClient.Control.props.MenuSSProps
 import com.simplesys.SmartClient.Control.props.menu.MenuSSItemProps
 import com.simplesys.SmartClient.DataBinding.props.dataSource.DataSourceFieldProps
 import com.simplesys.SmartClient.DataBinding.props.{DataSourceProps, DataViewProps}
-import com.simplesys.SmartClient.DataBinding.{DataSource, DataSourceSSstatic, RestDataSourceSS}
+import com.simplesys.SmartClient.DataBinding.{DataSource, DataSourceSSstatic, DataView, RestDataSourceSS}
 import com.simplesys.SmartClient.Forms.formsItems.FormItem
 import com.simplesys.SmartClient.Foundation.Canvas
 import com.simplesys.SmartClient.Foundation.props.LabelProps
@@ -104,7 +104,7 @@ trait WebTabSetApp extends TabSetStack {
                                 if (isc.params.locale != "en")
                                     localeFile = "isomorphic/locales/frameworkMessages_" + isc.params.locale + ".properties"
 
-                                FileLoader.loadJSFiles(localeFile, {
+                                FileLoader.loadJSFiles(localeFile,
                                     () =>
                                         if (loadSchemas)
                                             DataSourceSSstatic.loadComponentSchemas(
@@ -125,7 +125,7 @@ trait WebTabSetApp extends TabSetStack {
                                                     members = Seq(mainCanvas).opt
                                                 }
                                             )
-                                })
+                                )
                         }
                     )
             }

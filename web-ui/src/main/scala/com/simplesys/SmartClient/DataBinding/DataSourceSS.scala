@@ -12,7 +12,7 @@ trait DataSourceSS extends DataSource {
 @js.native
 abstract trait AbstractDataSourceSSCompanion extends AbstractDataSourceCompanion {
     var loaderSchemasURL: URL = js.native
-    def loadComponentSchemas(callback: js.Function0[_]): void = js.native
+    def loadComponentSchemas[T](callback: js.Function0[T]): T = js.native
     def getLogDataSources():void = js.native
 }
 
