@@ -12,6 +12,7 @@ import com.simplesys.jdbc.control.ValidationEx
 import com.simplesys.jdbc.control.classBO.Where
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.{GetData, ServletActor}
+import com.simplesys.jdbc.control.SessionStructures._
 import io.circe.Json._
 import io.circe.generic.auto._
 import io.circe.syntax._
