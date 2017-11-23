@@ -202,9 +202,7 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
                 Seq("isomorphic") -> Some(Seq("webapp", "isomorphic"))
             )
         ),
-        currentProjectGenerationDirPath in MergeWebappConfig := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponents",
-        currentProjectDevelopedDirPath in MergeWebappConfig := (sourceDirectory in Compile).value / "webapp" / "javascript" / "developed",
-        currentProjectCoffeeDevelopedDirPath in MergeWebappConfig := (sourceDirectory in Compile).value / "webapp" / "coffeescript" / "developed",
+        webAppDirPath in MergeWebappConfig := (sourceDirectory in Compile).value / "webapp" ,
         merge in MergeWebappConfig := (merge in MergeWebappConfig).dependsOn(CoffeeScriptKeys.coffeeScript in Assets).value,
 
         //xsbtWeb
