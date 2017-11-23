@@ -12,6 +12,7 @@ import com.simplesys.isc.dataBinging._
 import com.simplesys.jdbc.control.DsRequest
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.{GetData, ServletActor}
+import com.simplesys.tuple.TupleSS24
 import io.circe.Json._
 import io.circe.{Json, JsonObject}
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{aps_changeover_code_operstype_From_type_NameStrong, aps_changeover_code_operstype_To_type_NameStrong}
