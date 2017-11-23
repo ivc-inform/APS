@@ -20,7 +20,8 @@ import io.circe.Json._
 import io.circe.generic.auto._
 import io.circe.syntax._
 import io.circe.{Json, JsonObject}
-import ru.simplesys.defs.bo.aps.{ChangeoverDS, Result_items, Result_itemsDS}
+import ru.simplesys.defs.bo.aps.{Changeover, ChangeoverDS, Result_items, Result_itemsDS}
+import com.simplesys.common.array._
 
 import scala.collection.mutable.ArrayBuffer
 import scalaz.{Failure, Success}
@@ -52,8 +53,7 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
 
                 val listResponse = ArrayBuffer.empty[Json]
 
-                val update: ValidationEx[Array[Int]] = requestData.transaction
-                  .getOrElse(Transaction())
+                val update: ValidationEx[Array[Int]] = requestData.transaction.getOrElse(Transaction())
                   .transactionNum match {
                     case None => {
                         val data = requestData.oldValues ++ requestData.request
@@ -107,10 +107,15 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                 )))
                         ).asJson
 
-                        dataSet.updateP(
-                            values = result_itemsData,
-                            where = Where(
-                                dataSet.id_itemResult_items === result_itemsData.id_item))
+                        val res = dataSet.updateP(values = result_itemsData,where = Where(dataSet.id_itemResult_items === result_itemsData.id_item))
+
+                        dataSetCHOV.selectPOne(where = Where(dataSetCHOV.idchangeoverChangeover === data.getLongOpt("idchangeover_Id_changeover"))).result match {
+                            case Success (item) ⇒
+                                val chOV = new Changeover(idchangeover = item.idchangeoverChangeover, duration = durationCHOV, idrc = item.idrcChangeover, from_type = item.from_typeChangeover, to_type = item.to_typeChangeover, id_task = item.id_taskChangeover)
+                                dataSetCHOV.updateP(values = chOV , where = Where(dataSetCHOV.idchangeoverChangeover === data.getLongOpt("idchangeover_Id_changeover")))
+                            case  Failure(fail) ⇒ throw fail
+                        }
+                        res 
                     }
                     case _ =>
                         transaction(dataSet.dataSource) { connection =>
