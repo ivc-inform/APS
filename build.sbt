@@ -206,7 +206,7 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
         merge in MergeWebappConfig := (merge in MergeWebappConfig).dependsOn(CoffeeScriptKeys.coffeeScript in Assets).value,
 
         //xsbtWeb
-        containerPort := 8084,
+        containerPort := 8085,
         containerArgs := Seq("--path", "/aps"),
         containerLibs in Jetty := Seq(
             CommonDeps.jettyRuner intransitive()
