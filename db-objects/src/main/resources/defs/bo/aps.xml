@@ -101,7 +101,7 @@
 			<classSimple autoTableMapping="true" caption="Матрица наладки" name="changeover">
 				<attrs>
 					<attr caption="Идентификатор матрицы наладки" genBySeq="true" hidden="true" mandatory="false" name="idchangeover" type="id" useDbPrefix="false"></attr>
-					<attr caption="Время наладки" name="duration" type="fDouble" mandatory="false" useDbPrefix="false"></attr>
+					<attr caption="Время наладки" name="duration" type="fDouble" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>

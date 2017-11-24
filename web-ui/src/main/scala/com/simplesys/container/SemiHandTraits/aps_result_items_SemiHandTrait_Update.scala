@@ -67,9 +67,9 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
 
                         logger debug s"data: ${newLine + data.toPrettyString}"
 
-                        val a = getDuration(data.getLocalDateTimeOpt("opertimestart"), data.getLocalDateTimeOpt("opertimeend"))
-                        val duration: Option[Double] = if (data.getLongOpt("idrc_Id_changeover").isDefined) None else a
-                        val durationCHOV: Option[Double] = if (data.getLongOpt("idrc_Id_changeover").isDefined) a else None
+                        val calcDuration = getDuration(data.getLocalDateTimeOpt("opertimestart"), data.getLocalDateTimeOpt("opertimeend"))
+                        val duration: Option[Double] = if (data.getLongOpt("idchangeover_Id_changeover").isDefined) None else calcDuration
+                        val durationCHOV: Option[Double] = if (data.getLongOpt("idchangeover_Id_changeover").isDefined) calcDuration else None
 
                         val result_itemsData =
                             Result_items(
