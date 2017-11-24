@@ -6,7 +6,7 @@ import com.simplesys.System.{JSAny, JSUndefined}
 import com.simplesys.function._
 import com.simplesys.gantt.GanttChart._
 import com.simplesys.gantt._
-import com.simplesys.js.components.gantt.GanttImprovedChart
+import com.simplesys.js.components.gantt.GanttImprovedChartTest
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
@@ -15,8 +15,8 @@ import org.scalajs.dom
 import scala.language.implicitConversions
 import scalatags.Text.all._
 
-class GanttImprovedChartProps extends CanvasProps {
-    type classHandler <: GanttImprovedChart
+class GanttImprovedChartTestProps extends CanvasProps {
+    type classHandler <: GanttImprovedChartTest
 
     height = "100%"
     getID1 = {
