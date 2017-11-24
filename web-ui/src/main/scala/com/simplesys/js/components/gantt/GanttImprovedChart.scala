@@ -6,10 +6,10 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 
 @js.native
-trait GanttImprovedChartTest extends GanttImprovedChart {
+trait GanttImprovedChart extends Canvas {
 }
 
 @js.native
-abstract trait AbstractGanttImprovedChartTestCompanion extends AbstractGanttImprovedChartCompanion {
+abstract trait AbstractGanttImprovedChartCompanion extends AbstractCanvasCompanion {
 }
- 
+

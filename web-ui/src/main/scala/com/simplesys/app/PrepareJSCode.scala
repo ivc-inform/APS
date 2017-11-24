@@ -22,8 +22,8 @@ object PrepareJSCode extends StaticJSCode {
         isc.defineClass(TasksLayout.getClass.getSimpleName, ChainMasterDetail.getClass.getSimpleName)
         isc.defineClass(Tasks.getClass.getSimpleName, CommonTreeGridEditorComponent.getClass.getSimpleName)
         isc.defineClass(GanttChart.getClass.getSimpleName, Canvas.getClass.getSimpleName)
-        isc.defineClass(GanttImprovedChartTest.getClass.getSimpleName, Canvas.getClass.getSimpleName)
-
+        isc.defineClass(GanttImprovedChart.getClass.getSimpleName, Canvas.getClass.getSimpleName)
+        isc.defineClass(GanttImprovedChartTest.getClass.getSimpleName, GanttImprovedChart.getClass.getSimpleName)
 
         DataSourcesJS.aps_result_items_DS.fieldsObj.update(aps_changeover_code_operstype_From_type_NameStrong.name, DataSourcesJS.aps_changeover_DS.fieldsObj(aps_changeover_code_operstype_From_type_NameStrong.name))
         DataSourcesJS.aps_result_items_DS.fieldsObj.update(aps_changeover_code_operstype_To_type_NameStrong.name, DataSourcesJS.aps_changeover_DS.fieldsObj(aps_changeover_code_operstype_To_type_NameStrong.name))

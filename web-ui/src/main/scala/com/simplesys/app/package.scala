@@ -3,8 +3,8 @@ package com.simplesys
 import com.simplesys.SmartClient.System.SCApply
 import com.simplesys.js.components.asp._
 import com.simplesys.js.components.asp.props._
-import com.simplesys.js.components.gantt.{GanttChart, GanttImprovedChartTest}
-import com.simplesys.js.components.gantt.props.{GanttChartProps, GanttImprovedChartTestProps}
+import com.simplesys.js.components.gantt.{GanttChart, GanttImprovedChart, GanttImprovedChartTest}
+import com.simplesys.js.components.gantt.props.{GanttChartProps, GanttImprovedChartProps, GanttImprovedChartTestProps}
 
 //Должны быть
 //import com.simplesys.SmartClient.System._
@@ -101,6 +101,7 @@ package object app {
     object Result extends SCApply[Result, ResultProps]
     object GanttChart extends SCApply[GanttChart, GanttChartProps]
     object GanttImprovedChartTest extends SCApply[GanttImprovedChartTest, GanttImprovedChartTestProps]
+    object GanttImprovedChart extends SCApply[GanttImprovedChart, GanttImprovedChartProps]
     object Orders extends SCApply[Orders, OrdersProps]
     object TasksOrders extends SCApply[TasksOrders, TasksOrdersProps]
     object TasksLayout extends SCApply[TasksLayout, TasksLayoutProps]

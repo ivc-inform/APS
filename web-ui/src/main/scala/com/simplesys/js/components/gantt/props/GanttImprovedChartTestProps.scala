@@ -1,40 +1,18 @@
 package com.simplesys.js.components.gantt.props
 
-import com.simplesys.SmartClient.Foundation.props.CanvasProps
-import com.simplesys.SmartClient.System.{Canvas, IscArray, isc}
+import com.simplesys.SmartClient.System.IscArray
 import com.simplesys.System.{JSAny, JSUndefined}
 import com.simplesys.function._
 import com.simplesys.gantt.GanttChart._
 import com.simplesys.gantt._
 import com.simplesys.js.components.gantt.GanttImprovedChartTest
-import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
-import com.simplesys.option.{ScNone, ScOption}
 import org.scalajs.dom
 
 import scala.language.implicitConversions
-import scalatags.Text.all._
 
-class GanttImprovedChartTestProps extends CanvasProps {
+class GanttImprovedChartTestProps extends GanttImprovedChartProps {
     type classHandler <: GanttImprovedChartTest
-
-    height = "100%"
-    getID1 = {
-        (thiz: classHandler) ⇒
-            s"${thiz.getID}_ganttChartImproved"
-    }.toThisFunc.opt
-
-    getInnerHTML = {
-        (thiz: classHandler) ⇒
-            div(
-                style := "position:relative",
-                id := thiz.getID1,
-                `class` := "gantt"
-            ).render
-    }.toThisFunc.opt
-
-
-    var canvasWidth: ScOption[Int] = ScNone
 
     draw = {
         (thiz: classHandler, args: JSUndefined[IscArray[JSAny]]) ⇒
@@ -85,6 +63,4 @@ class GanttImprovedChartTestProps extends CanvasProps {
                 thiz
             }
     }.toThisFunc.opt
-
-    redrawOnResize = false.opt
 }
