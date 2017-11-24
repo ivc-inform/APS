@@ -58,7 +58,6 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
             nameStrong = aps_result_items_pos_NameStrong.opt
             align = Alignment.center.opt
             `type` = ListGridFieldType.nInt_SimpleType.opt
-            canEdit = false.opt
         },
         new ListGridFieldProps {
             nameStrong = aps_result_items_duration_NameStrong.opt
