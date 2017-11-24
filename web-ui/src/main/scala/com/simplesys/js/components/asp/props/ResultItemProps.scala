@@ -28,6 +28,9 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
                     item.title = "Код типа  операции после переналадки".opt
                     item.canEdit = false.opt
                     item
+                case aps_result_items_pos_NameStrong.name ⇒
+                    item.canEdit = true.opt
+                    item
                 case aps_result_items_opertimestart_NameStrong.name ⇒
                     item.canEdit = true.opt
                     item
