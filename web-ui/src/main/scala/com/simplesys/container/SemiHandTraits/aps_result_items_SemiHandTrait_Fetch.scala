@@ -49,9 +49,6 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                 if (res < 0) 0 else res
             }
 
-            println(s"requestData.startRow: ${requestData.startRow}")
-            println(s"requestData.endRow: ${requestData.endRow}")
-
             val select = dataSet.Fetch(
                 dsRequest = new DsRequest(
                     sqlDialect = sessionContext.getSQLDialect,
@@ -126,9 +123,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     }
 
                     _data.foreach(x ⇒ logger debug s"_data: ${newLine + x.toPrettyString}")
-
-                    println(s"qty : $qty")
-                    println(s"list.length : ${list.length}")
+                    
                     DSResponse(
                         data = arr(_data: _*),
                         status = RPCResponse.statusSuccess,
