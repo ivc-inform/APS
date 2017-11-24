@@ -20,8 +20,9 @@ import io.circe.Json._
 import io.circe.generic.auto._
 import io.circe.syntax._
 import io.circe.{Json, JsonObject}
-import ru.simplesys.defs.bo.aps.{Changeover, ChangeoverDS, Result_items, Result_itemsDS}
+import ru.simplesys.defs.bo.aps._
 import com.simplesys.common.array._
+import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{aps_changeover_code_operstype_From_type_NameStrong, aps_changeover_code_operstype_To_type_NameStrong}
 
 import scala.collection.mutable.ArrayBuffer
 import scalaz.{Failure, Success}
@@ -35,6 +36,7 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
 
     val dataSet = Result_itemsDS(oraclePool)
     val dataSetCHOV = ChangeoverDS(oraclePool)
+    val dataSetOpersType = Opers_typeDS(oraclePool)
 
     /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
 
@@ -52,6 +54,11 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                 logger debug s"request: ${newLine + requestData.toPrettyString}"
 
                 val listResponse = ArrayBuffer.empty[Json]
+
+                val opersTypes: Seq[Opers_typeDSData] = dataSetOpersType.selectPList().result match {
+                    case Success(list) ⇒ list
+                    case Failure(_) ⇒ List()
+                }
 
                 val update: ValidationEx[Array[Int]] = requestData.transaction.getOrElse(Transaction())
                   .transactionNum match {
@@ -80,6 +87,33 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                             )
 
 
+                        data.getLongOpt("idchangeover_Id_changeover").foreach {
+                            idchangeover ⇒
+                                dataSetCHOV.selectPOne(where = Where(dataSetCHOV.idchangeoverChangeover === idchangeover)).result match {
+                                    case Success(item) ⇒
+                                        println(s"idchangeover: $idchangeover")
+                                        println(s"durationCHOV: $durationCHOV")
+                                        val chOV = new Changeover(
+                                            idchangeover = item.idchangeoverChangeover,
+                                            duration = durationCHOV,
+                                            idrc = item.idrcChangeover,
+                                            from_type = item.from_typeChangeover,
+                                            to_type = item.to_typeChangeover,
+                                            id_task = item.id_taskChangeover
+                                        )
+                                        //println(chOV)
+                                        dataSetCHOV.updateP(values = chOV, where = Where(dataSetCHOV.idchangeoverChangeover === idchangeover)).result match {
+                                            case Success(array) ⇒
+                                                println(s"updated: ${array.mkString("[", ",", "]")}")
+                                            case Failure(fail) ⇒
+                                                throw fail
+                                        }
+                                    case Failure(fail) ⇒
+                                        //println(fail)
+                                        throw fail
+                                }
+                        }
+
                         listResponse append DSResponse(
                             status = RPCResponse.statusSuccess,
                             data = fromJsonObject(
@@ -103,87 +137,77 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                     "idrc_Id_changeover" -> data.getLongOpt("idrc_Id_changeover"),
                                     "from_type_Id_changeover" -> data.getLongOpt("from_type_Id_changeover"),
                                     "to_type_Id_changeover" -> data.getLongOpt("to_type_Id_changeover"),
-                                    "id_task_Id_changeover" -> data.getLongOpt("id_task_Id_changeover")
+                                    "id_task_Id_changeover" -> data.getLongOpt("id_task_Id_changeover"),
+                                    aps_changeover_code_operstype_From_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == data.getLongOpt("from_type_Id_changeover").headOption).headOption.map(_.code_operstypeOpers_type),
+                                    aps_changeover_code_operstype_To_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == data.getLongOpt("to_type_Id_changeover").headOption).headOption.map(_.code_operstypeOpers_type)
                                 )))
                         ).asJson
 
-                        val res = dataSet.updateP(values = result_itemsData, where = Where(dataSet.id_itemResult_items === result_itemsData.id_item))
-
-                        data.getLongOpt("idchangeover_Id_changeover").foreach {
-                            idchangeover ⇒
-                                dataSetCHOV.selectPOne(where = Where(dataSetCHOV.idchangeoverChangeover === idchangeover)).result match {
-                                    case Success(item) ⇒
-                                        println(item)
-                                        val chOV = new Changeover(idchangeover = item.idchangeoverChangeover, duration = durationCHOV, idrc = item.idrcChangeover, from_type = item.from_typeChangeover, to_type = item.to_typeChangeover, id_task = item.id_taskChangeover)
-                                        println(chOV)
-                                        dataSetCHOV.updateP(values = chOV, where = Where(dataSetCHOV.idchangeoverChangeover === idchangeover))
-                                    case Failure(fail) ⇒
-                                        println(fail)
-                                        throw fail
-                                }
-                        }
-                        res
+                        dataSet.updateP(values = result_itemsData, where = Where(dataSet.id_itemResult_items === result_itemsData.id_item))
                     }
                     case _ =>
-                        transaction(dataSet.dataSource) { connection =>
-                            requestData.transaction
-                              .getOrElse(Transaction())
-                              .operations
-                              .flatMap { operation => {
-                                  val data = operation.getJsonObjectOpt("oldValues") ++ operation.getJsonObjectOpt("data")
-                                  logger debug (s"data: ${newLine + data.toPrettyString}")
+                        transaction(dataSet.dataSource) {
+                            connection =>
+                                requestData.transaction
+                                  .getOrElse(Transaction())
+                                  .operations
+                                  .flatMap { operation => {
+                                      val data = operation.getJsonObjectOpt("oldValues") ++ operation.getJsonObjectOpt("data")
+                                      logger debug (s"data: ${newLine + data.toPrettyString}")
 
-                                  val a = getDuration(data.getLocalDateTimeOpt("opertimestart"), data.getLocalDateTimeOpt("opertimeend"))
-                                  val duration: Option[Double] = if (data.getLongOpt("idrc_Id_changeover").isDefined) None else a
-                                  val durationCHOV: Option[Double] = if (data.getLongOpt("idrc_Id_changeover").isDefined) a else None
+                                      val a = getDuration(data.getLocalDateTimeOpt("opertimestart"), data.getLocalDateTimeOpt("opertimeend"))
+                                      val duration: Option[Double] = if (data.getLongOpt("idrc_Id_changeover").isDefined) None else a
+                                      val durationCHOV: Option[Double] = if (data.getLongOpt("idrc_Id_changeover").isDefined) a else None
 
-                                  val result_itemsData =
-                                      Result_items(
-                                          id_item = data.getLong("id_item"),
-                                          pos = data.getLongOpt("pos"),
-                                          opertimestart = data.getLocalDateTimeOpt("opertimestart"),
-                                          opertimeend = data.getLocalDateTimeOpt("opertimeend"),
-                                          duration = duration,
-                                          id_result = data.getLong("id_result"),
-                                          idrc = data.getLong("idrc"),
-                                          id_orders = data.getLongOpt("id_orders"),
-                                          id_task = data.getLongOpt("id_task"),
-                                          id_changeover = data.getLongOpt("id_changeover")
-                                      )
+                                      val result_itemsData =
+                                          Result_items(
+                                              id_item = data.getLong("id_item"),
+                                              pos = data.getLongOpt("pos"),
+                                              opertimestart = data.getLocalDateTimeOpt("opertimestart"),
+                                              opertimeend = data.getLocalDateTimeOpt("opertimeend"),
+                                              duration = duration,
+                                              id_result = data.getLong("id_result"),
+                                              idrc = data.getLong("idrc"),
+                                              id_orders = data.getLongOpt("id_orders"),
+                                              id_task = data.getLongOpt("id_task"),
+                                              id_changeover = data.getLongOpt("id_changeover")
+                                          )
 
-                                  listResponse append DSResponse(
-                                      status = RPCResponse.statusSuccess,
-                                      data = fromJsonObject(JsonObject.fromIterable(Seq(
-                                          "id_item" -> result_itemsData.id_item,
-                                          "pos" -> result_itemsData.pos,
-                                          "opertimestart" -> result_itemsData.opertimestart,
-                                          "opertimeend" -> result_itemsData.opertimeend,
-                                          "duration" -> result_itemsData.duration,
-                                          "id_result" -> result_itemsData.id_result,
-                                          "idrc" -> result_itemsData.idrc,
-                                          "id_orders" -> result_itemsData.id_orders,
-                                          "id_task" -> result_itemsData.id_task,
-                                          "id_changeover" -> result_itemsData.id_changeover,
-                                          "scode_Id_result" -> data.getStringOpt("scode_Id_result"),
-                                          "scode_rc_Idrc" -> data.getString("scode_rc_Idrc"),
-                                          "code_orders_Id_orders" -> data.getStringOpt("code_orders_Id_orders"),
-                                          "code_task_Id_task" -> data.getString("code_task_Id_task"),
-                                          "idchangeover_Id_changeover" -> data.getLongOpt("idchangeover_Id_changeover"),
-                                          "duration_Id_changeover" -> durationCHOV,
-                                          "idrc_Id_changeover" -> data.getLongOpt("idrc_Id_changeover"),
-                                          "from_type_Id_changeover" -> data.getLongOpt("from_type_Id_changeover"),
-                                          "to_type_Id_changeover" -> data.getLongOpt("to_type_Id_changeover"),
-                                          "id_task_Id_changeover" -> data.getLongOpt("id_task_Id_changeover")
-                                      )))
-                                  ).asJson
-                                  dataSet.updatePWithoutCommit(
-                                      connection = connection,
-                                      values = result_itemsData,
-                                      where = Where(
-                                          dataSet.id_itemResult_items === result_itemsData.id_item))
-                              }
-                              }
-                              .toArray
+                                      listResponse append DSResponse(
+                                          status = RPCResponse.statusSuccess,
+                                          data = fromJsonObject(JsonObject.fromIterable(Seq(
+                                              "id_item" -> result_itemsData.id_item,
+                                              "pos" -> result_itemsData.pos,
+                                              "opertimestart" -> result_itemsData.opertimestart,
+                                              "opertimeend" -> result_itemsData.opertimeend,
+                                              "duration" -> result_itemsData.duration,
+                                              "id_result" -> result_itemsData.id_result,
+                                              "idrc" -> result_itemsData.idrc,
+                                              "id_orders" -> result_itemsData.id_orders,
+                                              "id_task" -> result_itemsData.id_task,
+                                              "id_changeover" -> result_itemsData.id_changeover,
+                                              "scode_Id_result" -> data.getStringOpt("scode_Id_result"),
+                                              "scode_rc_Idrc" -> data.getString("scode_rc_Idrc"),
+                                              "code_orders_Id_orders" -> data.getStringOpt("code_orders_Id_orders"),
+                                              "code_task_Id_task" -> data.getString("code_task_Id_task"),
+                                              "idchangeover_Id_changeover" -> data.getLongOpt("idchangeover_Id_changeover"),
+                                              "duration_Id_changeover" -> durationCHOV,
+                                              "idrc_Id_changeover" -> data.getLongOpt("idrc_Id_changeover"),
+                                              "from_type_Id_changeover" -> data.getLongOpt("from_type_Id_changeover"),
+                                              "to_type_Id_changeover" -> data.getLongOpt("to_type_Id_changeover"),
+                                              "id_task_Id_changeover" -> data.getLongOpt("id_task_Id_changeover"),
+                                              aps_changeover_code_operstype_From_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == data.getLongOpt("from_type_Id_changeover").headOption).headOption.map(_.code_operstypeOpers_type),
+                                              aps_changeover_code_operstype_To_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == data.getLongOpt("to_type_Id_changeover").headOption).headOption.map(_.code_operstypeOpers_type)
+                                          )))
+                                      ).asJson
+                                      dataSet.updatePWithoutCommit(
+                                          connection = connection,
+                                          values = result_itemsData,
+                                          where = Where(
+                                              dataSet.id_itemResult_items === result_itemsData.id_item))
+                                  }
+                                  }
+                                  .toArray
                         }
                 }
 
