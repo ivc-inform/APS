@@ -9,14 +9,16 @@ import com.simplesys.common.Strings._
 import com.simplesys.jdbc.control.clob._
 import akka.actor.Actor
 import ru.simplesys.defs.bo.aps._
-
+import io.circe.generic.auto._
+import io.circe.syntax._
+import com.simplesys.circe.Circe._
  
 trait aps_result_SemiHandTrait_Fetch extends SessionContextSupport with ServletActor {
     
 /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
-    val requestData = new DSRequest(request.JSONData)
+    val requestData: DSRequest = request.JSONData.as[DSRequest].getOrElse(throw new RuntimeException ("Dont parsed Request JSON"))
     
-    logger debug s"Request for Fetch: ${newLine + requestData.toPrettyString}"    
+    logger debug s"Request for Fetch: ${newLine + requestData.asJson.toPrettyString}"
     
     val dataSet = ResultDS(oraclePool)    
 /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    

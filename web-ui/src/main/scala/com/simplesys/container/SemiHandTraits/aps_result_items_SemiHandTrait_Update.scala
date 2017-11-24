@@ -30,9 +30,9 @@ import scalaz.{Failure, Success}
 trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with ServletActor {
 
     /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
-    val requestData = new DSRequest(request.JSONData)
+    val requestData: DSRequest = request.JSONData.as[DSRequest].getOrElse(throw new RuntimeException ("Dont parsed Request JSON"))
 
-    logger debug s"Request for Update: ${newLine + requestData.toPrettyString}"
+    logger debug s"Request for Update: ${newLine + requestData.asJson.toPrettyString}"
 
     val dataSet = Result_itemsDS(oraclePool)
     val dataSetCHOV = ChangeoverDS(oraclePool)
@@ -51,7 +51,7 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
     def receiveBase: Option[Actor.Receive] = Some(
         {
             case GetData => {
-                logger debug s"request: ${newLine + requestData.toPrettyString}"
+                logger debug s"request: ${newLine + requestData.asJson.toPrettyString}"
 
                 val listResponse = ArrayBuffer.empty[Json]
 

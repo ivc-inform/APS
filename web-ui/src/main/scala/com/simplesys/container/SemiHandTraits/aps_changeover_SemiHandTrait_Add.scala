@@ -2,22 +2,23 @@
 
 package ru.simplesys.defs.app.scala.container.aps
 
-import com.simplesys.app.SessionContextSupport
-import com.simplesys.servlet.isc.ServletActor
-import com.simplesys.isc.dataBinging.DSRequest
-import com.simplesys.common.Strings._
-import com.simplesys.jdbc.control.clob._
 import akka.actor.Actor
+import com.simplesys.app.SessionContextSupport
+import com.simplesys.circe.Circe._
+import com.simplesys.common.Strings._
+import com.simplesys.isc.dataBinging.DSRequest
+import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.ServletActor
+import io.circe.generic.auto._
+import io.circe.syntax._
 import ru.simplesys.defs.bo.aps._
-
  
 trait aps_changeover_SemiHandTrait_Add extends SessionContextSupport with ServletActor {
     
 /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
-    val requestData = new DSRequest(request.JSONData)
+    val requestData: DSRequest = request.JSONData.as[DSRequest].getOrElse(throw new RuntimeException ("Dont parsed Request JSON"))
     
-    logger debug s"Request for Add: ${newLine + requestData.toPrettyString}"    
+    logger debug s"Request for Add: ${newLine + requestData.asJson.toPrettyString}"
     
     val dataSet = ChangeoverDS(oraclePool)    
 /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    

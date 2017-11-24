@@ -8,21 +8,25 @@ import com.simplesys.common.Strings._
 import com.simplesys.isc.dataBinging.DSRequest
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.ServletActor
-import com.simplesys.servlet.isc.ServletActor
+import io.circe.generic.auto._
+import io.circe.syntax._
 import ru.simplesys.defs.bo.admin._
+import io.circe.generic.auto._
+import io.circe.syntax._
+import com.simplesys.circe.Circe._
 
- 
+
 trait admin_UserGroup_SemiHandTrait_Add extends SessionContextSupport with ServletActor {
-    
-/////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
-    val requestData = new DSRequest(request.JSONData)
 
-    logger debug s"Request for Add: ${newLine + requestData.toPrettyString}"
+    /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
+    val requestData: DSRequest = request.JSONData.as[DSRequest].getOrElse(throw new RuntimeException("Dont parsed Request JSON"))
+
+    logger debug s"Request for Add: ${newLine + requestData.asJson.toPrettyString}"
 
     val dataSet = UserGroupDS(oraclePool)
-/////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////    
-    
-     def receiveBase: Option[Actor.Receive] = None    
-    
-     def wrapperBlobGetter(blob: Blob): String = blob.asString
+    /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
+
+    def receiveBase: Option[Actor.Receive] = None
+
+    def wrapperBlobGetter(blob: Blob): String = blob.asString
 }
