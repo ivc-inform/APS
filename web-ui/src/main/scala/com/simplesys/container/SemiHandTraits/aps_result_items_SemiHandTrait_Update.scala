@@ -30,9 +30,9 @@ import scalaz.{Failure, Success}
 trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with ServletActor {
 
     /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!!!! DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
-    val requestData = new DSRequest(request.JSONData)
+    val requestData: DSRequest = request.JSONData.as[DSRequest].getOrElse(throw new RuntimeException ("Dont parsed Request JSON"))
 
-    logger debug s"Request for Update: ${newLine + requestData.toPrettyString}"
+    logger debug s"Request for Update: ${newLine + requestData.asJson.toPrettyString}"
 
     val dataSet = Result_itemsDS(oraclePool)
     val dataSetCHOV = ChangeoverDS(oraclePool)
@@ -51,7 +51,7 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
     def receiveBase: Option[Actor.Receive] = Some(
         {
             case GetData => {
-                logger debug s"request: ${newLine + requestData.toPrettyString}"
+                logger debug s"request: ${newLine + requestData.asJson.toPrettyString}"
 
                 val listResponse = ArrayBuffer.empty[Json]
 
@@ -63,8 +63,7 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                 val update: ValidationEx[Array[Int]] = requestData.transaction.getOrElse(Transaction())
                   .transactionNum match {
                     case None => {
-                        val data = requestData.oldValues ++ requestData.request
-                          .getJsonObject("data")
+                        val data = requestData.oldValues ++ requestData.data
 
                         logger debug s"data: ${newLine + data.toPrettyString}"
 
@@ -91,8 +90,6 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                             idchangeover ⇒
                                 dataSetCHOV.selectPOne(where = Where(dataSetCHOV.idchangeoverChangeover === idchangeover)).result match {
                                     case Success(item) ⇒
-                                        println(s"idchangeover: $idchangeover")
-                                        println(s"durationCHOV: $durationCHOV")
                                         val chOV = new Changeover(
                                             idchangeover = item.idchangeoverChangeover,
                                             duration = durationCHOV,
@@ -101,15 +98,12 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                             to_type = item.to_typeChangeover,
                                             id_task = item.id_taskChangeover
                                         )
-                                        //println(chOV)
                                         dataSetCHOV.updateP(values = chOV, where = Where(dataSetCHOV.idchangeoverChangeover === idchangeover)).result match {
-                                            case Success(array) ⇒
-                                                println(s"updated: ${array.mkString("[", ",", "]")}")
+                                            case Success(_) ⇒
                                             case Failure(fail) ⇒
                                                 throw fail
                                         }
                                     case Failure(fail) ⇒
-                                        //println(fail)
                                         throw fail
                                 }
                         }
