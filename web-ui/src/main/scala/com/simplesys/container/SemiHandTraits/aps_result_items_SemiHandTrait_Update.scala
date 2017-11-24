@@ -64,7 +64,6 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                   .transactionNum match {
                     case None => {
                         val data = requestData.oldValues ++ requestData.data
-                          .getJsonObject("data")
 
                         logger debug s"data: ${newLine + data.toPrettyString}"
 

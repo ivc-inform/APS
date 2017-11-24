@@ -20,7 +20,7 @@ class ResultProps extends CommonListGridEditorComponentProps {
     type classHandler <: Result
     identifier = "4EEF794F-EE8F-C38D-73D6-CF6F0F5170E5".opt
 
-    //simpleTable = true.opt
+    simpleTable = true.opt
 
     dataSource = DataSourcesJS.aps_result_DS.opt
 

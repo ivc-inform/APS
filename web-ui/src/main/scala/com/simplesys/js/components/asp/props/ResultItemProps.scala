@@ -15,6 +15,8 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
     type classHandler <: ResultItem
     identifier = "4EEF794F-EE8F-C38D-73D6-CF6F0F5170E3".opt
 
+    simpleTable = true.opt
+
     fields = (ListGridFiledsJS.aps_result_items_FLDS ++ ListGridFiledsJS.aps_changeover_FLDS.filter(item ⇒ item.nameStrong.get.name == aps_changeover_code_operstype_From_type_NameStrong.name || item.nameStrong.get.name == aps_changeover_code_operstype_To_type_NameStrong.name)).map {
         item ⇒
             item.nameStrong.get.name match {
@@ -35,11 +37,8 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
                 case aps_result_items_scode_Id_result_NameStrong.name ⇒
                     item.hidden = true.opt
                     item
-                case aps_result_items_duration_NameStrong.name ⇒
-                    item.canEdit = false.opt
-                    item
                 case _ ⇒
-                    item.canEdit = true.opt
+                    item.canEdit = false.opt
                     item
             }
     }.opt
@@ -49,7 +48,7 @@ class ResultItemProps extends CommonListGridEditorComponentProps {
     //editEvent = ListGridEditEvent.none.opt
     editEvent = ListGridEditEvent.doubleClick.opt
 
-    //itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(false), miEdit(false), miRefresh()).opt
+    itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(false), miEdit(false), miRefresh()).opt
 
     replacingFields = Seq(
         new ListGridFieldProps {
