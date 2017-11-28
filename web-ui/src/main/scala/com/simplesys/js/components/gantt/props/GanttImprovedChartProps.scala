@@ -11,6 +11,12 @@ import com.simplesys.js.components.gantt.GanttImprovedChart
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
+import com.simplesys.request.RequestResult
+import io.circe.Json._
+import io.circe.Json
+//import io.circe.sca
+import com.simplesys.circe.Circe._
+import io.circe.syntax._
 
 import scala.language.implicitConversions
 import scalatags.Text.all._
@@ -47,13 +53,13 @@ class GanttImprovedChartProps extends CanvasProps {
                 thiz
             else {
                 thiz.Super("draw")
-                isc debugTrap s"idResult: ${thiz.idResult}"
+                //isc info s"idResult: ${thiz.idResult.getOrElse(0.0)}"
 
-                /*RPCManagerSS.sendRequest(
+                RPCManagerSS.sendRequest(
                     RPCRequest(
                         new RPCRequestProps {
                             actionURL = "logic/arx_attatch/StopUpload".opt
-                            //data =
+                            data = RequestResult(idResult = thiz.idResult.getOrElse(0.0)).asJson.opt
                             timeout = 60000.opt
                             sendNoQueue = true.opt
                             callback = {
@@ -65,7 +71,7 @@ class GanttImprovedChartProps extends CanvasProps {
                             }.toFunc.opt
                         }
                     )
-                )*/
+                )
                 thiz
             }
     }.toThisFunc.opt

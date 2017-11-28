@@ -56,6 +56,8 @@ object CommonDeps {
         val scalaURIVersion = "0.4.16"
         val configWrapperVersion = "0.4.4"
         val jsgantImprovedVersion = "0.9.4-SNAPSHOT"
+
+        val circe = "0.8.0"
     }
 
     val uriSimpleSys = uri("../../JOB/simplesys")

@@ -8,7 +8,7 @@ import scala.scalajs.js.|
 
 @js.native
 trait GanttImprovedChart extends Canvas {
-    var idResult: Double
+    var idResult: js.UndefOr[Double]
 }
 
 @js.native

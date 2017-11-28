@@ -1,3 +1,3 @@
 package com.simplesys.request
 
-case class RequestResult (idResult: Long)
+case class RequestResult (idResult: Double)
