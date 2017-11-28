@@ -18,6 +18,8 @@ import io.circe.generic.auto._
 import io.circe.syntax._
 import ru.simplesys.defs.bo.aps.{ResultDS, Result_itemsDS}
 import com.simplesys.gantt.TaskCssClass.ggroupblack
+//import com.simplesys.gantt.JVM.TaskItemExt._ !! Must be
+import com.simplesys.gantt.JVM.TaskItemExt._
 
 import scalaz.{Failure, Success}
 
