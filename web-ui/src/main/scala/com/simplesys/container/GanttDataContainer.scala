@@ -4,8 +4,11 @@ import com.simplesys.SQL.Gen.AscOrderBy
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.circe.Circe._
 import com.simplesys.common.Strings.newLine
-import com.simplesys.gantt.{Group, Opening}
+import com.simplesys.common.array._
+import com.simplesys.gantt.GanttChartCommon._
 import com.simplesys.gantt.JVM.TaskItemExt
+import com.simplesys.gantt.TaskCssClass.ggroupblack
+import com.simplesys.gantt.{Group, Opening}
 import com.simplesys.isc.dataBinging.{DSRequest, DSResponse, DSResponseFailureEx, RPCResponse}
 import com.simplesys.jdbc.control.classBO.{OrderBy, Where}
 import com.simplesys.request.RequestResult
@@ -17,13 +20,8 @@ import io.circe.Json._
 import io.circe.generic.auto._
 import io.circe.syntax._
 import ru.simplesys.defs.bo.aps.{ResultDS, Result_itemsDS}
-import com.simplesys.gantt.TaskCssClass.ggroupblack
-import com.simplesys.gantt.GanttChartCommon._
-import com.simplesys.jdbc._
-import com.simplesys.common.array._
-//import com.simplesys.gantt.JVM.TaskItemExt._ !! Must be
-import com.simplesys.gantt.JVM.TaskItemExt._
-
+//import com.simplesys.gantt.JVM.TaskItemExt._ //!! Must be
+import com.simplesys.gantt.JVM.TaskItemExt._ //!! Must be
 import scalaz.{Failure, Success}
 
 class GanttDataContainer(val request: HttpServletRequest, val response: HttpServletResponse, val servletContext: ServletContext) extends ServletActor with SessionContextSupport {

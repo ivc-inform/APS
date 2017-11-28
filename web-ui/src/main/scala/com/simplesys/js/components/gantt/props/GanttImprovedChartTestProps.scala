@@ -3,6 +3,7 @@ package com.simplesys.js.components.gantt.props
 import com.simplesys.SmartClient.System.IscArray
 import com.simplesys.System.{JSAny, JSUndefined}
 import com.simplesys.function._
+import com.simplesys.gantt.GanttChartCommon._
 import com.simplesys.gantt.JS.GanttChart._
 import com.simplesys.gantt.JS.{GanttChart, GanttChartExt, TaskItemExt}
 import com.simplesys.gantt.TaskCssClass._
