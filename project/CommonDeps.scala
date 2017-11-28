@@ -120,6 +120,8 @@ object CommonDeps {
 
     val scalaURI = "com.netaporter" %% "scala-uri" % versions.scalaURIVersion
     val configWrapper = "com.github.kxbmap" %% "configs" % versions.configWrapperVersion
-    val jsgantImproved = "com.simplesys" %% "jsgantt-improved" % versions.jsgantImprovedVersion
+
+    //val jsgantImproved = "com.simplesys" %% "jsgantt-improved" % versions.jsgantImprovedVersion
+    val jsgantImproved =  ProjectRef(uri("../../JOB/jsgantt-improved"), "ganttImprovedJVM")
 }
 
