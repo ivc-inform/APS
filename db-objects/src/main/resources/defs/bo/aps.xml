@@ -234,9 +234,6 @@
 					<fk linkType="refIsOwner" mandatory="false" parent="orders">
 						<mapping attrNameLocal="id_orders" attrNameRemote="idorders"></mapping>
 					</fk>
-					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
-						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
-					</fk>
 					<fk linkType="refIsOwner" mandatory="false" parent="changeover">
 						<mapping attrNameLocal="id_changeover" attrNameRemote="idchangeover"></mapping>
 					</fk>
