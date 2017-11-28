@@ -150,7 +150,6 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
         CommonDepsScalaJS.scalaDom.value,
 
         CommonDepsScalaJS.circeCore.value,
-        CommonDepsScalaJS.circeJawn.value,
         CommonDepsScalaJS.circeGeneric.value,
         CommonDepsScalaJS.circeJava8.value,
         CommonDepsScalaJS.circeParser.value

@@ -4,7 +4,7 @@ package com.simplesys.js.components.gantt.props
 import com.simplesys.SmartClient.Foundation.props.CanvasProps
 import com.simplesys.SmartClient.RPC.props.RPCRequestProps
 import com.simplesys.SmartClient.RPC.{RPCManagerSS, RPCRequest, RPCResponse}
-import com.simplesys.SmartClient.System.{IscArray, RPCRequest, isc}
+import com.simplesys.SmartClient.System.{IscArray, RPCRequest}
 import com.simplesys.System.{JSAny, JSObject, JSUndefined}
 import com.simplesys.function._
 import com.simplesys.js.components.gantt.GanttImprovedChart
@@ -12,11 +12,9 @@ import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
 import com.simplesys.request.RequestResult
-import io.circe.Json._
-import io.circe.Json
-//import io.circe.sca
-import com.simplesys.circe.Circe._
+import io.circe.scalajs._
 import io.circe.syntax._
+import io.circe.generic.auto._
 
 import scala.language.implicitConversions
 import scalatags.Text.all._
@@ -58,8 +56,8 @@ class GanttImprovedChartProps extends CanvasProps {
                 RPCManagerSS.sendRequest(
                     RPCRequest(
                         new RPCRequestProps {
-                            actionURL = "logic/arx_attatch/StopUpload".opt
-                            data = RequestResult(idResult = thiz.idResult.getOrElse(0.0)).asJson.opt
+                            actionURL = "logic/getGanttData".opt
+                            data = convertJsonToJs(RequestResult(idResult = thiz.idResult.getOrElse(0.0)).asJson).opt
                             timeout = 60000.opt
                             sendNoQueue = true.opt
                             callback = {

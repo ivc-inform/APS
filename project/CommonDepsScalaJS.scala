@@ -17,7 +17,6 @@ object CommonDepsScalaJS {
     //val jsgantImproved =  ProjectRef(uri("../../JOB/jsgantt-improved"), "ganttImprovedJS")
 
     val circeCore = Def.setting("io.circe" %%% "circe-core" % versions.circe)
-    val circeJawn = Def.setting("io.circe" %%% "circe-jawn" % versions.circe)
     val circeGeneric = Def.setting("io.circe" %%% "circe-generic" % versions.circe)
     val circeJava8 = Def.setting("io.circe" %%% "circe-java8" % versions.circe)
     val circeParser = Def.setting("io.circe" %%% "circe-parser" % versions.circe)
