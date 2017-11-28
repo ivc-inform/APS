@@ -1,6 +1,7 @@
 package com.simplesys.container
 
 import com.simplesys.SQL.Gen.AscOrderBy
+import com.simplesys.annotation.RSTransfer
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.circe.Circe._
 import com.simplesys.common.Strings.newLine
@@ -24,6 +25,7 @@ import ru.simplesys.defs.bo.aps.{ResultDS, Result_itemsDS}
 import com.simplesys.gantt.JVM.TaskItemExt._ //!! Must be
 import scalaz.{Failure, Success}
 
+@RSTransfer(urlPattern = "/logic/getGanttData")
 class GanttDataContainer(val request: HttpServletRequest, val response: HttpServletResponse, val servletContext: ServletContext) extends ServletActor with SessionContextSupport {
 
     val requestData: DSRequest = request.JSONData.as[DSRequest].getOrElse(throw new RuntimeException("Dont parsed Request JSON"))

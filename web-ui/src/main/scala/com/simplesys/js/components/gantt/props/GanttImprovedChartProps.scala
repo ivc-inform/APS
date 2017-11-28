@@ -2,22 +2,17 @@ package com.simplesys.js.components.gantt.props
 
 
 import com.simplesys.SmartClient.Foundation.props.CanvasProps
-import com.simplesys.SmartClient.System.{IscArray, isc}
-import com.simplesys.System.{JSAny, JSUndefined}
-import com.simplesys.System.Types.HTMLString
+import com.simplesys.SmartClient.RPC.props.RPCRequestProps
+import com.simplesys.SmartClient.RPC.{RPCManagerSS, RPCRequest, RPCResponse}
+import com.simplesys.SmartClient.System.{IscArray, RPCRequest, isc}
+import com.simplesys.System.{JSAny, JSObject, JSUndefined}
 import com.simplesys.function._
-import com.simplesys.gantt.JS.{GanttChart, GanttChartExt, TaskItemExt}
-import com.simplesys.gantt._
-import com.simplesys.gantt.TaskCssClass._
 import com.simplesys.js.components.gantt.GanttImprovedChart
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
-import org.scalajs.dom
 
 import scala.language.implicitConversions
-import scala.scalajs.js
-import scala.scalajs.js.ThisFunction0
 import scalatags.Text.all._
 
 
@@ -29,6 +24,8 @@ class GanttImprovedChartProps extends CanvasProps {
         (thiz: classHandler) ⇒
             s"${thiz.getID}_ganttChartImproved"
     }.toThisFunc.opt
+
+    var idResult: ScOption[Double] = ScNone
 
     getInnerHTML = {
         (thiz: classHandler) ⇒
@@ -50,7 +47,25 @@ class GanttImprovedChartProps extends CanvasProps {
                 thiz
             else {
                 thiz.Super("draw")
-                isc info "draw"
+                isc debugTrap s"idResult: ${thiz.idResult}"
+
+                /*RPCManagerSS.sendRequest(
+                    RPCRequest(
+                        new RPCRequestProps {
+                            actionURL = "logic/arx_attatch/StopUpload".opt
+                            //data =
+                            timeout = 60000.opt
+                            sendNoQueue = true.opt
+                            callback = {
+                                (resp: RPCResponse, data: JSObject, req: RPCRequest) ⇒
+                                    if (resp.httpResponseCode == 200) {
+
+                                    }
+
+                            }.toFunc.opt
+                        }
+                    )
+                )*/
                 thiz
             }
     }.toThisFunc.opt
