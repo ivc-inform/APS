@@ -57,7 +57,7 @@ class GanttImprovedChartProps extends CanvasProps {
                     RPCRequest(
                         new RPCRequestProps {
                             actionURL = "logic/getGanttData".opt
-                            data = convertJsonToJs(RequestResult(idResult = thiz.idResult.getOrElse(0.0)).asJson).opt
+                            data = convertJsonToJs(RequestResult(idResult = thiz.idResult.getOrElse(0.0).toLong).asJson).opt
                             timeout = 60000.opt
                             sendNoQueue = true.opt
                             callback = {
@@ -73,36 +73,4 @@ class GanttImprovedChartProps extends CanvasProps {
                 thiz
             }
     }.toThisFunc.opt
-
-    /*var getGanttData : ScOption[ThisFunction0[classHandler, _]] = {
-        (thiz: classHandler) ⇒
-    }.toThisFunc.opt*/
-
-    /*case 3 ⇒
-                                                                    thizTop.record.foreach {
-                                                                        record ⇒
-                                                                            RPCManagerSS.sendRequest(
-                                                                                RPCRequest(
-                                                                                    new RPCRequestProps {
-                                                                                        actionURL = "logic/arx_attatch/StopUpload".opt
-                                                                                        data = js.Dictionary("id" → record.id, "status" → 0).opt
-                                                                                        timeout = 60000.opt
-                                                                                        sendNoQueue = true.opt
-                                                                                        callback = {
-                                                                                            (resp: RPCResponse, data: JSObject, req: RPCRequest) ⇒
-                                                                                                if (resp.httpResponseCode == 200) {
-                                                                                                    thizTop setSrc Common.attach
-                                                                                                    thizTop.progressBar.foreach{
-                                                                                                        progressBar ⇒
-                                                                                                            progressBar setTitle ""
-                                                                                                            progressBar setPercentDone 0
-                                                                                                    }
-                                                                                                    thizTop.record.asInstanceOf[JSDynamic].updateDynamic("status")(0)
-                                                                                                }
-
-                                                                                        }.toFunc.opt
-                                                                                    }
-                                                                                )
-                                                                            )
-                                                                    }*/
 }
