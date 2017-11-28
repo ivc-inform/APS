@@ -12,9 +12,9 @@ import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
 import com.simplesys.request.RequestResult
+import io.circe.generic.auto._
 import io.circe.scalajs._
 import io.circe.syntax._
-import io.circe.generic.auto._
 
 import scala.language.implicitConversions
 import scalatags.Text.all._

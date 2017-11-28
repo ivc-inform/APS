@@ -18,6 +18,5 @@ object CommonDepsScalaJS {
 
     val circeCore = Def.setting("io.circe" %%% "circe-core" % versions.circe)
     val circeGeneric = Def.setting("io.circe" %%% "circe-generic" % versions.circe)
-    //val circeJava8 = Def.setting("io.circe" %%% "circe-java8" % versions.circe)
-    val circeParser = Def.setting("io.circe" %%% "circe-parser" % versions.circe)
+    //val circeParser = Def.setting("io.circe" %%% "circe-parser" % versions.circe)
 }

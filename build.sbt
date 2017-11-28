@@ -149,11 +149,9 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
         CommonDepsScalaJS.jQuery.value,
         CommonDepsScalaJS.scalaDom.value,
 
-        CommonDepsScalaJS.circeCore.value,
-        CommonDepsScalaJS.circeGeneric.value,
-        //CommonDepsScalaJS.circeJava8.value,
-        CommonDepsScalaJS.circeParser.value
-
+//        CommonDepsScalaJS.circeCore.value,
+//        CommonDepsScalaJS.circeGeneric.value,
+//        CommonDepsScalaJS.circeParser.value
     )
 ).settings({
     import com.simplesys.mergewebapp.MergeWebappPlugin._
