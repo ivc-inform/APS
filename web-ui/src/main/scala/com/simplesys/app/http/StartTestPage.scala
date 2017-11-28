@@ -1,11 +1,6 @@
 package com.simplesys.app.http
 
-import com.simplesys.gantt.GanttChart._
-import com.simplesys.gantt._
-import org.scalajs.dom
-
 import scala.language.implicitConversions
-import scala.scalajs.js.annotation.JSExportTopLevel
 import scalatags.Text.all._
 import scalatags.Text.tags2
 
