@@ -94,8 +94,8 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
 //      CommonDeps.ssysXMLExtender,
 //      CommonDeps.ssysIscMisc,
 //      CommonDepsScalaJS.smartClientWrapper
-      CommonDeps.jsgantImproved,
-      CommonDepsScalaJS.jsgantImproved
+//      CommonDeps.jsgantImproved,
+//      CommonDepsScalaJS.jsgantImproved
   )
   .aggregate(dbObjects).settings(
 
@@ -141,8 +141,8 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
         CommonDeps.scalaTags,
         CommonDeps.scalaURI,
         
-        //CommonDeps.jsgantImproved,
-        //CommonDepsScalaJS.jsgantImproved.value
+        CommonDeps.jsgantImproved,
+        CommonDepsScalaJS.jsgantImproved.value,
         
         CommonDepsScalaJS.smartClientWrapper.value,
         CommonDepsScalaJS.scalaTags.value,
