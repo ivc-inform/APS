@@ -89,9 +89,10 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                         idordersOrders_Id_orders: Array[Long],
                         code_ordersOrders_Id_orders: Array[String],
                         idresultResult_Id_result: Long,
-                        scodeResult_Id_result: Array[String],
+                        scodeResult_Id_result: String,
                         id_rcRc_Idrc: Long,
-                        scode_rcRc_Idrc: String) =>
+                        scode_rcRc_Idrc: String
+                        ) =>
                             _data += fromJsonObject(
                                 JsonObject.fromIterable(Seq(
                                     "id_item" -> id_itemResult_items,
