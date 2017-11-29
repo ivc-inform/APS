@@ -56,9 +56,22 @@ lazy val dbObjects = crossProject(JSPlatform, JVMPlatform)
       name := "db-objects"
   )
   .settings(CommonSettings.defaultSettings)
-  .jvmSettings(commonJVMSettings)
-  .jsSettings(commonJSSettings)
+  .aggregate(common)
   .dependsOn(common)
+  .enablePlugins(DevPlugin)
+  .jvmSettings(commonJVMSettings)
+  .jvmSettings(
+      libraryDependencies ++= Seq(
+          CommonDeps.ssysCoreLibrary,
+          CommonDeps.ssysJDBCWrapper,
+          CommonDeps.oraclePoolDataSources,
+          CommonDeps.hikariPoolDataSources,
+          CommonDeps.jdbcOracle12,
+          CommonDeps.jdbcOracle12UCP,
+          CommonDeps.jdbcOracleN18_12
+      )
+  )
+  .jsSettings(commonJSSettings)
 
 lazy val dbObjectsJS = dbObjects.js
 lazy val dbObjectsJVM = dbObjects.jvm
