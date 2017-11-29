@@ -1,4 +1,5 @@
 import sbtcrossproject.{CrossType, crossProject}
+import ru.simplesys.plugins.sourcegen.DevPlugin._
 
 lazy val root = crossProject(JSPlatform, JVMPlatform)
   .enablePlugins(GitVersioning)
@@ -59,22 +60,8 @@ lazy val dbObjects = crossProject(JSPlatform, JVMPlatform)
   .aggregate(common)
   .dependsOn(common)
   .jvmConfigure(_ enablePlugins DevPlugin)
-  .jvmSettings(DevPlugin.devPluginGeneratorSettings)
   .jvmSettings(
-      {
-          import ru.simplesys.plugins.sourcegen.DevPlugin._
-          Seq(
-              sourceSchemaDir in DevConfig := (resourceDirectory in Compile).value / "defs",
-              startPackageName in DevConfig := "ru.simplesys.defs",
-              contextPath in DevConfig := "aps",
-              maxArity := 254,
-              quoted := true,
-              sourceGenerators in Compile += (generateBoScalaCode in DevConfig)
-          )
-      }
-  )
-  .jvmSettings(commonJVMSettings)
-  .jvmSettings(
+      DevPlugin.devPluginGeneratorSettings,
       libraryDependencies ++= Seq(
           CommonDeps.ssysCoreLibrary,
           CommonDeps.ssysJDBCWrapper,
@@ -83,8 +70,15 @@ lazy val dbObjects = crossProject(JSPlatform, JVMPlatform)
           CommonDeps.jdbcOracle12,
           CommonDeps.jdbcOracle12UCP,
           CommonDeps.jdbcOracleN18_12
-      )
+      ),
+      sourceSchemaDir in DevConfig := (resourceDirectory in Compile).value / "defs",
+      startPackageName in DevConfig := "ru.simplesys.defs",
+      contextPath in DevConfig := "aps",
+      maxArity := 254,
+      quoted := true,
+      sourceGenerators in Compile += (generateBoScalaCode in DevConfig)
   )
+  .jvmSettings(commonJVMSettings)
   .jsSettings(commonJSSettings)
 
 lazy val dbObjectsJS = dbObjects.js
