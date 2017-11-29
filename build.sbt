@@ -187,30 +187,31 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       sourceGenerators in Compile += (generateScalaCode in DevConfig),
 
       //merger
+      val prefixPath = Seq("..", "..", "..", "src", "main")
       mergeMapping in MergeWebappConfig := Seq(
           ("com.simplesys.core", "common-webapp") -> Seq(
-              Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(Seq("webapp", "managed", "javascript", "common-webapp", "generated", "generatedComponents", "coffeescript")),
-              Seq("webapp", "javascript", "developed") -> Some(Seq("webapp", "managed", "javascript", "common-webapp", "developed")),
-              Seq("webapp", "coffeescript", "developed") -> Some(Seq("webapp", "managed", "coffeescript", "common-webapp", "developed")),
-              Seq("webapp", "css") -> Some(Seq("webapp", "managed", "css", "common-webapp")),
-              Seq("webapp", "html") -> Some(Seq("webapp", "managed", "html", "common-webapp")),
-              Seq("webapp", "images") -> Some(Seq("webapp", "managed", "images", "common-webapp"))
+              Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "common-webapp", "generated", "generatedComponents", "coffeescript")),
+              Seq("webapp", "javascript", "developed") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "common-webapp", "developed")),
+              Seq("webapp", "coffeescript", "developed") -> Some(prefixPath ++ Seq("webapp", "managed", "coffeescript", "common-webapp", "developed")),
+              Seq("webapp", "css") -> Some(prefixPath ++ Seq("webapp", "managed", "css", "common-webapp")),
+              Seq("webapp", "html") -> Some(prefixPath ++ Seq("webapp", "managed", "html", "common-webapp")),
+              Seq("webapp", "images") -> Some(prefixPath ++ Seq("webapp", "managed", "images", "common-webapp"))
           ),
           ("com.simplesys.core", "isc-components") -> Seq(
-              Seq("webapp", "javascript", "generated", "generatedComponents") -> Some(Seq("webapp", "managed", "javascript", "isc-components", "generated", "generatedComponents")),
-              Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(Seq("webapp", "managed", "javascript", "isc-components", "generated", "generatedComponents", "coffeescript")),
-              Seq("javascript", "com", "simplesys") -> Some(Seq("webapp", "managed", "javascript", "isc-components", "developed", "developedComponents")),
-              Seq("coffeescript") -> Some(Seq("webapp", "managed", "coffeescript", "isc-components", "developed", "developedComponents"))
+              Seq("webapp", "javascript", "generated", "generatedComponents") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "isc-components", "generated", "generatedComponents")),
+              Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "isc-components", "generated", "generatedComponents", "coffeescript")),
+              Seq("javascript", "com", "simplesys") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "isc-components", "developed", "developedComponents")),
+              Seq("coffeescript") -> Some(prefixPath ++ Seq("webapp", "managed", "coffeescript", "isc-components", "developed", "developedComponents"))
           ),
           ("com.simplesys.core", "isc-misc") -> Seq(
-              Seq("javascript") -> Some(Seq("webapp", "managed", "javascript", "isc-misc"))
+              Seq("javascript") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "isc-misc"))
           ),
           ("com.simplesys", "jsgantt-improved") -> Seq(
-              Seq("javascript") -> Some(Seq("webapp", "managed", "javascript", "jsgantt-improved")),
-              Seq("css") -> Some(Seq("webapp", "managed", "css", "jsgantt-improved"))
+              Seq("javascript") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "jsgantt-improved")),
+              Seq("css") -> Some(prefixPath ++ Seq("webapp", "managed", "css", "jsgantt-improved"))
           ),
           ("com.simplesys", "smartclient-js") -> Seq(
-              Seq("isomorphic") -> Some(Seq("webapp", "isomorphic"))
+              Seq("isomorphic") -> Some(prefixPath ++ Seq("webapp", "isomorphic"))
           )
       ),
       webAppDirPath in MergeWebappConfig := (sourceDirectory in Compile).value,
