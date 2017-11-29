@@ -9,7 +9,7 @@ name := CommonSettings.settingValues.name
 
 lazy val root = (project in file("."))
   .enablePlugins(GitVersioning)
-  .aggregate(dbObjects, webUI, common, testModule)
+  .aggregate(/*dbObjectsJS,dbObjectsJVM, webUIJS, webUIJVM, commonJS, commonJVM, testModuleJS, testModuleJVM*/)
   .settings(
       inThisBuild(Seq(
           git.baseVersion := CommonSettings.settingValues.baseVersion,
@@ -21,7 +21,10 @@ lazy val root = (project in file("."))
       publishArtifact in(Compile, packageSrc) := false
   )
 
-lazy val common = Project(id = "common", base = file("common"))
+lazy val common = crossProject.in(file("."))
+  .settings(
+      name := "common"
+  )
   .dependsOn(
       //CommonDeps.ssysCommon
   )
@@ -34,8 +37,14 @@ lazy val common = Project(id = "common", base = file("common"))
       )
   )
 
-lazy val testModule = Project(id = "test", base = file("test")).
-  dependsOn(dbObjects).
+lazy val commonJVM = common.jvm
+lazy val commonJS = common.js
+
+lazy val testModule = crossProject.in(file("."))
+  .settings(
+      name := "test"
+  )
+  .dependsOn(dbObjects).
   settings(
       libraryDependencies ++= Seq(
           //CommonDeps.ssysJDBCWrapper,
@@ -43,11 +52,17 @@ lazy val testModule = Project(id = "test", base = file("test")).
       )
   )
 
-lazy val dbObjects = Project(id = "db-objects", base = file("db-objects"))
+lazy val testModuleJVM = testModule.jvm
+lazy val testModuleJS = testModule.js
+
+lazy val dbObjects = crossProject.in(file("."))
+  .settings(
+      name := "db-objects"
+  )
   .dependsOn(
       common,
-//      CommonDeps.ssysJDBCWrapper,
-//      CommonDeps.ssysCoreLibrary
+      //      CommonDeps.ssysJDBCWrapper,
+      //      CommonDeps.ssysCoreLibrary
   )
   .enablePlugins(DevPlugin)
   .settings(
@@ -74,23 +89,29 @@ lazy val dbObjects = Project(id = "db-objects", base = file("db-objects"))
       )
   })
 
-lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
+lazy val dbObjectsJVM = dbObjects.jvm
+lazy val dbObjectsJS = dbObjects.js
+
+lazy val webUI = crossProject.in(file("."))
+  .settings(
+      name := "web-ui"
+  )
   .enablePlugins(
       DevPlugin, MergeWebappPlugin, SbtCoffeeScript, ScalaJSPlugin, JettyPlugin, WarPlugin, WebappPlugin, JRebelPlugin, DockerPlugin, JavaAppPackaging
   )
   .dependsOn(
       dbObjects,
-//      CommonDeps.circeExtender,
-//      CommonDeps.ssysServletWrapper,
-//      CommonDeps.ssysCommonWebapp,
-//      CommonDeps.ssysCommon,
-//      CommonDeps.ssysIscComponents,
-//      CommonDeps.ssysScalaIOExtender,
-//      CommonDeps.ssysXMLExtender,
-//      CommonDeps.ssysIscMisc,
-//      CommonDepsScalaJS.smartClientWrapper
-//      CommonDeps.jsgantImproved,
-//      CommonDepsScalaJS.jsgantImproved
+      //      CommonDeps.circeExtender,
+      //      CommonDeps.ssysServletWrapper,
+      //      CommonDeps.ssysCommonWebapp,
+      //      CommonDeps.ssysCommon,
+      //      CommonDeps.ssysIscComponents,
+      //      CommonDeps.ssysScalaIOExtender,
+      //      CommonDeps.ssysXMLExtender,
+      //      CommonDeps.ssysIscMisc,
+      //      CommonDepsScalaJS.smartClientWrapper
+      //      CommonDeps.jsgantImproved,
+      //      CommonDepsScalaJS.jsgantImproved
   )
   .aggregate(dbObjects).settings(
 
@@ -135,18 +156,18 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
         CommonDeps.scalaJSWrapper,
         CommonDeps.scalaTags,
         CommonDeps.scalaURI,
-        
+
         CommonDeps.jsgantImproved,
         CommonDepsScalaJS.jsgantImproved.value,
-        
+
         CommonDepsScalaJS.smartClientWrapper.value,
         CommonDepsScalaJS.scalaTags.value,
         CommonDepsScalaJS.jQuery.value,
         CommonDepsScalaJS.scalaDom.value,
 
-//        CommonDepsScalaJS.circeCore.value,
-//        CommonDepsScalaJS.circeGeneric.value,
-//        CommonDepsScalaJS.circeParser.value
+        //        CommonDepsScalaJS.circeCore.value,
+        //        CommonDepsScalaJS.circeGeneric.value,
+        //        CommonDepsScalaJS.circeParser.value
     )
 ).settings({
     import com.simplesys.mergewebapp.MergeWebappPlugin._
@@ -169,7 +190,7 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
         (managedResources in Compile) ++= CoffeeScriptKeys.coffeeScript.value,
 
         //dev plugin
-        sourceSchemaDir in DevConfig := (resourceDirectory in(dbObjects, Compile)).value / "defs",
+        sourceSchemaDir in DevConfig := (resourceDirectory in(dbObjectsJVM, Compile)).value / "defs",
         startPackageName in DevConfig := "ru.simplesys.defs",
         contextPath in DevConfig := "aps",
         maxArity in DevConfig := 254,
@@ -281,3 +302,6 @@ lazy val webUI = Project(id = "web-ui", base = file("web-ui"))
 },
     skip in packageJSDependencies := false
 )
+
+lazy val webUIJVM = webUI.jvm
+lazy val webUIJS = webUI.js

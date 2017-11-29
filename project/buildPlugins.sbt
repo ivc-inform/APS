@@ -25,8 +25,9 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(
       PluginDeps.xsbtWeb,
       PluginDeps.sbtNativePackager,
       PluginDeps.jrebelPlugin,
-      PluginDeps.crossproject,
-      PluginDeps.sbtCrossproject,
+      PluginDeps.scalaJSPlugin,
+      //PluginDeps.crossproject,
+      //PluginDeps.sbtCrossproject,
       //PluginDeps.sbtHydraPlugin,
       libraryDependencies ++= Seq(
           PluginDeps.circeExtender
