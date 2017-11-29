@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <timestamp key="byDay" datePattern="yyyy-MM-dd"/>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%t] %-5p %logger{255} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>log/aps-${byDay}.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %logger{255} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--<appender name="FILE_FETCH" class="ch.qos.logback.core.FileAppender">
+        <file>main-fetch.log</file>
+        <append>false</append>                                                                                                          
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%t] %-5p %logger{255} - %msg%n</pattern>
+        </encoder>
+    </appender>-->
+
+    <logger name="com.simplesys.servlet.http.HttpServletRequest" level="debug"/>
+    <logger name="ru.simplesys.defs.bo.scenarios.Scr_CmpgnDS" level="debug"/>
+    <logger name="ru.simplesys.defs.bo.admin.UserDS" level="debug"/>
+    <logger name="ru.simplesys.defs.bo.aps.ChangeoverDS" level="debug"/>
+    <logger name="ru.simplesys.defs.bo.aps.Result_itemsDS" level="debug"/>
+    <logger name="ru.simplesys.defs.bo.admin.UserBo" level="debug"/>
+    <logger name="ru.simplesys.defs.bo.eakd.AbonentsDS" level="debug"/>
+    <logger name="com.simplesys.jdbc.control.ClassBO" level="debug"/>
+    <logger name="com.simplesys.jdbc.control.DSRequest" level="trace"/>
+    <logger name="com.simplesys.jdbc.control.Table" level="debug"/>
+    <logger name="com.simplesys.jdbc.control.DsRequest" level="debug"/>
+
+    <logger name="com.simplesys.filter.ReLoginAxFilter" level="debug"/>
+    <logger name="com.simplesys.oracle.pool.OraclePoolDataSource" level="debug"/>
+
+    <!--Вывод регистрации сервлетов-->
+    <logger name="com.simplesys.listener.AppLifeCycleEvent" level="debug"/>
+    <logger name="com.simplesys.listener.CommonWebAppListener" level="debug"/>
+
+    <!--<logger name="com.simplesys.mfms.containers.ManagerOfFixedTemplates_FetchTemplateActor" level="debug" additivity="false">
+        <appender-ref ref="FILE_FETCH"/>
+    </logger>-->
+    <!--<root level="">-->
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
