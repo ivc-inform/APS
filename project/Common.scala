@@ -1,4 +1,3 @@
-import io.circe._
 import io.circe.generic.auto._
 import io.circe.syntax._
 

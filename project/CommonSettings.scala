@@ -1,12 +1,14 @@
+package ru.simplesys.eakd.sbtbuild
 
+import sbt.Setting
 
 object CommonSettings {
   object settingValues {
 
-    val scalaVersion = "2.12.3"
+    val scalaVersion = "2.12.4"
     val organization = "com.ivc-inform"
     val name = "aps"
-    val version = "1.0.0.0"
+    val baseVersion = "1.0"
     val scalacOptions = Seq(
       "-feature",
       "-language:higherKinds",

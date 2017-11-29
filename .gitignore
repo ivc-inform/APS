@@ -1,25 +1,76 @@
-*.svn
-*.log
-idea
-*.idea
-*.idea_modules 
-*.iml
-*.ipr
-*.iws
+.DS_Store
 target
-docs
-orbroker-org
-settings.xml
-*.bak
-*.pem
-*.class
-##jdbc-wrapper/src/test/scala/bo
-common-webapp/src/main/resources/webapp/javascript/generated/
-isc-components/src/main/resources/webapp/javascript/generated/
-saxon-wrapper/lib/
-
-isomorphic/
+backups/
+project/target
+.idea_modules
+.idea
 generated/
-managed/
-lastSaveMappingSettings.ignore
+journal/
+*.tar
+*.ignore
 
+# src/main/web-ui/webapp/isomorphic/
+# src/main/webapp/javascript/managed/
+
+web-ui/src/main/webapp/isomorphic/
+web-ui/src/main/webapp/managed/
+
+### Scala template
+*.class
+*.log
+
+# sbt specific
+.cache
+.history
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+web-ui/src/main/webapp/javascript/IncludeModules
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+
+### Java template
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Media Files #
+*.mkv
+*.avi
+
+# Bash Files #
+#*.sh
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+src/main/webapp/javascript/lastSaveMappingSettings.ignore
+src/main/webapp/javascript/developed/developedComponents/SettingsEditor.js
+src/main/webapp/managed/
+src/main/resources/migration/
+src/main/webapp/javascript/IncludeModules
+isomorphic/
+
+!common/lib/*.jar
+files/
+*.~*
+
+upgrade/
+*.tmp
+
+*.zip
+managed/
+!src/main/webapp/javascript/developed/isc_tools.js
+!jrebel.jar
