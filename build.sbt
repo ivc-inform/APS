@@ -122,17 +122,17 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .settings(CommonSettings.defaultSettings)
   .jvmConfigure(_ enablePlugins(DevPlugin, MergeWebappPlugin, SbtCoffeeScript, ScalaJSPlugin, JettyPlugin, WarPlugin, WebappPlugin, JRebelPlugin, DockerPlugin, JavaAppPackaging))
   .settings(
+      addCommandAlias("debug-restart", "; jetty:stop ; fastOptJS ; package ; jetty:start"),
+      addCommandAlias("reset", "; clean ; compile ; fastOptJS "),
+      addCommandAlias("full-reset", "; clean ; package ; fastOptJS "),
+      addCommandAlias("buildDockerImage", "; clean ; fastOptJS ; package; docker:buildImage"),
+      addCommandAlias("buildAndPublishDockerImage", "; clean ; fastOptJS ; package; docker:publishToCloud"),
       libraryDependencies ++= Seq(
           //CommonDeps.ssysJDBCWrapper,
           CommonDeps.scalaTest % Test
       )
   )
   .jvmSettings(
-      //      addCommandAlias("debug-restart", "; jetty:stop ; fastOptJS ; package ; jetty:start"),
-      //      addCommandAlias("reset", "; clean ; compile ; fastOptJS "),
-      //      addCommandAlias("full-reset", "; clean ; package ; fastOptJS "),
-      //      addCommandAlias("buildDockerImage", "; clean ; fastOptJS ; package; docker:buildImage"),
-      //      addCommandAlias("buildAndPublishDockerImage", "; clean ; fastOptJS ; package; docker:publishToCloud"),
 
       JRebelPlugin.jrebelSettings,
       jrebel.webLinks += (sourceDirectory in Compile).value / "webapp",

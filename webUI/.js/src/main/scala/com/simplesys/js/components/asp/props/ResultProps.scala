@@ -14,7 +14,7 @@ import com.simplesys.js.components.gantt.props.{GanttChartProps, GanttImprovedCh
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
-import ru.simplesys.defs.app.scala.container.aps.ResultDataRecord
+import ru.simplesys.defs.app.scala.container.ResultDataRecord
 
 class ResultProps extends CommonListGridEditorComponentProps {
     type classHandler <: Result
