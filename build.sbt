@@ -58,7 +58,21 @@ lazy val dbObjects = crossProject(JSPlatform, JVMPlatform)
   .settings(CommonSettings.defaultSettings)
   .aggregate(common)
   .dependsOn(common)
-  .enablePlugins(DevPlugin)
+  .jvmConfigure(_ enablePlugins DevPlugin)
+  .jvmSettings(DevPlugin.devPluginGeneratorSettings)
+  .jvmSettings(
+      {
+          import ru.simplesys.plugins.sourcegen.DevPlugin._
+          Seq(
+              sourceSchemaDir in DevConfig := (resourceDirectory in Compile).value / "defs",
+              startPackageName in DevConfig := "ru.simplesys.defs",
+              contextPath in DevConfig := "aps",
+              maxArity := 254,
+              quoted := true,
+              sourceGenerators in Compile += (generateBoScalaCode in DevConfig)
+          )
+      }
+  )
   .jvmSettings(commonJVMSettings)
   .jvmSettings(
       libraryDependencies ++= Seq(
