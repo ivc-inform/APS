@@ -13,12 +13,7 @@ lazy val root = (project in file("."))
   .settings(
       inThisBuild(Seq(
           git.baseVersion := CommonSettings.settingValues.baseVersion,
-          scalaVersion := CommonSettings.settingValues.scalaVersion,
-          liquibaseUsername in DevConfig := "eakd",
-          liquibasePassword in DevConfig := "eakd",
-          liquibaseDriver in DevConfig := "oracle.jdbc.OracleDriver",
-          liquibaseUrl in DevConfig := "jdbc:oracle:thin:@orapg.simplesys.lan:1521/test"
-
+          scalaVersion := CommonSettings.settingValues.scalaVersion
       )
         ++ CommonSettings.defaultSettings),
       publishArtifact in(Compile, packageBin) := false,
