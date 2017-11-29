@@ -13,7 +13,7 @@ import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
 import com.simplesys.request.RequestResult
 import io.circe.generic.auto._
-import io.circe.scalajs._
+//import io.circe.scalajs._
 import io.circe.syntax._
 
 import scala.language.implicitConversions
@@ -57,7 +57,7 @@ class GanttImprovedChartProps extends CanvasProps {
                     RPCRequest(
                         new RPCRequestProps {
                             actionURL = "logic/getGanttData".opt
-                            data = convertJsonToJs(RequestResult(idResult = thiz.idResult.getOrElse(0.0).toLong).asJson).opt
+                            //data = convertJsonToJs(RequestResult(idResult = thiz.idResult.getOrElse(0.0).toLong).asJson).opt
                             timeout = 60000.opt
                             sendNoQueue = true.opt
                             callback = {
