@@ -111,6 +111,8 @@ lazy val testModule = crossProject(JSPlatform, JVMPlatform)
 lazy val testModuleJS = testModule.js
 lazy val testModuleJVM = testModule.jvm
 
+val prefixPath = Seq("..", "..", "..", "src", "main")
+
 lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(CommonSettings.noPublishSettings)
@@ -187,7 +189,6 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       sourceGenerators in Compile += (generateScalaCode in DevConfig),
 
       //merger
-      val prefixPath = Seq("..", "..", "..", "src", "main")
       mergeMapping in MergeWebappConfig := Seq(
           ("com.simplesys.core", "common-webapp") -> Seq(
               Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "common-webapp", "generated", "generatedComponents", "coffeescript")),
