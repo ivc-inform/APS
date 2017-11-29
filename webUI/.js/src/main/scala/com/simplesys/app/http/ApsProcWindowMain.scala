@@ -1,6 +1,6 @@
 package com.simplesys.app.http
 
-import com.simplesys.SmartClient.App.props.{EditorUserGroupsProps, SettingsEditorProps}
+import com.simplesys.SmartClient.App.props.SettingsEditorProps
 import com.simplesys.SmartClient.App.{SettingsEditor, WebTabSetApp}
 import com.simplesys.SmartClient.Control.MenuSS
 import com.simplesys.SmartClient.Control.menu.MenuSSItem
@@ -18,11 +18,9 @@ import com.simplesys.System._
 import com.simplesys.app
 import com.simplesys.app._
 import com.simplesys.function._
-import com.simplesys.option.DoubleType._
 import com.simplesys.js.components.asp.props._
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen
-import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS}
 
 import scala.scalajs.js.annotation.JSExportTopLevel
 

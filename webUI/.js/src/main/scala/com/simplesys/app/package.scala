@@ -107,3 +107,4 @@ package object app {
     object TasksLayout extends SCApply[TasksLayout, TasksLayoutProps]
     object Tasks extends SCApply[Tasks, TasksProps]
 }
+

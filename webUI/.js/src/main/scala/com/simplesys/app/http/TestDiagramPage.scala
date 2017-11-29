@@ -4,21 +4,19 @@ import com.simplesys.SmartClient.App.props.SettingsEditorProps
 import com.simplesys.SmartClient.App.{SettingsEditor, WebTabSetApp}
 import com.simplesys.SmartClient.DataBinding.RestDataSourceSS
 import com.simplesys.SmartClient.Forms.formsItems.FormItem
-import com.simplesys.SmartClient.Foundation.props.{HTMLPaneProps, HTMLPaneSSProps}
 import com.simplesys.SmartClient.Grids.props.listGrid.ListGridFieldProps
 import com.simplesys.SmartClient.Layout.RibbonGroupSS
 import com.simplesys.SmartClient.Layout.props.{IconButtonSSProps, RibbonGroupSSProps}
 import com.simplesys.SmartClient.System.{Common, IconButtonSS, RibbonGroupSS, SettingsEditor, _}
-import com.simplesys.System.{JSAny, NameStrong}
-import com.simplesys.System.Types.{ID, Visibility}
+import com.simplesys.System.NameStrong
+import com.simplesys.System.Types.ID
 import com.simplesys.app.{GanttChart, GanttImprovedChartTest}
 import com.simplesys.function._
+import com.simplesys.js.components.gantt.props.{GanttChartProps, GanttImprovedChartTestProps}
 import com.simplesys.js.components.gantt.{DataStructItem, GanttDataItem}
 import com.simplesys.option.DoubleType._
-import com.simplesys.js.components.gantt.props.{GanttChartProps, GanttImprovedChartTestProps}
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen
-import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS}
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
