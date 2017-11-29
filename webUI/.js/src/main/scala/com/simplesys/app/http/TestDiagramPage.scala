@@ -17,6 +17,7 @@ import com.simplesys.js.components.gantt.{DataStructItem, GanttDataItem}
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen
+import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS}
 
 import scala.scalajs.js
 import scala.scalajs.js.Date

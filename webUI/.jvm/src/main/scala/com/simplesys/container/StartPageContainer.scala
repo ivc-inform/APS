@@ -1,6 +1,6 @@
 package com.simplesys.container
 
-import com.simplesys.SmartClient.System._
+import com.simplesys.common.Strings._
 import com.simplesys.annotation.RSTransfer
 import com.simplesys.app.http.{StartPage, StartTestPage}
 import com.simplesys.common._

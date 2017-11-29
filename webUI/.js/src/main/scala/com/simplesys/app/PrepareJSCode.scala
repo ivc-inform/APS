@@ -2,6 +2,7 @@ package com.simplesys.app
 
 import com.simplesys.SmartClient.App.StaticJSCode
 import com.simplesys.SmartClient.System.{Canvas, ChainMasterDetail, CommonListGridEditorComponent, CommonTreeGridEditorComponent, CommonTreeListGridEditorComponent, isc}
+import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, aps_changeover_code_operstype_From_type_NameStrong, aps_changeover_code_operstype_To_type_NameStrong}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportTopLevel
