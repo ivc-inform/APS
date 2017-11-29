@@ -98,13 +98,13 @@ lazy val testModule = crossProject(JSPlatform, JVMPlatform)
   .settings(
       name := "test"
   )
-  //.dependsOn(dbObjects)
+  .dependsOn(dbObjects)
   .settings(
-    libraryDependencies ++= Seq(
-        //CommonDeps.ssysJDBCWrapper,
-        CommonDeps.scalaTest % Test
-    )
-)
+      libraryDependencies ++= Seq(
+          //CommonDeps.ssysJDBCWrapper,
+          CommonDeps.scalaTest % Test
+      )
+  )
   .jvmSettings(commonJVMSettings)
   .jsSettings(commonJSSettings)
 
@@ -117,27 +117,22 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .settings(
       name := "web-ui"
   )
-  /*.dependsOn(dbObjects)
-  .aggregate(dbObjects)*/
+  .dependsOn(dbObjects)
+  .aggregate(dbObjects)
+  .settings(CommonSettings.defaultSettings)
   .jvmConfigure(_ enablePlugins(DevPlugin, MergeWebappPlugin, SbtCoffeeScript, ScalaJSPlugin, JettyPlugin, WarPlugin, WebappPlugin, JRebelPlugin, DockerPlugin, JavaAppPackaging))
-  .jvmConfigure {
-      project ⇒
-          project dependsOn dbObjectsJVM
-          project aggregate dbObjectsJVM
-  }
   .settings(
-      //      addCommandAlias("debug-restart", "; jetty:stop ; fastOptJS ; package ; jetty:start"),
-      //      addCommandAlias("reset", "; clean ; compile ; fastOptJS "),
-      //      addCommandAlias("full-reset", "; clean ; package ; fastOptJS "),
-      //      addCommandAlias("buildDockerImage", "; clean ; fastOptJS ; package; docker:buildImage"),
-      //      addCommandAlias("buildAndPublishDockerImage", "; clean ; fastOptJS ; package; docker:publishToCloud"),
-
       libraryDependencies ++= Seq(
           //CommonDeps.ssysJDBCWrapper,
           CommonDeps.scalaTest % Test
       )
   )
   .jvmSettings(
+      //      addCommandAlias("debug-restart", "; jetty:stop ; fastOptJS ; package ; jetty:start"),
+      //      addCommandAlias("reset", "; clean ; compile ; fastOptJS "),
+      //      addCommandAlias("full-reset", "; clean ; package ; fastOptJS "),
+      //      addCommandAlias("buildDockerImage", "; clean ; fastOptJS ; package; docker:buildImage"),
+      //      addCommandAlias("buildAndPublishDockerImage", "; clean ; fastOptJS ; package; docker:publishToCloud"),
 
       JRebelPlugin.jrebelSettings,
       jrebel.webLinks += (sourceDirectory in Compile).value / "webapp",

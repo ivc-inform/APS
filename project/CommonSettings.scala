@@ -13,6 +13,7 @@ object CommonSettings {
             "-feature",
             "-language:higherKinds",
             "-language:implicitConversions",
+            "-language:existentials",
             "-language:postfixOps",
             "-deprecation",
             "-unchecked")
