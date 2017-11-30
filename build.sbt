@@ -9,7 +9,6 @@ import com.typesafe.sbt.coffeescript.SbtCoffeeScript.autoImport._
 import com.typesafe.sbt.web.Import.WebKeys._
 import com.typesafe.sbt.web.SbtWeb.autoImport._
 import ru.simplesys.plugins.sourcegen.DevPlugin._
-import ru.simplesys.plugins.sourcegen.app.io.FileExt._
 
 lazy val root = crossProject(JSPlatform, JVMPlatform)
   .enablePlugins(GitVersioning)
@@ -27,9 +26,9 @@ lazy val root = crossProject(JSPlatform, JVMPlatform)
   .dependsOn(common, dbObjects, testModule, webUI)
 
 val commonJSSettings = Seq(
-    crossTarget in fastOptJS := (sourceDirectory in Compile).value / "javascriptJS",
-    crossTarget in fullOptJS := (sourceDirectory in Compile).value / "javascriptJS",
-    crossTarget in packageJSDependencies := (sourceDirectory in Compile).value / "javascriptJS",
+    crossTarget in fastOptJS := (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascriptJS",
+    crossTarget in fullOptJS := (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascriptJS",
+    crossTarget in packageJSDependencies := (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascriptJS",
     libraryDependencies ++= Seq(
         "org.scalatest" %%% "scalatest" % "3.0.4" % Test
     ),
@@ -308,9 +307,9 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       sourceGenerators in Compile += (generateScalaJSCode in DevConfig),
 
       //scala.js
-      crossTarget in fastOptJS := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
-      crossTarget in fullOptJS := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
-      crossTarget in packageJSDependencies := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in fastOptJS := (sourceDirectory in Compile).value  / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in fullOptJS := (sourceDirectory in Compile).value  / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in packageJSDependencies := (sourceDirectory in Compile).value  / ".." / ".." / ".." / "src" / "main" / "webapp" / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
 
       libraryDependencies ++= Seq(
           CommonDepsScalaJS.jsgantImproved.value,
