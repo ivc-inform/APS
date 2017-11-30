@@ -5,7 +5,7 @@ import com.simplesys.SmartClient.Foundation.props.CanvasProps
 import com.simplesys.SmartClient.RPC.props.RPCRequestProps
 import com.simplesys.SmartClient.RPC.{RPCManagerSS, RPCRequest, RPCResponse, RPCResponseStatic}
 import com.simplesys.SmartClient.System.{IscArray, RPCRequest, isc}
-import com.simplesys.System.{JSAny, JSUndefined}
+import com.simplesys.System.{JSAny, JSArray, JSObject, JSUndefined}
 import com.simplesys.function._
 import com.simplesys.gantt.TaskItemExt
 import com.simplesys.js.components.gantt.GanttImprovedChart
@@ -64,16 +64,22 @@ class GanttImprovedChartProps extends CanvasProps {
                             timeout = 60000.opt
                             sendNoQueue = true.opt
                             callback = {
-                                (resp: RPCResponse, data: JSAny, req: RPCRequest) ⇒
-                                    if (resp.httpResponseCode == RPCResponseStatic.STATUS_SUCCESS) {
-                                        convertJsToJson(data) match {
-                                            case Right(json) ⇒
-                                                json.as[Seq[TaskItemExt]].foreach(println)
-
-                                                
-
-                                            case Left(failure) ⇒
-                                                isc errorDetail(failure.getMessage, failure.getStackTrace.mkString(EOL, EOL, EOL))
+                                (resp: RPCResponse, data: JSArray[JSObject], req: RPCRequest) ⇒
+                                    if (resp.httpResponseCode == 200) {
+                                        data.foreach {
+                                            item ⇒
+                                                println(item)
+                                                /*convertJsToJson(item) match {
+                                                    case Right(json) ⇒
+                                                        json.as[TaskItemExt] match {
+                                                            case Right(item) ⇒
+                                                                println(item)
+                                                            case Left(failure) ⇒
+                                                                isc errorDetail(failure.getMessage, failure.getStackTrace.mkString(EOL, EOL, EOL))
+                                                        }
+                                                    case Left(failure) ⇒
+                                                        isc errorDetail(failure.getMessage, failure.getStackTrace.mkString(EOL, EOL, EOL))
+                                                }*/
                                         }
                                     }
 
