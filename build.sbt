@@ -26,9 +26,6 @@ lazy val root = crossProject(JSPlatform, JVMPlatform)
   .dependsOn(common, dbObjects, testModule, webUI)
 
 val commonJSSettings = Seq(
-    crossTarget in fastOptJS := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascriptJS",
-    crossTarget in fullOptJS := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascriptJS",
-    crossTarget in packageJSDependencies := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascriptJS",
     libraryDependencies ++= Seq(
         "org.scalatest" %%% "scalatest" % "3.0.4" % Test
     ),
@@ -111,9 +108,6 @@ lazy val testModule = crossProject(JSPlatform, JVMPlatform)
 lazy val testModuleJS = testModule.js
 lazy val testModuleJVM = testModule.jvm
 
-val prefixPath = Seq("..", "..", "..", "src", "main")
-def prefixPath(file: File) = file / ".." / ".." / "src" / "main"
-
 lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(CommonSettings.noPublishSettings)
@@ -138,7 +132,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .jvmSettings(
 
       JRebelPlugin.jrebelSettings,
-      jrebel.webLinks += prefixPath((sourceDirectory in Compile).value) / "webapp",
+      jrebel.webLinks += (sourceDirectory in Compile).value / "webapp",
       jrebel.enabled := true,
 
       javaOptions in Jetty ++= Seq(
@@ -177,8 +171,8 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       //coffeeScript
       CoffeeScriptKeys.sourceMap := false,
       CoffeeScriptKeys.bare := false,
-      sourceDirectory in Assets := prefixPath((sourceDirectory in Compile).value) / "webapp" / "coffeescript" / "developed" / "developedComponents",
-      webTarget := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascript" / "generated" / "generatedComponents" / "coffeescript",
+      sourceDirectory in Assets := (sourceDirectory in Compile).value / "webapp" / "coffeescript" / "developed" / "developedComponents",
+      webTarget := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponents" / "coffeescript",
       (managedResources in Compile) ++= CoffeeScriptKeys.coffeeScript.value,
 
       //dev plugin
@@ -192,28 +186,28 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       //merger
       mergeMapping in MergeWebappConfig := Seq(
           ("com.simplesys.core", "common-webapp") -> Seq(
-              Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "common-webapp", "generated", "generatedComponents", "coffeescript")),
-              Seq("webapp", "javascript", "developed") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "common-webapp", "developed")),
-              Seq("webapp", "coffeescript", "developed") -> Some(prefixPath ++ Seq("webapp", "managed", "coffeescript", "common-webapp", "developed")),
-              Seq("webapp", "css") -> Some(prefixPath ++ Seq("webapp", "managed", "css", "common-webapp")),
-              Seq("webapp", "html") -> Some(prefixPath ++ Seq("webapp", "managed", "html", "common-webapp")),
-              Seq("webapp", "images") -> Some(prefixPath ++ Seq("webapp", "managed", "images", "common-webapp"))
+              Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(Seq("webapp", "managed", "javascript", "common-webapp", "generated", "generatedComponents", "coffeescript")),
+              Seq("webapp", "javascript", "developed") -> Some(Seq("webapp", "managed", "javascript", "common-webapp", "developed")),
+              Seq("webapp", "coffeescript", "developed") -> Some(Seq("webapp", "managed", "coffeescript", "common-webapp", "developed")),
+              Seq("webapp", "css") -> Some(Seq("webapp", "managed", "css", "common-webapp")),
+              Seq("webapp", "html") -> Some(Seq("webapp", "managed", "html", "common-webapp")),
+              Seq("webapp", "images") -> Some(Seq("webapp", "managed", "images", "common-webapp"))
           ),
           ("com.simplesys.core", "isc-components") -> Seq(
-              Seq("webapp", "javascript", "generated", "generatedComponents") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "isc-components", "generated", "generatedComponents")),
-              Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "isc-components", "generated", "generatedComponents", "coffeescript")),
-              Seq("javascript", "com", "simplesys") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "isc-components", "developed", "developedComponents")),
-              Seq("coffeescript") -> Some(prefixPath ++ Seq("webapp", "managed", "coffeescript", "isc-components", "developed", "developedComponents"))
+              Seq("webapp", "javascript", "generated", "generatedComponents") -> Some(Seq("webapp", "managed", "javascript", "isc-components", "generated", "generatedComponents")),
+              Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(Seq("webapp", "managed", "javascript", "isc-components", "generated", "generatedComponents", "coffeescript")),
+              Seq("javascript", "com", "simplesys") -> Some(Seq("webapp", "managed", "javascript", "isc-components", "developed", "developedComponents")),
+              Seq("coffeescript") -> Some(Seq("webapp", "managed", "coffeescript", "isc-components", "developed", "developedComponents"))
           ),
           ("com.simplesys.core", "isc-misc") -> Seq(
-              Seq("javascript") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "isc-misc"))
+              Seq("javascript") -> Some(Seq("webapp", "managed", "javascript", "isc-misc"))
           ),
           ("com.simplesys", "jsgantt-improved") -> Seq(
-              Seq("javascript") -> Some(prefixPath ++ Seq("webapp", "managed", "javascript", "jsgantt-improved")),
-              Seq("css") -> Some(prefixPath ++ Seq("webapp", "managed", "css", "jsgantt-improved"))
+              Seq("javascript") -> Some(Seq("webapp", "managed", "javascript", "jsgantt-improved")),
+              Seq("css") -> Some(Seq("webapp", "managed", "css", "jsgantt-improved"))
           ),
           ("com.simplesys", "smartclient-js") -> Seq(
-              Seq("isomorphic") -> Some(prefixPath ++ Seq("webapp", "isomorphic"))
+              Seq("isomorphic") -> Some(Seq("webapp", "isomorphic"))
           )
       ),
       webAppDirPath in MergeWebappConfig := (sourceDirectory in Compile).value,
@@ -229,8 +223,8 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           a.name + "." + a.extension
       },
       webappWebInfClasses := true,
-      target in webappPrepare := prefixPath((target in Compile).value) / "webapp",
-      sourceDirectory in webappPrepare := prefixPath((sourceDirectory in Compile).value) / "webapp",
+      //      target in webappPrepare := prefixPath((target in Compile).value) / "webapp",
+      //      sourceDirectory in webappPrepare := prefixPath((sourceDirectory in Compile).value) / "webapp",
 
       defaultLinuxInstallLocation in Docker := "",
       dockerBaseImage := "ivcinform/jetty:9.4.7.v20170914",
@@ -254,7 +248,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       ),
       (resourceGenerators in Compile) += task[Seq[File]] {
 
-          val aboutFile: File = prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascript" / "generated" / "generatedComponents" / "MakeAboutData.js"
+          val aboutFile: File = (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponents" / "MakeAboutData.js"
 
           import scala.reflect.ClassTag
           import scala.reflect.runtime.universe._
@@ -310,9 +304,9 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       sourceGenerators in Compile += (generateScalaJSCode in DevConfig),
 
       //scala.js
-      crossTarget in fastOptJS := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
-      crossTarget in fullOptJS := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
-      crossTarget in packageJSDependencies := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in fastOptJS := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in fullOptJS := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in packageJSDependencies := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
 
       libraryDependencies ++= Seq(
           CommonDepsScalaJS.jsgantImproved.value,
