@@ -8,6 +8,7 @@ import com.simplesys.SmartClient.System.{IscArray, RPCRequest, isc}
 import com.simplesys.System.{JSAny, JSArray, JSObject, JSUndefined}
 import com.simplesys.function._
 import com.simplesys.gantt.TaskItemExt
+import com.simplesys.isc.dataBinging.DSResponse
 import com.simplesys.js.components.gantt.GanttImprovedChart
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
@@ -64,12 +65,17 @@ class GanttImprovedChartProps extends CanvasProps {
                             timeout = 60000.opt
                             sendNoQueue = true.opt
                             callback = {
-                                (resp: RPCResponse, data: JSArray[JSObject], req: RPCRequest) ⇒
+                                (resp: RPCResponse, data: JSAny, req: RPCRequest) ⇒
                                     if (resp.httpResponseCode == 200) {
+                                        convertJsToJson(data) match {
+                                            case Right(json) ⇒
+                                            case Left(failure) ⇒
+                                                isc error(failure.getMessage)
+                                        }
                                         data.foreach {
                                             item ⇒
                                                 println(item)
-                                                /*convertJsToJson(item) match {
+                                                convertJsToJson(item) match {
                                                     case Right(json) ⇒
                                                         json.as[TaskItemExt] match {
                                                             case Right(item) ⇒
@@ -79,7 +85,7 @@ class GanttImprovedChartProps extends CanvasProps {
                                                         }
                                                     case Left(failure) ⇒
                                                         isc errorDetail(failure.getMessage, failure.getStackTrace.mkString(EOL, EOL, EOL))
-                                                }*/
+                                                }
                                         }
                                     }
 
