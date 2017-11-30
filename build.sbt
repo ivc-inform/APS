@@ -251,7 +251,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       ),
       (resourceGenerators in Compile) += task[Seq[File]] {
 
-          val aboutFile: File = (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponents" / "MakeAboutData.js"
+          val aboutFile: File = (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascript" / "generated" / "generatedComponents" / "MakeAboutData.js"
 
           import scala.reflect.ClassTag
           import scala.reflect.runtime.universe._
