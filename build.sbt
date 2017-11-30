@@ -9,6 +9,7 @@ import com.typesafe.sbt.coffeescript.SbtCoffeeScript.autoImport._
 import com.typesafe.sbt.web.Import.WebKeys._
 import com.typesafe.sbt.web.SbtWeb.autoImport._
 import ru.simplesys.plugins.sourcegen.DevPlugin._
+import ru.simplesys.plugins.sourcegen.app.io.FileExt._
 
 lazy val root = crossProject(JSPlatform, JVMPlatform)
   .enablePlugins(GitVersioning)
@@ -176,8 +177,8 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       //coffeeScript
       CoffeeScriptKeys.sourceMap := false,
       CoffeeScriptKeys.bare := false,
-      sourceDirectory in Assets := (sourceDirectory in Compile).value / "webapp" / "coffeescript" / "developed" / "developedComponents",
-      webTarget := (sourceDirectory in Compile).value / "webapp" / "javascript" / "generated" / "generatedComponents" / "coffeescript",
+      sourceDirectory in Assets := (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "coffeescript" / "developed" / "developedComponents",
+      webTarget := (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascript" / "generated" / "generatedComponents" / "coffeescript",
       (managedResources in Compile) ++= CoffeeScriptKeys.coffeeScript.value,
 
       //dev plugin
