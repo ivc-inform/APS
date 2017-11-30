@@ -26,9 +26,9 @@ lazy val root = crossProject(JSPlatform, JVMPlatform)
   .dependsOn(common, dbObjects, testModule, webUI)
 
 val commonJSSettings = Seq(
-    crossTarget in fastOptJS := (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascriptJS",
-    crossTarget in fullOptJS := (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascriptJS",
-    crossTarget in packageJSDependencies := (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascriptJS",
+    crossTarget in fastOptJS := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascriptJS",
+    crossTarget in fullOptJS := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascriptJS",
+    crossTarget in packageJSDependencies := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascriptJS",
     libraryDependencies ++= Seq(
         "org.scalatest" %%% "scalatest" % "3.0.4" % Test
     ),
@@ -112,6 +112,7 @@ lazy val testModuleJS = testModule.js
 lazy val testModuleJVM = testModule.jvm
 
 val prefixPath = Seq("..", "..", "..", "src", "main")
+def prefixPath(file: File) = file / ".." / ".." / "src" / "main"
 
 lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
@@ -137,7 +138,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .jvmSettings(
 
       JRebelPlugin.jrebelSettings,
-      jrebel.webLinks += (sourceDirectory in Compile).value / "webapp",
+      jrebel.webLinks += prefixPath((sourceDirectory in Compile).value) / "webapp",
       jrebel.enabled := true,
 
       javaOptions in Jetty ++= Seq(
@@ -176,8 +177,8 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       //coffeeScript
       CoffeeScriptKeys.sourceMap := false,
       CoffeeScriptKeys.bare := false,
-      sourceDirectory in Assets := (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "coffeescript" / "developed" / "developedComponents",
-      webTarget := (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascript" / "generated" / "generatedComponents" / "coffeescript",
+      sourceDirectory in Assets := prefixPath((sourceDirectory in Compile).value) / "webapp" / "coffeescript" / "developed" / "developedComponents",
+      webTarget := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascript" / "generated" / "generatedComponents" / "coffeescript",
       (managedResources in Compile) ++= CoffeeScriptKeys.coffeeScript.value,
 
       //dev plugin
@@ -228,6 +229,8 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           a.name + "." + a.extension
       },
       webappWebInfClasses := true,
+      target in webappPrepare := prefixPath((target in Compile).value) / "webapp",
+      sourceDirectory in webappPrepare := prefixPath((sourceDirectory in Compile).value) / "webapp",
 
       defaultLinuxInstallLocation in Docker := "",
       dockerBaseImage := "ivcinform/jetty:9.4.7.v20170914",
@@ -251,7 +254,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       ),
       (resourceGenerators in Compile) += task[Seq[File]] {
 
-          val aboutFile: File = (sourceDirectory in Compile).value / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascript" / "generated" / "generatedComponents" / "MakeAboutData.js"
+          val aboutFile: File = prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascript" / "generated" / "generatedComponents" / "MakeAboutData.js"
 
           import scala.reflect.ClassTag
           import scala.reflect.runtime.universe._
@@ -307,9 +310,9 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       sourceGenerators in Compile += (generateScalaJSCode in DevConfig),
 
       //scala.js
-      crossTarget in fastOptJS := (sourceDirectory in Compile).value  / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
-      crossTarget in fullOptJS := (sourceDirectory in Compile).value  / ".." / ".." / ".." / "src" / "main" / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
-      crossTarget in packageJSDependencies := (sourceDirectory in Compile).value  / ".." / ".." / ".." / "src" / "main" / "webapp" / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in fastOptJS := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in fullOptJS := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
+      crossTarget in packageJSDependencies := prefixPath((sourceDirectory in Compile).value) / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
 
       libraryDependencies ++= Seq(
           CommonDepsScalaJS.jsgantImproved.value,
