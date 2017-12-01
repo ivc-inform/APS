@@ -153,6 +153,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           CommonDeps.ssysCommonWebapp,
 
           CommonDeps.smartclient,
+          CommonDeps.ssysCommon,
 
           CommonDeps.commonsFileupload,
           CommonDeps.commonsIO,
