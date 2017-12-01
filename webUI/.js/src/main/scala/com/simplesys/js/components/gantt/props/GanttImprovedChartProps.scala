@@ -80,7 +80,7 @@ class GanttImprovedChartProps extends CanvasProps {
                                                             case Right(seq) ⇒
                                                                 val div = dom.document.getElementById(thiz.getID1)
 
-                                                                implicit val g = new GanttChartExt(div, Format.day)
+                                                                implicit val g = new GanttChartExt(div, Format.hour)
                                                                 g.addLang("rus", GanttChart.langRus)
                                                                 g setLang "rus"
 
@@ -96,7 +96,8 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                         g setShowEndWeekDate 0
                                                                         g setUseSingleCell 20000
                                                                         g setShowComp 1
-                                                                        g setFormatArr(Format.hour, Format.day, Format.week, Format.month, Format.quarter)
+                                                                        g setFormatArr(Format.hour)
+                                                                        
                                                                         g.AddTaskItem(new TaskItemExt(pID = 1, pName = "Define Chart API", pClass = ggroupblack, pRes = "Brian", pGroup = Group.standardGroupTask, pNotes = "Some Notes text"))
                                                                         g.AddTaskItem(new TaskItemExt(pID = 11, pName = "Chart Object", pStart = "2016-02-20 12:30".toLDT, pEnd = "2016-02-22 01:22".toLDT, pClass = gmilestone, pLink = Link("Link about"), pMile = MileStone.milestone, pRes = "Shlomy", pComp = 100, pParentID = 1))
                                                                         g.AddTaskItem(new TaskItemExt(pID = 12, pName = "Task Objects", pClass = ggroupblack, pRes = "Shlomy", pComp = 40, pGroup = Group.standardGroupTask, pParentID = 1, pOpen = Opening.open))
