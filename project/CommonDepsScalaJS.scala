@@ -15,4 +15,5 @@ object CommonDepsScalaJS {
     //val jsgantImproved =  ProjectRef(uri("../../JOB/jsgantt-improved"), "ganttImprovedJS")
 
     val circeExtender = Def.setting("com.simplesys.cross" %%% "circe-extender" % versions.ssCrossVersion)
+    val servletWrapper = Def.setting("com.simplesys.cross" %% "servlet-wrapper" % versions.ssCrossVersion)
 }
