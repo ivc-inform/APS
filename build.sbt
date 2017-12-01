@@ -27,7 +27,7 @@ lazy val root = crossProject(JSPlatform, JVMPlatform)
 
 val commonJSSettings = Seq(
     libraryDependencies ++= Seq(
-        "org.scalatest" %%% "scalatest" % "3.0.4" % Test
+        CommonDepsScalaJS.scalaTest.value
     ),
     scalacOptions ++= {
         if (scalaJSVersion.startsWith("0.6."))
@@ -39,7 +39,7 @@ val commonJSSettings = Seq(
 
 val commonJVMSettings = Seq(
     libraryDependencies ++= Seq(
-        "org.scalatest" %% "scalatest" % "3.0.4" % Test
+        CommonDeps.scalaTest
     )
 )
 
