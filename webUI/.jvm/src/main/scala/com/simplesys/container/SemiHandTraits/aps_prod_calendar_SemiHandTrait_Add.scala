@@ -25,5 +25,8 @@ trait aps_prod_calendar_SemiHandTrait_Add extends SessionContextSupport with Ser
     
      def receiveBase: Option[Actor.Receive] = None    
     
-     def wrapperBlobGetter(blob: Blob): String = blob.asString
+     def wrapperBlobGetter(blob: Blob): String = {
+         import com.simplesys.common.JVM.Strings._
+         blob.asString
+     }
 }
