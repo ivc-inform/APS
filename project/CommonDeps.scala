@@ -55,7 +55,8 @@ object CommonDeps {
         val configWrapperVersion = "0.4.4"
         val jsgantImprovedVersion = "0.9.4-SNAPSHOT"
 
-        val circe = "0.8.0"
+        val circeVersion = "0.8.0"
+        val ssCrossVersion = "1.0.0.5-SNAPSHOT"
     }
 
     val uriSimpleSys = uri("../../JOB/simplesys")
@@ -98,9 +99,6 @@ object CommonDeps {
     val ssysJDBCWrapper = "com.simplesys.core" %% "jdbc-wrapper" % versions.ssysCoreVersion
     //val ssysJDBCWrapper: ProjectRef = ProjectRef(uriSimpleSys, "jdbc-wrapper")
 
-    val circeExtender = "com.simplesys.core" %% "circe-extender" % versions.ssysCoreVersion
-    //val circeExtender = ProjectRef(uriSimpleSys, "circe-extender")
-
     val oraclePoolDataSources: ModuleID = "com.simplesys.core" %% "oracle-pool-datasources" % versions.ssysCoreVersion
     val hikariPoolDataSources = "com.simplesys.core" %% "hikari-cp" % versions.ssysCoreVersion
     val ssysLogBackWrapper = "com.simplesys.core" %% "logback-wrapper" % versions.ssysCoreVersion
@@ -123,5 +121,7 @@ object CommonDeps {
 
     val jsgantImproved = "com.simplesys" %% "jsgantt-improved" % versions.jsgantImprovedVersion
     //val jsgantImproved =  ProjectRef(uri("../../JOB/jsgantt-improved"), "ganttImprovedJVM")
+
+    val circeExtender = "com.simplesys.cross" %% "circe-extender" % versions.ssCrossVersion
 }
 

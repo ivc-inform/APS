@@ -316,9 +316,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           CommonDepsScalaJS.jQuery.value,
           CommonDepsScalaJS.scalaDom.value,
 
-          CommonDepsScalaJS.circeCore.value,
-          CommonDepsScalaJS.circeGeneric.value,
-          CommonDepsScalaJS.circeParser.value
+          CommonDepsScalaJS.circeExtender.value
       )
   )
   .jsSettings(commonJSSettings)
