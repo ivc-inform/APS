@@ -26,5 +26,8 @@ trait admin_User_SemiHandTrait_Fetch extends SessionContextSupport with ServletA
     
      def receiveBase: Option[Actor.Receive] = None    
     
-     def wrapperBlobGetter(blob: Blob): String = blob.asString
+     def wrapperBlobGetter(blob: Blob): String = {
+         import com.simplesys.common.JVM.Strings._
+         blob.asString
+     }
 }

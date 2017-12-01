@@ -19,6 +19,7 @@ import io.circe.scalajs._
 import io.circe.syntax._
 
 import scala.language.implicitConversions
+import scala.scalajs.js
 import scalatags.Text.all._
 //import com.simplesys.gantt.TaskItemExt._ //!! Must be //!! Must be
 import com.simplesys.gantt.TaskItemExt._ //!! Must be //!! Must be
@@ -69,10 +70,12 @@ class GanttImprovedChartProps extends CanvasProps {
                                     if (resp.httpResponseCode == 200) {
                                         convertJsToJson(data) match {
                                             case Right(json) ⇒
+                                               println(json.spaces41)
+
                                             case Left(failure) ⇒
                                                 isc error(failure.getMessage)
                                         }
-                                        data.foreach {
+                                        /*data.foreach {
                                             item ⇒
                                                 println(item)
                                                 convertJsToJson(item) match {
@@ -86,7 +89,7 @@ class GanttImprovedChartProps extends CanvasProps {
                                                     case Left(failure) ⇒
                                                         isc errorDetail(failure.getMessage, failure.getStackTrace.mkString(EOL, EOL, EOL))
                                                 }
-                                        }
+                                        }*/
                                     }
 
                             }.toFunc.opt
