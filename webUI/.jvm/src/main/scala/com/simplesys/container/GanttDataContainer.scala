@@ -43,7 +43,7 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                     dataSetResult.selectPOne(where = Where(dataSetResult.idresultResult === value.idResult)).result match {
                         case Success(result) ⇒
                             val taskGroupItem = TaskItemExt(
-                                pID = result.idresultResult,
+                                pID = 0,
                                 pName = result.scodeResult,
                                 pRes = Some(result.scodeResult),
                                 pClass = ggroupblack,
@@ -56,7 +56,7 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                                     Out(
                                         DSResponse(
                                             data = arr(
-                                                resultItems.map {
+                                               Seq(taskGroupItem.asJson) ++ resultItems.map {
                                                     resultItem ⇒
                                                         val res = TaskItemExt(
                                                             pID = resultItem.id_itemResult_items,
