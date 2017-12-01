@@ -7,6 +7,7 @@ import com.simplesys.SmartClient.RPC.{RPCManagerSS, RPCRequest, RPCResponse, RPC
 import com.simplesys.SmartClient.System.{IscArray, RPCRequest, isc}
 import com.simplesys.System.{JSAny, JSArray, JSObject, JSUndefined}
 import com.simplesys.function._
+import com.simplesys.circe.Circe._
 import com.simplesys.gantt.TaskItemExt
 import com.simplesys.isc.dataBinging.DSResponse
 import com.simplesys.js.components.gantt.GanttImprovedChart
