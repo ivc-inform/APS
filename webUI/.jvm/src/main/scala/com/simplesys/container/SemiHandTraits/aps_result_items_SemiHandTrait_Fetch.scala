@@ -140,8 +140,5 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
             throw new RuntimeException(s"Bad branch $x")
     })
 
-    def wrapperBlobGetter(blob: Blob): String = {
-        import com.simplesys.common.JVM.Strings._
-        blob.asString
-    }
+    def wrapperBlobGetter(blob: Blob): String = blob.asString
 }

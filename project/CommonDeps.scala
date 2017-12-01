@@ -32,7 +32,6 @@ object CommonDeps {
         val scalaModulesVersion = "1.0.6"
 
         val ssysCoreVersion = "1.5-SNAPSHOT"
-        val ssysCrossVersion = "1.0.0.5-SNAPSHOT"
         //val ssysCoreVersion = "1.4.0.2"
         val smartclientVersion = "11.1-v20170703.1"
 
@@ -56,8 +55,7 @@ object CommonDeps {
         val configWrapperVersion = "0.4.4"
         val jsgantImprovedVersion = "0.9.4-SNAPSHOT"
 
-        val circeVersion = "0.8.0"
-        val ssSympleSysCrossVersion = "1.0.0.5-SNAPSHOT"
+        val circe = "0.8.0"
     }
 
     val uriSimpleSys = uri("../../JOB/simplesys")
@@ -88,7 +86,7 @@ object CommonDeps {
     val ssysScalaIOExtender = "com.simplesys.core" %% "scala-io-extender" % versions.ssysCoreVersion
     //val ssysScalaIOExtender = ProjectRef(uriSimpleSys, "scala-io-extender")
 
-    val ssysCommon = "com.simplesys.cross" %% "common-cross" % versions.ssysCrossVersion
+    val ssysCommon = "com.simplesys.core" %% "common" % versions.ssysCoreVersion
     //val ssysCommon = ProjectRef(uriSimpleSys, "common")
 
     val ssysServletWrapper = "com.simplesys.core" %% "servlet-wrapper" % versions.ssysCoreVersion

@@ -27,7 +27,7 @@ lazy val root = crossProject(JSPlatform, JVMPlatform)
 
 val commonJSSettings = Seq(
     libraryDependencies ++= Seq(
-        CommonDepsScalaJS.scalaTest.value
+        "org.scalatest" %%% "scalatest" % "3.0.4" % Test
     ),
     scalacOptions ++= {
         if (scalaJSVersion.startsWith("0.6."))
@@ -153,7 +153,6 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           CommonDeps.ssysCommonWebapp,
 
           CommonDeps.smartclient,
-          CommonDeps.ssysCommon,
 
           CommonDeps.commonsFileupload,
           CommonDeps.commonsIO,
@@ -317,8 +316,9 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           CommonDepsScalaJS.jQuery.value,
           CommonDepsScalaJS.scalaDom.value,
 
-          CommonDepsScalaJS.circeExtender.value,
-          CommonDepsScalaJS.servletWrapperCross.value
+          CommonDepsScalaJS.circeCore.value,
+          CommonDepsScalaJS.circeGeneric.value,
+          CommonDepsScalaJS.circeParser.value
       )
   )
   .jsSettings(commonJSSettings)

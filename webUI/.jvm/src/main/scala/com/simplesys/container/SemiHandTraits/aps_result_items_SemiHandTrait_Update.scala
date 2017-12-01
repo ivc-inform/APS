@@ -216,8 +216,5 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
         }
     )
 
-    def wrapperBlobGetter(blob: Blob): String = {
-        import com.simplesys.common.JVM.Strings._
-        blob.asString
-    }
+    def wrapperBlobGetter(blob: Blob): String = blob.asString
 }

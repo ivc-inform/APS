@@ -25,8 +25,5 @@ trait aps_tasks_SemiHandTrait_Remove extends SessionContextSupport with ServletA
     
      def receiveBase: Option[Actor.Receive] = None    
     
-     def wrapperBlobGetter(blob: Blob): String = {
-         import com.simplesys.common.JVM.Strings._
-         blob.asString
-     }
+     def wrapperBlobGetter(blob: Blob): String = blob.asString
 }
