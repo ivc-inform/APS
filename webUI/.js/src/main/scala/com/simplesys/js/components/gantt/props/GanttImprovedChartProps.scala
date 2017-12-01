@@ -15,10 +15,13 @@ import com.simplesys.request.RequestResult
 import io.circe.generic.auto._
 import io.circe.scalajs._
 import io.circe.syntax._
+import io.circe.Json._
+import com.simplesys.circe.Circe._
 
 import scala.language.implicitConversions
 import scalatags.Text.all._
-//import com.simplesys.gantt.TaskItemExt._ //!! Must be //!! Must be //!! Must be //!! Must be
+//import com.simplesys.gantt.TaskItemExt._ //!! Must be
+import com.simplesys.gantt.TaskItemExt._ //!! Must be
 
 class GanttImprovedChartProps extends CanvasProps {
     type classHandler <: GanttImprovedChart
@@ -66,6 +69,7 @@ class GanttImprovedChartProps extends CanvasProps {
                                     if (resp.httpResponseCode == 200) {
                                         convertJsToJson(data) match {
                                             case Right(json) ⇒
+                                                println(json.spaces41)
                                             case Left(failure) ⇒
                                                 isc error(failure.getMessage)
                                         }
