@@ -17,7 +17,9 @@ import io.circe.generic.auto._
 import io.circe.scalajs._
 import io.circe.syntax._
 import com.simplesys.circe.Circe._
-import com.simplesys.gantt.TaskItemExt
+import com.simplesys.gantt.JS.{GanttChart, GanttChartExt}
+import com.simplesys.gantt.{Format, TaskItemExt}
+import org.scalajs.dom
 
 import scala.language.implicitConversions
 import scalatags.Text.all._
@@ -56,7 +58,6 @@ class GanttImprovedChartProps extends CanvasProps {
                 thiz
             else {
                 thiz.Super("draw")
-                //isc info s"idResult: ${isc.JSON.encode(convertJsonToJs(RequestResult(thiz.idResult.getOrElse(0.0).toLong).asJson).asInstanceOf[js.Object])}"
 
                 RPCManagerSS.sendRequest(
                     RPCRequest(
@@ -74,7 +75,13 @@ class GanttImprovedChartProps extends CanvasProps {
                                                     case Right(dsResponse) ⇒
                                                         dsResponse.data.as[Seq[TaskItemExt]] match {
                                                             case Right(seq) ⇒
-                                                                seq.foreach(item ⇒ println(item.asJson.spaces41))
+                                                                val div = dom.document.getElementById(thiz.getID1)
+
+                                                                implicit val g = new GanttChartExt(div, Format.day)
+                                                                g.addLang("rus", GanttChart.langRus)
+                                                                g setLang "rus"
+
+                                                                
                                                             case Left(failure) ⇒
                                                                 isc error (failure.getMessage)
                                                         }
