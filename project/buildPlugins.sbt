@@ -8,7 +8,7 @@ lazy val devPlugin = uri("../../sbt-plugins/dev-plugin")
 lazy val mergeJS = uri("../../sbt-plugins/merge-js")
 
 lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(
-    RootProject(devPlugin),
+    /*RootProject(devPlugin),*/
     /*RootProject(circeExtender), */
     /*RootProject(sbtCoffeeScript), */
     /*RootProject(sbtNativePackager), */
@@ -18,7 +18,7 @@ lazy val root = Project(id = "buildPlugins", base = file(".")).dependsOn(
   .settings(sbt.inThisBuild(CommonSettings.defaultSettings))
   .settings(
       classpathTypes += "maven-plugin",
-      //PluginDeps.devPlugin,
+      PluginDeps.devPlugin,
       PluginDeps.sbtCoffeeScript,
       PluginDeps.mergeJS,
       PluginDeps.xsbtWeb,
