@@ -96,7 +96,7 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                         g setShowEndWeekDate 0
                                                                         g setUseSingleCell 20000
                                                                         g setShowComp 1
-                                                                        g setFormatArr(Format.hour)
+                                                                        g setFormatArr(Format.hour, Format.day)
                                                                         
                                                                         g.AddTaskItem(new TaskItemExt(pID = 1, pName = "Define Chart API", pClass = ggroupblack, pRes = "Brian", pGroup = Group.standardGroupTask, pNotes = "Some Notes text"))
                                                                         g.AddTaskItem(new TaskItemExt(pID = 11, pName = "Chart Object", pStart = "2016-02-20 12:30".toLDT, pEnd = "2016-02-22 01:22".toLDT, pClass = gmilestone, pLink = Link("Link about"), pMile = MileStone.milestone, pRes = "Shlomy", pComp = 100, pParentID = 1))
