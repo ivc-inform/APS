@@ -23,6 +23,7 @@ import com.simplesys.gantt.JS.GanttChart._
 import com.simplesys.gantt.{CaptionType, Format, Group, _}
 import com.simplesys.gantt.JS.{GanttChart, GanttChartExt, TaskItemExt}
 import com.simplesys.gantt.TaskCssClass._
+import com.simplesys.gantt.{TaskItemExt ⇒ TaskItemExtCC}
 
 import scala.language.implicitConversions
 import scalatags.Text.all._
@@ -76,7 +77,7 @@ class GanttImprovedChartProps extends CanvasProps {
                                             case Right(json) ⇒
                                                 json.getJsonObject("response").as[DSResponse] match {
                                                     case Right(dsResponse) ⇒
-                                                        dsResponse.data.as[Seq[com.simplesys.gantt.TaskItemExt]] match {
+                                                        dsResponse.data.as[Seq[TaskItemExtCC]] match {
                                                             case Right(seq) ⇒
                                                                 val div = dom.document.getElementById(thiz.getID1)
 
@@ -97,7 +98,14 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                         g setUseSingleCell 20000
                                                                         g setShowComp 1
                                                                         g setFormatArr(Format.hour, Format.day)
-                                                                        
+
+                                                                        //seq.foreach(g.AddTaskItem(_))
+                                                                        /*seq.foreach{
+                                                                            item ⇒
+                                                                                val a:TaskItemExt = item
+                                                                                println(isc.JSON.encode(a))
+                                                                        }*/
+
                                                                         g.AddTaskItem(new TaskItemExt(pID = 1, pName = "Define Chart API", pClass = ggroupblack, pRes = "Brian", pGroup = Group.standardGroupTask, pNotes = "Some Notes text"))
                                                                         g.AddTaskItem(new TaskItemExt(pID = 11, pName = "Chart Object", pStart = "2016-02-20 12:30".toLDT, pEnd = "2016-02-22 01:22".toLDT, pClass = gmilestone, pLink = Link("Link about"), pMile = MileStone.milestone, pRes = "Shlomy", pComp = 100, pParentID = 1))
                                                                         g.AddTaskItem(new TaskItemExt(pID = 12, pName = "Task Objects", pClass = ggroupblack, pRes = "Shlomy", pComp = 40, pGroup = Group.standardGroupTask, pParentID = 1, pOpen = Opening.open))
