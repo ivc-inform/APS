@@ -20,10 +20,9 @@ import com.simplesys.circe.Circe._
 import org.scalajs.dom
 import com.simplesys.gantt.GanttChartCommon._
 import com.simplesys.gantt.JS.GanttChart._
-import com.simplesys.gantt.{CaptionType, Format, Group, _}
+import com.simplesys.gantt.{CaptionType, Format, Group, TaskItemExt, TaskItemExt ⇒ TaskItemExtCC, _}
 import com.simplesys.gantt.JS.{GanttChart, GanttChartExt, TaskItemExt}
 import com.simplesys.gantt.TaskCssClass._
-import com.simplesys.gantt.{TaskItemExt ⇒ TaskItemExtCC}
 
 import scala.language.implicitConversions
 import scalatags.Text.all._
@@ -85,6 +84,24 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                 g.addLang("rus", GanttChart.langRus)
                                                                 g setLang "rus"
 
+                                                                implicit def taskItem2JS(ti:TaskItemExtCC)(implicit pGantt: GanttChartExt):TaskItemExt = new TaskItemExt(
+                                                                    pLink = ti.pLink.map(Link(_)).getOrElse(Link()),
+                                                                    pID = ti.pID,
+                                                                    pGroup = ti.pGroup.getOrElse(Group.normalTask),
+                                                                    pName = ti.pName,
+                                                                    pOpen = ti.pOpen.getOrElse(Opening.open),
+                                                                    pComp = ti.pComp.getOrElse(0.0),
+                                                                    pRes = ti.pRes.getOrElse(""),
+                                                                    pClass = ti.pClass,
+                                                                    pMile = ti.pMile.getOrElse(MileStone.notMilestone),
+                                                                    pNotes = ti.pNotes.getOrElse(""),
+                                                                    pParentID = ti.pParent.map(_.toDouble).getOrElse(0.0),
+                                                                    pStart = ti.pStart.map(_.toLDT),
+                                                                    pEnd = ti.pEnd.map(_.toLDT),
+                                                                    pDepend = ti.pDepend.getOrElse(Seq()),
+                                                                    pCaption = ti.pCaption.getOrElse("")
+                                                                  )
+
                                                                 g.getDivId.foreach {
                                                                     _ ⇒
                                                                         g setCaptionType CaptionType.Complete
@@ -100,11 +117,11 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                         g setFormatArr(Format.hour, Format.day)
 
                                                                         //seq.foreach(g.AddTaskItem(_))
-                                                                        /*seq.foreach{
+                                                                        seq.foreach{
                                                                             item ⇒
-                                                                                val a:TaskItemExt = item
+                                                                                val a:TaskItemExt = taskItem2JS(item)
                                                                                 println(isc.JSON.encode(a))
-                                                                        }*/
+                                                                        }
 
                                                                         g.AddTaskItem(new TaskItemExt(pID = 1, pName = "Define Chart API", pClass = ggroupblack, pRes = "Brian", pGroup = Group.standardGroupTask, pNotes = "Some Notes text"))
                                                                         g.AddTaskItem(new TaskItemExt(pID = 11, pName = "Chart Object", pStart = "2016-02-20 12:30".toLDT, pEnd = "2016-02-22 01:22".toLDT, pClass = gmilestone, pLink = Link("Link about"), pMile = MileStone.milestone, pRes = "Shlomy", pComp = 100, pParentID = 1))
