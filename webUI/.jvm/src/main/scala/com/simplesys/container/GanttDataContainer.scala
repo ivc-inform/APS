@@ -29,6 +29,7 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
 
     val dataSetResultItems = Result_itemsDS(oraclePool)
     val dataSetResult = ResultDS(oraclePool)
+    
     val EOL = util.Properties.lineSeparator
 
     def receive = {
@@ -43,13 +44,13 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                     dataSetResult.selectPOne(where = Where(dataSetResult.idresultResult === value.idResult)).result match {
                         case Success(result) ⇒
                             val taskGroupItem = TaskItemExt(
-                                pID = 1,
+                                pID = result.idresultResult,
                                 pName = result.scodeResult,
                                 pRes = Some(result.scodeResult),
                                 pClass = ggroupblack,
                                 pGroup = Some(Group.standardGroupTask)
                             )
-                            var prevID: Long = taskGroupItem.pID
+                            var prevID: Long = 0
 
                             dataSetResultItems.selectPList(where = Where(dataSetResultItems.id_resultResult_items === value.idResult), orderBy = OrderBy(dataSetResultItems.posResult_items, AscOrderBy)).result match {
                                 case Success(resultItems) ⇒
@@ -59,7 +60,7 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                                                Seq(taskGroupItem.asJson) ++ resultItems.map {
                                                     resultItem ⇒
                                                         val res = TaskItemExt(
-                                                            pID = resultItem.id_itemResult_items,
+                                                            pID = (result.idresultResult + resultItem.id_itemResult_items) * 10000,
                                                             pStart = resultItem.opertimestartResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
                                                             pEnd = resultItem.opertimeendResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
                                                             pName = resultItem.scodeResult_Id_result,
@@ -68,11 +69,10 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                                                             pParent = result.idresultResult,
                                                             pOpen = Opening.open,
                                                             pClass = if (resultItem.idchangeoverChangeover_Id_changeover.isEmpty) gtaskblue else gtaskyellow,
-                                                            pDepend = Some(Seq(prevID.FS))
-                                                        ).asJson
-
-                                                        prevID = resultItem.id_itemResult_items
-                                                        res
+                                                            pDepend = if (prevID == 0) None else Some(Seq(prevID.FS))
+                                                        )
+                                                        prevID = res.pID
+                                                        res.asJson
                                                 }: _*
                                             ),
                                             status = RPCResponse.statusSuccess
