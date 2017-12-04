@@ -85,7 +85,12 @@ JSGantt.TaskItem = function (pID, pName, pStart, pEnd, pClass, pLink, pMile, pRe
     var vGroupMinStart = null;
     var vGroupMinEnd = null;
     var vClass = document.createTextNode(pClass).data;
-    var vLink = document.createTextNode(pLink).data;
+    var vLink
+
+    //<editor-fold desc="Fixed by Y.Andrew">
+    if (!pLink) vLink = ''; else vLink = document.createTextNode(pLink).data;
+    //</editor-fold>
+
     var vMile = parseInt(document.createTextNode(pMile).data);
     var vRes = document.createTextNode(pRes).data;
     var vComp = parseFloat(document.createTextNode(pComp).data);
