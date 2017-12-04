@@ -74,11 +74,11 @@ class TaskItemExt(
                    pStart: Option[js.Date] = None,
                    pEnd: Option[js.Date] = None,
                    pClass: TaskCssClass,
-                   pLink: Link = Link(),
-                   pMile: MileStone = MileStone.notMilestone,
+                   pLink: Option[Link] = None,
+                   pMile: Option[MileStone] = None,
                    pRes: Option[String] = None,
                    pComp: Int = 0,
-                   pGroup: Group = Group.normalTask,
+                   pGroup: Option[Group] = None ,
                    pParent: Double = 0,
                    pOpen: Opening = Opening.open,
                    pDepend: Option[Seq[Depend]] = None,
@@ -90,18 +90,18 @@ class TaskItemExt(
     pStart = if (pStart.isDefined) pStart.get else "",
     pEnd = if (pEnd.isDefined) pEnd.get else "",
     pClass = pClass.toString,
-    pLink = pLink.httpLink,
-    pMile = pMile.id,
+    pLink = if (pLink.isDefined) pLink.get.httpLink else null,
+    pMile = if (pMile.isDefined) pMile.get.id else null,
     pRes = pRes.orNull,
     pComp = pGroup match {
         case Group.normalTask ⇒ pComp
         case Group.standardGroupTask ⇒ 0
         case Group.combinedGroup ⇒ 0
     },
-    pGroup = pGroup.id,
+    pGroup = if (pGroup.isDefined) pGroup.get.id else null,
     pParent = pParent,
     pOpen = pOpen.id,
-    pDepend = pDepend.mkString(","),
+    pDepend = if (pDepend.isDefined) pDepend.get.mkString(",") else null,
     pCaption = pCaption.orNull,
     pNotes = pNotes.orNull,
     pGantt = pGantt
