@@ -6,6 +6,7 @@ import org.scalajs.dom.raw._
 
 import scala.language.implicitConversions
 import scala.scalajs.js
+import scala.scalajs.js.Date
 import scala.scalajs.js.annotation.JSGlobal
 
 object GanttChart extends js.Object {
@@ -17,8 +18,18 @@ object GanttChart extends js.Object {
     implicit class strOpt(str: String) {
         def toLDT: js.Date = {
             val res = new js.Date(js.Date.parse(str))
-            println(res.getTimezoneOffset())
+            //println(res.getTimezoneOffset())
             res
+        }
+
+        def toLDTOpt: Option[Date] = {
+            if (str.isEmpty)
+                None
+            else {
+                val res = new js.Date(js.Date.parse(str))
+                //println(res.getTimezoneOffset())
+                res
+            }
         }
     }
 

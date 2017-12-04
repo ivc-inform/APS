@@ -57,12 +57,12 @@ class TaskItem(
                 val pEnd: String | js.Date,
                 val pClass: String,
                 val pLink: String,
-                val pMile: Double,
+                val pMile: Int,
                 val pRes: String,
-                val pComp: Double,
-                val pGroup: Double,
+                val pComp: Int,
+                val pGroup: Int,
                 val pParent: Double,
-                val pOpen: Double,
+                val pOpen: Int,
                 val pDepend: String,
                 val pCaption: String, val pNotes: String,
                 val pGantt: GanttChart
@@ -76,14 +76,14 @@ class TaskItemExt(
                    pClass: TaskCssClass,
                    pLink: Link = Link(),
                    pMile: MileStone = MileStone.notMilestone,
-                   pRes: String = "",
-                   pComp: Double = 0,
+                   pRes: Option[String] = None,
+                   pComp: Int = 0,
                    pGroup: Group = Group.normalTask,
                    pParent: Double = 0,
                    pOpen: Opening = Opening.open,
-                   pDepend: Seq[Depend] = Seq(),
-                   pCaption: String = "",
-                   pNotes: String = ""
+                   pDepend: Option[Seq[Depend]] = None,
+                   pCaption: Option[String] = None,
+                   pNotes: Option[String] = None
                  )(implicit pGantt: GanttChartExt) extends TaskItem(
     pID = pID,
     pName = pName,
@@ -92,7 +92,7 @@ class TaskItemExt(
     pClass = pClass.toString,
     pLink = pLink.httpLink,
     pMile = pMile.id,
-    pRes = pRes,
+    pRes = pRes.orNull,
     pComp = pGroup match {
         case Group.normalTask ⇒ pComp
         case Group.standardGroupTask ⇒ 0
@@ -102,13 +102,13 @@ class TaskItemExt(
     pParent = pParent,
     pOpen = pOpen.id,
     pDepend = pDepend.mkString(","),
-    pCaption = pCaption,
-    pNotes = pNotes,
+    pCaption = pCaption.orNull,
+    pNotes = pNotes.orNull,
     pGantt = pGantt
 
 
 ) {
-//    override def toString: String = s"{pID: ${this.pID}, pName: ${this.pName}, pStart: ${this.pStart}, pEnd: ${this.pEnd}: pClass: ${this.pClass}, pLink: ${this.pLink.httpLink}, pMile: ${this.pMile}, pRes: ${this.pRes}, pComp: ${this.pComp}, pGroup: ${this.pGroup}, pParent: ${this.pParentID}, pOpen: ${this.pOpen}, pDepend: ${this.pDepend.toString}, pCaption: ${this.pCaption}, pNotes: ${this.pNotes}"
+    //    override def toString: String = s"{pID: ${this.pID}, pName: ${this.pName}, pStart: ${this.pStart}, pEnd: ${this.pEnd}: pClass: ${this.pClass}, pLink: ${this.pLink.httpLink}, pMile: ${this.pMile}, pRes: ${this.pRes}, pComp: ${this.pComp}, pGroup: ${this.pGroup}, pParent: ${this.pParentID}, pOpen: ${this.pOpen}, pDepend: ${this.pDepend.toString}, pCaption: ${this.pCaption}, pNotes: ${this.pNotes}"
 
     override def toString: String = s"{pID: ${0}}"
 }

@@ -60,15 +60,15 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                                                     resultItem ⇒
                                                         val res = TaskItemExt(
                                                             pID = resultItem.id_itemResult_items,
-                                                            pStart = resultItem.opertimestartResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)),
-                                                            pEnd = resultItem.opertimeendResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)),
+                                                            pStart = resultItem.opertimestartResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
+                                                            pEnd = resultItem.opertimeendResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
                                                             pName = resultItem.scodeResult_Id_result,
                                                             pRes = Some(result.scodeResult),
-                                                            pComp = Some(100),
-                                                            pParent = Some(result.idresultResult),
-                                                            pOpen = Some(Opening.open),
+                                                            pComp = 100,
+                                                            pParent = result.idresultResult,
+                                                            pOpen = Opening.open,
                                                             pClass = if (resultItem.idchangeoverChangeover_Id_changeover.isEmpty) gtaskblue else gtaskyellow,
-                                                            pDepend = Seq(prevID.FS)
+                                                            pDepend = Some(Seq(prevID.FS))
                                                         ).asJson
 
                                                         prevID = resultItem.id_itemResult_items

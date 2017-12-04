@@ -9,16 +9,16 @@ package object gantt {
     pID = ti.pID,
     pGroup = ti.pGroup.getOrElse(Group.normalTask),
     pName = ti.pName,
-    pOpen = ti.pOpen.getOrElse(Opening.open),
-    pComp = ti.pComp.map(_.toDouble).getOrElse(0.0),
-    pRes = ti.pRes.getOrElse(""),
+    pOpen = ti.pOpen,
+    pComp = ti.pComp,
+    pRes = ti.pRes,
     pClass = ti.pClass,
     pMile = ti.pMile.getOrElse(MileStone.notMilestone),
-    pNotes = ti.pNotes.getOrElse(""),
-    pParent = ti.pParent.map(_.toDouble).getOrElse(0.0),
-    pStart = ti.pStart.map(_.toLDT),
-    pEnd = ti.pEnd.map(_.toLDT),
+    pNotes = ti.pNotes,
+    pParent = ti.pParent.toDouble,
+    pStart = ti.pStart.toLDTOpt,
+    pEnd = ti.pEnd.toLDTOpt,
     pDepend = ti.pDepend,
-    pCaption = ti.pCaption.getOrElse("")
+    pCaption = ti.pCaption
   )
 }
