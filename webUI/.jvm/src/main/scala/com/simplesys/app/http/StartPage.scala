@@ -35,8 +35,8 @@ class StartPage[Builder, Output <: FragT, FragT](val _title: String) {
                 script(src := "isomorphic/client/modules/ISC_FileLoader.js"),
 
                 script(src := "managed/javascript/isc-misc/beautify.js"),
-                script(src := "managed/javascript/jsgantt-improved/jsgantt.js"),
-                //script(src := "javascript/developed/jsgantt.js"),
+                //script(src := "managed/javascript/jsgantt-improved/jsgantt.js"),
+                script(src := "javascript/developed/jsgantt.js"),
 
                 script(src := "managed/javascript/common-webapp/generated/generatedComponents/coffeescript/coffeeScript/main/common.js"),
 

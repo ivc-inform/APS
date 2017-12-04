@@ -27,7 +27,7 @@ object GanttChart extends js.Object {
                 None
             else {
                 val res = new js.Date(js.Date.parse(str))
-                //println(res.getTimezoneOffset())
+                println(res.getTime())
                 res
             }
         }
