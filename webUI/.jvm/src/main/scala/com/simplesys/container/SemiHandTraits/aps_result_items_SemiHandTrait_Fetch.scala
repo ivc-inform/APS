@@ -12,7 +12,7 @@ import com.simplesys.isc.dataBinging._
 import com.simplesys.jdbc.control.DsRequest
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.{GetData, ServletActor}
-import com.simplesys.tuple.{TupleSS21, TupleSS24}
+import com.simplesys.tuple.{TupleSS21, TupleSS22, TupleSS24}
 import io.circe.Json._
 import io.circe.{Json, JsonObject}
 import io.circe.generic.auto._
@@ -70,7 +70,8 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     val _data = ArrayBuffer.empty[Json]
 
                     list foreach {
-                        case TupleSS21(
+                        case TupleSS22(
+                        coef_gurvitsaResult_items: Array[Double],
                         durationResult_items: Array[Double],
                         id_changeoverResult_items: Array[Long],
                         id_itemResult_items: Long,
@@ -91,8 +92,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                         idresultResult_Id_result: Long,
                         scodeResult_Id_result: String,
                         id_rcRc_Idrc: Long,
-                        scode_rcRc_Idrc: String
-                        ) =>
+                        scode_rcRc_Idrc: String) =>
                             _data += fromJsonObject(
                                 JsonObject.fromIterable(Seq(
                                     "id_item" -> id_itemResult_items,
@@ -100,6 +100,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                                     "opertimestart" -> opertimestartResult_items,
                                     "opertimeend" -> opertimeendResult_items,
                                     "duration" -> durationResult_items,
+                                    "coef_gurvitsa" -> coef_gurvitsaResult_items,
                                     "id_result" -> id_resultResult_items,
                                     "idrc" -> idrcResult_items,
                                     "id_orders" -> id_ordersResult_items,
