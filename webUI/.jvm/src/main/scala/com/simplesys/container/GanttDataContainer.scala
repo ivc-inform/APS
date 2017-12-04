@@ -68,7 +68,7 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                                                             pParent = Some(result.idresultResult),
                                                             pOpen = Some(Opening.open),
                                                             pClass = if (resultItem.idchangeoverChangeover_Id_changeover.isEmpty) gtaskblue else gtaskyellow,
-                                                            pDepend = Some(Seq(prevID.FS))
+                                                            pDepend = Seq(prevID.FS)
                                                         ).asJson
 
                                                         prevID = resultItem.id_itemResult_items

@@ -120,7 +120,7 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                         seq.foreach{
                                                                             item ⇒
                                                                                 //val a:TaskItemExt = taskItem2JS(item)
-                                                                                println(item.asJson)
+                                                                                println(item.asJson.spaces41)
                                                                                 //println(isc.JSON.encode(a))
                                                                         }
 
