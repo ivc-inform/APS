@@ -15,7 +15,7 @@ package object gantt {
     pClass = ti.pClass,
     pMile = ti.pMile.getOrElse(MileStone.notMilestone),
     pNotes = ti.pNotes.getOrElse(""),
-    pParentID = ti.pParent.map(_.toDouble).getOrElse(0.0),
+    pParent = ti.pParent.map(_.toDouble).getOrElse(0.0),
     pStart = ti.pStart.map(_.toLDT),
     pEnd = ti.pEnd.map(_.toLDT),
     pDepend = ti.pDepend,

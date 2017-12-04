@@ -79,7 +79,7 @@ class TaskItemExt(
                    pRes: String = "",
                    pComp: Double = 0,
                    pGroup: Group = Group.normalTask,
-                   pParentID: Double = 0,
+                   pParent: Double = 0,
                    pOpen: Opening = Opening.open,
                    pDepend: Seq[Depend] = Seq(),
                    pCaption: String = "",
@@ -99,7 +99,7 @@ class TaskItemExt(
         case Group.combinedGroup ⇒ 0
     },
     pGroup = pGroup.id,
-    pParent = pParentID,
+    pParent = pParent,
     pOpen = pOpen.id,
     pDepend = pDepend.mkString(","),
     pCaption = pCaption,
@@ -108,6 +108,8 @@ class TaskItemExt(
 
 
 ) {
-    override def toString: String = s"{pID: $pID, pName: $pName, pStart: $pStart, pEnd: $pEnd: pClass: $pClass, pLink: ${pLink.httpLink}, pMile: $pMile, pRes: $pRes, pComp: $pComp, pGroup: $pGroup, pParent: $pParentID, pOpen: $pOpen, pDepend: ${pDepend.toString}, pCaption: $pCaption, pNotes: $pNotes}"
+//    override def toString: String = s"{pID: ${this.pID}, pName: ${this.pName}, pStart: ${this.pStart}, pEnd: ${this.pEnd}: pClass: ${this.pClass}, pLink: ${this.pLink.httpLink}, pMile: ${this.pMile}, pRes: ${this.pRes}, pComp: ${this.pComp}, pGroup: ${this.pGroup}, pParent: ${this.pParentID}, pOpen: ${this.pOpen}, pDepend: ${this.pDepend.toString}, pCaption: ${this.pCaption}, pNotes: ${this.pNotes}"
+
+    override def toString: String = s"{pID: ${0}}"
 }
 
