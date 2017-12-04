@@ -43,7 +43,7 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                     dataSetResult.selectPOne(where = Where(dataSetResult.idresultResult === value.idResult)).result match {
                         case Success(result) ⇒
                             val taskGroupItem = TaskItemExt(
-                                pID = 0,
+                                pID = 1,
                                 pName = result.scodeResult,
                                 pRes = Some(result.scodeResult),
                                 pClass = ggroupblack,
@@ -64,7 +64,7 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                                                             pEnd = resultItem.opertimeendResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
                                                             pName = resultItem.scodeResult_Id_result,
                                                             pRes = Some(result.scodeResult),
-                                                            pComp = 100,
+                                                            pComp = 0,
                                                             pParent = result.idresultResult,
                                                             pOpen = Opening.open,
                                                             pClass = if (resultItem.idchangeoverChangeover_Id_changeover.isEmpty) gtaskblue else gtaskyellow,

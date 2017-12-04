@@ -57,10 +57,10 @@ class TaskItem(
                 val pEnd: String | js.Date,
                 val pClass: String,
                 val pLink: String,
-                val pMile: Int,
+                val pMile: String ,
                 val pRes: String,
                 val pComp: Int,
-                val pGroup: Int,
+                val pGroup: String,
                 val pParent: Double,
                 val pOpen: Int,
                 val pDepend: String,
@@ -91,14 +91,10 @@ class TaskItemExt(
     pEnd = if (pEnd.isDefined) pEnd.get else "",
     pClass = pClass.toString,
     pLink = if (pLink.isDefined) pLink.get.httpLink else null,
-    pMile = if (pMile.isDefined) pMile.get.id else null,
+    pMile = if (pMile.isDefined) pMile.get.id.toString else null,
     pRes = pRes.orNull,
-    pComp = pGroup match {
-        case Group.normalTask ⇒ pComp
-        case Group.standardGroupTask ⇒ 0
-        case Group.combinedGroup ⇒ 0
-    },
-    pGroup = if (pGroup.isDefined) pGroup.get.id else null,
+    pComp = pComp,
+    pGroup = if (pGroup.isDefined) pGroup.get.id.toString else null,
     pParent = pParent,
     pOpen = pOpen.id,
     pDepend = if (pDepend.isDefined) pDepend.get.mkString(",") else null,
