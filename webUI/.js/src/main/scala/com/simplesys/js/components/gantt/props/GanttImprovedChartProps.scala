@@ -98,11 +98,7 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                         g setShowComp 1
                                                                         g setFormatArr(Format.hour, Format.day)
 
-                                                                        seq.foreach {
-                                                                            item ⇒
-                                                                                println(item.asJson.spaces41)
-                                                                                g AddTaskItem item
-                                                                        }
+                                                                        seq.foreach (g AddTaskItem _)
                                                                         g.Draw()
                                                                 }
 

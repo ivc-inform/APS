@@ -19,7 +19,7 @@ import com.simplesys.servlet.isc.{GetData, ServletActor}
 import io.circe.Json._
 import io.circe.generic.auto._
 import io.circe.syntax._
-import ru.simplesys.defs.bo.aps.{ResultDS, Result_itemsDS}
+import ru.simplesys.defs.bo.aps.{OrdersDS, ResultDS, Result_itemsDS}
 //import com.simplesys.gantt.TaskItemExt._ //!! Must be
 import com.simplesys.gantt.TaskItemExt._ //!! Must be
 import scalaz.{Failure, Success}
@@ -29,8 +29,23 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
 
     val dataSetResultItems = Result_itemsDS(oraclePool)
     val dataSetResult = ResultDS(oraclePool)
+    val dataSetOrders = OrdersDS(oraclePool)
 
     val EOL = util.Properties.lineSeparator
+
+    def getOperation(idOrder: Array[Long]): String = {
+        idOrder.headOption match {
+            case None ⇒ "Переналадка"
+            case Some(idOrder) ⇒
+                dataSetOrders.selectPOne(where = Where(dataSetOrders.idordersOrders === idOrder)).result match {
+                    case Success(item) ⇒
+                        s"Операция: '${item.code_operstypeOpers_type_Oper_type}'"
+
+                    case Failure(_) ⇒
+                        "Тип операции не определен (("
+                }
+        }
+    }
 
     def receive = {
 
@@ -54,7 +69,7 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                                                 pID = resultItem.id_itemResult_items,
                                                 pStart = resultItem.opertimestartResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
                                                 pEnd = resultItem.opertimeendResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
-                                                pName = resultItem.scodeResult_Id_result,
+                                                pName = getOperation(resultItem.id_ordersResult_items),
                                                 pRes = Some(result.scodeResult),
                                                 pComp = 0,
                                                 pOpen = Opening.open,
@@ -84,7 +99,7 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
 
                                     Out(
                                         DSResponse(
-                                            data = arr(Seq(taskGroupItem.asJson) ++ tasks.map(item ⇒ item.copy(pParent = parentID).asJson) : _*),
+                                            data = arr(Seq(taskGroupItem.asJson) ++ tasks.map(item ⇒ item.copy(pParent = parentID).asJson): _*),
                                             status = RPCResponse.statusSuccess
                                         )
                                     )
