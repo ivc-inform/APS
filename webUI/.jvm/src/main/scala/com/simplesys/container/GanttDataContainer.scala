@@ -44,39 +44,47 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                     dataSetResult.selectPOne(where = Where(dataSetResult.idresultResult === value.idResult)).result match {
                         case Success(result) ⇒
 
+                            var prevID: Long = 0
+
                             dataSetResultItems.selectPList(where = Where(dataSetResultItems.id_resultResult_items === value.idResult), orderBy = OrderBy(dataSetResultItems.posResult_items, AscOrderBy)).result match {
                                 case Success(resultItems) ⇒
+                                    val tasks = resultItems.map {
+                                        resultItem ⇒
+                                            val res = TaskItemExt(
+                                                pID = resultItem.id_itemResult_items,
+                                                pStart = resultItem.opertimestartResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
+                                                pEnd = resultItem.opertimeendResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
+                                                pName = resultItem.scodeResult_Id_result,
+                                                pRes = Some(result.scodeResult),
+                                                pComp = 0,
+                                                pOpen = Opening.open,
+                                                pClass = if (resultItem.idchangeoverChangeover_Id_changeover.isEmpty) gtaskblue else gtaskyellow,
+                                                pDepend = if (prevID == 0) None else Some(Seq(prevID.FS))
+                                            )
+
+                                            prevID = res.pID
+                                            res
+                                    }
+
+                                    val parentID: Long = {
+                                        val ids = tasks.map(_.pID)
+                                        if (ids.length == 0)
+                                            1
+                                        else
+                                            ids.max + 1
+                                    }
+
                                     val taskGroupItem = TaskItemExt(
-                                        pID = resultItems.map(_.id_itemResult_items).min - 1,
+                                        pID = parentID,
                                         pName = result.scodeResult,
                                         pRes = Some(result.scodeResult),
                                         pClass = ggroupblack,
                                         pGroup = Some(Group.standardGroupTask)
                                     )
-                                    var prevID: Long = 0
-                                    val parentID: Long = taskGroupItem.pID
 
                                     Out(
                                         DSResponse(
-                                            data = arr(
-                                                Seq(taskGroupItem.asJson) ++ resultItems.map {
-                                                    resultItem ⇒
-                                                        val res = TaskItemExt(
-                                                            pID = resultItem.id_itemResult_items,
-                                                            pStart = resultItem.opertimestartResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
-                                                            pEnd = resultItem.opertimeendResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
-                                                            pName = resultItem.scodeResult_Id_result,
-                                                            pRes = Some(result.scodeResult),
-                                                            pComp = 0,
-                                                            pParent = parentID,
-                                                            pOpen = Opening.open,
-                                                            pClass = if (resultItem.idchangeoverChangeover_Id_changeover.isEmpty) gtaskblue else gtaskyellow,
-                                                            pDepend = if (prevID == 0) None else Some(Seq(prevID.FS))
-                                                        )
-                                                        prevID = res.pID
-                                                        res.asJson
-                                                }: _*
-                                            ),
+                                            data = arr(Seq(taskGroupItem.asJson) ++ tasks.map(item ⇒ item.copy(pParent = parentID).asJson) : _*),
                                             status = RPCResponse.statusSuccess
                                         )
                                     )
