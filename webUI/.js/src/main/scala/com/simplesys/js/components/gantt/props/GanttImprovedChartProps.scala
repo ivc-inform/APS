@@ -98,8 +98,11 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                         g setShowComp 1
                                                                         g setFormatArr(Format.hour, Format.day)
 
-                                                                        seq.foreach(g.AddTaskItem(_))
-                                                                        //implicit def toOpt[T](x:T):Option[T] = Some(x)
+                                                                        seq.foreach {
+                                                                            item ⇒
+                                                                                println(item.asJson.spaces41)
+                                                                                g AddTaskItem item
+                                                                        }
                                                                         g.Draw()
                                                                 }
 

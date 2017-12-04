@@ -43,6 +43,7 @@ class GanttImprovedChartTestProps extends GanttImprovedChartProps {
                         g setShowComp 1
                         //g setShowTaskInfoStartDate 0
                         //g setFormatArr(Format.hour, Format.day, Format.week, Format.month, Format.quarter)
+                        //implicit def toOpt[T](x:T):Option[T] = Some(x)
 //                        g.AddTaskItem(new TaskItemExt(pID = 1, pName = "Define Chart API", pClass = ggroupblack, pRes = "Brian", pGroup = Group.standardGroupTask, pNotes = "Some Notes text"))
 //                        g.AddTaskItem(new TaskItemExt(pID = 11, pName = "Chart Object", pStart = "2016-02-20 12:30".toLDT, pEnd = "2016-02-22 01:22".toLDT, pClass = gmilestone, pLink = Link("Link about"), pMile = MileStone.milestone, pRes = "Shlomy", pComp = 100, pParent = 1))
 //                        g.AddTaskItem(new TaskItemExt(pID = 12, pName = "Task Objects", pClass = ggroupblack, pRes = "Shlomy", pComp = 40, pGroup = Group.standardGroupTask, pParent = 1, pOpen = Opening.open))
