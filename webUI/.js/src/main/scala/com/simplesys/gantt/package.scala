@@ -16,8 +16,8 @@ package object gantt {
     pMile = ti.pMile,
     pNotes = ti.pNotes,
     pParent = ti.pParent.toDouble,
-    pStart = ti.pStart.toLDTOpt,
-    pEnd = ti.pEnd.toLDTOpt,
+    pStart = ti.pStart,
+    pEnd = ti.pEnd,
     pDepend = ti.pDepend,
     pCaption = ti.pCaption
   )

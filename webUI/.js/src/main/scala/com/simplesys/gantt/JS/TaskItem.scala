@@ -71,8 +71,8 @@ class TaskItem(
 class TaskItemExt(
                    pID: Double,
                    pName: String,
-                   pStart: Option[js.Date] = None,
-                   pEnd: Option[js.Date] = None,
+                   pStart: String,
+                   pEnd: String,
                    pClass: TaskCssClass,
                    pLink: Option[Link] = None,
                    pMile: Option[MileStone] = None,
@@ -87,8 +87,8 @@ class TaskItemExt(
                  )(implicit pGantt: GanttChartExt) extends TaskItem(
     pID = pID,
     pName = pName,
-    pStart = if (pStart.isDefined) pStart.get else "",
-    pEnd = if (pEnd.isDefined) pEnd.get else "",
+    pStart = pStart,
+    pEnd = pEnd,
     pClass = pClass.toString,
     pLink = if (pLink.isDefined) pLink.get.httpLink else null,
     pMile = if (pMile.isDefined) pMile.get.id.toString else null,
