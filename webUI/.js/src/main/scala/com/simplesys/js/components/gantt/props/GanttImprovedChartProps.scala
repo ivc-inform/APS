@@ -55,6 +55,24 @@ class GanttImprovedChartProps extends CanvasProps {
 
     redrawOnResize = false.opt
 
+    implicit def taskItem2JS(ti: TaskItemExtCC)(implicit pGantt: GanttChartExt): TaskItemExt = new TaskItemExt(
+        pLink = ti.pLink.map(Link(_)).getOrElse(Link()),
+        pID = ti.pID,
+        pGroup = ti.pGroup.getOrElse(Group.normalTask),
+        pName = ti.pName,
+        pOpen = ti.pOpen.getOrElse(Opening.open),
+        pComp = ti.pComp.map(_.toDouble).getOrElse(0.0),
+        pRes = ti.pRes.getOrElse(""),
+        pClass = ti.pClass,
+        pMile = ti.pMile.getOrElse(MileStone.notMilestone),
+        pNotes = ti.pNotes.getOrElse(""),
+        pParentID = ti.pParent.map(_.toDouble).getOrElse(0.0),
+        pStart = ti.pStart.map(_.toLDT),
+        pEnd = ti.pEnd.map(_.toLDT),
+        pDepend = ti.pDepend,
+        pCaption = ti.pCaption.getOrElse("")
+    )
+
     draw = {
         (thiz: classHandler, args: JSUndefined[IscArray[JSAny]]) ⇒
             if (!thiz.readyToDraw())
@@ -84,24 +102,6 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                 g.addLang("rus", GanttChart.langRus)
                                                                 g setLang "rus"
 
-                                                                /*implicit def taskItem2JS(ti:TaskItemExtCC)(implicit pGantt: GanttChartExt):TaskItemExt = new TaskItemExt(
-                                                                    pLink = ti.pLink.map(Link(_)).getOrElse(Link()),
-                                                                    pID = ti.pID,
-                                                                    pGroup = ti.pGroup.getOrElse(Group.normalTask),
-                                                                    pName = ti.pName,
-                                                                    pOpen = ti.pOpen.getOrElse(Opening.open),
-                                                                    pComp = ti.pComp.getOrElse(0.0),
-                                                                    pRes = ti.pRes.getOrElse(""),
-                                                                    pClass = ti.pClass,
-                                                                    pMile = ti.pMile.getOrElse(MileStone.notMilestone),
-                                                                    pNotes = ti.pNotes.getOrElse(""),
-                                                                    pParentID = ti.pParent.map(_.toDouble).getOrElse(0.0),
-                                                                    pStart = ti.pStart.map(_.toLDT),
-                                                                    pEnd = ti.pEnd.map(_.toLDT),
-                                                                    pDepend = ti.pDepend.getOrElse(Seq()),
-                                                                    pCaption = ti.pCaption.getOrElse("")
-                                                                  )*/
-
                                                                 g.getDivId.foreach {
                                                                     _ ⇒
                                                                         g setCaptionType CaptionType.Complete
@@ -117,11 +117,11 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                         g setFormatArr(Format.hour, Format.day)
 
                                                                         //seq.foreach(g.AddTaskItem(_))
-                                                                        seq.foreach{
+                                                                        seq.foreach {
                                                                             item ⇒
-                                                                                //val a:TaskItemExt = taskItem2JS(item)
-                                                                                println(item.asJson.spaces41)
-                                                                                //println(isc.JSON.encode(a))
+                                                                                val a:TaskItemExt = taskItem2JS(item)
+                                                                                println(isc.JSON.encode(a))
+                                                                                //println(item.asJson.spaces41)
                                                                         }
 
                                                                         g.AddTaskItem(new TaskItemExt(pID = 1, pName = "Define Chart API", pClass = ggroupblack, pRes = "Brian", pGroup = Group.standardGroupTask, pNotes = "Some Notes text"))

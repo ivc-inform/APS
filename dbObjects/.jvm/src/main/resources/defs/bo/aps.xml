@@ -167,9 +167,9 @@
 					<attr caption="Дата окончания периода планирования" name="last_plan" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Предыдущая дата планирования" name="prev_plan" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Горизонт планирования в часах" name="horizon_plan" type="nInt" useDbPrefix="false"></attr>
-					<attr caption="b1_splitBegin" name="b1_splitBegin" type="nInt" useDbPrefix="false"></attr>
-					<attr caption="b2_Amplitude" name="b2_Amplitude" type="fDouble" useDbPrefix="false"></attr>
-					<attr caption="b3_attenuationDecrement" name="b2_Amplitude" type="fDouble" useDbPrefix="false"></attr>
+					<attr caption="SplitBegin" name="b1_splitBegin" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Amplitude" name="b2_Amplitude" type="fDouble" useDbPrefix="false"></attr>
+					<attr caption="AttenuationDecrement" name="b3_attenuationDecrement" type="fDouble" useDbPrefix="false"></attr>
 					<attr caption="Рекомендуемый вариант по Сэвиджу" name="nSavidge" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Рекомендуемый вариант по Гурвицу" name="nGurvits" type="nInt" useDbPrefix="false"></attr>
 				</attrs>
