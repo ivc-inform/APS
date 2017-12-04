@@ -167,6 +167,8 @@
 					<attr caption="Дата окончания периода планирования" name="last_plan" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Предыдущая дата планирования" name="prev_plan" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Горизонт планирования в часах" name="horizon_plan" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Рекомендуемый вариант по Сэвиджу" name="nSavidge" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Рекомендуемый вариант по Гурвицу" name="nGurvits" type="nInt" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 				<uiSettings uiFormType="singleListGrid"></uiSettings>
