@@ -20,7 +20,7 @@ import com.simplesys.circe.Circe._
 import org.scalajs.dom
 import com.simplesys.gantt.GanttChartCommon._
 import com.simplesys.gantt.JS.GanttChart._
-import com.simplesys.gantt.{CaptionType, Format, Group, TaskItemExt, TaskItemExt ⇒ TaskItemExtCC, _}
+import com.simplesys.gantt.{CaptionType, Format, Group, TaskItemExt ⇒ TaskItemExtCC, _}
 import com.simplesys.gantt.JS.{GanttChart, GanttChartExt, TaskItemExt}
 import com.simplesys.gantt.TaskCssClass._
 
@@ -84,7 +84,7 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                 g.addLang("rus", GanttChart.langRus)
                                                                 g setLang "rus"
 
-                                                                implicit def taskItem2JS(ti:TaskItemExtCC)(implicit pGantt: GanttChartExt):TaskItemExt = new TaskItemExt(
+                                                                /*implicit def taskItem2JS(ti:TaskItemExtCC)(implicit pGantt: GanttChartExt):TaskItemExt = new TaskItemExt(
                                                                     pLink = ti.pLink.map(Link(_)).getOrElse(Link()),
                                                                     pID = ti.pID,
                                                                     pGroup = ti.pGroup.getOrElse(Group.normalTask),
@@ -100,7 +100,7 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                     pEnd = ti.pEnd.map(_.toLDT),
                                                                     pDepend = ti.pDepend.getOrElse(Seq()),
                                                                     pCaption = ti.pCaption.getOrElse("")
-                                                                  )
+                                                                  )*/
 
                                                                 g.getDivId.foreach {
                                                                     _ ⇒
@@ -119,7 +119,8 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                         //seq.foreach(g.AddTaskItem(_))
                                                                         seq.foreach{
                                                                             item ⇒
-                                                                                val a:TaskItemExt = taskItem2JS(item)
+                                                                                //val a:TaskItemExt = taskItem2JS(item)
+                                                                                println(item.asJson)
                                                                                 println(isc.JSON.encode(a))
                                                                         }
 
