@@ -77,7 +77,8 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                 pos = data.getLongOpt("pos"),
                                 opertimestart = data.getLocalDateTimeOpt("opertimestart"),
                                 opertimeend = data.getLocalDateTimeOpt("opertimeend"),
-                                duration = duration,
+                                duration = data.getDoubleOpt("duration"),
+                                coef_gurvitsa = data.getDoubleOpt("coef_gurvitsa"),
                                 id_result = data.getLong("id_result"),
                                 idrc = data.getLong("idrc"),
                                 id_orders = data.getLongOpt("id_orders"),
@@ -115,6 +116,7 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                 "opertimestart" -> result_itemsData.opertimestart,
                                 "opertimeend" -> result_itemsData.opertimeend,
                                 "duration" -> result_itemsData.duration,
+                                "coef_gurvitsa" -> result_itemsData.coef_gurvitsa,
                                 "id_result" -> result_itemsData.id_result,
                                 "idrc" -> result_itemsData.idrc,
                                 "id_orders" -> result_itemsData.id_orders,
@@ -153,9 +155,11 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                           Result_items(
                                               id_item = data.getLong("id_item"),
                                               pos = data.getLongOpt("pos"),
-                                              opertimestart = data.getLocalDateTimeOpt("opertimestart"),
+                                              opertimestart =
+                                                data.getLocalDateTimeOpt("opertimestart"),
                                               opertimeend = data.getLocalDateTimeOpt("opertimeend"),
-                                              duration = duration,
+                                              duration = data.getDoubleOpt("duration"),
+                                              coef_gurvitsa = data.getDoubleOpt("coef_gurvitsa"),
                                               id_result = data.getLong("id_result"),
                                               idrc = data.getLong("idrc"),
                                               id_orders = data.getLongOpt("id_orders"),
@@ -170,19 +174,28 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                               "opertimestart" -> result_itemsData.opertimestart,
                                               "opertimeend" -> result_itemsData.opertimeend,
                                               "duration" -> result_itemsData.duration,
+                                              "coef_gurvitsa" -> result_itemsData.coef_gurvitsa,
                                               "id_result" -> result_itemsData.id_result,
                                               "idrc" -> result_itemsData.idrc,
                                               "id_orders" -> result_itemsData.id_orders,
                                               "id_changeover" -> result_itemsData.id_changeover,
-                                              "scode_Id_result" -> data.getString("scode_Id_result"),
+                                              "scode_Id_result" -> data.getString(
+                                                  "scode_Id_result"),
                                               "scode_rc_Idrc" -> data.getString("scode_rc_Idrc"),
-                                              "code_orders_Id_orders" -> data.getStringOpt("code_orders_Id_orders"),
-                                              "idchangeover_Id_changeover" -> data.getLongOpt("idchangeover_Id_changeover"),
-                                              "duration_Id_changeover" -> data.getDoubleOpt("duration_Id_changeover"),
-                                              "idrc_Id_changeover" -> data.getLongOpt("idrc_Id_changeover"),
-                                              "from_type_Id_changeover" -> data.getLongOpt("from_type_Id_changeover"),
-                                              "to_type_Id_changeover" -> data.getLongOpt("to_type_Id_changeover"),
-                                              "id_task_Id_changeover" -> data.getLongOpt("id_task_Id_changeover"),
+                                              "code_orders_Id_orders" -> data.getStringOpt(
+                                                  "code_orders_Id_orders"),
+                                              "idchangeover_Id_changeover" -> data.getLongOpt(
+                                                  "idchangeover_Id_changeover"),
+                                              "duration_Id_changeover" -> data.getDoubleOpt(
+                                                  "duration_Id_changeover"),
+                                              "idrc_Id_changeover" -> data.getLongOpt(
+                                                  "idrc_Id_changeover"),
+                                              "from_type_Id_changeover" -> data.getLongOpt(
+                                                  "from_type_Id_changeover"),
+                                              "to_type_Id_changeover" -> data.getLongOpt(
+                                                  "to_type_Id_changeover"),
+                                              "id_task_Id_changeover" -> data.getLongOpt(
+                                                  "id_task_Id_changeover"),
                                               aps_changeover_code_operstype_From_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == data.getLongOpt("from_type_Id_changeover").headOption).headOption.map(_.code_operstypeOpers_type),
                                               aps_changeover_code_operstype_To_type_NameStrong.name → opersTypes.filter(_.id_operstypeOpers_type.headOption == data.getLongOpt("to_type_Id_changeover").headOption).headOption.map(_.code_operstypeOpers_type)
                                           )))

@@ -121,7 +121,7 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                             item ⇒
                                                                                 //val a:TaskItemExt = taskItem2JS(item)
                                                                                 println(item.asJson)
-                                                                                println(isc.JSON.encode(a))
+                                                                                //println(isc.JSON.encode(a))
                                                                         }
 
                                                                         g.AddTaskItem(new TaskItemExt(pID = 1, pName = "Define Chart API", pClass = ggroupblack, pRes = "Brian", pGroup = Group.standardGroupTask, pNotes = "Some Notes text"))
