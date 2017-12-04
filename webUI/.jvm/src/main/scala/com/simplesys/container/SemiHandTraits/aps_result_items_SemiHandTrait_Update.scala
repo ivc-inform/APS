@@ -11,7 +11,7 @@ import com.simplesys.circe.Circe._
 import com.simplesys.common.Strings._
 import com.simplesys.common.Numbers._
 import com.simplesys.isc.dataBinging._
-import com.simplesys.jdbc.control.ValidationEx
+import com.simplesys.jdbc.control.ValidationEx                                                                                                            
 import com.simplesys.jdbc.control.classBO.Where
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.{GetData, ServletActor}
@@ -78,7 +78,6 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                 opertimestart = data.getLocalDateTimeOpt("opertimestart"),
                                 opertimeend = data.getLocalDateTimeOpt("opertimeend"),
                                 duration = data.getDoubleOpt("duration"),
-                                coef_gurvitsa = data.getDoubleOpt("coef_gurvitsa"),
                                 id_result = data.getLong("id_result"),
                                 idrc = data.getLong("idrc"),
                                 id_orders = data.getLongOpt("id_orders"),
@@ -116,7 +115,6 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                 "opertimestart" -> result_itemsData.opertimestart,
                                 "opertimeend" -> result_itemsData.opertimeend,
                                 "duration" -> result_itemsData.duration,
-                                "coef_gurvitsa" -> result_itemsData.coef_gurvitsa,
                                 "id_result" -> result_itemsData.id_result,
                                 "idrc" -> result_itemsData.idrc,
                                 "id_orders" -> result_itemsData.id_orders,
@@ -155,11 +153,9 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                           Result_items(
                                               id_item = data.getLong("id_item"),
                                               pos = data.getLongOpt("pos"),
-                                              opertimestart =
-                                                data.getLocalDateTimeOpt("opertimestart"),
+                                              opertimestart = data.getLocalDateTimeOpt("opertimestart"),
                                               opertimeend = data.getLocalDateTimeOpt("opertimeend"),
                                               duration = data.getDoubleOpt("duration"),
-                                              coef_gurvitsa = data.getDoubleOpt("coef_gurvitsa"),
                                               id_result = data.getLong("id_result"),
                                               idrc = data.getLong("idrc"),
                                               id_orders = data.getLongOpt("id_orders"),
@@ -174,7 +170,6 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                                               "opertimestart" -> result_itemsData.opertimestart,
                                               "opertimeend" -> result_itemsData.opertimeend,
                                               "duration" -> result_itemsData.duration,
-                                              "coef_gurvitsa" -> result_itemsData.coef_gurvitsa,
                                               "id_result" -> result_itemsData.id_result,
                                               "idrc" -> result_itemsData.idrc,
                                               "id_orders" -> result_itemsData.id_orders,

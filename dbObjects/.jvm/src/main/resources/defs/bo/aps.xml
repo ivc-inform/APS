@@ -172,6 +172,7 @@
 					<attr caption="AttenuationDecrement" name="b3_attenuationDecrement" type="fDouble" useDbPrefix="false"></attr>
 					<attr caption="Рекомендуемый вариант по Сэвиджу" name="nSavidge" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Рекомендуемый вариант по Гурвицу" name="nGurvits" type="nInt" useDbPrefix="false"></attr>
+					<attr caption="Заданный коэффициент метода Гурвица" name="coef_gurvitsa" type="fDouble" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 				<uiSettings uiFormType="singleListGrid"></uiSettings>
@@ -222,7 +223,6 @@
 					<attr caption="Дата время начала" name="opertimestart" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Дата время окончания" name="opertimeend" type="dDateTime" useDbPrefix="false"></attr>
 					<attr caption="Длительность операции" name="duration" type="fDouble" useDbPrefix="false"></attr>
-					<attr caption="Заданный коэффициент метода Гурвица" name="coef_gurvitsa" type="fDouble" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
 					<uiSettings uiFormType="singleListGrid"></uiSettings>

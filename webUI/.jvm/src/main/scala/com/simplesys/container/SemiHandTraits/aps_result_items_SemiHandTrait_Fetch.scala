@@ -70,8 +70,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     val _data = ArrayBuffer.empty[Json]
 
                     list foreach {
-                        case TupleSS22(
-                        coef_gurvitsaResult_items: Array[Double],
+                        case TupleSS21(
                         durationResult_items: Array[Double],
                         id_changeoverResult_items: Array[Long],
                         id_itemResult_items: Long,
@@ -100,7 +99,6 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                                     "opertimestart" -> opertimestartResult_items,
                                     "opertimeend" -> opertimeendResult_items,
                                     "duration" -> durationResult_items,
-                                    "coef_gurvitsa" -> coef_gurvitsaResult_items,
                                     "id_result" -> id_resultResult_items,
                                     "idrc" -> idrcResult_items,
                                     "id_orders" -> id_ordersResult_items,

@@ -116,17 +116,19 @@ class GanttImprovedChartProps extends CanvasProps {
                                                                         g setShowComp 1
                                                                         g setFormatArr(Format.hour, Format.day)
 
-                                                                        //seq.foreach(g.AddTaskItem(_))
-                                                                        seq.foreach {
-                                                                            item ⇒
-                                                                                val a:TaskItemExt = taskItem2JS(item)
-                                                                                //println(isc.JSON.encode(isc.debugTrap(a)))
-                                                                                //println(item.asJson.spaces41)
-                                                                        }
+//                                                                        seq.foreach(item ⇒ g.AddTaskItem(taskItem2JS(item)))
+//
+//                                                                        seq.foreach {
+//                                                                            item ⇒
+//                                                                                val a:TaskItemExt = taskItem2JS(item)
+//                                                                                //println(isc.JSON.encode(isc.debugTrap(a)))
+//                                                                                //println(item.asJson.spaces41)
+//
+//                                                                        }
 
-                                                                        println("/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////")
-                                                                        println(isc.JSON.encode(isc.debugTrap(new TaskItemExt(pID = 1, pName = "Define Chart API", pClass = ggroupblack, pRes = "Brian", pGroup = Group.standardGroupTask, pNotes = "Some Notes text"))))
-                                                                        println("/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////")
+                                                                        println("/////////////////////////////////////////////////////////////////// Begin //////////////////////////////////////////////////////////////////////////////////////////////////////")
+                                                                        println(isc.debugTrap(new TaskItemExt(pID = 1, pName = "Define Chart API", pClass = ggroupblack, pRes = "Brian", pGroup = Group.standardGroupTask, pNotes = "Some Notes text")).toString)
+                                                                        println("//////////////////////////////////////////////////////////////////// End  /////////////////////////////////////////////////////////////////////////////////////////////////////")
 
                                                                         g.AddTaskItem(new TaskItemExt(pID = 1, pName = "Define Chart API", pClass = ggroupblack, pRes = "Brian", pGroup = Group.standardGroupTask, pNotes = "Some Notes text"))
                                                                         g.AddTaskItem(new TaskItemExt(pID = 11, pName = "Chart Object", pStart = "2016-02-20 12:30".toLDT, pEnd = "2016-02-22 01:22".toLDT, pClass = gmilestone, pLink = Link("Link about"), pMile = MileStone.milestone, pRes = "Shlomy", pComp = 100, pParentID = 1))
