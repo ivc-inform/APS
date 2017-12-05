@@ -1,13 +1,17 @@
 package com.simplesys.js.components.gantt.props
 
 
-import com.simplesys.isc.dataBinging.DSResponse
 import com.simplesys.SmartClient.Foundation.props.CanvasProps
 import com.simplesys.SmartClient.RPC.props.RPCRequestProps
 import com.simplesys.SmartClient.RPC.{RPCManagerSS, RPCRequest, RPCResponse}
 import com.simplesys.SmartClient.System.{IscArray, RPCRequest, isc}
 import com.simplesys.System.{JSAny, JSUndefined}
+import com.simplesys.circe.Circe._
 import com.simplesys.function._
+import com.simplesys.gantt.GanttChartCommon._
+import com.simplesys.gantt.JS.{GanttChart, GanttChartExt}
+import com.simplesys.gantt.{CaptionType, Format, TaskItemExt ⇒ TaskItemExtCC}
+import com.simplesys.isc.dataBinging.DSResponse
 import com.simplesys.js.components.gantt.GanttImprovedChart
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
@@ -16,18 +20,11 @@ import com.simplesys.request.RequestResult
 import io.circe.generic.auto._
 import io.circe.scalajs._
 import io.circe.syntax._
-import com.simplesys.circe.Circe._
 import org.scalajs.dom
-import com.simplesys.gantt.GanttChartCommon._
-import com.simplesys.gantt.JS.GanttChart._
-import com.simplesys.gantt.{CaptionType, Format, Group, TaskItemExt ⇒ TaskItemExtCC, _}
-import com.simplesys.gantt.JS.{GanttChart, GanttChartExt, TaskItemExt}
-import com.simplesys.gantt.TaskCssClass._
 
 import scala.language.implicitConversions
 import scalatags.Text.all._
-//import com.simplesys.gantt.TaskItemExt._ //!! Must be
-import com.simplesys.gantt.TaskItemExt._ //!! Must be
+//import com.simplesys.gantt.TaskItemExt._ //!! Must be //!! Must be
 
 class GanttImprovedChartProps extends CanvasProps {
     type classHandler <: GanttImprovedChart

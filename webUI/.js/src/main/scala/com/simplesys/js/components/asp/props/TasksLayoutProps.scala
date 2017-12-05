@@ -10,24 +10,23 @@ import com.simplesys.SmartClient.Grids.{ListGridEditor, TreeGridEditor}
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.Layout.props.{ChainMasterDetailProps, TabSetSSProps}
 import com.simplesys.SmartClient.Layout.tabSet.Tab
-import com.simplesys.SmartClient.RPC.{RPCManagerSS, RPCRequest, RPCResponse}
 import com.simplesys.SmartClient.RPC.props.RPCRequestProps
+import com.simplesys.SmartClient.RPC.{RPCManagerSS, RPCRequest, RPCResponse}
 import com.simplesys.SmartClient.System.{Tab, _}
-import com.simplesys.System.Types.{ID, SelectionAppearance, SelectionStyle, Visibility}
+import com.simplesys.System.Types.{ID, SelectionAppearance}
 import com.simplesys.System._
 import com.simplesys.app
 import com.simplesys.app.{Tasks, _}
 import com.simplesys.function._
-import com.simplesys.gantt.{CaptionType, Format}
-import com.simplesys.gantt.JS.{GanttChart, GanttChartExt}
-import com.simplesys.isc.dataBinging.DSResponse
 import com.simplesys.js.components.asp.{Tasks, TasksLayout}
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
-import com.simplesys.request.RequestResult
-import io.circe.scalajs.{convertJsToJson, convertJsonToJs}
-import org.scalajs.dom
+import com.simplesys.request.CalculateRequest
+import io.circe.generic.auto._
+import io.circe.scalajs.convertJsonToJs
+import io.circe.syntax._
+import ru.simplesys.defs.app.scala.container.TasksDataRecord
 
 import scala.scalajs.js.UndefOr._
 
@@ -70,10 +69,9 @@ class TasksLayoutProps extends ChainMasterDetailProps {
 
             thizTop.Super("initWidget", args)
 
-
             thizTop.tasks = Tasks.create(new TasksProps {
                 identifier = s"${thizTop.identifier}_tasks".opt
-                //selectionAppearance = SelectionAppearance.checkbox.opt
+                selectionAppearance = SelectionAppearance.checkbox.opt
                 //selectionType = SelectionStyle.multiple.opt
                 width = "20%"
                 customMenu = Seq(
@@ -91,7 +89,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                         RPCRequest(
                                             new RPCRequestProps {
                                                 actionURL = "logic/calculateTask".opt
-                                                data = ???
+                                                data = convertJsonToJs(CalculateRequest(idTask = owner.getSelectedRecord.asInstanceOf[TasksDataRecord].idtask.getOrElse(0).toLong).asJson).opt
                                                 timeout = 60000.opt
                                                 sendNoQueue = true.opt
                                                 callback = {
