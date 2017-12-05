@@ -6,13 +6,14 @@ import com.simplesys.circe.Circe._
 import com.simplesys.common.Strings.newLine
 import com.simplesys.isc.dataBinging.{DSResponse, DSResponseFailureEx, RPCResponse}
 import com.simplesys.request.CalculateRequest
+import com.simplesys.response.ReesponseCalculateData
 import com.simplesys.servlet.ServletContext
 import com.simplesys.servlet.http.{HttpServletRequest, HttpServletResponse}
 import com.simplesys.servlet.isc.{GetData, ServletActor}
 import io.circe.Json.arr
 import io.circe.generic.auto._
 import io.circe.syntax._
-
+import ru.simplesys.aps.dataprovider.Processor
 
 @RSTransfer(urlPattern = "/logic/calculateTask")
 class CalculateTaskContainer(val request: HttpServletRequest, val response: HttpServletResponse, val servletContext: ServletContext) extends ServletActor with SessionContextSupport {
@@ -27,10 +28,11 @@ class CalculateTaskContainer(val request: HttpServletRequest, val response: Http
                 case Right(value) ⇒
                     logger debug s"request: ${newLine + value.asJson.toPrettyString}"
 
-                    ru.simplesys.aps.dataprovider.Processor.runIt(value.idTask, 5)
+                    runIt(value.idTask, 5)
+
                     Out(
                         DSResponse(
-                            data = ,
+                            data = ReesponseCalculateData("Вычисление произведено.").asJson,
                             status = RPCResponse.statusSuccess
                         )
                     )
