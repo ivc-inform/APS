@@ -33,7 +33,7 @@
     <logger name="com.simplesys.jdbc.control.DSRequest" level="trace"/>
     <logger name="com.simplesys.jdbc.control.Table" level="debug"/>
     <logger name="com.simplesys.jdbc.control.DsRequest" level="debug"/>
-    <logger name="ru.simplesys.defs.bo.aps.ParamsDS" level="trace"/>
+    <logger name="ru.simplesys.defs.bo.aps.ParamsDS" level="debug"/>
 
     <logger name="com.simplesys.filter.ReLoginAxFilter" level="debug"/>
     <logger name="com.simplesys.oracle.pool.OraclePoolDataSource" level="debug"/>
