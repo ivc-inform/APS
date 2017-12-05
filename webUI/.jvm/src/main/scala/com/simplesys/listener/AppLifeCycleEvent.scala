@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebListener
 
 import com.simplesys.file.Path
 import com.simplesys.hikari.OracleHikariDataSource
-import com.simplesys.oracle.pool.OraclePoolDataSource
+//import com.simplesys.oracle.pool.OraclePoolDataSource
 import com.simplesys.servlet.ServletContextEvent
 
 object AppLifeCycleEvent {
@@ -33,8 +33,8 @@ class AppLifeCycleEvent extends CommonWebAppListener {
 
         logger trace s"dbPoolDefault: $dbPoolDefault"
 
-        //val oraclePool = new OracleHikariDataSource(s"$dbPoolDefault.oraclcePoolDataSource")
-        val oraclePool = new OraclePoolDataSource(s"$dbPoolDefault.oraclcePoolDataSource")
+        val oraclePool = new OracleHikariDataSource(s"$dbPoolDefault.oraclcePoolDataSource")
+        //val oraclePool = new OraclePoolDataSource(s"$dbPoolDefault.oraclcePoolDataSource")
 
         try {
             //oraclePool.getConnection().close()
