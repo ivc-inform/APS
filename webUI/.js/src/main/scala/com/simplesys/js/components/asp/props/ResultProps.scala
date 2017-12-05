@@ -6,7 +6,7 @@ import com.simplesys.SmartClient.Layout.props.TabSetSSProps
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.System.{AdvancedCriteria, Criterion, Tab, TabSetSS, _}
 import com.simplesys.System.JSAny
-import com.simplesys.System.Types.{ListGridEditEvent, OperatorId}
+import com.simplesys.System.Types.{ListGridEditEvent, OperatorId, SelectionAppearance}
 import com.simplesys.app.{GanttChart, GanttImprovedChart, ResultItem}
 import com.simplesys.function._
 import com.simplesys.js.components.asp.Result
@@ -30,7 +30,8 @@ class ResultProps extends CommonListGridEditorComponentProps {
     editEvent = ListGridEditEvent.none.opt
     canExpandRecords = true.opt
 
-    itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(false), miEdit(false), miRefresh()).opt
+    itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(), miEdit(false), miRefresh()).opt
+    selectionAppearance = SelectionAppearance.checkbox.opt
 
     getExpansionComponent = {
         (thiz: classHandler, record: ResultDataRecord) ⇒

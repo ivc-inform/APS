@@ -18,5 +18,5 @@ class TaskResultProps extends CommonListGridEditorComponentProps {
     fields = ListGridFiledsJS.aps_task_result_FLDS.opt
     editEvent = ListGridEditEvent.none.opt
 
-    itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(false), miEdit(false), miRefresh()).opt
+    itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(), miEdit(false), miRefresh()).opt
 }
