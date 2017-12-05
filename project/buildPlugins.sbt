@@ -1,7 +1,7 @@
 import sbt._
 
 
-lazy val devPlugin = uri("../../sbt-plugins/dev-plugin")
+//lazy val devPlugin = uri("../../sbt-plugins/dev-plugin")
 //lazy val circeExtender = uri("../../simplesys/circe-extender")
 //lazy val sbtCoffeeScript = uri("../../sbt-plugins/sbt-coffeescript")
 //lazy val sbtNativePackager = uri("../../sbt-plugins/sbt-native-packager")
