@@ -2,14 +2,16 @@ package com.simplesys.js.components.asp.props
 
 import com.simplesys.SmartClient.App.GridContextMenuData
 import com.simplesys.SmartClient.App.props.CompoundGridsContextMenuProps
+import com.simplesys.SmartClient.Control.MenuSS
+import com.simplesys.SmartClient.Control.menu.MenuSSItem
 import com.simplesys.SmartClient.Control.props.menu.MenuSSItemProps
 import com.simplesys.SmartClient.Foundation.Canvas
-import com.simplesys.SmartClient.Grids.ListGridEditor
+import com.simplesys.SmartClient.Grids.{ListGridEditor, TreeGridEditor}
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.Layout.props.{ChainMasterDetailProps, TabSetSSProps}
 import com.simplesys.SmartClient.Layout.tabSet.Tab
 import com.simplesys.SmartClient.System.{Tab, _}
-import com.simplesys.System.Types.{ID, SelectionAppearance, SelectionStyle}
+import com.simplesys.System.Types.{ID, SelectionAppearance, SelectionStyle, Visibility}
 import com.simplesys.System._
 import com.simplesys.app
 import com.simplesys.app.{Tasks, _}
@@ -63,9 +65,24 @@ class TasksLayoutProps extends ChainMasterDetailProps {
 
             thizTop.tasks = Tasks.create(new TasksProps {
                 identifier = s"${thizTop.identifier}_tasks".opt
-                selectionAppearance = SelectionAppearance.checkbox.opt
-                selectionType = SelectionStyle.multiple.opt
+                //selectionAppearance = SelectionAppearance.checkbox.opt
+                //selectionType = SelectionStyle.multiple.opt
                 width = "20%"
+                customMenu = Seq(
+                    MenuSSItem(
+                        new MenuSSItemProps {
+                            title = "Расчет расписания".ellipsis.opt
+                            identifier = "calculate".opt
+                            icon = Common.calculator.opt
+                            click = {
+                                (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
+                                    val owner = item.owner.asInstanceOf[TreeGridEditor]
+                                    simpleSyS checkOwner owner
+                                    isc info "Not implemented ((((("
+                            }.toFunc.opt
+                        }
+                    )
+                ).opt
             })
 
             thizTop.tasks.showResizeBar = true
