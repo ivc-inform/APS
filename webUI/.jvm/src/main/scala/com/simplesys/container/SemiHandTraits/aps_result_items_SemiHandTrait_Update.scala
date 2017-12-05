@@ -11,7 +11,7 @@ import com.simplesys.circe.Circe._
 import com.simplesys.common.Strings._
 import com.simplesys.common.Numbers._
 import com.simplesys.isc.dataBinging._
-import com.simplesys.jdbc.control.ValidationEx                                                                                                            
+import com.simplesys.jdbc.control.ValidationEx
 import com.simplesys.jdbc.control.classBO.Where
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.{GetData, ServletActor}
@@ -213,8 +213,12 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
                         arr(listResponse: _*)
                     }
                     case Failure(_) =>
-                        DSResponseFailureEx(update.printException.get.message,
-                            update.printException.get.stackTrace).asJson
+                        DSResponseFailureEx(
+                            ErrorData(
+                                update.printException.get.message,
+                                update.printException.get.stackTrace
+                            ).asJson
+                        ).asJson
                 })
 
                 selfStop()

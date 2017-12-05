@@ -10,7 +10,7 @@ import com.simplesys.gantt.GanttChartCommon._
 import com.simplesys.gantt.TaskItemExt
 import com.simplesys.gantt.TaskCssClass._
 import com.simplesys.gantt.{Group, Opening}
-import com.simplesys.isc.dataBinging.{DSResponse, DSResponseFailureEx, RPCResponse}
+import com.simplesys.isc.dataBinging.{DSResponse, DSResponseFailureEx, ErrorData, RPCResponse}
 import com.simplesys.jdbc.control.classBO.{OrderBy, Where}
 import com.simplesys.request.RequestResult
 import com.simplesys.servlet.ServletContext
@@ -107,22 +107,22 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                                     Failure(failure) ⇒
                                     Out(
                                         DSResponseFailureEx(
-                                            failure.getMessage,
-                                            failure.getStackTrace.mkString("", EOL, EOL)).asJson
+                                            ErrorData(failure.getMessage,
+                                            failure.getStackTrace.mkString("", EOL, EOL)).asJson).asJson
                                     )
                             }
 
                         case Failure(failure) ⇒
                             Out(
                                 DSResponseFailureEx(
-                                    failure.getMessage,
-                                    failure.getStackTrace.mkString("", EOL, EOL)).asJson
+                                    ErrorData(failure.getMessage,
+                                    failure.getStackTrace.mkString("", EOL, EOL)).asJson).asJson
                             )
                     }
                 case Left(failure) ⇒
                     Out(DSResponseFailureEx(
-                        failure.message,
-                        failure.getStackTrace.mkString("", EOL, EOL)).asJson
+                        ErrorData(failure.message,
+                        failure.getStackTrace.mkString("", EOL, EOL)).asJson).asJson
                     )
             }
 

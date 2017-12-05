@@ -4,7 +4,7 @@ import com.simplesys.annotation.RSTransfer
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.circe.Circe._
 import com.simplesys.common.Strings.newLine
-import com.simplesys.isc.dataBinging.{DSResponse, DSResponseFailureEx, RPCResponse}
+import com.simplesys.isc.dataBinging.{DSResponse, DSResponseFailureEx, ErrorData, RPCResponse}
 import com.simplesys.request.CalculateRequest
 import com.simplesys.response.ResponseCalculateData
 import com.simplesys.servlet.ServletContext
@@ -13,6 +13,7 @@ import com.simplesys.servlet.isc.{GetData, ServletActor}
 import io.circe.Json.arr
 import io.circe.generic.auto._
 import io.circe.syntax._
+import oracle.jdbc.driver.DatabaseError
 import ru.simplesys.aps.dataprovider.Processor._
 
 @RSTransfer(urlPattern = "/logic/calculateTask")
@@ -38,10 +39,10 @@ class CalculateTaskContainer(val request: HttpServletRequest, val response: Http
                     )
 
                 case Left(failure) ⇒
-                    Out(DSResponseFailureEx(
+                    Out(DSResponseFailureEx(ErrorData(
                         failure.message,
                         failure.getStackTrace.mkString("", EOL, EOL)).asJson
-                    )
+                    ).asJson)
             }
 
             selfStop
