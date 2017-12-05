@@ -89,7 +89,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                         RPCRequest(
                                             new RPCRequestProps {
                                                 actionURL = "logic/calculateTask".opt
-                                                data = convertJsonToJs(CalculateRequest(idTask = owner.getSelectedRecord.asInstanceOf[TasksDataRecord].idtask.getOrElse(0).toLong).asJson).opt
+                                                data = convertJsonToJs(CalculateRequest(idTask = owner.getSelectedRecord.asInstanceOf[TasksDataRecord].idtask.getOrElse(0.0).toLong).asJson).opt
                                                 timeout = 60000.opt
                                                 sendNoQueue = true.opt
                                                 callback = {
