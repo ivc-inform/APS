@@ -314,7 +314,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       libraryDependencies ++= Seq(
           CommonDepsScalaJS.jsgantImproved.value,
 
-          CommonDepsScalaJS.smartClientWrapper.value,
+          //CommonDepsScalaJS.smartClientWrapper.value,
           CommonDepsScalaJS.scalaTags.value,
           CommonDepsScalaJS.jQuery.value,
           CommonDepsScalaJS.scalaDom.value,
@@ -324,6 +324,9 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       )
   )
   .jsSettings(commonJSSettings)
+  .jsConfigure{
+      project ⇒ project.dependsOn(CommonDepsScalaJS.smartClientWrapper)
+  }
 
 lazy val webUIJS = webUI.js
 lazy val webUIJVM = webUI.jvm
