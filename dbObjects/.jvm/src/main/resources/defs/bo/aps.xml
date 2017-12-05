@@ -216,6 +216,28 @@
 				</constraints>
 			</classSimple>
 
+			<classSimple autoTableMapping="true" caption="Показатели расчетов" name="task_result">
+				<attrs>
+					<attr caption="Идентификатор показателя" genBySeq="true" hidden="true" mandatory="true" name="id" type="id" useDbPrefix="false"></attr>
+					<attr caption="Параметр u0" name="param_u0" type="fDouble" useDbPrefix="false"></attr>
+					<attr caption="Парамеир м0" name="param_v0" type="fDouble" useDbPrefix="false"></attr>
+					<attr caption="Пареметр плановой загрузки" name="param_kwip" type="fDouble" useDbPrefix="false"></attr>
+					<attr caption="Номер варианта по Сэдвиджу" name="numBySavidge" type="fDouble" useDbPrefix="false"></attr>
+					<attr caption="Номер варианта по Uehdbwe" name="numByGurvits" type="fDouble" useDbPrefix="false"></attr>
+				</attrs>
+				<defaults>
+					<uiSettings uiFormType="singleListGrid"></uiSettings>
+				</defaults>
+				<constraints>
+					<uc uniqueType="pk">
+						<attrName>id</attrName>
+					</uc>
+					<fk linkType="refIsOwner" mandatory="true" parent="tasks">
+						<mapping attrNameLocal="id_task" attrNameRemote="idtask"></mapping>
+					</fk>
+				</constraints>
+			</classSimple>
+
 			<classSimple autoTableMapping="true" caption="Варианты" name="result_items">
 				<attrs>
 					<attr caption="Идентификатор варианта" genBySeq="true" hidden="true" mandatory="true" name="id_item" type="id" useDbPrefix="false"></attr>
