@@ -1,7 +1,7 @@
 package com.simplesys.js.components.asp.props
 
 import com.simplesys.SmartClient.App.props._
-import com.simplesys.System.Types.{ListGridEditEvent, SelectionAppearance}
+import com.simplesys.System.Types.{ListGridEditEvent, SelectionAppearance, SelectionStyle}
 import com.simplesys.js.components.asp.TaskResult
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, ListGridFiledsJS}
@@ -17,7 +17,9 @@ class TaskResultProps extends CommonListGridEditorComponentProps {
 
     fields = ListGridFiledsJS.aps_task_result_FLDS.opt
     editEvent = ListGridEditEvent.none.opt
+
     selectionAppearance = SelectionAppearance.checkbox.opt
+    selectionType = SelectionStyle.multiple.opt
 
     itemsType = Seq(miNewWithForm(false), miCopy(false), miDelete(), miEdit(false), miRefresh()).opt
 }
