@@ -1,15 +1,10 @@
 package com.simplesys.js.components.asp.props
 
 import com.simplesys.SmartClient.App.props._
-import com.simplesys.SmartClient.System._
 import com.simplesys.System.Types.ListGridEditEvent
-import com.simplesys.System._
-import com.simplesys.function._
 import com.simplesys.js.components.asp.TaskResult
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, ListGridFiledsJS}
-
-import scala.scalajs.js._
 
 class TaskResultProps extends CommonListGridEditorComponentProps {
     type classHandler <: TaskResult
