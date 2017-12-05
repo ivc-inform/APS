@@ -19,10 +19,8 @@ import io.circe.syntax._
 import com.simplesys.circe.Circe._
 import org.scalajs.dom
 import com.simplesys.gantt.GanttChartCommon._
-import com.simplesys.gantt.JS.GanttChart._
 import com.simplesys.gantt.{CaptionType, Format, Group, TaskItemExt ⇒ TaskItemExtCC, _}
 import com.simplesys.gantt.JS.{GanttChart, GanttChartExt, TaskItemExt}
-import com.simplesys.gantt.TaskCssClass._
 
 import scala.language.implicitConversions
 import scalatags.Text.all._

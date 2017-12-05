@@ -25,7 +25,7 @@ class CalculateTaskContainer(val request: HttpServletRequest, val response: Http
             requestData match {
                 case Right(value) ⇒
                     logger debug s"request: ${newLine + value.asJson.toPrettyString}"
-
+                    
                 case Left(failure) ⇒
                     Out(DSResponseFailureEx(
                         failure.message,
