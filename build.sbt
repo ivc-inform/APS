@@ -163,7 +163,10 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
           CommonDeps.scalaTags,
           CommonDeps.scalaURI,
 
-          CommonDeps.jsgantImproved
+          CommonDeps.jsgantImproved,
+
+          CommonDeps.calculatorCore,
+          CommonDeps.calculatorDataProvider
       )
   )
   .jvmSettings(

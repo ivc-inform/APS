@@ -56,6 +56,7 @@ object CommonDeps {
         val jsgantImprovedVersion = "0.9.4-SNAPSHOT"
 
         val circeVersion = "0.8.0"
+        val calculatorVersion = "1.1.1"
         val ssCrossVersion = "1.0.0.5-SNAPSHOT"
     }
 
@@ -123,5 +124,9 @@ object CommonDeps {
     //val jsgantImproved =  ProjectRef(uri("../../JOB/jsgantt-improved"), "ganttImprovedJVM")
 
     val circeExtender = "com.simplesys.cross" %% "circe-extender" % versions.ssCrossVersion
+
+    val calculatorCore =  "ru.simplesys.aps" %% "core" % versions.calculatorVersion
+    val calculatorDataProvider =  "ru.simplesys.aps" %% "dataprovider" % versions.calculatorVersion
+
 }
 
