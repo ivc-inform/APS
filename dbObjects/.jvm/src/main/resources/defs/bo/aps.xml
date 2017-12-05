@@ -170,8 +170,6 @@
 					<attr caption="SplitBegin" name="b1_splitBegin" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Amplitude" name="b2_Amplitude" type="fDouble" useDbPrefix="false"></attr>
 					<attr caption="AttenuationDecrement" name="b3_attenuationDecrement" type="fDouble" useDbPrefix="false"></attr>
-					<attr caption="Рекомендуемый вариант по Сэвиджу" name="nSavidge" type="nInt" useDbPrefix="false"></attr>
-					<attr caption="Рекомендуемый вариант по Гурвицу" name="nGurvits" type="nInt" useDbPrefix="false"></attr>
 					<attr caption="Заданный коэффициент метода Гурвица" name="coef_gurvitsa" type="fDouble" useDbPrefix="false"></attr>
 				</attrs>
 				<defaults>
