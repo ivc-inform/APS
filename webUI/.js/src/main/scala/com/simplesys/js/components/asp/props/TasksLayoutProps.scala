@@ -18,13 +18,19 @@ import com.simplesys.System._
 import com.simplesys.app
 import com.simplesys.app.{Tasks, _}
 import com.simplesys.function._
+import com.simplesys.isc.dataBinging.DSResponse
 import com.simplesys.js.components.asp.{Tasks, TasksLayout}
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
 import com.simplesys.request.CalculateRequest
+import com.simplesys.circe.Circe._
+import com.simplesys.response.ResponseCalculateData
 import io.circe.generic.auto._
-import io.circe.scalajs.convertJsonToJs
+import io.circe.scalajs.{convertJsToJson, convertJsonToJs}
+import io.circe.syntax._
+import io.circe.generic.auto._
+import io.circe.scalajs._
 import io.circe.syntax._
 import ru.simplesys.defs.app.scala.container.TasksDataRecord
 
@@ -95,7 +101,22 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                                 callback = {
                                                     (resp: RPCResponse, data: JSAny, req: RPCRequest) ⇒
                                                         if (resp.httpResponseCode == 200) {
-
+                                                            convertJsToJson(data) match {
+                                                                case Right(json) ⇒
+                                                                    json.getJsonObject("response").as[DSResponse] match {
+                                                                        case Right(dsResponse) ⇒
+                                                                            dsResponse.data.as[ResponseCalculateData] match {
+                                                                                case Right(result) ⇒
+                                                                                    isc ok result.message
+                                                                                case Left(failure) ⇒
+                                                                                    isc error (failure.getMessage)
+                                                                            }
+                                                                        case Left(failure) ⇒
+                                                                            isc error (failure.getMessage)
+                                                                    }
+                                                                case Left(failure) ⇒
+                                                                    isc error (failure.getMessage)
+                                                            }
                                                         }
 
                                                 }.toFunc.opt
