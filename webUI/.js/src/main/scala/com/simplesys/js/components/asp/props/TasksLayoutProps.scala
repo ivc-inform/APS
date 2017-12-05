@@ -77,7 +77,7 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                     width = "*"
                     canCloseTabs = false.opt
                     tabDeselected = {
-                        (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, newTab : Tab) ⇒
+                        (thiz: classHandler, tabNum: Int, tabPane: Canvas, id: JSUndefined[ID], tab: Tab, newTab: Tab) ⇒
                             simpleSyS.functionButton.foreach(_.menu = getMenu(thizTop, newTab))
                             true
                     }.toThisFunc.opt
@@ -143,6 +143,16 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                 icon = app.properties.opt
                                 title = "Параметры".ellipsis.opt
                                 pane = Parametrs.create(new ParametrsProps {
+                                    masterGrid = thizTop.tasks.listGrid.opt
+                                }).opt
+                            }
+                        ),
+                        Tab(
+                            new TabProps {
+                                name = "taskResult".opt
+                                icon = app.reports.opt
+                                title = "Показатели расчетов".ellipsis.opt
+                                pane = TaskResult.create(new TaskResultProps {
                                     masterGrid = thizTop.tasks.listGrid.opt
                                 }).opt
                             }
