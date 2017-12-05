@@ -52,7 +52,7 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
         case GetData => {
             val requestData = request.JSONData.as[RequestResult]
 
-            val resultRequest = requestData match {
+            requestData match {
                 case Right(value) ⇒
                     logger debug s"request: ${newLine + value.asJson.toPrettyString}"
 
