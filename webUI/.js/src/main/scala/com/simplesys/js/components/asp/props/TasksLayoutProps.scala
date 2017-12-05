@@ -10,16 +10,24 @@ import com.simplesys.SmartClient.Grids.{ListGridEditor, TreeGridEditor}
 import com.simplesys.SmartClient.Layout.props.tabSet.TabProps
 import com.simplesys.SmartClient.Layout.props.{ChainMasterDetailProps, TabSetSSProps}
 import com.simplesys.SmartClient.Layout.tabSet.Tab
+import com.simplesys.SmartClient.RPC.{RPCManagerSS, RPCRequest, RPCResponse}
+import com.simplesys.SmartClient.RPC.props.RPCRequestProps
 import com.simplesys.SmartClient.System.{Tab, _}
 import com.simplesys.System.Types.{ID, SelectionAppearance, SelectionStyle, Visibility}
 import com.simplesys.System._
 import com.simplesys.app
 import com.simplesys.app.{Tasks, _}
 import com.simplesys.function._
+import com.simplesys.gantt.{CaptionType, Format}
+import com.simplesys.gantt.JS.{GanttChart, GanttChartExt}
+import com.simplesys.isc.dataBinging.DSResponse
 import com.simplesys.js.components.asp.{Tasks, TasksLayout}
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import com.simplesys.option.{ScNone, ScOption}
+import com.simplesys.request.RequestResult
+import io.circe.scalajs.{convertJsToJson, convertJsonToJs}
+import org.scalajs.dom
 
 import scala.scalajs.js.UndefOr._
 
@@ -78,7 +86,24 @@ class TasksLayoutProps extends ChainMasterDetailProps {
                                 (target: Canvas, item: MenuSSItem, menu: MenuSS, colNum: JSUndefined[Int]) =>
                                     val owner = item.owner.asInstanceOf[TreeGridEditor]
                                     simpleSyS checkOwner owner
-                                    isc info "Not implemented ((((("
+
+                                    RPCManagerSS.sendRequest(
+                                        RPCRequest(
+                                            new RPCRequestProps {
+                                                actionURL = "logic/calculateTask".opt
+                                                data = ???
+                                                timeout = 60000.opt
+                                                sendNoQueue = true.opt
+                                                callback = {
+                                                    (resp: RPCResponse, data: JSAny, req: RPCRequest) ⇒
+                                                        if (resp.httpResponseCode == 200) {
+
+                                                        }
+
+                                                }.toFunc.opt
+                                            }
+                                        )
+                                    )
                             }.toFunc.opt
                         }
                     )
