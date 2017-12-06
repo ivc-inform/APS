@@ -22,8 +22,8 @@ lazy val root = crossProject(JSPlatform, JVMPlatform)
           name := CommonSettings.settingValues.name
       ) ++ CommonSettings.defaultSettings)
   )
-  .aggregate(common, dbObjects, testModule, webUI)
-  .dependsOn(common, dbObjects, testModule, webUI)
+  .aggregate(common, `db-objects`, `test-module`, `web-ui`)
+  .dependsOn(common, `db-objects`, `test-module`, `web-ui`)
 
 val commonJSSettings = Seq(
     libraryDependencies ++= Seq(
@@ -50,10 +50,10 @@ lazy val common = crossProject(JSPlatform, JVMPlatform)
   .jvmSettings(commonJVMSettings)
   .jsSettings(commonJSSettings)
 
-lazy val noNameJS = common.js
-lazy val noNameJVM = common.jvm
+lazy val `common-js` = common.js
+lazy val `common-jvm` = common.jvm
 
-lazy val dbObjects = crossProject(JSPlatform, JVMPlatform)
+lazy val `db-objects` = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(CommonSettings.noPublishSettings)
   .settings(CommonSettings.defaultSettings)
@@ -80,13 +80,13 @@ lazy val dbObjects = crossProject(JSPlatform, JVMPlatform)
   .jvmSettings(commonJVMSettings)
   .jsSettings(commonJSSettings)
 
-lazy val dbObjectsJS = dbObjects.js
-lazy val dbObjectsJVM = dbObjects.jvm
+lazy val `db-objects-js` = `db-objects`.js
+lazy val `db-objects-jvm` = `db-objects`.jvm
 
-lazy val testModule = crossProject(JSPlatform, JVMPlatform)
+lazy val `test-module` = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(CommonSettings.noPublishSettings)
-  .dependsOn(dbObjects)
+  .dependsOn(`db-objects`)
   .settings(
       libraryDependencies ++= Seq(
           //CommonDeps.ssysJDBCWrapper,
@@ -96,14 +96,14 @@ lazy val testModule = crossProject(JSPlatform, JVMPlatform)
   .jvmSettings(commonJVMSettings)
   .jsSettings(commonJSSettings)
 
-lazy val testModuleJS = testModule.js
-lazy val testModuleJVM = testModule.jvm
+lazy val `test-module-js` = `test-module`.js
+lazy val `test-module-jvm` = `test-module`.jvm
 
-lazy val webUI = crossProject(JSPlatform, JVMPlatform)
+lazy val `web-ui` = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(CommonSettings.noPublishSettings)
-  .dependsOn(dbObjects)
-  .aggregate(dbObjects)
+  .dependsOn(`db-objects`)
+  .aggregate(`db-objects`)
   .settings(CommonSettings.defaultSettings)
   .jvmConfigure(_ enablePlugins(DevPlugin, MergeWebappPlugin, SbtCoffeeScript, ScalaJSPlugin, JettyPlugin, WarPlugin, WebappPlugin, JRebelPlugin, DockerPlugin, JavaAppPackaging))
   .settings(
@@ -167,7 +167,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       (managedResources in Compile) ++= CoffeeScriptKeys.coffeeScript.value,
 
       //dev plugin
-      sourceSchemaDir in DevConfig := (resourceDirectory in(dbObjectsJVM, Compile)).value / "defs",
+      sourceSchemaDir in DevConfig := (resourceDirectory in(`db-objects-jvm`, Compile)).value / "defs",
       startPackageName in DevConfig := "ru.simplesys.defs",
       contextPath in DevConfig := "aps",
       maxArity in DevConfig := 254,
@@ -287,7 +287,7 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv(),
 
       //dev plugin
-      sourceSchemaDir in DevConfig := (resourceDirectory in(dbObjectsJVM, Compile)).value / "defs",
+      sourceSchemaDir in DevConfig := (resourceDirectory in(`db-objects-jvm`, Compile)).value / "defs",
       startPackageName in DevConfig := "ru.simplesys.defs",
       contextPath in DevConfig := "aps",
       maxArity in DevConfig := 254,
@@ -316,8 +316,8 @@ lazy val webUI = crossProject(JSPlatform, JVMPlatform)
       project ⇒ project.dependsOn(CommonDepsScalaJS.smartClientWrapper)
   }*/
 
-lazy val webUIJS = webUI.js
-lazy val webUIJVM = webUI.jvm
+lazy val `web-ui-js` = `web-ui`.js
+lazy val `web-ui-jvm` = `web-ui`.jvm
 
 
 
