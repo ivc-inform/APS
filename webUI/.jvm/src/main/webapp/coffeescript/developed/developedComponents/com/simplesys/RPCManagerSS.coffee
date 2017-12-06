@@ -41,10 +41,6 @@ isc.RPCManager.addClassProperties
 				if response.errorStruct?.error?
 					response.data.error = response.errorStruct.error
 					
-				if response.results?.status?
-					if response.results.status is -1 and response.results.data?
-						response.data.error = response.results.data
-					
 				if response.data?.error?
 					if isc.isA.Array(response.data.error) is true
 						isc.error "Ошибка: #{response.data.error.length} элемента."

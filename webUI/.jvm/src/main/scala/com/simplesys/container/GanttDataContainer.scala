@@ -10,7 +10,8 @@ import com.simplesys.gantt.GanttChartCommon._
 import com.simplesys.gantt.TaskItemExt
 import com.simplesys.gantt.TaskCssClass._
 import com.simplesys.gantt.{Group, Opening}
-import com.simplesys.isc.dataBinging.{DSResponse, DSResponseFailureEx, ErrorData, RPCResponse}
+import com.simplesys.isc.dataBinging.{DSResponse, ErrorData, RPCResponse}
+import com.simplesys.isc.dataBinging.DSResponse._
 import com.simplesys.jdbc.control.classBO.{OrderBy, Where}
 import com.simplesys.request.RequestResult
 import com.simplesys.servlet.ServletContext
@@ -107,22 +108,22 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                                     Failure(failure) ⇒
                                     Out(
                                         DSResponseFailureEx(
-                                            ErrorData(failure.getMessage,
-                                            failure.getStackTrace.mkString("", EOL, EOL)).asJson).asJson
+                                            failure.getMessage,
+                                            failure.getStackTrace.mkString("", EOL, EOL)).asJson
                                     )
                             }
 
                         case Failure(failure) ⇒
                             Out(
                                 DSResponseFailureEx(
-                                    ErrorData(failure.getMessage,
-                                    failure.getStackTrace.mkString("", EOL, EOL)).asJson).asJson
+                                    failure.getMessage,
+                                    failure.getStackTrace.mkString("", EOL, EOL)).asJson
                             )
                     }
                 case Left(failure) ⇒
                     Out(DSResponseFailureEx(
-                        ErrorData(failure.message,
-                        failure.getStackTrace.mkString("", EOL, EOL)).asJson).asJson
+                        failure.message,
+                        failure.getStackTrace.mkString("", EOL, EOL)).asJson
                     )
             }
 
