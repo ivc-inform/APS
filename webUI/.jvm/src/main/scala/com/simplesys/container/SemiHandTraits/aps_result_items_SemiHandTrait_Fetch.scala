@@ -130,7 +130,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     )
                 }
                 case Failure(_) =>
-                    DSResponseFailureEx(select.printException.get.message, select.printException.get.stackTrace))
+                    DSResponseFailureEx(select.printException.get.message, select.printException.get.stackTrace)
             }
             Out(out = out)
 
