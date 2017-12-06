@@ -19,6 +19,7 @@ import com.simplesys.jdbc.control.classBO.Where
 import com.simplesys.messages.Message
 import io.circe.Json
 import io.circe.Json.arr
+import ru.simplesys.defs.bo.aps.table.Result_itemsTbl
 
 import scala.collection.mutable.ArrayBuffer
 import scalaz.{Failure, Success}
@@ -31,6 +32,7 @@ trait aps_result_SemiHandTrait_Remove extends SessionContextSupport with Servlet
     logger debug s"Request for Remove: ${newLine + requestData.asJson.toPrettyString}"
 
     val dataSet = ResultDS(oraclePool)
+    val itemsResultBo = Result_itemsBo(oraclePool)
     /////////////////////////////// !!!!!!!!!!!!!!!!!!!!!!!!!! END DON'T MOVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///////////////////////////////
 
     def receiveBase: Option[Actor.Receive] = Some(
@@ -53,7 +55,11 @@ trait aps_result_SemiHandTrait_Remove extends SessionContextSupport with Servlet
                         val idresult = data.getLong("idresult")
 
                         listResponse append DSResponse(status = RPCResponse.statusSuccess, data = arr()).asJson
-                        dataSet.delete(where = Where(dataSet.idresultResult === idresult))
+                        transaction(dataSet.dataSource) {
+                            connection =>
+                                itemsResultBo.deleteWithoutCommit(connection = connection, where = Where(itemsResultBo.id_result === idresult))
+                                dataSet.deleteWithoutCommit(connection = connection, where = Where(dataSet.idresultResult === idresult))
+                        }
                     }
                     case Some(transactionNum) =>
                         transaction(dataSet.dataSource) { connection =>
@@ -71,12 +77,11 @@ trait aps_result_SemiHandTrait_Remove extends SessionContextSupport with Servlet
                                       listResponse append DSResponse(
                                           status = RPCResponse.statusSuccess,
                                           data = arr()).asJson
-                                      
+
                                       SendMessage(Message(channels = s"ListElements_Remove_$transactionNum"))
 
-                                      dataSet.deleteWithoutCommit(
-                                          connection = connection,
-                                          where = Where(dataSet.idresultResult === idresult))
+                                      itemsResultBo.deleteWithoutCommit(connection = connection, where = Where(itemsResultBo.id_result === idresult))
+                                      dataSet.deleteWithoutCommit(connection = connection, where = Where(dataSet.idresultResult === idresult))
                               }
                               .toArray
                         }
@@ -89,7 +94,7 @@ trait aps_result_SemiHandTrait_Remove extends SessionContextSupport with Servlet
                         arr(listResponse: _*)
                     }
                     case Failure(_) =>
-                        DSResponseFailureEx(delete.printException.get.message,delete.printException.get.stackTrace).asJson
+                        DSResponseFailureEx(delete.printException.get.message, delete.printException.get.stackTrace).asJson
                 })
 
                 if (_transactionNum.isDefined)
