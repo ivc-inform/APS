@@ -46,9 +46,6 @@ val commonJVMSettings = Seq(
 lazy val common = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(CommonSettings.noPublishSettings)
-  .settings(
-      name := "common"
-  )
   .settings(CommonSettings.defaultSettings)
   .jvmSettings(commonJVMSettings)
   .jsSettings(commonJSSettings)
@@ -59,9 +56,6 @@ lazy val noNameJVM = common.jvm
 lazy val dbObjects = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(CommonSettings.noPublishSettings)
-  .settings(
-      name := "db-objects"
-  )
   .settings(CommonSettings.defaultSettings)
   .dependsOn(common)
   .jvmConfigure(_ enablePlugins DevPlugin)
@@ -92,9 +86,6 @@ lazy val dbObjectsJVM = dbObjects.jvm
 lazy val testModule = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(CommonSettings.noPublishSettings)
-  .settings(
-      name := "test"
-  )
   .dependsOn(dbObjects)
   .settings(
       libraryDependencies ++= Seq(
@@ -111,9 +102,6 @@ lazy val testModuleJVM = testModule.jvm
 lazy val webUI = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .settings(CommonSettings.noPublishSettings)
-  .settings(
-      name := "web-ui"
-  )
   .dependsOn(dbObjects)
   .aggregate(dbObjects)
   .settings(CommonSettings.defaultSettings)
