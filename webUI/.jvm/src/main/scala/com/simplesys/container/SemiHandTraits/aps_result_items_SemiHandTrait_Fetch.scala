@@ -9,6 +9,7 @@ import com.simplesys.app.SessionContextSupport
 import com.simplesys.circe.Circe._
 import com.simplesys.common.Strings._
 import com.simplesys.isc.dataBinging._
+import com.simplesys.isc.dataBinging.DSResponse._
 import com.simplesys.jdbc.control.DsRequest
 import com.simplesys.jdbc.control.clob._
 import com.simplesys.servlet.isc.{GetData, ServletActor}
@@ -129,7 +130,7 @@ trait aps_result_items_SemiHandTrait_Fetch extends SessionContextSupport with Se
                     )
                 }
                 case Failure(_) =>
-                    DSResponseFailureEx(ErrorData(select.printException.get.message, select.printException.get.stackTrace).asJson)
+                    DSResponseFailureEx(select.printException.get.message, select.printException.get.stackTrace))
             }
             Out(out = out)
 

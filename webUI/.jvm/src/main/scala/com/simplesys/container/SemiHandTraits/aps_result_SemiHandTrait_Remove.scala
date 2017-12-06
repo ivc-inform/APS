@@ -5,6 +5,7 @@ package ru.simplesys.defs.app.scala.container.aps
 import com.simplesys.app.SessionContextSupport
 import com.simplesys.servlet.isc.{GetData, ServletActor}
 import com.simplesys.isc.dataBinging._
+import com.simplesys.isc.dataBinging.DSResponse._
 import com.simplesys.common.Strings._
 import com.simplesys.jdbc.control.clob._
 import akka.actor.Actor
@@ -88,7 +89,7 @@ trait aps_result_SemiHandTrait_Remove extends SessionContextSupport with Servlet
                         arr(listResponse: _*)
                     }
                     case Failure(_) =>
-                        DSResponseFailureEx(ErrorData(delete.printException.get.message,delete.printException.get.stackTrace).asJson).asJson
+                        DSResponseFailureEx(delete.printException.get.message,delete.printException.get.stackTrace).asJson
                 })
 
                 if (_transactionNum.isDefined)

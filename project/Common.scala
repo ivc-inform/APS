@@ -11,5 +11,5 @@ case class Info(libName: String, libVersion: String) {
 object Common {
     var list = ArrayBuffer.empty[Info]
 
-    def spaces2: String = list.asJson.spaces2
+    def spaces2: String = list.toSet.asJson.spaces2
 }
