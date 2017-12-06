@@ -13,7 +13,7 @@ import com.simplesys.SmartClient.RPC.props.RPCRequestProps
 import com.simplesys.SmartClient.RPC.{RPCManagerSS, RPCRequest, RPCResponse}
 import com.simplesys.SmartClient.System
 import com.simplesys.SmartClient.System._
-import com.simplesys.System.Types.{FormItemComponentType, ListGridFieldType}
+import com.simplesys.System.Types.{FormItemComponentType, ListGridFieldType, SelectionAppearance, SelectionStyle}
 import com.simplesys.System._
 import com.simplesys.app.Tasks
 import com.simplesys.circe.Circe._
@@ -40,6 +40,9 @@ class ParametrsProps extends CommonListGridEditorComponentProps {
 
     editingFields = FormItemsJS.aps_params_FRMITM.opt
     fields = ListGridFiledsJS.aps_params_FLDS.opt
+
+    selectionAppearance = SelectionAppearance.checkbox.opt
+    selectionType = SelectionStyle.multiple.opt
 
     editWindowProperties = System.WindowSS(
         new WindowSSProps {
