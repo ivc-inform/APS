@@ -12,7 +12,7 @@ class StartTestPage[Builder, Output <: FragT, FragT](val _title: String) {
                 tags2.title(_title),
                 meta(httpEquiv := "Content-Type", content := "text/html; charset=utf-8"),
                 script(src := "managed/javascript/jsgantt-improved/jsgantt.js"),
-                script(src := "javascript/generated/generatedComponentsJS/web-ui-fastopt.js"),
+                script(src := "javascript/generated/generatedComponentsJS/web-uijs-fastopt.js"),
                 link(href := "managed/css/jsgantt-improved/jsgantt.css", rel := "stylesheet", `type` := "text/css"),
             ),
             body(
