@@ -66,6 +66,13 @@ class GanttDataContainer(val request: HttpServletRequest, val response: HttpServ
                                 case Success(resultItems) ⇒
                                     val tasks = resultItems.map {
                                         resultItem ⇒
+                                            val _pStart = resultItem.opertimestartResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse("")
+                                            val _pEnd = resultItem.opertimeendResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse("")
+
+                                            /*println("///////////////////////////////////////////////////////////////////////////////////////////////////")
+                                            println(s"_pStart : ${_pStart}, _pEnd: ${_pEnd}")
+                                            println("///////////////////////////////////////////////////////////////////////////////////////////////////")*/
+
                                             val res = TaskItemExt(
                                                 pID = resultItem.id_itemResult_items,
                                                 pStart = resultItem.opertimestartResult_items.map(item ⇒ com.simplesys.gantt.time.Time.localDateTime2Str(item)).getOrElse(""),
