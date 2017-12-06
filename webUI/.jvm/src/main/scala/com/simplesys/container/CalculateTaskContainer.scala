@@ -28,7 +28,7 @@ class CalculateTaskContainer(val request: HttpServletRequest, val response: Http
                 case Right(value) ⇒
                     logger debug s"request: ${newLine + value.asJson.toPrettyString}"
 
-                    runIt(value.idTask, 5)
+                    runIt(value.idTask, value.idParam)
 
                     Out(
                         DSResponse(
