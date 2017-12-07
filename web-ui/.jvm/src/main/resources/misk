@@ -67,6 +67,8 @@ expdp system/dfqc2 DIRECTORY=DUMPS DUMPFILE=aps16112017.dmp SCHEMAS=aps logfile=
 impdp system/dfqc2 dumpfile=aps16112017.dmp directory=dumps logfile=main.log
                                                                   
 ALTER USER system IDENTIFIED BY dfqc2 ACCOUNT UNLOCK;
+CREATE USER TEMP IDENTIFIED BY temp;
+GRANT DBA TO TEMP;
 
 
 DROP USER aps cascade;
