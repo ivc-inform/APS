@@ -35,7 +35,7 @@ object CommonDeps {
         //val ssysCoreVersion = "1.5.0.1"
         val smartclientVersion = "11.1-v20170703.1"
 
-        val servletAPIVersion = "3.1.0"
+        val servletAPIVersion = "4.0.0"
 
         val scalaTestVersion = "3.0.4"
         val scalaTagsVersion = "0.6.7"

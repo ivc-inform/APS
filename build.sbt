@@ -214,8 +214,6 @@ lazy val `web-ui` = crossProject(JSPlatform, JVMPlatform)
           a.name + "." + a.extension
       },
       webappWebInfClasses := true,
-      //      target in webappPrepare := prefixPath((target in Compile).value) / "webapp",
-      //      sourceDirectory in webappPrepare := prefixPath((sourceDirectory in Compile).value) / "webapp",
 
       defaultLinuxInstallLocation in Docker := "",
       dockerBaseImage := "ivcinform/jetty:9.4.7.v20170914",
@@ -249,8 +247,6 @@ lazy val `web-ui` = crossProject(JSPlatform, JVMPlatform)
 
               val classLoaderMirror = ru.runtimeMirror(this.getClass.getClassLoader)
               val `type`: ru.Type = ru.typeOf[T]
-
-              val classSymbol = `type`.typeSymbol.asClass
 
               val decls = `type`.declarations.sorted.filter(_.isMethod).filter(!_.name.toString.contains("<init>"))
               val im = classLoaderMirror reflect e
