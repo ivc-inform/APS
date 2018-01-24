@@ -7,7 +7,7 @@ object PluginDeps {
         val sbtCoffeScriptVersion = "1.1.4"
         val mergeJSVersion = "1.0.14-SNAPSHOT"
         val xsbtWebVersion = "4.0.2"
-        val sbtNativePackagerVersion = "1.2.4"
+        val sbtNativePackagerVersion = "1.3.2"
         val jrabelPluginVersion = "0.11.1"
         val scalaCrossProjectPluginVersion = "0.3.3-SNAPSHOT"
     }
@@ -32,7 +32,7 @@ object CommonDeps {
         val scalaModulesVersion = "1.0.6"
 
         val ssysCoreVersion = "1.5-SNAPSHOT"
-        //val ssysCoreVersion = "1.4.0.2"
+        //val ssysCoreVersion = "1.5.0.1"
         val smartclientVersion = "11.1-v20170703.1"
 
         val servletAPIVersion = "3.1.0"
@@ -41,7 +41,7 @@ object CommonDeps {
         val scalaTagsVersion = "0.6.7"
 
         val scalaJSVersion = "1.5-SNAPSHOT"
-        //val scalaJSVersion = "1.4.0.1"
+        //val scalaJSVersion = "1.5.0.1"
 
         val scalajsDOMVersion = "0.9.3"
         val udashJQueryVersion = "1.1.1-SNAPSHOT"
