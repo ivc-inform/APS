@@ -3,8 +3,8 @@ import sbt.{ModuleID, _}
 object PluginDeps {
 
     object versions {
-        val devPluginVersion = "1.3.17-SNAPSHOT"
-        val sbtCoffeScriptVersion = "1.1.4"
+        val devPluginVersion = "1.3.16-SNAPSHOT"
+        val sbtCoffeScriptVersion = "1.1.5-SNAPSHOT"
         val mergeJSVersion = "1.0.14-SNAPSHOT"
         val xsbtWebVersion = "4.0.2"
         val sbtNativePackagerVersion = "1.2.5-SNAPSHOT"
