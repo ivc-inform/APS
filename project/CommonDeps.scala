@@ -7,7 +7,7 @@ object PluginDeps {
         val sbtCoffeScriptVersion = "1.1.4"
         val mergeJSVersion = "1.0.14-SNAPSHOT"
         val xsbtWebVersion = "4.0.2"
-        val sbtNativePackagerVersion = "1.3.2"
+        val sbtNativePackagerVersion = "1.2.5-SNAPSHOT"
         val jrabelPluginVersion = "0.11.1"
         val scalaCrossProjectPluginVersion = "0.3.3-SNAPSHOT"
     }
@@ -46,7 +46,7 @@ object CommonDeps {
         val scalajsDOMVersion = "0.9.3"
         val udashJQueryVersion = "1.1.1-SNAPSHOT"
 
-        val jettyVersion = "9.4.7.v20170914"
+        val jettyVersion = "9.4.8.v20171121"
         val jdbcOracle12DriverVersion = "12.2.0.1"
 
         val commonsFileuploadVersion = "1.3.3"
