@@ -25,5 +25,5 @@ trait aps_tasks_SemiHandTrait_Update extends SessionContextSupport with ServletA
     
      def receiveBase: Option[Actor.Receive] = None    
     
-     def wrapperBlobGetter(blob: Blob): String = blob.asString
+     def wrapperBlobGetter(blob: Blob): String = inputStream2Sting(blob)
 }

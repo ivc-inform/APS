@@ -227,5 +227,5 @@ trait aps_result_items_SemiHandTrait_Update extends SessionContextSupport with S
         }
     )
 
-    def wrapperBlobGetter(blob: Blob): String = blob.asString
+    def wrapperBlobGetter(blob: Blob): String = inputStream2Sting(blob)
 }

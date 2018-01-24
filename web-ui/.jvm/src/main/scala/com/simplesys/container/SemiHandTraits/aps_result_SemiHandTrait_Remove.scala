@@ -107,5 +107,5 @@ trait aps_result_SemiHandTrait_Remove extends SessionContextSupport with Servlet
         }
     )
 
-    def wrapperBlobGetter(blob: Blob): String = blob.asString
+    def wrapperBlobGetter(blob: Blob): String = inputStream2Sting(blob)
 }

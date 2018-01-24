@@ -26,5 +26,5 @@ trait aps_task_result_SemiHandTrait_Remove extends SessionContextSupport with Se
 
     def receiveBase: Option[Actor.Receive] = None
 
-    def wrapperBlobGetter(blob: Blob): String = blob.asString
+    def wrapperBlobGetter(blob: Blob): String = inputStream2Sting(blob)
 }

@@ -25,5 +25,5 @@ trait aps_opers_type_SemiHandTrait_Remove extends SessionContextSupport with Ser
     
      def receiveBase: Option[Actor.Receive] = None    
     
-     def wrapperBlobGetter(blob: Blob): String = blob.asString
+     def wrapperBlobGetter(blob: Blob): String = inputStream2Sting(blob)
 }

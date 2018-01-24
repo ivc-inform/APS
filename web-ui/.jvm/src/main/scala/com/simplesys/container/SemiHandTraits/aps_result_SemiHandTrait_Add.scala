@@ -25,5 +25,5 @@ trait aps_result_SemiHandTrait_Add extends SessionContextSupport with ServletAct
     
      def receiveBase: Option[Actor.Receive] = None    
     
-     def wrapperBlobGetter(blob: Blob): String = blob.asString
+     def wrapperBlobGetter(blob: Blob): String = inputStream2Sting(blob)
 }
