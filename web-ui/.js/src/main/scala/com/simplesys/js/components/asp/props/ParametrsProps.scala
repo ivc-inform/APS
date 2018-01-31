@@ -28,7 +28,7 @@ import io.circe.generic.auto._
 import io.circe.scalajs.{convertJsToJson, convertJsonToJs}
 import io.circe.syntax._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS, aps_orders_code_task_Id_task_NameStrong}
-import ru.simplesys.defs.app.scala.container.{ParamsDataRecord, TasksDataRecord}
+import ru.simplesys.defs.app.scala.container.ApsParamsDataRecord
 
 class ParametrsProps extends CommonListGridEditorComponentProps {
     type classHandler <: Parametrs
@@ -74,7 +74,7 @@ class ParametrsProps extends CommonListGridEditorComponentProps {
                         val owner = item.owner.asInstanceOf[TreeGridEditor]
                         simpleSyS checkOwner owner
 
-                        val selectedRecord = owner.getSelectedRecord.asInstanceOf[ParamsDataRecord]
+                        val selectedRecord = owner.getSelectedRecord.asInstanceOf[ApsParamsDataRecord]
                         RPCManagerSS.sendRequest(
                             RPCRequest(
                                 new RPCRequestProps {

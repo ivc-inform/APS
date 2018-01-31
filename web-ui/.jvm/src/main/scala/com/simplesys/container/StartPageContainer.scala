@@ -75,7 +75,6 @@ class TestDiagramImprovedPageContainer(val request: HttpServletRequest, val resp
               ).render.unEscape
 
             Out(html)
-
             selfStop()
         }
         case x =>

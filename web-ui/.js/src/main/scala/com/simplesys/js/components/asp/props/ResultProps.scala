@@ -14,7 +14,7 @@ import com.simplesys.js.components.gantt.props.{GanttChartProps, GanttImprovedCh
 import com.simplesys.option.DoubleType._
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen._
-import ru.simplesys.defs.app.scala.container.ResultDataRecord
+import ru.simplesys.defs.app.scala.container.ApsResultDataRecord
 
 class ResultProps extends CommonListGridEditorComponentProps {
     type classHandler <: Result
@@ -35,7 +35,7 @@ class ResultProps extends CommonListGridEditorComponentProps {
     selectionType = SelectionStyle.multiple.opt
 
     getExpansionComponent = {
-        (thiz: classHandler, record: ResultDataRecord) ⇒
+        (thiz: classHandler, record: ApsResultDataRecord) ⇒
             val result = ResultItem.create(
                 new ResultItemProps {
                     initialCriteria = AdvancedCriteria(
