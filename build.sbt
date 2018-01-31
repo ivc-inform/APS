@@ -64,10 +64,9 @@ lazy val `db-objects` = crossProject(JSPlatform, JVMPlatform)
       libraryDependencies ++= Seq(
           CommonDeps.ssysCoreLibrary,
           CommonDeps.ssysJDBCWrapper,
-          //CommonDeps.oraclePoolDataSources,
           CommonDeps.hikariPoolDataSources,
           CommonDeps.jdbcOracle12,
-          //CommonDeps.jdbcOracle12UCP,
+          CommonDeps.postgreSQL,
           CommonDeps.jdbcOracleN18_12
       ),
       sourceSchemaDir in DevConfig := (resourceDirectory in Compile).value / "defs",

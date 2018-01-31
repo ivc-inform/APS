@@ -114,6 +114,8 @@ object CommonDeps {
     val jdbcOracle12UCP = "com.oracle.jdbc" % "ucp" % versions.jdbcOracle12DriverVersion
     val jdbcOracleN18_12 = "com.oracle.jdbc" % "orai18n" % versions.jdbcOracle12DriverVersion
 
+    val postgreSQL = "org.postgresql" % "postgresql" % "42.2.1"
+
     val commonsFileupload = "commons-fileupload" % "commons-fileupload" % versions.commonsFileuploadVersion
     val commonsIO = "commons-io" % "commons-io" % versions.commonsIOVersion
 
