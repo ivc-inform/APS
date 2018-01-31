@@ -296,6 +296,7 @@ lazy val `web-ui` = crossProject(JSPlatform, JVMPlatform)
       crossTarget in packageJSDependencies := (sourceDirectory in Compile).value / ".." / ".." / ".." / ".jvm" / "src" / "main" / "webapp" / "javascript" / "generated" / "generatedComponentsJS",
 
       libraryDependencies ++= Seq(
+          CommonDeps.ssysJDBCWrapper,
           CommonDepsScalaJS.jsgantImproved.value,
 
           CommonDepsScalaJS.smartClientWrapper.value,
