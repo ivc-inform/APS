@@ -66,8 +66,8 @@ lazy val `db-objects` = crossProject(JSPlatform, JVMPlatform)
           CommonDeps.ssysJDBCWrapper,
           CommonDeps.hikariPoolDataSources,
           CommonDeps.jdbcOracle12,
-          CommonDeps.postgreSQL,
-          CommonDeps.jdbcOracleN18_12
+          CommonDeps.jdbcOracleN18_12,
+          CommonDeps.postgreSQL
       ),
       sourceSchemaDir in DevConfig := (resourceDirectory in Compile).value / "defs",
       startPackageName in DevConfig := "ru.simplesys.defs",
@@ -134,7 +134,6 @@ lazy val `web-ui` = crossProject(JSPlatform, JVMPlatform)
           CommonDeps.ssysIscComponents,
           CommonDeps.ssysScalaIOExtender,
           CommonDeps.ssysXMLExtender,
-          CommonDeps.ssysIscMisc,
           CommonDeps.circeExtender,
           CommonDeps.ssysServletWrapper,
           CommonDeps.ssysCommonWebapp,
@@ -188,9 +187,6 @@ lazy val `web-ui` = crossProject(JSPlatform, JVMPlatform)
               Seq("webapp", "javascript", "generated", "generatedComponents", "coffeescript") -> Some(Seq("webapp", "managed", "javascript", "isc-components", "generated", "generatedComponents", "coffeescript")),
               Seq("javascript", "com", "simplesys") -> Some(Seq("webapp", "managed", "javascript", "isc-components", "developed", "developedComponents")),
               Seq("coffeescript") -> Some(Seq("webapp", "managed", "coffeescript", "isc-components", "developed", "developedComponents"))
-          ),
-          ("com.simplesys.core", "isc-misc") -> Seq(
-              Seq("javascript") -> Some(Seq("webapp", "managed", "javascript", "isc-misc"))
           ),
           ("com.simplesys", "jsgantt-improved") -> Seq(
               Seq("javascript") -> Some(Seq("webapp", "managed", "javascript", "jsgantt-improved")),

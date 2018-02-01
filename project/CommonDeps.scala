@@ -70,9 +70,6 @@ object CommonDeps {
     val ssysIscComponents = "com.simplesys.core" %% "isc-components" % versions.ssysCoreVersion
     //val ssysIscComponents = ProjectRef(uriSimpleSys, "isc-components")
 
-    val ssysIscMisc = "com.simplesys.core" %% "isc-misc" % versions.ssysCoreVersion
-    //val ssysIscMisc = ProjectRef(uriSimpleSys, "isc-misc")
-
     val ssysXMLExtender = "com.simplesys.core" %% "xml-extender" % versions.ssysCoreVersion
     //val ssysXMLExtender = ProjectRef(uriSimpleSys, "xml-extender")
 
