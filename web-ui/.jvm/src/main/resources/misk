@@ -75,3 +75,8 @@ DROP USER aps cascade;
 docker cp aps_112:/u01/app/oracle/product/11.2/db_1/dumps/aps16112017.dmp /home/uandrew/JOB/APS/dumps
 docker cp /home/uandrew/JOB/APS/dumps/aps16112017.dmp aps_112:/u01/app/oracle/product/11.2/db_1/dumps
 
+pg_dump postgres > /tmp/postgres.sql
+docker cp aps-p:/tmp/postgres.sql /home/uandrew/GIT-HUB/APS/dumps
+
+docker cp /home/uandrew/GIT-HUB/APS/dumps/postgres.sql aps-p:/tmp/postgres.sql
+psql -d postgres -f /tmp/postgres.sql
