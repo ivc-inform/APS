@@ -303,9 +303,6 @@ lazy val `web-ui` = crossProject(JSPlatform, JVMPlatform)
       )
   )
   .jsSettings(commonJSSettings)
-  /*.jsConfigure{
-      project ⇒ project.dependsOn(CommonDepsScalaJS.smartClientWrapper)
-  }*/
 
 lazy val `web-ui-js` = `web-ui`.js
 lazy val `web-ui-jvm` = `web-ui`.jvm
