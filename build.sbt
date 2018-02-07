@@ -1,14 +1,13 @@
-import sbtcrossproject.{CrossType, crossProject}
 import com.simplesys.jrebel.JRebelPlugin
 import com.simplesys.jrebel.JRebelPlugin._
-import com.typesafe.sbt.packager.docker.DockerPlugin._
-import ru.simplesys.plugins.sourcegen.DevPlugin._
-import sbt.Keys.version
 import com.simplesys.mergewebapp.MergeWebappPlugin._
 import com.typesafe.sbt.coffeescript.SbtCoffeeScript.autoImport._
+import com.typesafe.sbt.packager.docker.DockerPlugin._
 import com.typesafe.sbt.web.Import.WebKeys._
 import com.typesafe.sbt.web.SbtWeb.autoImport._
 import ru.simplesys.plugins.sourcegen.DevPlugin._
+import sbt.Keys.version
+import sbtcrossproject.{CrossType, crossProject}
 
 lazy val root = crossProject(JSPlatform, JVMPlatform)
   .enablePlugins(GitVersioning)
@@ -216,7 +215,7 @@ lazy val `web-ui` = crossProject(JSPlatform, JVMPlatform)
       daemonGroup in Docker := "",
       dockerDocfileCommands := Seq(),
       dockerEntrypoint := Seq(),
-      dockerCmd := Seq(),
+      dockerCmd := Seq(),                                   
       dockerExposedPorts in Docker := Seq(8080),
 
       //docker
