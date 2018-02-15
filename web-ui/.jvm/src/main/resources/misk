@@ -80,3 +80,8 @@ docker cp aps-p:/tmp/postgres.sql /home/uandrew/GIT-HUB/APS/dumps
 
 docker cp /home/uandrew/GIT-HUB/APS/dumps/postgres.sql aps-p:/tmp/postgres.sql
 psql -d postgres -f /tmp/postgres.sql
+
+CREATE TABLESPACE usr_430218_1 LOCATION '/home/postgres/usr_430218-1';
+
+ALTER TABLESPACE usr_430218
+  OWNER TO usr_430218;
