@@ -7,7 +7,7 @@ object CommonSettings {
 
         val name = "aps"
         val baseVersion = "1.0"
-        val scalaVersion = "2.12.4"
+        val scalaVersion = "2.12.5"
         val organization = "com.simplesys"
         val scalacOptions = Seq(
             "-feature",
