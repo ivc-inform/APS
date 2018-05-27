@@ -29,9 +29,9 @@ object CommonDeps {
     object versions {
         val scalaModulesVersion = "1.0.6"
 
-        val ssysCoreVersion = "1.5-SNAPSHOT"
-        //val ssysCoreVersion = "1.5.0.1"
-        val smartclientVersion = "11.1-v20170703.1"
+        //val ssysCoreVersion = "1.5-SNAPSHOT"
+        val ssysCoreVersion = "1.5.0.1"
+        val smartclientVersion = "v20180507-12.0"
 
         val servletAPIVersion = "4.0.0"
 
@@ -44,7 +44,7 @@ object CommonDeps {
         val scalajsDOMVersion = "0.9.3"
         val udashJQueryVersion = "1.1.1-SNAPSHOT"
 
-        val jettyVersion = "9.4.8.v20171121"
+        val jettyVersion = "9.4.10.v20180503"
         val jdbcOracle12DriverVersion = "12.2.0.1"
 
         val commonsFileuploadVersion = "1.3.3"
@@ -63,7 +63,7 @@ object CommonDeps {
 
     val servletAPI = "javax.servlet" % "javax.servlet-api" % versions.servletAPIVersion
 
-    val smartclient = "com.simplesys" % "smartclient-js" % versions.smartclientVersion
+    val smartclient = "com.simplesys" %% "smartclient-js" % versions.smartclientVersion
 
     val ssysIscComponents = "com.simplesys.core" %% "isc-components" % versions.ssysCoreVersion
     //val ssysIscComponents = ProjectRef(uriSimpleSys, "isc-components")

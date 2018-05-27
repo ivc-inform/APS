@@ -12,7 +12,7 @@ import com.simplesys.servlet.isc.{GetData, ServletActor}
 @RSTransfer(urlPattern = "/StartPage")
 class StartPageContainer(val request: HttpServletRequest, val response: HttpServletResponse, val servletContext: ServletContext) extends ServletActor {
 
-    def receive = {
+    def receive = {GetUIContent
         case GetData => {
             val textHTML = new StartPage("Расписание".ellipsis)
 
