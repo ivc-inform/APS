@@ -3,7 +3,7 @@ import sbt.{ModuleID, _}
 object PluginDeps {
 
     object versions {
-        val devPluginVersion = "1.3.16-SNAPSHOT"
+        val devPluginVersion = "1.3.18-SNAPSHOT"
         val sbtCoffeScriptVersion = "1.1.5-SNAPSHOT"
         val mergeJSVersion = "1.0.14-SNAPSHOT"
         val xsbtWebVersion = "4.0.2"
@@ -44,7 +44,7 @@ object CommonDeps {
         val scalajsDOMVersion = "0.9.3"
         val udashJQueryVersion = "1.1.1-SNAPSHOT"
 
-        val jettyVersion = "9.4.10.v20180503"
+        val jettyVersion = "9.4.11.v20180605"
         val jdbcOracle12DriverVersion = "12.2.0.1"
 
         val commonsFileuploadVersion = "1.3.3"

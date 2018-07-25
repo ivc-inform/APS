@@ -22,7 +22,6 @@ import com.simplesys.js.components.asp.props._
 import com.simplesys.option.ScOption._
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen
 import ru.simplesys.defs.app.gen.scala.ScalaJSGen.{DataSourcesJS, FormItemsJS, ListGridFiledsJS}
-
 import scala.scalajs.js.annotation.JSExportTopLevel
 
 object ApsProcWindowMain extends WebTabSetApp {
