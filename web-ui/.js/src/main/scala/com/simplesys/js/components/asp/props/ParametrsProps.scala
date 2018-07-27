@@ -75,7 +75,7 @@ class ParametrsProps extends CommonListGridEditorComponentProps {
                         simpleSyS checkOwner owner
 
                         val selectedRecord = owner.getSelectedRecord.asInstanceOf[ApsParamsDataRecord]
-                        RPCManagerSS.sendRequest(
+                        RPCManagerSS.(
                             RPCRequest(
                                 new RPCRequestProps {
                                     actionURL = "logic/calculateTask".opt
